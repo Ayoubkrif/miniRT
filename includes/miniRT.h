@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/03 21:34:48 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/04 18:54:43 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ typedef struct s_rt
 }	t_rt;
 
 void	check_args(int argc);
+t_vec3	cross_product(t_vec3 vec1, t_vec3 vec2);
 
 #endif
