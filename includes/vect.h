@@ -1,45 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   vect.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/04 19:12:07 by aykrifa          ###   ########.fr       */
+/*   Created: 2025/06/04 19:10:35 by aykrifa           #+#    #+#             */
+/*   Updated: 2025/06/04 19:11:49 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef VECT_H
+# define VECT_H
 
-# include <stdbool.h>
-# include "vect.h"
-
-# define WIN_X	1920
-# define WIN_Y	1080
-
-# define OPEN_FAILURE -1
-
-typedef struct s_mlx
+typedef struct s_vec3
 {
-	void	*disp;
-	void	*win;
-	void	*img;
-}	t_mlx;
+	double	x;
+	double	y;
+	double	z;
+}	t_vec3;
 
-typedef struct s_camera
-{
-	t_vec3	position;
-	t_vec3	direction;
-}	t_camera;
-
-typedef struct s_rt
-{
-	t_mlx		mlx;
-	t_camera	camera;
-}	t_rt;
-
-void	check_args(int argc);
+t_vec3	cross_product(t_vec3 vec1, t_vec3 vec2);
+t_vec3	vect_add(t_vec3 u, t_vec3 v);
 
 #endif

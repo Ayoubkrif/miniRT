@@ -6,11 +6,11 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:45:57 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/04 19:06:16 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/04 19:12:59 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "vect.h"
 
 t_vec3	cross_product(t_vec3 u, t_vec3 v)
 {
