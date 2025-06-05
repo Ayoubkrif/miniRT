@@ -1,43 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/05 15:12:05 by aykrifa          ###   ########.fr       */
+/*   Created: 2025/06/05 15:07:36 by aykrifa           #+#    #+#             */
+/*   Updated: 2025/06/05 15:07:55 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include <stdlib.h>
 
-# include "vect.h"
-
-# define WIN_X	1920
-# define WIN_Y	1080
-
-typedef struct s_mlx
+void	fall(char **split)
 {
-	void	*disp;
-	void	*win;
-	void	*img;
-}	t_mlx;
+	int	i;
 
-typedef struct s_camera
-{
-	t_vec3	position;
-	t_vec3	direction;
-	int		fov;
-}	t_camera;
-
-typedef struct s_rt
-{
-	t_mlx		mlx;
-	t_camera	camera;
-}	t_rt;
-
-void	check_args(int argc);
-
-#endif
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+}
