@@ -3,6 +3,9 @@
 !libft/*.[ch]
 !srcs
 !srcs/*.c
+!scene
+!scene/*.rt
 !includes
 !includes/*.h
 !Makefile
+!.gitgnore

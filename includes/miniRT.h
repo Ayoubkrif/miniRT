@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/04 19:12:07 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/05 14:45:36 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_camera
 {
 	t_vec3	position;
 	t_vec3	direction;
+	int		fov;
 }	t_camera;
 
 typedef struct s_rt

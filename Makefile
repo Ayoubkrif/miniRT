@@ -6,13 +6,13 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/04 15:44:49 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/05 14:58:38 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= miniRT
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 
 SRC_PATH	= srcs
