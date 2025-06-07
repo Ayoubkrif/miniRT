@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/06 12:44:58 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/07 14:07:07 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ typedef struct s_mlx
 	void	*img;
 }	t_mlx;
 
+typedef enum e_type
+{
+	NONE = 0,
+	CYLINDER,
+	SPHERE,
+	PLANE
+}	t_type;
+
 typedef struct s_rgb
 {
 	int	x;
@@ -41,7 +49,7 @@ typedef struct s_camera
 {
 	t_vec3	position;
 	t_vec3	direction;
-	int		fov;
+	float	fov;
 }	t_camera;
 
 typedef struct s_ambient
@@ -59,7 +67,7 @@ typedef struct light
 
 typedef struct s_sphere
 {
-	int		type;
+	t_type	type;
 	t_vec3	center;
 	float	diameter;
 	t_rgb	color;
@@ -67,7 +75,7 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	int		type;
+	t_type	type;
 	t_vec3	point;
 	t_vec3	normal_v;
 	t_rgb	color;
@@ -75,18 +83,21 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	int		type;
+	t_type	type;
 	t_vec3	center;
 	t_vec3	axis;
 	float	diameter;
 	float	height;
 	t_rgb	color;
-}	t_cylander;
+}	t_cylinder;
 
 typedef struct s_rt
 {
 	t_mlx		mlx;
 	t_camera	camera;
+	t_light		light;
+	t_ambient	ambiant;
+	t_type		object[10];
 }	t_rt;
 
 void	check_args(int argc);
