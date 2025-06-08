@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/07 14:07:07 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/08 19:41:28 by cbordeau         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct light
 {
 	t_vec3	position;
 	float	brightness;
-	t_rgb	color;
+	// t_rgb	color;
 }	t_light;
 
 typedef struct s_sphere
@@ -97,9 +97,17 @@ typedef struct s_rt
 	t_camera	camera;
 	t_light		light;
 	t_ambient	ambiant;
-	t_type		object[10];
+	int			nb_object;
+	t_type		*object[10];
 }	t_rt;
 
 void	check_args(int argc);
+int		fill_vec(char *str, t_vec3 *vec);
+int		get_cam_info(char **tok, t_rt *rt);
+int		get_light_info(char **tok, t_rt *rt);
+int		get_ambient_info(char **tok, t_rt *rt);
+int		get_sphere_info(char **tok, t_rt *rt);
+int		get_cylinder_info(char **tok, t_rt *rt);
+int		get_plane_info(char **tok, t_rt *rt);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/05 15:20:51 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/08 19:45:43 by cbordeau         ###   LAUSANNE.ch        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MLX			= minilibx-linux
 
 SOURCES		= main.c \
 			  check_arguments.c fill_scene.c\
-			  utils.c
+			  utils.c constructors.c
 
 SRCS		= $(addprefix $(SRC_PATH)/,$(SOURCES))
 OBJS		= $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))

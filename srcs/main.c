@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/07 14:07:20 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/08 20:43:46 by cbordeau         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,53 @@ void	init_mini_rt(t_rt *rt, char **av)
 	get_scene_info(rt, av);
 }
 
+void	free_rt(t_rt *rt)
+{
+	int	i;
+
+	i = 0;
+	while(i < rt->nb_object)
+	{
+		free(rt->object[i]);
+		i++;
+	}
+}
+
 int	main(int ac, char *av[])
 {
 	t_rt	rt;
 
 	check_args(ac);
+	rt.nb_object = 0;
 	init_mini_rt(&rt, av);
 	printf("camera =======\nposition  :%f,%f,%f\ndirection :%f,%f,%f\nfov : %f\n",
 		rt.camera.position.x, rt.camera.position.y, rt.camera.position.z,
 		rt.camera.direction.x, rt.camera.direction.y, rt.camera.direction.z,
 		rt.camera.fov);
+
+	printf("light =======\nposition  :%f,%f,%f\nbrightness :%f\n",
+		rt.light.position.x, rt.light.position.y, rt.light.position.z, rt.light.brightness);
+
+	printf("ambient =======\nlightning  :%f\n",
+		rt.ambiant.lighting);
+
+	printf("plane =======\npoint  :%f,%f,%f\nnormal_v   :%f,%f,%f\n",
+		((t_plane *)rt.object[0])->point.x,((t_plane *)rt.object[0])->point.y,
+			((t_plane *)rt.object[0])->point.z,
+			((t_plane *)rt.object[0])->normal_v.x,((t_plane *)rt.object[0])->normal_v.y,
+			((t_plane *)rt.object[0])->normal_v.z);
+
+	printf("sphere =======\npoint  :%f,%f,%f\ndiameter   :%f\n",
+		((t_sphere *)rt.object[1])->center.x,((t_sphere *)rt.object[1])->center.y,
+			((t_sphere *)rt.object[1])->center.z,
+			((t_sphere *)rt.object[1])->diameter);
+
+	printf("cylander =======\ncenter  :%f,%f,%f\naxis   :%f,%f,%f\ndiameter   :%f\nheight   :%f\n",
+		((t_cylinder *)rt.object[2])->center.x,((t_cylinder *)rt.object[2])->center.y,
+			((t_cylinder *)rt.object[2])->center.z,
+			((t_cylinder *)rt.object[2])->axis.x,((t_cylinder *)rt.object[2])->axis.y,
+			((t_cylinder *)rt.object[2])->axis.z,
+			((t_cylinder *)rt.object[2])->diameter,((t_cylinder *)rt.object[2])->height);
+	free_rt(&rt);
 	return (0);
 }
