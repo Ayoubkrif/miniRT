@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/08 19:41:28 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/09 08:53:30 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_rt
 
 void	check_args(int argc);
 int		fill_vec(char *str, t_vec3 *vec);
+int		fill_rgb(char *str, t_rgb *color);
 int		get_cam_info(char **tok, t_rt *rt);
 int		get_light_info(char **tok, t_rt *rt);
 int		get_ambient_info(char **tok, t_rt *rt);

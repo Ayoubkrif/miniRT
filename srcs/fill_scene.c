@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/08 19:42:58 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/09 08:51:46 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "vect.h"
 #include "miniRT.h"
 
-char	*get_next_number(char *str)
+static char	*get_next_number(char *str)
 {
 	if (*str == '-')
 		str++;
@@ -98,10 +98,7 @@ void	get_scene_info(t_rt *rt, char **av)
 
 	fd = open(av[1], O_RDONLY);
 	if (fd == OPEN_FAILURE)
-	{
-		perror("open");
-		exit(1);
-	}
+		(perror("open"), exit(1));
 	while (true)
 	{
 		str = get_next_line(fd);

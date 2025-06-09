@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/08 20:23:19 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/09 08:53:36 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ int	get_light_info(char **tok, t_rt *rt)
 	return (0);
 }
 
-int	fill_rgb(char *str, t_rgb *color)
-{
-	(void)str;
-	(void)color;
-	return (0);
-}
-
 int	get_ambient_info(char **tok, t_rt *rt)
 {
 	if (!tok[1])
@@ -57,7 +50,7 @@ int	get_ambient_info(char **tok, t_rt *rt)
 
 int	get_sphere_info(char **tok, t_rt *rt)
 {
-	t_sphere *sphere;
+	t_sphere	*sphere;
 
 	sphere = malloc(sizeof(t_sphere));
 	sphere->type = SPHERE;
