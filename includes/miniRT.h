@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/09 08:53:30 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/09 11:18:04 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ typedef struct s_rgb
 	int	y;
 	int	z;
 }	t_rgb;
-
-typedef struct oject
-{
-	int	type;
-}	t_object;
 
 typedef struct s_camera
 {
@@ -99,6 +94,7 @@ typedef struct s_rt
 	t_ambient	ambiant;
 	int			nb_object;
 	t_type		*object[10];
+	t_type		*cam_obj[10];
 }	t_rt;
 
 void	check_args(int argc);
