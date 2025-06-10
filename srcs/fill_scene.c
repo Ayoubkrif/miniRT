@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/09 08:51:46 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:59:26 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*get_next_number(char *str)
 	return (str);
 }
 
-int	fill_vec(char *str, t_vec3 *vec)
+int	fill_vec(char *str, t_vect *vec)
 {
 	char	*cursor;
 

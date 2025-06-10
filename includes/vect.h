@@ -6,21 +6,25 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 19:10:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/04 19:11:49 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/10 18:33:28 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECT_H
 # define VECT_H
 
-typedef struct s_vec3
+typedef struct s_vect
 {
 	double	x;
 	double	y;
 	double	z;
-}	t_vec3;
+}	t_vect;
 
-t_vec3	cross_product(t_vec3 vec1, t_vec3 vec2);
-t_vec3	vect_add(t_vec3 u, t_vec3 v);
+t_vect	vec(double x, double y, double z);
+t_vect	vec_prod(t_vect u, t_vect v);
+t_vect	vec_add(t_vect u, t_vect v);
+t_vect	vec_sub(t_vect u, t_vect v);
+double	vec_norm(t_vect u);
+t_vect	get_point(t_vect start, t_vect dir, double norm);
 
 #endif

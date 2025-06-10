@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   math_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/10 17:01:39 by aykrifa          ###   ########.fr       */
+/*   Created: 2025/06/10 18:28:09 by aykrifa           #+#    #+#             */
+/*   Updated: 2025/06/10 18:33:23 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-#include "define.h"
 
-int	key_hook(int keycode, t_rt *rt)
-{
-	if (keycode == KEY_ESC)
-		exit_minirt(rt);
-	return (0);
-}
+#ifndef MATH_UTILS_H
+# define MATH_UTILS_H
+
+# include "vect.h"
+
+double	to_deg(double angle);
+double	to_rad(double angle);
+
+# define PI 3.1415929
+
+#endif

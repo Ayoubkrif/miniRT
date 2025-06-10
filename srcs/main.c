@@ -6,18 +6,17 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/10 13:22:28 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:25:52 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "miniRT.h"
-// #include "mlx_int.h"
 #include "mlx.h"
-#include "vect.h"
-#include "utils.h"
 #include "define.h"
+#include "math_utils.h"
 #include <stdio.h>
+#include <math.h>
 
 void	get_scene_info(t_rt *rt, char **av);
 
@@ -34,8 +33,6 @@ void	init_mini_rt(t_rt *rt, char **av)
 	rt->mlx.img = mlx_new_image(rt->mlx.disp, 1920, 1080);
 	if (!rt->mlx.img)
 		(printf("img failed\n"), exit(1));
-	// rt->mlx.addr = mlx_get_data_addr(rt->mlx.img,
-	// 		&rt->mlx.bits_per_pixel, &rt->mlx.line_lenght, &rt->mlx.endian);
 }
 
 void	free_rt(t_rt *rt)
@@ -67,6 +64,15 @@ void	alloc_camera_scene(t_type *obj[], t_type *to_dup[])
 	}
 }
 
+void	set_cam_base(t_rt *rt)
+{
+	rt->c_base.h_dir = vec_prod(rt->camera.direction, vec(0, 0, 1));
+	rt->c_base.v_dir = vec_prod(rt->camera.direction, rt->c_base.h_dir);
+	rt->c_base.start = get_point(rt->camera.position, rt->camera.direction, 1);
+	rt->c_base.pixel_x = get_point(vec(0, 0, 0), rt->c_base.h_dir, tan(to_rad(45)) / 960);
+	rt->c_base.pixel_y = get_point(vec(0, 0, 0), rt->c_base.v_dir, vec_norm(rt->c_base.pixel_x));
+}
+
 void	set_cam_obj(t_rt *rt)
 {
 	static int	dup = 0;
@@ -76,6 +82,7 @@ void	set_cam_obj(t_rt *rt)
 		alloc_camera_scene(rt->object, rt->cam_obj);
 		dup++;
 	}
+	set_cam_base(rt);
 }
 
 int	main(int ac, char *av[])
@@ -85,55 +92,11 @@ int	main(int ac, char *av[])
 	check_args(ac);
 	rt.nb_object = 0;
 	init_mini_rt(&rt, av);
-	printf("camera =======\nposition   :%f,%f,%f\ndirection  :%f,%f,%f\nfov        :%f\n",
-		rt.camera.position.x, rt.camera.position.y, rt.camera.position.z,
-		rt.camera.direction.x, rt.camera.direction.y, rt.camera.direction.z,
-		rt.camera.fov);
-	printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\n",
-		rt.light.position.x, rt.light.position.y, rt.light.position.z, rt.light.brightness);
-	printf("ambient =======\nlightning  :%f\ncolor      :%d,%d,%d\n",
-		rt.ambiant.lighting, rt.ambiant.color.x, rt.ambiant.color.y, rt.ambiant.color.z);
-	int		i;
-
-	i = 0;
-	while (rt.object[i])
-	{
-		if (*rt.object[i] == PLANE)
-		{
-			printf("plane =======\npoint      :%f,%f,%f\nnormal_v   :%f,%f,%f\ncolor      :%d,%d,%d\n",
-				((t_plane *)rt.object[i])->point.x, ((t_plane *)rt.object[i])->point.y,
-				((t_plane *)rt.object[i])->point.z,
-				((t_plane *)rt.object[i])->normal_v.x,((t_plane *)rt.object[i])->normal_v.y,
-				((t_plane *)rt.object[i])->normal_v.z,
-				((t_plane *)rt.object[i])->color.x, ((t_plane *)rt.object[i])->color.y,
-				((t_plane *)rt.object[i])->color.z);
-		}
-		if (*rt.object[i] == SPHERE)
-		{
-			printf("sphere =======\npoint      :%f,%f,%f\ndiameter   :%f\ncolor      :%d,%d,%d\n",
-				((t_sphere *)rt.object[i])->center.x,((t_sphere *)rt.object[i])->center.y,
-				((t_sphere *)rt.object[i])->center.z,
-				((t_sphere *)rt.object[i])->diameter,
-				((t_sphere *)rt.object[i])->color.x, ((t_sphere *)rt.object[i])->color.y,
-				((t_sphere *)rt.object[i])->color.z);
-		}
-		if (*rt.object[i] == CYLINDER)
-		{
-			printf("cylinder =======\ncenter     :%f,%f,%f\naxis       :%f,%f,%f\ndiameter   :%f\nheight     :%f\ncolor      :%d,%d,%d\n",
-				((t_cylinder *)rt.object[i])->center.x,((t_cylinder *)rt.object[i])->center.y,
-				((t_cylinder *)rt.object[i])->center.z,
-				((t_cylinder *)rt.object[i])->axis.x,((t_cylinder *)rt.object[i])->axis.y,
-				((t_cylinder *)rt.object[i])->axis.z,
-				((t_cylinder *)rt.object[i])->diameter,((t_cylinder *)rt.object[i])->height,
-				((t_cylinder *)rt.object[i])->color.x, ((t_cylinder *)rt.object[i])->color.y,
-				((t_cylinder *)rt.object[i])->color.z);
-		}
-		i++;
-	}
+	print_solids(&rt);
 	set_cam_obj(&rt);
+	print_cam_base(&rt);
 	mlx_hook(rt.mlx.win, EVENT_KEY_PRESS, 1L << 0, key_hook, &rt);
 	mlx_hook(rt.mlx.win, EVENT_DESTROY, 1L << 0, exit_minirt, &rt);
 	mlx_loop(rt.mlx.disp);
-	// free_rt(&rt);
 	return (0);
 }

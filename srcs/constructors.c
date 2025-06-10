@@ -6,13 +6,12 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/09 08:53:36 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:29:00 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "libft.h"
-#include "vect.h"
 #include "miniRT.h"
 #include <stdlib.h>
 
