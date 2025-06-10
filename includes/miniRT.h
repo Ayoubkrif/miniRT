@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/09 11:18:04 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:21:07 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ typedef struct s_mlx
 	void	*disp;
 	void	*win;
 	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
 }	t_mlx;
 
 typedef enum e_type
@@ -106,5 +110,9 @@ int		get_ambient_info(char **tok, t_rt *rt);
 int		get_sphere_info(char **tok, t_rt *rt);
 int		get_cylinder_info(char **tok, t_rt *rt);
 int		get_plane_info(char **tok, t_rt *rt);
+void	free_rt(t_rt *rt);
+int		exit_minirt(t_rt *rt);
+
+int		key_hook(int keycode, t_rt *rt);
 
 #endif

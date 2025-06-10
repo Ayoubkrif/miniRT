@@ -6,14 +6,18 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/09 11:30:59 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:22:28 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "miniRT.h"
+// #include "mlx_int.h"
+#include "mlx.h"
 #include "vect.h"
 #include "utils.h"
+#include "define.h"
+#include <stdio.h>
 
 void	get_scene_info(t_rt *rt, char **av);
 
@@ -21,6 +25,17 @@ void	init_mini_rt(t_rt *rt, char **av)
 {
 	ft_memset(rt, 0, sizeof(t_rt));
 	get_scene_info(rt, av);
+	rt->mlx.disp = mlx_init();
+	if (!rt->mlx.disp)
+		(printf("init failed\n"), exit(1));
+	rt->mlx.win = mlx_new_window(rt->mlx.disp, 1920, 1080, "MiniRT");
+	if (!rt->mlx.win)
+		(printf("win failed\n"), exit(1));
+	rt->mlx.img = mlx_new_image(rt->mlx.disp, 1920, 1080);
+	if (!rt->mlx.img)
+		(printf("img failed\n"), exit(1));
+	// rt->mlx.addr = mlx_get_data_addr(rt->mlx.img,
+	// 		&rt->mlx.bits_per_pixel, &rt->mlx.line_lenght, &rt->mlx.endian);
 }
 
 void	free_rt(t_rt *rt)
@@ -48,6 +63,7 @@ void	alloc_camera_scene(t_type *obj[], t_type *to_dup[])
 			to_dup[i] = malloc(sizeof(t_sphere));
 		if (*obj[i] == CYLINDER)
 			to_dup[i] = malloc(sizeof(t_cylinder));
+		i++;
 	}
 }
 
@@ -115,6 +131,9 @@ int	main(int ac, char *av[])
 		i++;
 	}
 	set_cam_obj(&rt);
-	free_rt(&rt);
+	mlx_hook(rt.mlx.win, EVENT_KEY_PRESS, 1L << 0, key_hook, &rt);
+	mlx_hook(rt.mlx.win, EVENT_DESTROY, 1L << 0, exit_minirt, &rt);
+	mlx_loop(rt.mlx.disp);
+	// free_rt(&rt);
 	return (0);
 }
