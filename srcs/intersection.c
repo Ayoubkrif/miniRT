@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/11 15:14:55 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:51:15 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	push_inter(t_rt *rt, t_vect ray, t_inter *inter, t_rgb color, double t)
 	i = 0;
 	while (inter[i].init)
 		i++;
+	printf("%d\n", i);
 	inter[i].init = 1;
 	inter[i].color = color;
 	inter[i].point = get_point_d(rt->camera.position, ray, t);
@@ -45,18 +46,18 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sphere *sp)
 	delta = delta_2nd(a, b, c);
 	if (delta <= 0)
 		return ;
-	push_inter(rt, ray, inter, sp->color, ((-b + sqrt(delta)) / (2 * a)));
-	push_inter(rt, ray, inter, sp->color, ((-b - sqrt(delta)) / (2 * a)));
+	push_inter(rt, ray, inter, sp->color, (-b + sqrt(delta)) / (2 * a));
+	push_inter(rt, ray, inter, sp->color, (-b - sqrt(delta)) / (2 * a));
 }
 
 void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
 {
-	(void)rt, (void)ray, (void)cy;
+	(void)rt, (void)ray, (void)inter, (void)cy;
 	printf("je suis une fonction qui ne fait rien\n");
 }
 
 void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_plane *pl)
 {
-	(void)rt, (void)ray, (void)pl;
+	(void)rt, (void)ray, (void)inter, (void)pl;
 	printf("je suis une fonction qui ne fait rien\n");
 }

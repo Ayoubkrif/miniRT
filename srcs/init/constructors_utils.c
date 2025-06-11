@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/09 08:54:31 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:45:34 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ int	fill_rgb(char *str, t_rgb *color)
 	if (!str)
 		return (1);
 	cursor = str;
-	color->x = ft_atoi(cursor);
-	if (color->x > 255)
-		return (dprintf(2, "value to hight :\'%d\'\n", color->x), 1);
+	color->r = ft_atoi(cursor);
+	if (color->r > 255)
+		return (dprintf(2, "value to hight :\'%d\'\n", color->r), 1);
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
 		return (dprintf(2, "no first coma :\'%s\'\n", str), 1);
 	cursor++;
-	color->y = ft_atoi(cursor);
-	if (color->y > 255)
-		return (dprintf(2, "value to hight :\'%d\'\n", color->y), 1);
+	color->g = ft_atoi(cursor);
+	if (color->g > 255)
+		return (dprintf(2, "value to hight :\'%d\'\n", color->g), 1);
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
 		return (dprintf(2, "no second coma :\'%s\'\n", str), 1);
 	cursor++;
-	color->z = ft_atoi(cursor);
-	if (color->z > 255)
-		return (dprintf(2, "value to hight :\'%d\'\n", color->z), 1);
+	color->b = ft_atoi(cursor);
+	if (color->b > 255)
+		return (dprintf(2, "value to hight :\'%d\'\n", color->b), 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/11 14:21:14 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:00:38 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include "math_utils.h"
+# include "assert.h"
 
 # define WIN_X	1920
 # define WIN_Y	1080
@@ -25,7 +26,7 @@ typedef struct s_mlx
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
-	int		line_lenght;
+	int		line_length;
 	int		endian;
 }	t_mlx;
 
@@ -39,9 +40,9 @@ typedef enum e_type
 
 typedef struct s_rgb
 {
-	int	x;
-	int	y;
-	int	z;
+	int	r;
+	int	g;
+	int	b;
 }	t_rgb;
 
 typedef struct s_camera
@@ -146,5 +147,6 @@ void	free_rt(t_rt *rt);
 int		exit_minirt(t_rt *rt);
 
 int		key_hook(int keycode, t_rt *rt);
+void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color);
 
 #endif

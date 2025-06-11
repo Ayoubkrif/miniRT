@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/11 11:37:57 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/11 19:32:59 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,21 +18,23 @@ INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 SRC_PATH	= srcs
 OBJ_PATH	= objs
 
-SRC_DIRS	= math init print
+SRC_DIRS	= math init print key_hook mlx
 SRC_DIRS_PATHS = $(addprefix $(SRC_PATH)/,$(SRC_DIRS))
 
 LIBFT		= libft
 MLX			= minilibx-linux
 
 SOURCES		= main.c \
-			  ray_casting.c \
-			  set_cam_base.c \
 			  init/check_arguments.c init/fill_scene.c \
 			  init/constructors.c init/constructors_utils.c \
-			  utils.c \
+			  mlx/put_pixel.c mlx/key_hook.c \
 			  math/vect.c math/vect2.c math/math_utils.c \
-			  key_hook.c exit_minirt.c \
-			  print/print_scene.c
+			  utils.c \
+			  exit_minirt.c \
+			  print/print_scene.c \
+			  ray_casting.c \
+			  set_cam_base.c \
+			  intersection.c \
 
 
 SRCS		= $(addprefix $(SRC_PATH)/,$(SOURCES))

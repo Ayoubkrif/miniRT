@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/10 18:50:24 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:08:28 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_solids(t_rt *rt)
 	printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\n",
 		rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.brightness);
 	printf("ambient =======\nlightning  :%f\ncolor      :%d,%d,%d\n",
-		rt->ambiant.lighting, rt->ambiant.color.x, rt->ambiant.color.y, rt->ambiant.color.z);
+		rt->ambiant.lighting, rt->ambiant.color.r, rt->ambiant.color.g, rt->ambiant.color.b);
 	while (rt->object[i])
 	{
 		if (*rt->object[i] == PLANE)
@@ -35,8 +35,8 @@ void	print_solids(t_rt *rt)
 				((t_plane *)rt->object[i])->point.z,
 				((t_plane *)rt->object[i])->normal_v.x,((t_plane *)rt->object[i])->normal_v.y,
 				((t_plane *)rt->object[i])->normal_v.z,
-				((t_plane *)rt->object[i])->color.x, ((t_plane *)rt->object[i])->color.y,
-				((t_plane *)rt->object[i])->color.z);
+				((t_plane *)rt->object[i])->color.r, ((t_plane *)rt->object[i])->color.g,
+				((t_plane *)rt->object[i])->color.b);
 		}
 		if (*rt->object[i] == SPHERE)
 		{
@@ -44,8 +44,8 @@ void	print_solids(t_rt *rt)
 				((t_sphere *)rt->object[i])->center.x,((t_sphere *)rt->object[i])->center.y,
 				((t_sphere *)rt->object[i])->center.z,
 				((t_sphere *)rt->object[i])->diameter,
-				((t_sphere *)rt->object[i])->color.x, ((t_sphere *)rt->object[i])->color.y,
-				((t_sphere *)rt->object[i])->color.z);
+				((t_sphere *)rt->object[i])->color.r, ((t_sphere *)rt->object[i])->color.g,
+				((t_sphere *)rt->object[i])->color.b);
 		}
 		if (*rt->object[i] == CYLINDER)
 		{
@@ -55,8 +55,8 @@ void	print_solids(t_rt *rt)
 				((t_cylinder *)rt->object[i])->axis.x,((t_cylinder *)rt->object[i])->axis.y,
 				((t_cylinder *)rt->object[i])->axis.z,
 				((t_cylinder *)rt->object[i])->diameter,((t_cylinder *)rt->object[i])->height,
-				((t_cylinder *)rt->object[i])->color.x, ((t_cylinder *)rt->object[i])->color.y,
-				((t_cylinder *)rt->object[i])->color.z);
+				((t_cylinder *)rt->object[i])->color.r, ((t_cylinder *)rt->object[i])->color.g,
+				((t_cylinder *)rt->object[i])->color.b);
 		}
 		i++;
 	}
