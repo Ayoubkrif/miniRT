@@ -6,12 +6,11 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:45:57 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/11 10:22:47 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/11 10:38:07 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vect.h"
-#include "math.h"
 
 t_vect	vec_prod(t_vect u, t_vect v)
 {

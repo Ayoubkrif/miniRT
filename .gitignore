@@ -2,7 +2,8 @@
 !libft
 !libft/*.[ch]
 !srcs
-!srcs/*.c
+!srcs/*
+!srcs/*/*.c
 !scene
 !scene/*.rt
 !includes
