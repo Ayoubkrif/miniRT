@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/11 10:24:43 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/11 11:37:57 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ LIBFT		= libft
 MLX			= minilibx-linux
 
 SOURCES		= main.c \
+			  ray_casting.c \
+			  set_cam_base.c \
 			  init/check_arguments.c init/fill_scene.c \
 			  init/constructors.c init/constructors_utils.c \
 			  utils.c \
