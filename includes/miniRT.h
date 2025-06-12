@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/11 19:00:38 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/12 13:53:19 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ typedef struct s_rt
 	t_light		light;
 	t_ambient	ambiant;
 	int			nb_object;
-	t_type		*object[10];
-	t_type		*cam_obj[10];
+	t_type		*object[20];
+	t_type		*cam_obj[20];
 }	t_rt;
 
 void	check_args(int argc);

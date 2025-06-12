@@ -6,13 +6,15 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/11 19:51:15 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/12 15:04:46 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "math_utils.h"
 #include "libft.h"
+#include "vect.h"
+#include <assert.h>
 #include <stdio.h>
 
 void	push_inter(t_rt *rt, t_vect ray, t_inter *inter, t_rgb color, double t)
@@ -37,13 +39,15 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sphere *sp)
 	t_vect	camera;
 
 	camera = rt->camera.position;
-	a = pow(ray.x, 2) + pow(ray.y, 2), pow(ray.z, 2);
-	b = 2 * (ray.x * (camera.x - sp->center.x)
-		+ ray.y * (camera.y - sp->center.y)
-		+ ray.z * (camera.z - sp->center.z));
-	c = pow(camera.x - sp->center.x, 2) + pow(camera.y - sp->center.y, 2)
-		+ pow(camera.z - sp->center.z, 2) - pow(sp->diameter / 2, 2);
+	a = dot_prod(ray, ray);
+	assert(a != 0);
+	b = 2 * dot_prod(ray, vec_sub(camera, sp->center));
+	c = p2(vec_norm(vec_sub(camera, sp->center))) - p2(sp->diameter / 2);
 	delta = delta_2nd(a, b, c);
+	// printf("ray is %f, %f, %f\n", ray.x, ray.y, ray.z);
+	// printf("camera is %f, %f, %f\n", camera.x, camera.y, camera.z);
+	// printf("center is %f, %f, %f\n", sp->center.x, sp->center.y, sp->center.z);
+	// printf("a = %f, b = %f, c = %f, d = %f\n", a, b, c, delta);
 	if (delta <= 0)
 		return ;
 	push_inter(rt, ray, inter, sp->color, (-b + sqrt(delta)) / (2 * a));
@@ -52,8 +56,30 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sphere *sp)
 
 void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
 {
-	(void)rt, (void)ray, (void)inter, (void)cy;
-	printf("je suis une fonction qui ne fait rien\n");
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+	t_vect	camera;
+	t_vect	ortho_ray;
+	t_vect	ortho_cam_center;
+
+	camera = rt->camera.position;
+	ortho_ray = vec_sub(ray, vec_mul(cy->axis, dot_prod(ray, cy->axis)));
+	ortho_cam_center = vec_sub(camera, cy->center);
+	ortho_cam_center = vec_sub(ortho_cam_center, vec_mul(cy->axis, dot_prod(ortho_cam_center, cy->axis)));
+
+	a = dot_prod(ortho_ray, ortho_ray);
+	assert(a != 0);
+	b = 2 *  dot_prod(ortho_cam_center, ortho_ray);
+	c = dot_prod(ortho_cam_center, ortho_cam_center) - p2(cy->diameter / 2);
+	delta = delta_2nd(a, b, c);
+	if (delta <= 0)
+		return ;
+	if (dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b + sqrt(delta) / (2 * a)))) <= cy->height / 2)
+		push_inter(rt, ray, inter, cy->color, (-b + sqrt(delta)) / (2 * a));
+	if (dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b - sqrt(delta) / (2 * a)))) <= cy->height / 2)
+		push_inter(rt, ray, inter, cy->color, (-b - sqrt(delta)) / (2 * a));
 }
 
 void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_plane *pl)
