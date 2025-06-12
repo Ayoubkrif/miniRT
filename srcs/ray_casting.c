@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 13:42:51 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:00:25 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,10 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	t_vect	ray;
 	t_inter	*inter;
 
-	// if (x != 169 || y != 300)
-	// 	return ((t_rgb){0,0,0});
-	// if (sqrt(p2(x) + p2(y)) < 240)
-	// 	return ((t_rgb){255,0,0});
 	assert((x < 960 && x >= -960) && (y < 540 && y >= -540));
 	ray = vec_add(vec_mul(rt->c_base.pixel_x, x), vec_mul(rt->c_base.pixel_y, y));
 	ray = vec_add(rt->c_base.start, ray);
 	ray = vec_sub(ray, rt->camera.position);
-	// printf("ray is %f, %f, %f\n", ray.x, ray.y, ray.z);
 	inter = calloc(2 * (rt->nb_object) + 1, sizeof(t_inter));
 	if (!inter)
 		printf("AAAAAAAAAA\n");

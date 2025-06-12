@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 15:04:46 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:39:22 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	push_inter(t_rt *rt, t_vect ray, t_inter *inter, t_rgb color, double t)
 	i = 0;
 	while (inter[i].init)
 		i++;
-	printf("%d\n", i);
 	inter[i].init = 1;
 	inter[i].color = color;
 	inter[i].point = get_point_d(rt->camera.position, ray, t);
@@ -44,10 +43,6 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sphere *sp)
 	b = 2 * dot_prod(ray, vec_sub(camera, sp->center));
 	c = p2(vec_norm(vec_sub(camera, sp->center))) - p2(sp->diameter / 2);
 	delta = delta_2nd(a, b, c);
-	// printf("ray is %f, %f, %f\n", ray.x, ray.y, ray.z);
-	// printf("camera is %f, %f, %f\n", camera.x, camera.y, camera.z);
-	// printf("center is %f, %f, %f\n", sp->center.x, sp->center.y, sp->center.z);
-	// printf("a = %f, b = %f, c = %f, d = %f\n", a, b, c, delta);
 	if (delta <= 0)
 		return ;
 	push_inter(rt, ray, inter, sp->color, (-b + sqrt(delta)) / (2 * a));

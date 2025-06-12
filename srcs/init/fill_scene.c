@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/10 16:59:26 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/12 21:18:49 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	get_scene_info(t_rt *rt, char **av)
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		if (str[0] == '\n')
+		if (str[0] == '\n' || str[0] == '#')
 		{
 			free(str);
 			continue ;
