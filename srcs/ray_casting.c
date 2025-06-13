@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 21:00:25 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/13 17:02:55 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_inter	best_intersection(t_rt *rt, t_inter *inter)
 	double	dot;
 	double	last_dot;
 
-	ret_val = (t_inter){(t_vect){0,0,0}, (t_rgb){0,0,0}, 0};
+	ret_val = (t_inter){(t_vect){0, 0, 0}, (t_rgb){0, 0, 0}, 0};
 	i = 0;
 	while (inter[i].init)
 	{
@@ -79,10 +79,10 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 	i = -960;
 	while (i < 960)
 	{
-		j = -540;
-		while (j < 540)
+		j = -539;
+		while (j < 541)
 		{
-			put_a_pixel(rt, i + 960, j + 540, is_it_touching(rt, (double)i, (double)j));
+			put_a_pixel(rt, i + 960, j + 540, is_it_touching(rt, (double)i, -(double)j));
 			j++;
 		}
 		i++;

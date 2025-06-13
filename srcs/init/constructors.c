@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/10 16:29:00 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:37:10 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,12 @@ int	get_plane_info(char **tok, t_rt *rt)
 	plane->type = PLANE;
 	if (fill_vec(tok[1], &plane->point))
 		return (1);
-	if (fill_vec(tok[2], &plane->normal_v))
+	if (fill_vec(tok[2], &plane->normal))
 		return (1);
 	if (fill_rgb(tok[3], &plane->color))
 		return (1);
 	rt->object[rt->nb_object] = (t_type *)plane;
 	rt->nb_object += 1;
+	plane->d = -dot_prod(plane->point, plane->normal);
 	return (0);
 }

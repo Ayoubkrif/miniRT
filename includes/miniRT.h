@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 13:53:19 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:32:13 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ typedef struct s_plane
 {
 	t_type	type;
 	t_vect	point;
-	t_vect	normal_v;
+	t_vect	normal;
+	double	d;
 	t_rgb	color;
 }	t_plane;
 

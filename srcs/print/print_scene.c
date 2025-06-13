@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/11 17:08:28 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:33:14 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	print_solids(t_rt *rt)
 			printf("plane =======\npoint      :%f,%f,%f\nnormal_v   :%f,%f,%f\ncolor      :%d,%d,%d\n",
 				((t_plane *)rt->object[i])->point.x, ((t_plane *)rt->object[i])->point.y,
 				((t_plane *)rt->object[i])->point.z,
-				((t_plane *)rt->object[i])->normal_v.x,((t_plane *)rt->object[i])->normal_v.y,
-				((t_plane *)rt->object[i])->normal_v.z,
+				((t_plane *)rt->object[i])->normal.x,((t_plane *)rt->object[i])->normal.y,
+				((t_plane *)rt->object[i])->normal.z,
 				((t_plane *)rt->object[i])->color.r, ((t_plane *)rt->object[i])->color.g,
 				((t_plane *)rt->object[i])->color.b);
 		}

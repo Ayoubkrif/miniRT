@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 21:39:22 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/13 17:58:38 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,33 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
 	ortho_cam_center = vec_sub(ortho_cam_center, vec_mul(cy->axis, dot_prod(ortho_cam_center, cy->axis)));
 
 	a = dot_prod(ortho_ray, ortho_ray);
-	assert(a != 0);
-	b = 2 *  dot_prod(ortho_cam_center, ortho_ray);
+	if (!a)
+		return ;
+	b = 2 * dot_prod(ortho_cam_center, ortho_ray);
 	c = dot_prod(ortho_cam_center, ortho_cam_center) - p2(cy->diameter / 2);
 	delta = delta_2nd(a, b, c);
 	if (delta <= 0)
 		return ;
-	if (dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b + sqrt(delta) / (2 * a)))) <= cy->height / 2)
+	double	root;
+
+	root = dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b + sqrt(delta) / (2 * a))));
+	if (root <= cy->height / 2 && root >= -cy->height / 2)
 		push_inter(rt, ray, inter, cy->color, (-b + sqrt(delta)) / (2 * a));
-	if (dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b - sqrt(delta) / (2 * a)))) <= cy->height / 2)
+	root = dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b - sqrt(delta) / (2 * a))));
+	if (root <= cy->height / 2 && root >= -cy->height / 2)
 		push_inter(rt, ray, inter, cy->color, (-b - sqrt(delta)) / (2 * a));
 }
 
 void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_plane *pl)
 {
-	(void)rt, (void)ray, (void)inter, (void)pl;
-	printf("je suis une fonction qui ne fait rien\n");
+	double	dot_n_ray;
+	t_vect	camera;
+	double	t;
+
+	camera = rt->camera.position;
+	dot_n_ray = dot_prod(ray, pl->normal);
+	if (!dot_n_ray)
+		return ;
+	t = - (dot_prod(pl->normal, camera) + pl->d) / dot_n_ray;
+	push_inter(rt, ray, inter, pl->color, t);
 }
