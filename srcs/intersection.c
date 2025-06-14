@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 17:29:27 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 22:12:02 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	push_inter(t_rt *rt, t_vect ray, t_inter *inter, t_rgb color, double t)
 	inter[i].point = get_point_d(rt->camera.position, ray, t);
 }
 
-void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sphere *sp)
+void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sp *sp)
 {
 	double	a;
 	double	b;
@@ -49,7 +49,7 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sphere *sp)
 	push_inter(rt, ray, inter, sp->color, (-b - sqrt(delta)) / (2 * a));
 }
 
-void	inter_disk(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
+void	inter_disk(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
 {
 	double	dot_n_ray;
 	t_vect	camera;
@@ -67,7 +67,7 @@ void	inter_disk(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
 		push_inter(rt, ray, inter, cy->color, t);
 }
 
-void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
+void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
 {
 	/*double	a;*/
 	/*double	b;*/
@@ -103,7 +103,7 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
 	/*	push_inter(rt, ray, inter, cy->color, (-b - sqrt(delta)) / (2 * a));*/
 }
 
-void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_plane *pl)
+void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_pl *pl)
 {
 	double	dot_n_ray;
 	t_vect	camera;

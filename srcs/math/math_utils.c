@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:25:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 14:58:57 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/14 21:35:52 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,4 @@ double	delta_2nd(double a, double b, double c)
 double	p2(double x)
 {
 	return (x * x);
-}
-
-double	absd(double value)
-{
-	if (value < 0)
-		return (-value);
-	return (value);
 }

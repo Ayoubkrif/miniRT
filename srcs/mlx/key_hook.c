@@ -6,18 +6,23 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/14 17:24:46 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 22:20:04 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "define.h"
-# include <X11/keysym.h>
+#include "math_utils.h"
+#include <X11/keysym.h>
 
-void	modify_cam(int	keycode, t_rt *rt)
+void	modify_cam(int keycode, t_rt *rt)
 {
-	int param;
+	int	param;
 
+	// if (keycode == XK_w)
+	// 	rt->camera.position = vec_add(rt->camera.position, rt->camera.direction);
+	// if (keycode == XK_w)
+	// 	rt->camera.position = vec_sub(rt->camera.position, rt->camera.direction);
 	if (keycode == XK_equal)
 		keycode = 1;
 	else
@@ -40,9 +45,9 @@ void	modify_cam(int	keycode, t_rt *rt)
 	set_cam_obj(rt);
 }
 
-void	modify_sp(int	keycode, t_rt *rt, t_sphere *sp)
+void	modify_sp(int keycode, t_rt *rt, t_sp *sp)
 {
-	int param;
+	int	param;
 
 	if (keycode == XK_equal)
 		keycode = 1;
@@ -59,9 +64,9 @@ void	modify_sp(int	keycode, t_rt *rt, t_sphere *sp)
 		sp->diameter += (keycode * 0.5);
 }
 
-void	modify_pl(int	keycode, t_rt *rt, t_plane *pl)
+void	modify_pl(int keycode, t_rt *rt, t_pl *pl)
 {
-	int param;
+	int	param;
 
 	if (keycode == XK_equal)
 		keycode = 1;
@@ -83,9 +88,9 @@ void	modify_pl(int	keycode, t_rt *rt, t_plane *pl)
 	pl->d = -dot_prod(pl->point, pl->normal);
 }
 
-void	modify_cy(int	keycode, t_rt *rt, t_cylinder *cy)
+void	modify_cy(int keycode, t_rt *rt, t_cy *cy)
 {
-	int param;
+	int	param;
 
 	if (keycode == XK_equal)
 		keycode = 1;
@@ -108,7 +113,7 @@ void	modify_cy(int	keycode, t_rt *rt, t_cylinder *cy)
 		cy->diameter += keycode;
 	else
 		cy->height += keycode;
-	cy->top = get_point(cy->center,cy->axis, cy->height / 2);
+	cy->top = get_point(cy->center, cy->axis, cy->height / 2);
 	cy->dt = -dot_prod(cy->top, cy->axis);
 	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->height / 2);
 	cy->db = -dot_prod(cy->bottom, cy->axis);
@@ -118,32 +123,29 @@ int	key_hook(int keycode, t_rt *rt)
 {
 	if (keycode == XK_Escape)
 		exit_minirt(rt);
-	if (keycode == XK_n)
+	else if (keycode == XK_n)
 	{
 		rt->menu.value = 0;
-		if (rt->menu.obj == rt->nb_object) 
+		if (rt->menu.obj == rt->nb_object)
 			rt->menu.obj = 0;
 		else
 			rt->menu.obj++;
 	}
-	if (keycode == XK_m)
+	else if (keycode == XK_m)
 		rt->menu.value++;
-	if (keycode == XK_minus || keycode == XK_equal)
-	{
-		if (rt->menu.obj == 0)
-			modify_cam(keycode, rt);
-		else
-		{
-			if (*rt->object[rt->menu.obj - 1] == PLANE)
-				modify_pl(keycode, rt, (t_plane *)rt->object[rt->menu.obj - 1]);
-			if (*rt->object[rt->menu.obj - 1] == SPHERE)
-				modify_sp(keycode, rt, (t_sphere *)rt->object[rt->menu.obj - 1]);
-			if (*rt->object[rt->menu.obj - 1] == CYLINDER)
-				modify_cy(keycode, rt, (t_cylinder *)rt->object[rt->menu.obj - 1]);
-		}
-	}
-	if (keycode == XK_space)
+	else if (keycode == XK_space)
 		throwing_rays_through_the_wide_universe(rt);
+	else if (rt->menu.obj == 0)
+		modify_cam(keycode, rt);
+	else
+	{
+		if (*rt->object[rt->menu.obj - 1] == PLANE)
+			modify_pl(keycode, rt, (t_pl *)rt->object[rt->menu.obj - 1]);
+		if (*rt->object[rt->menu.obj - 1] == SPHERE)
+			modify_sp(keycode, rt, (t_sp *)rt->object[rt->menu.obj - 1]);
+		if (*rt->object[rt->menu.obj - 1] == CYLINDER)
+			modify_cy(keycode, rt, (t_cy *)rt->object[rt->menu.obj - 1]);
+	}
 	print_solids(rt);
 	return (0);
 }

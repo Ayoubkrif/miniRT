@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 14:12:41 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 21:44:59 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,32 @@ void	print_solids(t_rt *rt)
 		if (*rt->object[rt->menu.obj - 1] == PLANE)
 		{
 			printf("plane =======\npoint      :%f,%f,%f\nnormal_v   :%f,%f,%f\ncolor      :%d,%d,%d\n",
-				((t_plane *)rt->object[rt->menu.obj - 1])->point.x, ((t_plane *)rt->object[rt->menu.obj - 1])->point.y,
-				((t_plane *)rt->object[rt->menu.obj - 1])->point.z,
-				((t_plane *)rt->object[rt->menu.obj - 1])->normal.x,((t_plane *)rt->object[rt->menu.obj - 1])->normal.y,
-				((t_plane *)rt->object[rt->menu.obj - 1])->normal.z,
-				((t_plane *)rt->object[rt->menu.obj - 1])->color.r, ((t_plane *)rt->object[rt->menu.obj - 1])->color.g,
-				((t_plane *)rt->object[rt->menu.obj - 1])->color.b);
+				((t_pl *)rt->object[rt->menu.obj - 1])->point.x, ((t_pl *)rt->object[rt->menu.obj - 1])->point.y,
+				((t_pl *)rt->object[rt->menu.obj - 1])->point.z,
+				((t_pl *)rt->object[rt->menu.obj - 1])->normal.x,((t_pl *)rt->object[rt->menu.obj - 1])->normal.y,
+				((t_pl *)rt->object[rt->menu.obj - 1])->normal.z,
+				((t_pl *)rt->object[rt->menu.obj - 1])->color.r, ((t_pl *)rt->object[rt->menu.obj - 1])->color.g,
+				((t_pl *)rt->object[rt->menu.obj - 1])->color.b);
 		}
 		if (*rt->object[rt->menu.obj - 1] == SPHERE)
 		{
 			printf("sphere =======\npoint      :%f,%f,%f\ndiameter   :%f\ncolor      :%d,%d,%d\n",
-				((t_sphere *)rt->object[rt->menu.obj - 1])->center.x,((t_sphere *)rt->object[rt->menu.obj - 1])->center.y,
-				((t_sphere *)rt->object[rt->menu.obj - 1])->center.z,
-				((t_sphere *)rt->object[rt->menu.obj - 1])->diameter,
-				((t_sphere *)rt->object[rt->menu.obj - 1])->color.r, ((t_sphere *)rt->object[rt->menu.obj - 1])->color.g,
-				((t_sphere *)rt->object[rt->menu.obj - 1])->color.b);
+				((t_sp *)rt->object[rt->menu.obj - 1])->center.x,((t_sp *)rt->object[rt->menu.obj - 1])->center.y,
+				((t_sp *)rt->object[rt->menu.obj - 1])->center.z,
+				((t_sp *)rt->object[rt->menu.obj - 1])->diameter,
+				((t_sp *)rt->object[rt->menu.obj - 1])->color.r, ((t_sp *)rt->object[rt->menu.obj - 1])->color.g,
+				((t_sp *)rt->object[rt->menu.obj - 1])->color.b);
 		}
 		if (*rt->object[rt->menu.obj - 1] == CYLINDER)
 		{
 			printf("cylinder =======\ncenter     :%f,%f,%f\naxis       :%f,%f,%f\ndiameter   :%f\nheight     :%f\ncolor      :%d,%d,%d\n",
-				((t_cylinder *)rt->object[rt->menu.obj - 1])->center.x,((t_cylinder *)rt->object[rt->menu.obj - 1])->center.y,
-				((t_cylinder *)rt->object[rt->menu.obj - 1])->center.z,
-				((t_cylinder *)rt->object[rt->menu.obj - 1])->axis.x,((t_cylinder *)rt->object[rt->menu.obj - 1])->axis.y,
-				((t_cylinder *)rt->object[rt->menu.obj - 1])->axis.z,
-				((t_cylinder *)rt->object[rt->menu.obj - 1])->diameter,((t_cylinder *)rt->object[rt->menu.obj - 1])->height,
-				((t_cylinder *)rt->object[rt->menu.obj - 1])->color.r, ((t_cylinder *)rt->object[rt->menu.obj - 1])->color.g,
-				((t_cylinder *)rt->object[rt->menu.obj - 1])->color.b);
+				((t_cy *)rt->object[rt->menu.obj - 1])->center.x,((t_cy *)rt->object[rt->menu.obj - 1])->center.y,
+				((t_cy *)rt->object[rt->menu.obj - 1])->center.z,
+				((t_cy *)rt->object[rt->menu.obj - 1])->axis.x,((t_cy *)rt->object[rt->menu.obj - 1])->axis.y,
+				((t_cy *)rt->object[rt->menu.obj - 1])->axis.z,
+				((t_cy *)rt->object[rt->menu.obj - 1])->diameter,((t_cy *)rt->object[rt->menu.obj - 1])->height,
+				((t_cy *)rt->object[rt->menu.obj - 1])->color.r, ((t_cy *)rt->object[rt->menu.obj - 1])->color.g,
+				((t_cy *)rt->object[rt->menu.obj - 1])->color.b);
 		}
 	}
 }

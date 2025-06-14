@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 19:10:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/11 17:31:49 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 22:15:05 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ double	vec_norm(t_vect u);
 
 t_vect	get_point(t_vect start, t_vect dir, double norm);
 t_vect	get_point_d(t_vect start, t_vect dir, double t);
+t_vect	get_normalized_vec(t_vect u);
 
 #endif

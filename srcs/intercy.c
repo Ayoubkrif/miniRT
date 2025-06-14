@@ -18,7 +18,7 @@ void	push_inter(t_rt *rt, t_vect ray, t_inter *inter, t_rgb color, double t)
 }
 
 
-void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
+void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy*cy)
 {
 	(void)inter;
 	/*double	a;*/

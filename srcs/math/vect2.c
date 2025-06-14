@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:22:50 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 14:53:30 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/14 22:16:04 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ t_vect	get_point(t_vect start, t_vect dir, double norm)
 double	dot_prod(t_vect u, t_vect v)
 {
 	return ((u.x * v.x) + (u.y * v.y) + (u.z * v.z));
+}
+
+t_vect	get_normalized_vec(t_vect u)
+{
+	return(vec_mul(u, 1 / vec_norm(u)));
 }

@@ -6,13 +6,14 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:00:46 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 07:40:52 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/14 22:18:47 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "math_utils.h"
 #include "libft.h"
+#include "vect.h"
 
 void	alloc_camera_scene(t_type *obj[], t_type *to_dup[])
 {
@@ -22,22 +23,26 @@ void	alloc_camera_scene(t_type *obj[], t_type *to_dup[])
 	while (obj[i])
 	{
 		if (*obj[i] == PLANE)
-			to_dup[i] = malloc(sizeof(t_plane));
+			to_dup[i] = malloc(sizeof(t_pl));
 		if (*obj[i] == SPHERE)
-			to_dup[i] = malloc(sizeof(t_sphere));
+			to_dup[i] = malloc(sizeof(t_sp));
 		if (*obj[i] == CYLINDER)
-			to_dup[i] = malloc(sizeof(t_cylinder));
+			to_dup[i] = malloc(sizeof(t_cy));
 		i++;
 	}
 }
 
 void	set_cam_base(t_rt *rt)
 {
+	t_cam	*camera;
+
+	camera = &rt->camera;
+	camera->direction = get_normalized_vec(camera->direction);
 	rt->c_base.h_dir = vec_prod(rt->camera.direction, vec(0, 0, 1));
 	assert(!(rt->c_base.h_dir.x == 0
 			&& rt->c_base.h_dir.y == 0
 			&& rt->c_base.h_dir.z == 0));
-	rt->c_base.v_dir = vec_prod(rt->camera.direction, rt->c_base.h_dir);
+	rt->c_base.v_dir = vec_prod(rt->c_base.h_dir, rt->camera.direction);
 	if (rt->c_base.v_dir.y < 0)
 	{
 		vec_mul(rt->c_base.v_dir, -1);

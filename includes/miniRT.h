@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 13:54:12 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 21:41:37 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-typedef struct s_camera
+typedef struct s_cam
 {
 	t_vect	position;
 	t_vect	direction;
 	float	fov;
-}	t_camera;
+}	t_cam;
 
 typedef struct s_ambient
 {
@@ -65,24 +65,24 @@ typedef struct light
 	// t_rgb	color;
 }	t_light;
 
-typedef struct s_sphere
+typedef struct s_sp
 {
 	t_type	type;
 	t_vect	center;
 	float	diameter;
 	t_rgb	color;
-}	t_sphere;
+}	t_sp;
 
-typedef struct s_plane
+typedef struct s_pl
 {
 	t_type	type;
 	t_vect	point;
 	t_vect	normal;
 	double	d;
 	t_rgb	color;
-}	t_plane;
+}	t_pl;
 
-typedef struct s_cylinder
+typedef struct s_cy
 {
 	t_type	type;
 	t_vect	center;
@@ -94,7 +94,7 @@ typedef struct s_cylinder
 	double	dt;
 	double	db;
 	t_rgb	color;
-}	t_cylinder;
+}	t_cy;
 
 typedef struct s_cam_base
 {
@@ -121,7 +121,7 @@ typedef struct s_menu
 typedef struct s_rt
 {
 	t_mlx		mlx;
-	t_camera	camera;
+	t_cam		camera;
 	t_cam_base	c_base;
 	t_light		light;
 	t_ambient	ambiant;
@@ -148,9 +148,9 @@ void	set_cam_obj(t_rt *rt);
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt);
 
-void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sphere *sp);
-void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy);
-void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_plane *pl);
+void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sp *sp);
+void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy*cy);
+void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_pl *pl);
 
 void	print_solids(t_rt *rt);
 void	print_cam_base(t_rt *rt);

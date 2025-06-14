@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/14 12:10:27 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 21:47:24 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	get_ambient_info(char **tok, t_rt *rt)
 
 int	get_sphere_info(char **tok, t_rt *rt)
 {
-	t_sphere	*sphere;
+	t_sp	*sphere;
 
-	sphere = malloc(sizeof(t_sphere));
+	sphere = malloc(sizeof(t_sp));
 	sphere->type = SPHERE;
 	if (fill_vec(tok[1], &sphere->center))
 		return (1);
@@ -67,45 +67,45 @@ int	get_sphere_info(char **tok, t_rt *rt)
 
 int	get_cylinder_info(char **tok, t_rt *rt)
 {
-	t_cylinder	*cylander;
+	t_cy	*cy;
 
-	cylander = malloc(sizeof(t_cylinder));
-	cylander->type = CYLINDER;
-	if (fill_vec(tok[1], &cylander->center))
+	cy = malloc(sizeof(t_cy));
+	cy->type = CYLINDER;
+	if (fill_vec(tok[1], &cy->center))
 		return (1);
-	if (fill_vec(tok[2], &cylander->axis))
+	if (fill_vec(tok[2], &cy->axis))
 		return (1);
 	if (!tok[3])
 		return (1);
-	cylander->diameter = ft_atoi(tok[3]);
+	cy->diameter = ft_atoi(tok[3]);
 	if (!tok[4])
 		return (1);
-	cylander->height = ft_atoi(tok[4]);
-	if (fill_rgb(tok[5], &cylander->color))
+	cy->height = ft_atoi(tok[4]);
+	if (fill_rgb(tok[5], &cy->color))
 		return (1);
-	rt->object[rt->nb_object] = (t_type *)cylander;
+	rt->object[rt->nb_object] = (t_type *)cy;
 	rt->nb_object += 1;
-	cylander->top = get_point(cylander->center,cylander->axis, cylander->height / 2);
-	cylander->dt = -dot_prod(cylander->top, cylander->axis);
-	cylander->bottom = get_point(cylander->center, vec_mul(cylander->axis, -1), cylander->height / 2);
-	cylander->db = -dot_prod(cylander->bottom, cylander->axis);
+	cy->top = get_point(cy->center,cy->axis, cy->height / 2);
+	cy->dt = -dot_prod(cy->top, cy->axis);
+	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->height / 2);
+	cy->db = -dot_prod(cy->bottom, cy->axis);
 	return (0);
 }
 
 int	get_plane_info(char **tok, t_rt *rt)
 {
-	t_plane	*plane;
+	t_pl	*pl;
 
-	plane = malloc(sizeof(t_plane));
-	plane->type = PLANE;
-	if (fill_vec(tok[1], &plane->point))
+	pl = malloc(sizeof(t_pl));
+	pl->type = PLANE;
+	if (fill_vec(tok[1], &pl->point))
 		return (1);
-	if (fill_vec(tok[2], &plane->normal))
+	if (fill_vec(tok[2], &pl->normal))
 		return (1);
-	if (fill_rgb(tok[3], &plane->color))
+	if (fill_rgb(tok[3], &pl->color))
 		return (1);
-	rt->object[rt->nb_object] = (t_type *)plane;
+	rt->object[rt->nb_object] = (t_type *)pl;
 	rt->nb_object += 1;
-	plane->d = -dot_prod(plane->point, plane->normal);
+	pl->d = -dot_prod(pl->point, pl->normal);
 	return (0);
 }
