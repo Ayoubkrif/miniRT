@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/13 17:02:55 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 07:42:20 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	t_inter	*inter;
 
 	assert((x < 960 && x >= -960) && (y < 540 && y >= -540));
-	ray = vec_add(vec_mul(rt->c_base.pixel_x, x), vec_mul(rt->c_base.pixel_y, y));
+	ray = vec_add(vec_mul(rt->c_base.pixel_x, x),
+			vec_mul(rt->c_base.pixel_y, y));
 	ray = vec_add(rt->c_base.start, ray);
 	ray = vec_sub(ray, rt->camera.position);
 	inter = calloc(2 * (rt->nb_object) + 1, sizeof(t_inter));
@@ -82,7 +83,8 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 		j = -539;
 		while (j < 541)
 		{
-			put_a_pixel(rt, i + 960, j + 540, is_it_touching(rt, (double)i, -(double)j));
+			put_a_pixel(rt, i + 960, j + 540,
+				is_it_touching(rt, (double)i, -(double)j));
 			j++;
 		}
 		i++;

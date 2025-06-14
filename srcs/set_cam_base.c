@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:00:46 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/13 16:46:45 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 07:40:52 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	set_cam_base(t_rt *rt)
 		vec_mul(rt->c_base.h_dir, -1);
 	}
 	rt->c_base.start = get_point(rt->camera.position, rt->camera.direction, 1);
-	rt->c_base.pixel_x = get_point(vec(0, 0, 0), rt->c_base.h_dir, tan(to_rad(rt->camera.fov / 2)) / 960);
-	rt->c_base.pixel_y = get_point(vec(0, 0, 0), rt->c_base.v_dir, vec_norm(rt->c_base.pixel_x));
+	rt->c_base.pixel_x = get_point(vec(0, 0, 0), rt->c_base.h_dir,
+			tan(to_rad(rt->camera.fov / 2)) / 960);
+	rt->c_base.pixel_y = get_point(vec(0, 0, 0), rt->c_base.v_dir,
+			vec_norm(rt->c_base.pixel_x));
 }
 
 void	set_cam_obj(t_rt *rt)

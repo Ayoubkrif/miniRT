@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/13 17:58:38 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 08:23:25 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
 	t_vect	camera;
 	t_vect	ortho_ray;
 	t_vect	ortho_cam_center;
+	t_vect	axis;
 
+	axis = vec_mul(cy->axis, 1 / vec_norm(cy->axis));
 	camera = rt->camera.position;
-	ortho_ray = vec_sub(ray, vec_mul(cy->axis, dot_prod(ray, cy->axis)));
+	ortho_ray = vec_sub(ray, vec_mul(axis, dot_prod(ray, axis)));
 	ortho_cam_center = vec_sub(camera, cy->center);
-	ortho_cam_center = vec_sub(ortho_cam_center, vec_mul(cy->axis, dot_prod(ortho_cam_center, cy->axis)));
+	ortho_cam_center = vec_sub(ortho_cam_center, vec_mul(axis, dot_prod(ortho_cam_center, axis)));
 
 	a = dot_prod(ortho_ray, ortho_ray);
 	if (!a)
@@ -74,10 +76,10 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cylinder *cy)
 		return ;
 	double	root;
 
-	root = dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b + sqrt(delta) / (2 * a))));
+	root = dot_prod(axis, vec_sub(camera, get_point_d(camera, ray, -b + sqrt(delta) / (2 * a))));
 	if (root <= cy->height / 2 && root >= -cy->height / 2)
 		push_inter(rt, ray, inter, cy->color, (-b + sqrt(delta)) / (2 * a));
-	root = dot_prod(cy->axis, vec_sub(camera, get_point_d(camera, ray, -b - sqrt(delta) / (2 * a))));
+	root = dot_prod(axis, vec_sub(camera, get_point_d(camera, ray, -b - sqrt(delta) / (2 * a))));
 	if (root <= cy->height / 2 && root >= -cy->height / 2)
 		push_inter(rt, ray, inter, cy->color, (-b - sqrt(delta)) / (2 * a));
 }
