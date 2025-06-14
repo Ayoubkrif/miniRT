@@ -6,13 +6,14 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 07:42:20 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:07:36 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "math_utils.h"
 #include "libft.h"
+#include "mlx.h"
 #include <stdio.h>
 
 t_inter	best_intersection(t_rt *rt, t_inter *inter)
@@ -90,4 +91,5 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 		i++;
 	}
 	printf("rayons envoyes !\n");
+	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);
 }

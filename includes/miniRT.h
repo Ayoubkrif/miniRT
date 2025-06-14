@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/13 15:32:13 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 13:54:12 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ typedef struct s_cylinder
 	t_vect	axis;
 	float	diameter;
 	float	height;
+	t_vect	top;
+	t_vect	bottom;
+	double	dt;
+	double	db;
 	t_rgb	color;
 }	t_cylinder;
 
@@ -108,6 +112,12 @@ typedef struct s_inter
 	int		init;
 }	t_inter;
 
+typedef struct s_menu
+{
+	int	obj;
+	int	value;
+}	t_menu;
+
 typedef struct s_rt
 {
 	t_mlx		mlx;
@@ -118,6 +128,7 @@ typedef struct s_rt
 	int			nb_object;
 	t_type		*object[20];
 	t_type		*cam_obj[20];
+	t_menu		menu;
 }	t_rt;
 
 void	check_args(int argc);

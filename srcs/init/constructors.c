@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/13 15:37:10 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/14 12:10:27 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 		return (1);
 	rt->object[rt->nb_object] = (t_type *)cylander;
 	rt->nb_object += 1;
+	cylander->top = get_point(cylander->center,cylander->axis, cylander->height / 2);
+	cylander->dt = -dot_prod(cylander->top, cylander->axis);
+	cylander->bottom = get_point(cylander->center, vec_mul(cylander->axis, -1), cylander->height / 2);
+	cylander->db = -dot_prod(cylander->bottom, cylander->axis);
 	return (0);
 }
 
