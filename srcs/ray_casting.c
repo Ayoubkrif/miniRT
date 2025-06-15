@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/15 15:37:13 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 19:37:07 by cbordeau         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "mlx.h"
 #include <stdio.h>
+#include <string.h>
 
 t_inter	best_intersection(t_rt *rt, t_inter *inter)
 {
@@ -35,7 +36,6 @@ t_inter	best_intersection(t_rt *rt, t_inter *inter)
 		}
 		i++;
 	}
-	free(inter);
 	return (ret_val);
 }
 
@@ -59,7 +59,7 @@ void	add_inter(t_rt *rt, t_vect ray, t_inter *inter)
 t_rgb	is_it_touching(t_rt *rt, double x, double y)
 {
 	t_vect	ray;
-	t_inter	*inter;
+	// t_inter	*inter;
 	t_cam	*cam;
 
 	cam = &rt->camera;
@@ -69,11 +69,12 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	ray = vec_add(cam->screen.center, ray);
 	ray = vec_sub(ray, cam->position);
 	assert((vec_norm(ray)));
-	inter = calloc(2 * (rt->nb_object) + 1, sizeof(t_inter));
-	if (!inter)
-		printf("AAAAAAAAAA\n");
-	add_inter(rt, ray, inter);
-	return (best_intersection(rt, inter).color);
+	ft_memset(rt->inter, 0, (rt->nb_object * 2 + 1) * sizeof(t_inter));
+	// inter = calloc(2 * (rt->nb_object) + 1, sizeof(t_inter));
+	// if (!inter)
+	// 	printf("AAAAAAAAAA\n");
+	add_inter(rt, ray, rt->inter);
+	return (best_intersection(rt, rt->inter).color);
 }
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt)

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/15 13:30:25 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 19:26:39 by cbordeau         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_rt
 	int			nb_object;
 	t_type		*object[20];
 	t_type		*cam_obj[20];
+	t_inter		*inter;
 	t_menu		menu;
 }	t_rt;
 

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/15 12:52:52 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 19:29:24 by cbordeau         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int	main(int ac, char *av[])
 	check_args(ac);
 	rt.nb_object = 0;
 	init_mini_rt(&rt, av);
+	rt.inter = calloc(2 * (rt.nb_object) + 1, sizeof(t_inter));
+	if (!rt.inter)
+		printf("AAAAAAAAAA\n");
 	rt.menu.obj = 0;
 	rt.menu.value = 0;
 	print_solids(&rt);
