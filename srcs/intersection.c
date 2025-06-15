@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 22:12:02 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 14:03:03 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sp *sp)
 
 	camera = rt->camera.position;
 	a = dot_prod(ray, ray);
-	assert(a != 0);
+	assert(a != 0.0);
 	b = 2 * dot_prod(ray, vec_sub(camera, sp->center));
 	c = p2(vec_norm(vec_sub(camera, sp->center))) - p2(sp->diameter / 2);
 	delta = delta_2nd(a, b, c);
@@ -77,7 +77,7 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
 	/*t_vect	ortho_ray;*/
 	/*t_vect	ortho_cam_center;*/
 	/*t_vect	axis;*/
-	/**/
+
 	inter_disk(rt, ray, inter, cy);
 	/*axis = vec_mul(cy->axis, 1 / vec_norm(cy->axis));*/
 	/*camera = rt->camera.position;*/

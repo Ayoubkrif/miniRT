@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 21:44:59 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 13:34:32 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,12 @@ void	print_solids(t_rt *rt)
 
 void	print_cam_base(t_rt *rt)
 {
+	t_cam	*cam;
+
+	cam = &rt->camera;
 	printf("cam_base =======\npixel_x     :%f,%f,%f\npixel_y       :%f,%f,%f\nstart   :%f,%f,%f\n",
-			rt->c_base.pixel_x.x, rt->c_base.pixel_x.y, rt->c_base.pixel_x.z,
-			rt->c_base.pixel_y.x, rt->c_base.pixel_y.y, rt->c_base.pixel_y.z,
-			rt->c_base.start.x, rt->c_base.start.y, rt->c_base.start.z);
+			cam->screen.pix_x.x, cam->screen.pix_x.y, cam->screen.pix_x.z,
+			cam->screen.pix_y.x, cam->screen.pix_y.y, cam->screen.pix_y.z,
+			cam->screen.center.x, cam->screen.center.y, cam->screen.center.z);
 
 }

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:00:46 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 22:18:47 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 15:28:15 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,22 @@ void	alloc_camera_scene(t_type *obj[], t_type *to_dup[])
 	}
 }
 
-void	set_cam_base(t_rt *rt)
+void	set_cam_base(t_cam *cam)
 {
-	t_cam	*camera;
-
-	camera = &rt->camera;
-	camera->direction = get_normalized_vec(camera->direction);
-	rt->c_base.h_dir = vec_prod(rt->camera.direction, vec(0, 0, 1));
-	assert(!(rt->c_base.h_dir.x == 0
-			&& rt->c_base.h_dir.y == 0
-			&& rt->c_base.h_dir.z == 0));
-	rt->c_base.v_dir = vec_prod(rt->c_base.h_dir, rt->camera.direction);
-	if (rt->c_base.v_dir.y < 0)
-	{
-		vec_mul(rt->c_base.v_dir, -1);
-		vec_mul(rt->c_base.h_dir, -1);
-	}
-	rt->c_base.start = get_point(rt->camera.position, rt->camera.direction, 1);
-	rt->c_base.pixel_x = get_point(vec(0, 0, 0), rt->c_base.h_dir,
-			tan(to_rad(rt->camera.fov / 2)) / 960);
-	rt->c_base.pixel_y = get_point(vec(0, 0, 0), rt->c_base.v_dir,
-			vec_norm(rt->c_base.pixel_x));
-}
-
-void	set_cam_obj(t_rt *rt)
-{
-	static int	dup = 0;
-
-	if (!dup)
-	{
-		alloc_camera_scene(rt->object, rt->cam_obj);
-		dup++;
-	}
-	set_cam_base(rt);
+	cam->direction = get_normalized_vec(cam->direction);
+	assert(vec_norm(cam->direction));
+	cam->base.h_normal = vec_prod(cam->direction, vec(0, 0, 1));
+	assert((vec_norm(cam->base.h_normal)));
+	cam->base.v_normal = vec_prod(cam->base.h_normal, cam->direction);
+	/*if (base->base.v_normal.y < 0)*/
+	/*{*/
+	/*	vec_mul(rt->base.v_normal, -1);*/
+	/*	vec_mul(rt->base.h_normal, -1);*/
+	/*}*/
+	cam->screen.center = get_point(cam->position, cam->direction, 1);
+	cam->screen.pix_x = get_point(vec(0, 0, 0), cam->base.h_normal,
+			tan(to_rad(cam->fov / 2)) / 960);
+	cam->screen.pix_y = get_point(vec(0, 0, 0), cam->base.v_normal,
+			vec_norm(cam->screen.pix_x));
+	/*assert(vec_norm(cam->screen.pix_y) == vec_norm(cam->screen.pix_x));*/
 }

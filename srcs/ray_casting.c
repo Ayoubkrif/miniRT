@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 21:43:00 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 15:37:13 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 {
 	t_vect	ray;
 	t_inter	*inter;
+	t_cam	*cam;
 
+	cam = &rt->camera;
 	assert((x < 960 && x >= -960) && (y < 540 && y >= -540));
-	ray = vec_add(vec_mul(rt->c_base.pixel_x, x),
-			vec_mul(rt->c_base.pixel_y, y));
-	ray = vec_add(rt->c_base.start, ray);
-	ray = vec_sub(ray, rt->camera.position);
+	ray = vec_add(vec_mul(cam->screen.pix_x, x),
+			vec_mul(cam->screen.pix_y, y));
+	ray = vec_add(cam->screen.center, ray);
+	ray = vec_sub(ray, cam->position);
+	assert((vec_norm(ray)));
 	inter = calloc(2 * (rt->nb_object) + 1, sizeof(t_inter));
 	if (!inter)
 		printf("AAAAAAAAAA\n");
@@ -90,6 +93,6 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 		}
 		i++;
 	}
-	printf("rayons envoyes !\n");
+	/*printf("rayons envoyes !\n");*/
 	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);
 }

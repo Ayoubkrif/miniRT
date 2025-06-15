@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/14 22:20:04 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/15 15:39:18 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,104 +15,82 @@
 #include "math_utils.h"
 #include <X11/keysym.h>
 
-void	modify_cam(int keycode, t_rt *rt)
-{
-	int	param;
+#define SIN	0.013707355
+#define COS	0.999990509
 
-	// if (keycode == XK_w)
-	// 	rt->camera.position = vec_add(rt->camera.position, rt->camera.direction);
-	// if (keycode == XK_w)
-	// 	rt->camera.position = vec_sub(rt->camera.position, rt->camera.direction);
-	if (keycode == XK_equal)
-		keycode = 1;
-	else
-		keycode = -1;
-	param = rt->menu.value % 7;
-	if (param == 0)
-		rt->camera.position.x += keycode;
-	else if (param == 1)
-		rt->camera.position.y += keycode;
-	else if (param == 2)
-		rt->camera.position.z += keycode;
-	else if (param == 3)
-		rt->camera.direction.x += 0.1 * keycode;
-	else if (param == 4)
-		rt->camera.direction.y += 0.1 * keycode;
-	else if (param == 5)
-		rt->camera.direction.z += 0.1 * keycode;
-	else
-		rt->camera.fov += keycode;
-	set_cam_obj(rt);
+void	modify_cam(int keycode, t_cam *cam)
+{
+
+	if (keycode == XK_w)
+		cam->position = vec_add(cam->position, cam->direction);
+	if (keycode == XK_s)
+		cam->position = vec_sub(cam->position, cam->direction);
+	if (keycode == XK_a)
+		cam->position = vec_add(cam->position, cam->base.h_normal);
+	if (keycode == XK_d)
+		cam->position = vec_sub(cam->position, cam->base.h_normal);
+	if (keycode == XK_space)
+		cam->position = vec_add(cam->position, cam->base.v_normal);
+	if (keycode == XK_Shift_L)
+		cam->position = vec_sub(cam->position, cam->base.v_normal);
+	if (keycode == XK_Left)
+		cam->direction = vec_sub(vec_mul(cam->direction, COS), vec_mul(cam->base.h_normal, SIN));
+	if (keycode == XK_Right)
+		cam->direction = vec_add(vec_mul(cam->direction, COS), vec_mul(cam->base.h_normal, SIN));
+	if (keycode == XK_Up)
+		cam->direction = vec_add(vec_mul(cam->direction, COS), vec_mul(cam->base.v_normal, SIN));
+	if (keycode == XK_Down)
+		cam->direction = vec_sub(vec_mul(cam->direction, COS), vec_mul(cam->base.v_normal, SIN));
+	set_cam_base(cam);
 }
 
-void	modify_sp(int keycode, t_rt *rt, t_sp *sp)
-{
-	int	param;
-
-	if (keycode == XK_equal)
-		keycode = 1;
-	else
-		keycode = -1;
-	param = rt->menu.value % 4;
-	if (param == 0)
-		sp->center.x += keycode;
-	else if (param == 1)
-		sp->center.y += keycode;
-	else if (param == 2)
-		sp->center.z += keycode;
-	else
-		sp->diameter += (keycode * 0.5);
+void	modify_sp(int keycode, t_sp *sp)
+{	
+	if (keycode == XK_w)
+		sp->center = vec_add(sp->center, (t_vect){1, 0, 0});
+	if (keycode == XK_s)
+		sp->center = vec_sub(sp->center, (t_vect){1, 0, 0});
+	if (keycode == XK_a)
+		sp->center = vec_add(sp->center, (t_vect){0, 1, 0});
+	if (keycode == XK_d)
+		sp->center = vec_sub(sp->center, (t_vect){0, 1, 0});
+	if (keycode == XK_space)
+		sp->center = vec_add(sp->center, (t_vect){0, 0, 1});
+	if (keycode == XK_Shift_L)
+		sp->center = vec_sub(sp->center, (t_vect){0, 0, 1});
 }
 
-void	modify_pl(int keycode, t_rt *rt, t_pl *pl)
+void	modify_pl(int keycode, t_pl *pl)
 {
-	int	param;
-
-	if (keycode == XK_equal)
-		keycode = 1;
-	else
-		keycode = -1;
-	param = rt->menu.value % 6;
-	if (param == 0)
-		pl->point.x += keycode;
-	else if (param == 1)
-		pl->point.y += keycode;
-	else if (param == 2)
-		pl->point.z += keycode;
-	else if (param == 3)
-		pl->normal.x += keycode * 0.1;
-	else if (param == 4)
-		pl->normal.y += keycode * 0.1;
-	else
-		pl->normal.z += keycode * 0.1;
+	if (keycode == XK_w)
+		pl->point = vec_add(pl->point, (t_vect){1, 0, 0});
+	if (keycode == XK_s)
+		pl->point = vec_sub(pl->point, (t_vect){1, 0, 0});
+	if (keycode == XK_a)
+		pl->point = vec_add(pl->point, (t_vect){0, 1, 0});
+	if (keycode == XK_d)
+		pl->point = vec_sub(pl->point, (t_vect){0, 1, 0});
+	if (keycode == XK_space)
+		pl->point = vec_add(pl->point, (t_vect){0, 0, 1});
+	if (keycode == XK_Shift_L)
+		pl->point = vec_sub(pl->point, (t_vect){0, 0, 1});
 	pl->d = -dot_prod(pl->point, pl->normal);
 }
 
-void	modify_cy(int keycode, t_rt *rt, t_cy *cy)
+void	modify_cy(int keycode, t_cy *cy)
 {
-	int	param;
-
-	if (keycode == XK_equal)
-		keycode = 1;
-	else
-		keycode = -1;
-	param = rt->menu.value % 8;
-	if (param == 0)
-		cy->center.x += keycode;
-	else if (param == 1)
-		cy->center.y += keycode;
-	else if (param == 2)
-		cy->center.z += keycode;
-	else if (param == 3)
-		cy->axis.x += keycode * 0.1;
-	else if (param == 4)
-		cy->axis.y += keycode * 0.1;
-	else if (param == 5)
-		cy->axis.z += keycode * 0.1;
-	else if (param == 6)
-		cy->diameter += keycode;
-	else
-		cy->height += keycode;
+	if (keycode == XK_w)
+		cy->center = vec_add(cy->center, (t_vect){1, 0, 0});
+	if (keycode == XK_s)
+		cy->center = vec_sub(cy->center, (t_vect){1, 0, 0});
+	if (keycode == XK_a)
+		cy->center = vec_add(cy->center, (t_vect){0, 1, 0});
+	if (keycode == XK_d)
+		cy->center = vec_sub(cy->center, (t_vect){0, 1, 0});
+	if (keycode == XK_space)
+		cy->center = vec_add(cy->center, (t_vect){0, 0, 1});
+	if (keycode == XK_Shift_L)
+		cy->center = vec_sub(cy->center, (t_vect){0, 0, 1});
 	cy->top = get_point(cy->center, cy->axis, cy->height / 2);
 	cy->dt = -dot_prod(cy->top, cy->axis);
 	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->height / 2);
@@ -133,19 +111,21 @@ int	key_hook(int keycode, t_rt *rt)
 	}
 	else if (keycode == XK_m)
 		rt->menu.value++;
-	else if (keycode == XK_space)
-		throwing_rays_through_the_wide_universe(rt);
-	else if (rt->menu.obj == 0)
-		modify_cam(keycode, rt);
 	else
 	{
-		if (*rt->object[rt->menu.obj - 1] == PLANE)
-			modify_pl(keycode, rt, (t_pl *)rt->object[rt->menu.obj - 1]);
-		if (*rt->object[rt->menu.obj - 1] == SPHERE)
-			modify_sp(keycode, rt, (t_sp *)rt->object[rt->menu.obj - 1]);
-		if (*rt->object[rt->menu.obj - 1] == CYLINDER)
-			modify_cy(keycode, rt, (t_cy *)rt->object[rt->menu.obj - 1]);
+		if (rt->menu.obj == 0)
+			modify_cam(keycode, &rt->camera);
+		else
+		{
+			if (*rt->object[rt->menu.obj - 1] == PLANE)
+				modify_pl(keycode, (t_pl *)rt->object[rt->menu.obj - 1]);
+			if (*rt->object[rt->menu.obj - 1] == SPHERE)
+				modify_sp(keycode, (t_sp *)rt->object[rt->menu.obj - 1]);
+			if (*rt->object[rt->menu.obj - 1] == CYLINDER)
+				modify_cy(keycode, (t_cy *)rt->object[rt->menu.obj - 1]);
+		}
+		throwing_rays_through_the_wide_universe(rt);
 	}
-	print_solids(rt);
+	/*print_solids(rt);*/
 	return (0);
 }
