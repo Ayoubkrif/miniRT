@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/15 15:39:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:37:55 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 #include "math_utils.h"
 #include <X11/keysym.h>
 
-#define SIN	0.013707355
-#define COS	0.999990509
+#define SIN	0.5
+#define COS	0.866025404
 
 void	modify_cam(int keycode, t_cam *cam)
 {
-
 	if (keycode == XK_w)
 		cam->position = vec_add(cam->position, cam->direction);
 	if (keycode == XK_s)

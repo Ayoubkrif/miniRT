@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 13:20:12 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:03:11 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	get_sphere_info(char **tok, t_rt *rt)
 		return (1);
 	if (!tok[2])
 		return (1);
-	sphere->diameter = ft_atoi(tok[2]);
+	sphere->diameter = atof(tok[2]);
 	sphere->radius = sphere->diameter / 2;
 	if (fill_rgb(tok[3], &sphere->color))
 		return (1);
@@ -78,18 +78,19 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 		return (1);
 	if (!tok[3])
 		return (1);
-	cy->diameter = ft_atoi(tok[3]);
+	cy->diameter = atof(tok[3]);
 	cy->radius = cy->diameter / 2;
 	if (!tok[4])
 		return (1);
-	cy->height = ft_atoi(tok[4]);
+	cy->height = atof(tok[4]);
+	cy->semi_height = cy->height / 2;
 	if (fill_rgb(tok[5], &cy->color))
 		return (1);
 	rt->object[rt->nb_object] = (t_type *)cy;
 	rt->nb_object += 1;
-	cy->top = get_point(cy->center,cy->axis, cy->height / 2);
+	cy->top = get_point(cy->center, cy->axis, cy->semi_height);
 	cy->dt = -dot_prod(cy->top, cy->axis);
-	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->height / 2);
+	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->semi_height);
 	cy->db = -dot_prod(cy->bottom, cy->axis);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 13:21:01 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:31:57 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "math_utils.h"
 #include "libft.h"
 #include "vect.h"
-#include <assert.h>
 #include <stdio.h>
 
 void	push_inter(t_rt *rt, t_rgb color, double t)
@@ -35,7 +34,6 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_sp *sp)
 
 	camera = rt->camera.position;
 	a = dot_prod(ray, ray);
-	assert(a != 0.0);
 	b = 2 * dot_prod(ray, vec_sub(camera, sp->center));
 	c = p2(vec_norm(vec_sub(camera, sp->center))) - p2(sp->radius);
 	delta = delta_2nd(a, b, c);
