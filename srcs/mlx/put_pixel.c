@@ -6,16 +6,18 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:00:10 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 16:49:01 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 20:56:23 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include <assert.h>
 
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)
 {
 	char	*dst;
 
+	assert(x >= 0 && x < WIN_X && y >= 0 && y < WIN_Y);
 	if (x >= 0 && x < WIN_X && y >= 0 && y < WIN_Y)
 	{
 		dst = rt->mlx.addr + (y * rt->mlx.line_length

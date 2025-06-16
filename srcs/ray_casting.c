@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 17:14:57 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 21:11:57 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	add_inter(t_rt *rt, t_vect ray)
 	}
 }
 
-t_rgb		shaker_ambiant_solid(t_rt *rt, t_rgb color)
+t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color)
 {
 	return ((t_rgb)
 		{
@@ -47,12 +47,10 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	t_cam	*cam;
 
 	cam = &rt->camera;
-	// assert((x < 960 && x >= -960) && (y < 540 && y >= -540));
 	ray = vec_add(vec_mul(cam->screen.pix_x, x),
 			vec_mul(cam->screen.pix_y, y));
 	ray = vec_add(cam->screen.center, ray);
 	ray = vec_sub(ray, cam->position);
-	// assert((vec_norm(ray)));
 	rt->inter = (t_inter){-1, (t_rgb){0, 0, 0, 1}};
 	add_inter(rt, ray);
 	return (shaker_ambiant_solid(rt, rt->inter.color));
@@ -63,13 +61,13 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 	int	i;
 	int	j;
 
-	i = -960;
-	while (i < 960)
+	i = -WIN_X / 2;
+	while (i < WIN_X / 2)
 	{
-		j = -539;
-		while (j < 541)
+		j = -WIN_Y / 2;
+		while (j < WIN_Y / 2)
 		{
-			put_a_pixel(rt, i + 960, j + 540,
+			put_a_pixel(rt, i + (WIN_X / 2), j + (WIN_Y / 2),
 				is_it_touching(rt, (double)i, -(double)j));
 			j++;
 		}
@@ -77,8 +75,8 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 	}
 	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);
 }
-			/*color = shaker_ambiant_solid(rt, is_it_touching(rt, (double)i, -(double)j));*/
-			/*my_mlx_pixel_put(rt, i, j, color);*/
+/*color = shaker_ambiant_solid(rt, is_it_touching(rt, (double)i, -(double)j));*/
+/*my_mlx_pixel_put(rt, i, j, color);*/
 /*int		shaker_ambiant_solid(t_rt *rt, t_rgb color)*/
 /*{*/
 /*	int		final_color;*/

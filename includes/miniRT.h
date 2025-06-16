@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 16:57:07 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 21:13:24 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "math_utils.h"
 // # include "assert.h"
 
-# define WIN_X	1920
-# define WIN_Y	1080
+# define WIN_X	1000
+# define WIN_Y	1000
 
 typedef enum e_type
 {
@@ -122,12 +122,6 @@ typedef struct s_cy
 	t_rgb	color;
 }	t_cy;
 
-typedef struct s_menu
-{
-	int	obj;
-	int	value;
-}	t_menu;
-
 typedef struct s_rt
 {
 	t_mlx		mlx;
@@ -136,9 +130,8 @@ typedef struct s_rt
 	t_ambient	ambiant;
 	int			nb_object;
 	t_type		*object[20];
-	t_type		*cam_obj[20];
 	t_inter		inter;
-	t_menu		menu;
+	int			menu;
 }	t_rt;
 
 void	check_args(int argc);

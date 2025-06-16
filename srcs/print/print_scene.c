@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 17:07:06 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 21:26:40 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_solids(t_rt *rt)
 	/*	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.brightness);*/
 	printf("ambient =======\nlightning  :%f\ncolor      :%.f,%.f,%.f\n",
 		rt->ambiant.color.brightness, rt->ambiant.color.r * 255, rt->ambiant.color.g * 255, rt->ambiant.color.b * 255);
-	if (rt->menu.obj == 0)
+	if (rt->menu == 0)
 	{
 		printf("camera =======\nposition   :%f,%f,%f\ndirection  :%f,%f,%f\nfov        :%f\n",
 			rt->camera.position.x, rt->camera.position.y, rt->camera.position.z,

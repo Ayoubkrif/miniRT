@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 17:15:34 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 21:29:01 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ void	get_scene_info(t_rt *rt, char **av);
 
 void	init_mini_rt(t_rt *rt, char **av)
 {
-	ft_memset(rt, 0, sizeof(t_rt));
 	get_scene_info(rt, av);
 	rt->mlx.disp = mlx_init();
 	if (!rt->mlx.disp)
 		(printf("init failed\n"), exit(1));
-	rt->mlx.win = mlx_new_window(rt->mlx.disp, 1920, 1080, "MiniRT");
+	rt->mlx.win = mlx_new_window(rt->mlx.disp, WIN_X, WIN_Y, "MiniRT");
 	if (!rt->mlx.win)
 		(printf("win failed\n"), exit(1));
-	rt->mlx.img = mlx_new_image(rt->mlx.disp, 1920, 1080);
+	rt->mlx.img = mlx_new_image(rt->mlx.disp, WIN_X, WIN_Y);
 	if (!rt->mlx.img)
 		(printf("img failed\n"), exit(1));
 	rt->mlx.addr = mlx_get_data_addr(rt->mlx.img, &rt->mlx.bits_per_pixel,
@@ -53,10 +52,8 @@ int	main(int ac, char *av[])
 	t_rt	rt;
 
 	check_args(ac);
-	rt.nb_object = 0;
+	ft_memset(&rt, 0, sizeof(t_rt));
 	init_mini_rt(&rt, av);
-	rt.menu.obj = 0;
-	rt.menu.value = 0;
 	print_solids(&rt);
 	set_cam_base(&rt.camera);
 	print_cam_base(&rt);

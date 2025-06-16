@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 17:36:26 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 21:31:43 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,22 @@ void	modify_cam(int keycode, t_cam *cam)
 	if (keycode == XK_Shift_L)
 		cam->position = vec_sub(cam->position, cam->base.v_normal);
 	if (keycode == XK_Left)
-		cam->direction = vec_sub(vec_mul(cam->direction, COS), vec_mul(cam->base.h_normal, SIN));
+		cam->direction = vec_sub(vec_mul(cam->direction, COS),
+				vec_mul(cam->base.h_normal, SIN));
 	if (keycode == XK_Right)
-		cam->direction = vec_add(vec_mul(cam->direction, COS), vec_mul(cam->base.h_normal, SIN));
+		cam->direction = vec_add(vec_mul(cam->direction, COS),
+				vec_mul(cam->base.h_normal, SIN));
 	if (keycode == XK_Up)
-		cam->direction = vec_add(vec_mul(cam->direction, COS), vec_mul(cam->base.v_normal, SIN));
+		cam->direction = vec_add(vec_mul(cam->direction, COS),
+				vec_mul(cam->base.v_normal, SIN));
 	if (keycode == XK_Down)
-		cam->direction = vec_sub(vec_mul(cam->direction, COS), vec_mul(cam->base.v_normal, SIN));
+		cam->direction = vec_sub(vec_mul(cam->direction, COS),
+				vec_mul(cam->base.v_normal, SIN));
 	set_cam_base(cam);
 }
 
 void	modify_sp(int keycode, t_sp *sp)
-{	
+{
 	if (keycode == XK_w)
 		sp->center = vec_add(sp->center, (t_vect){1, 0, 0});
 	if (keycode == XK_s)
@@ -102,26 +106,23 @@ int	key_hook(int keycode, t_rt *rt)
 		exit_minirt(rt);
 	else if (keycode == XK_n)
 	{
-		rt->menu.value = 0;
-		if (rt->menu.obj == rt->nb_object)
-			rt->menu.obj = 0;
+		if (rt->menu == rt->nb_object)
+			rt->menu = 0;
 		else
-			rt->menu.obj++;
+			rt->menu++;
 	}
-	else if (keycode == XK_m)
-		rt->menu.value++;
 	else
 	{
-		if (rt->menu.obj == 0)
+		if (rt->menu == 0)
 			modify_cam(keycode, &rt->camera);
 		else
 		{
-			if (*rt->object[rt->menu.obj - 1] == PLANE)
-				modify_pl(keycode, (t_pl *)rt->object[rt->menu.obj - 1]);
-			if (*rt->object[rt->menu.obj - 1] == SPHERE)
-				modify_sp(keycode, (t_sp *)rt->object[rt->menu.obj - 1]);
-			if (*rt->object[rt->menu.obj - 1] == CYLINDER)
-				modify_cy(keycode, (t_cy *)rt->object[rt->menu.obj - 1]);
+			if (*rt->object[rt->menu - 1] == PLANE)
+				modify_pl(keycode, (t_pl *)rt->object[rt->menu - 1]);
+			if (*rt->object[rt->menu - 1] == SPHERE)
+				modify_sp(keycode, (t_sp *)rt->object[rt->menu - 1]);
+			if (*rt->object[rt->menu - 1] == CYLINDER)
+				modify_cy(keycode, (t_cy *)rt->object[rt->menu - 1]);
 		}
 		throwing_rays_through_the_wide_universe(rt);
 	}

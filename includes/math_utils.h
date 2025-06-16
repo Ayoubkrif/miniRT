@@ -6,10 +6,9 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:28:09 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 14:58:52 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/16 21:11:32 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MATH_UTILS_H
 # define MATH_UTILS_H

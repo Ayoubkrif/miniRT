@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:00:46 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 13:06:14 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/16 21:12:40 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,6 @@
 #include "math_utils.h"
 #include <stdlib.h>
 #include "vect.h"
-
-void	alloc_camera_scene(t_type *obj[], t_type *to_dup[])
-{
-	int	i;
-
-	i = 0;
-	while (obj[i])
-	{
-		if (*obj[i] == PLANE)
-			to_dup[i] = malloc(sizeof(t_pl));
-		if (*obj[i] == SPHERE)
-			to_dup[i] = malloc(sizeof(t_sp));
-		if (*obj[i] == CYLINDER)
-			to_dup[i] = malloc(sizeof(t_cy));
-		i++;
-	}
-}
 
 void	set_cam_base(t_cam *cam)
 {
