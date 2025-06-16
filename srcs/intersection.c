@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/15 14:03:03 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 12:41:15 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 #include <assert.h>
 #include <stdio.h>
 
-void	push_inter(t_rt *rt, t_vect ray, t_inter *inter, t_rgb color, double t)
+void	push_inter(t_rt *rt, t_vect ray, t_rgb color, double t)
 {
 	int	i;
 
 	i = 0;
-	while (inter[i].init)
+	while (rt->inter[i].init)
 		i++;
-	inter[i].init = 1;
-	inter[i].color = color;
-	inter[i].point = get_point_d(rt->camera.position, ray, t);
+	rt->inter[i].init = 1;
+	rt->inter[i].color = color;
+	rt->inter[i].point = get_point_d(rt->camera.position, ray, t);
 }
 
-void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sp *sp)
+void	inter_sphere(t_rt *rt, t_vect ray, t_sp *sp)
 {
 	double	a;
 	double	b;
@@ -45,11 +45,11 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sp *sp)
 	delta = delta_2nd(a, b, c);
 	if (delta <= 0)
 		return ;
-	push_inter(rt, ray, inter, sp->color, (-b + sqrt(delta)) / (2 * a));
-	push_inter(rt, ray, inter, sp->color, (-b - sqrt(delta)) / (2 * a));
+	push_inter(rt, ray, sp->color, (-b + sqrt(delta)) / (2 * a));
+	push_inter(rt, ray, sp->color, (-b - sqrt(delta)) / (2 * a));
 }
 
-void	inter_disk(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
+void	inter_disk(t_rt *rt, t_vect ray, t_cy *cy)
 {
 	double	dot_n_ray;
 	t_vect	camera;
@@ -61,14 +61,30 @@ void	inter_disk(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
 		return ;
 	t = - (dot_prod(cy->axis, camera) + cy->dt) / dot_n_ray;
 	if (vec_norm(vec_sub(cy->top, get_point_d(camera, ray, t))) < cy->diameter / 2)
-		push_inter(rt, ray, inter, cy->color, t);
+		push_inter(rt, ray, cy->color, t);
 	t = - (dot_prod(cy->axis, camera) + cy->db) / dot_n_ray;
 	if (vec_norm(vec_sub(cy->bottom, get_point_d(camera, ray, t))) < cy->diameter / 2)
-		push_inter(rt, ray, inter, cy->color, t);
+		push_inter(rt, ray, cy->color, t);
 }
 
-void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
+void	inter_cylinder(t_rt *rt, t_vect ray, t_cy *cy)
 {
+	inter_disk(rt, ray, cy);
+}
+
+void	inter_plane(t_rt *rt, t_vect ray, t_pl *pl)
+{
+	double	dot_n_ray;
+	t_vect	camera;
+	double	t;
+
+	camera = rt->camera.position;
+	dot_n_ray = dot_prod(ray, pl->normal);
+	if (!dot_n_ray)
+		return ;
+	t = - (dot_prod(pl->normal, camera) + pl->d) / dot_n_ray;
+	push_inter(rt, ray, pl->color, t);
+}
 	/*double	a;*/
 	/*double	b;*/
 	/*double	c;*/
@@ -78,7 +94,6 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
 	/*t_vect	ortho_cam_center;*/
 	/*t_vect	axis;*/
 
-	inter_disk(rt, ray, inter, cy);
 	/*axis = vec_mul(cy->axis, 1 / vec_norm(cy->axis));*/
 	/*camera = rt->camera.position;*/
 	/*ortho_ray = vec_sub(ray, vec_mul(axis, dot_prod(ray, axis)));*/
@@ -101,18 +116,3 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy *cy)
 	/*root = dot_prod(axis, vec_sub(camera, get_point_d(camera, ray, -b - sqrt(delta) / (2 * a))));*/
 	/*if (root <= cy->height / 2 && root >= -cy->height / 2)*/
 	/*	push_inter(rt, ray, inter, cy->color, (-b - sqrt(delta)) / (2 * a));*/
-}
-
-void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_pl *pl)
-{
-	double	dot_n_ray;
-	t_vect	camera;
-	double	t;
-
-	camera = rt->camera.position;
-	dot_n_ray = dot_prod(ray, pl->normal);
-	if (!dot_n_ray)
-		return ;
-	t = - (dot_prod(pl->normal, camera) + pl->d) / dot_n_ray;
-	push_inter(rt, ray, inter, pl->color, t);
-}

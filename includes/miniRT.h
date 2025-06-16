@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/15 19:26:39 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/16 12:41:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,9 +154,9 @@ void	set_cam_base(t_cam *cam);
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt);
 
-void	inter_sphere(t_rt *rt, t_vect ray, t_inter *inter, t_sp *sp);
-void	inter_cylinder(t_rt *rt, t_vect ray, t_inter *inter, t_cy*cy);
-void	inter_plane(t_rt *rt, t_vect ray, t_inter *inter, t_pl *pl);
+void	inter_sphere(t_rt *rt, t_vect ray, t_sp *sp);
+void	inter_cylinder(t_rt *rt, t_vect ray, t_cy*cy);
+void	inter_plane(t_rt *rt, t_vect ray, t_pl *pl);
 
 void	print_solids(t_rt *rt);
 void	print_cam_base(t_rt *rt);

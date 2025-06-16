@@ -6,16 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/15 19:37:07 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/16 12:42:18 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "math_utils.h"
 #include "libft.h"
 #include "mlx.h"
-#include <stdio.h>
-#include <string.h>
 
 t_inter	best_intersection(t_rt *rt, t_inter *inter)
 {
@@ -39,7 +36,7 @@ t_inter	best_intersection(t_rt *rt, t_inter *inter)
 	return (ret_val);
 }
 
-void	add_inter(t_rt *rt, t_vect ray, t_inter *inter)
+void	add_inter(t_rt *rt, t_vect ray)
 {
 	int		i;
 
@@ -47,11 +44,11 @@ void	add_inter(t_rt *rt, t_vect ray, t_inter *inter)
 	while (rt->object[i])
 	{
 		if (*rt->object[i] == SPHERE)
-			inter_sphere(rt, ray, inter, (t_sp *)rt->object[i]);
+			inter_sphere(rt, ray, (t_sp *)rt->object[i]);
 		else if (*rt->object[i] == CYLINDER)
-			inter_cylinder(rt, ray, inter, (t_cy *)rt->object[i]);
+			inter_cylinder(rt, ray, (t_cy *)rt->object[i]);
 		else if (*rt->object[i] == PLANE)
-			inter_plane(rt, ray, inter, (t_pl *)rt->object[i]);
+			inter_plane(rt, ray, (t_pl *)rt->object[i]);
 		i++;
 	}
 }
@@ -59,7 +56,6 @@ void	add_inter(t_rt *rt, t_vect ray, t_inter *inter)
 t_rgb	is_it_touching(t_rt *rt, double x, double y)
 {
 	t_vect	ray;
-	// t_inter	*inter;
 	t_cam	*cam;
 
 	cam = &rt->camera;
@@ -70,10 +66,7 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	ray = vec_sub(ray, cam->position);
 	assert((vec_norm(ray)));
 	ft_memset(rt->inter, 0, (rt->nb_object * 2 + 1) * sizeof(t_inter));
-	// inter = calloc(2 * (rt->nb_object) + 1, sizeof(t_inter));
-	// if (!inter)
-	// 	printf("AAAAAAAAAA\n");
-	add_inter(rt, ray, rt->inter);
+	add_inter(rt, ray);
 	return (best_intersection(rt, rt->inter).color);
 }
 
@@ -94,6 +87,5 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 		}
 		i++;
 	}
-	/*printf("rayons envoyes !\n");*/
 	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);
 }
