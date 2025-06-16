@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/14 21:47:24 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:20:12 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	if (!tok[2])
 		return (1);
 	sphere->diameter = ft_atoi(tok[2]);
+	sphere->radius = sphere->diameter / 2;
 	if (fill_rgb(tok[3], &sphere->color))
 		return (1);
 	rt->object[rt->nb_object] = (t_type *)sphere;
@@ -78,6 +79,7 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	if (!tok[3])
 		return (1);
 	cy->diameter = ft_atoi(tok[3]);
+	cy->radius = cy->diameter / 2;
 	if (!tok[4])
 		return (1);
 	cy->height = ft_atoi(tok[4]);

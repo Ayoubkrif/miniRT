@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 12:41:51 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:21:42 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # include "math_utils.h"
-# include "assert.h"
+// # include "assert.h"
 
 # define WIN_X	1920
 # define WIN_Y	1080
@@ -47,9 +47,8 @@ typedef struct s_mlx
 
 typedef struct s_inter
 {
-	t_vect	point;
+	double	t;
 	t_rgb	color;
-	int		init;
 }	t_inter;
 
 typedef struct s_base
@@ -92,6 +91,7 @@ typedef struct s_sp
 	t_type	type;
 	t_vect	center;
 	float	diameter;
+	float	radius;
 	t_rgb	color;
 }	t_sp;
 
@@ -111,6 +111,7 @@ typedef struct s_cy
 	t_vect	center;
 	t_vect	axis;
 	float	diameter;
+	float	radius;
 	float	height;
 	t_vect	top;
 	t_vect	bottom;
@@ -134,7 +135,7 @@ typedef struct s_rt
 	int			nb_object;
 	t_type		*object[20];
 	t_type		*cam_obj[20];
-	t_inter		*inter;
+	t_inter		inter;
 	t_menu		menu;
 }	t_rt;
 

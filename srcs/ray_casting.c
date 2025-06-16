@@ -6,35 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 12:42:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:05:38 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "libft.h"
 #include "mlx.h"
-
-t_inter	best_intersection(t_rt *rt, t_inter *inter)
-{
-	t_inter	ret_val;
-	int		i;
-	double	dot;
-	double	last_dot;
-
-	ret_val = (t_inter){(t_vect){0, 0, 0}, (t_rgb){0, 0, 0}, 0};
-	i = 0;
-	while (inter[i].init)
-	{
-		dot = dot_prod(rt->camera.direction, inter[i].point);
-		if (dot > 0 && (!ret_val.init || dot < last_dot))
-		{
-			last_dot = dot;
-			ret_val = inter[i];
-		}
-		i++;
-	}
-	return (ret_val);
-}
 
 void	add_inter(t_rt *rt, t_vect ray)
 {
@@ -59,15 +37,15 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	t_cam	*cam;
 
 	cam = &rt->camera;
-	assert((x < 960 && x >= -960) && (y < 540 && y >= -540));
+	// assert((x < 960 && x >= -960) && (y < 540 && y >= -540));
 	ray = vec_add(vec_mul(cam->screen.pix_x, x),
 			vec_mul(cam->screen.pix_y, y));
 	ray = vec_add(cam->screen.center, ray);
 	ray = vec_sub(ray, cam->position);
-	assert((vec_norm(ray)));
-	ft_memset(rt->inter, 0, (rt->nb_object * 2 + 1) * sizeof(t_inter));
+	// assert((vec_norm(ray)));
+	rt->inter = (t_inter){-1, (t_rgb){0, 0, 0}};
 	add_inter(rt, ray);
-	return (best_intersection(rt, rt->inter).color);
+	return (rt->inter.color);
 }
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt)
