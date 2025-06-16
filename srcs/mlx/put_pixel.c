@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:00:10 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/14 07:39:29 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:49:01 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)
 
 void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color)
 {
-	my_mlx_pixel_put(rt, x, y,
-		((color.r << 16))
-		| ((color.g << 8))
-		| (color.b));
+	int	final_color;
+
+	final_color = (((int)(color.r * 255) << 16))
+		| (((int)(color.g * 255) << 8))
+		| ((int)(color.b * 255));
+	my_mlx_pixel_put(rt, x, y, final_color);
 }

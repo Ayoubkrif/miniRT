@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 14:03:11 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 17:18:13 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	get_light_info(char **tok, t_rt *rt)
 		return (1);
 	if (!tok[2])
 		return (1);
-	rt->light.brightness = ft_atoi(tok[2]);
+	if (fill_rgb(tok[3], &rt->light.color))
+		return (1);
+	rt->light.color.brightness = atof(tok[2]);
 	return (0);
 }
 
@@ -41,9 +43,9 @@ int	get_ambient_info(char **tok, t_rt *rt)
 {
 	if (!tok[1])
 		return (1);
-	rt->ambiant.lighting = ft_atoi(tok[1]);
 	if (fill_rgb(tok[2], &rt->ambiant.color))
 		return (1);
+	rt->ambiant.color.brightness = atof(tok[1]);
 	return (0);
 }
 

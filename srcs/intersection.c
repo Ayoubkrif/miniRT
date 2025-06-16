@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 13:31:57 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 17:46:43 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	inter_sphere(t_rt *rt, t_vect ray, t_sp *sp)
 void	inter_disk(t_rt *rt, t_vect ray, t_cy *cy)
 {
 	double	dot_n_ray;
+	double	dot_axis_camera;
 	t_vect	camera;
 	double	t;
 
@@ -53,10 +54,11 @@ void	inter_disk(t_rt *rt, t_vect ray, t_cy *cy)
 	dot_n_ray = dot_prod(ray, cy->axis);
 	if (!dot_n_ray)
 		return ;
-	t = - (dot_prod(cy->axis, camera) + cy->dt) / dot_n_ray;
+	dot_axis_camera = dot_prod(cy->axis, camera);
+	t = - (dot_axis_camera + cy->dt) / dot_n_ray;
 	if (vec_norm(vec_sub(cy->top, get_point_d(camera, ray, t))) < cy->radius)
 		push_inter(rt, cy->color, t);
-	t = - (dot_prod(cy->axis, camera) + cy->db) / dot_n_ray;
+	t = - (dot_axis_camera + cy->db) / dot_n_ray;
 	if (vec_norm(vec_sub(cy->bottom, get_point_d(camera, ray, t))) < cy->radius)
 		push_inter(rt, cy->color, t);
 }

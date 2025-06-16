@@ -6,19 +6,19 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/15 13:34:32 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 17:07:06 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "utils.h"
-	/*printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\n",*/
-	/*	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.brightness);*/
-	/*printf("ambient =======\nlightning  :%f\ncolor      :%d,%d,%d\n",*/
-	/*	rt->ambiant.lighting, rt->ambiant.color.r, rt->ambiant.color.g, rt->ambiant.color.b);*/
 
 void	print_solids(t_rt *rt)
 {
+	/*printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\n",*/
+	/*	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.brightness);*/
+	printf("ambient =======\nlightning  :%f\ncolor      :%.f,%.f,%.f\n",
+		rt->ambiant.color.brightness, rt->ambiant.color.r * 255, rt->ambiant.color.g * 255, rt->ambiant.color.b * 255);
 	if (rt->menu.obj == 0)
 	{
 		printf("camera =======\nposition   :%f,%f,%f\ndirection  :%f,%f,%f\nfov        :%f\n",
@@ -26,7 +26,7 @@ void	print_solids(t_rt *rt)
 			rt->camera.direction.x, rt->camera.direction.y, rt->camera.direction.z,
 			rt->camera.fov);
 	}
-	else
+/*	else
 	{
 		if (*rt->object[rt->menu.obj - 1] == PLANE)
 		{
@@ -58,7 +58,7 @@ void	print_solids(t_rt *rt)
 				((t_cy *)rt->object[rt->menu.obj - 1])->color.r, ((t_cy *)rt->object[rt->menu.obj - 1])->color.g,
 				((t_cy *)rt->object[rt->menu.obj - 1])->color.b);
 		}
-	}
+	}*/
 }
 
 void	print_cam_base(t_rt *rt)

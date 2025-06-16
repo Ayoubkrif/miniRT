@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 14:01:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 16:57:07 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ typedef enum e_type
 
 typedef struct s_rgb
 {
-	int	r;
-	int	g;
-	int	b;
+	float	r;
+	float	g;
+	float	b;
+	float	brightness;
 }	t_rgb;
 
 typedef struct s_mlx
@@ -76,14 +77,13 @@ typedef struct s_cam
 
 typedef struct s_ambient
 {
-	float	lighting;
 	t_rgb	color;
 }	t_ambient;
 
 typedef struct light
 {
 	t_vect	position;
-	float	brightness;
+	t_rgb	color;
 }	t_light;
 
 typedef struct s_sp
@@ -169,5 +169,7 @@ int		exit_minirt(t_rt *rt);
 
 int		key_hook(int keycode, t_rt *rt);
 void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color);
+t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color);
+void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
 
 #endif

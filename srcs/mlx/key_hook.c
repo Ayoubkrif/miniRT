@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 13:37:55 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 17:36:26 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void	modify_cy(int keycode, t_cy *cy)
 		cy->center = vec_add(cy->center, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		cy->center = vec_sub(cy->center, (t_vect){0, 0, 1});
-	cy->top = get_point(cy->center, cy->axis, cy->height / 2);
+	cy->top = get_point(cy->center, cy->axis, cy->semi_height);
 	cy->dt = -dot_prod(cy->top, cy->axis);
-	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->height / 2);
+	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->semi_height);
 	cy->db = -dot_prod(cy->bottom, cy->axis);
 }
 
