@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 21:31:43 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/16 21:40:06 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	modify_cam(int keycode, t_cam *cam)
 		cam->position = vec_add(cam->position, cam->direction);
 	if (keycode == XK_s)
 		cam->position = vec_sub(cam->position, cam->direction);
-	if (keycode == XK_a)
-		cam->position = vec_add(cam->position, cam->base.h_normal);
 	if (keycode == XK_d)
+		cam->position = vec_add(cam->position, cam->base.h_normal);
+	if (keycode == XK_a)
 		cam->position = vec_sub(cam->position, cam->base.h_normal);
 	if (keycode == XK_space)
 		cam->position = vec_add(cam->position, cam->base.v_normal);
