@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 21:26:40 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/17 15:26:18 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_solids(t_rt *rt)
 	{
 		printf("camera =======\nposition   :%f,%f,%f\ndirection  :%f,%f,%f\nfov        :%f\n",
 			rt->camera.position.x, rt->camera.position.y, rt->camera.position.z,
-			rt->camera.direction.x, rt->camera.direction.y, rt->camera.direction.z,
+			rt->camera.direction_n.x, rt->camera.direction_n.y, rt->camera.direction_n.z,
 			rt->camera.fov);
 	}
 /*	else

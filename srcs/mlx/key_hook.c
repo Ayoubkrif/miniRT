@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 21:40:06 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/17 16:59:10 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 #include "math_utils.h"
 #include <X11/keysym.h>
 
-#define SIN	0.5
-#define COS	0.866025404
+#define SIN	0.26
+#define COS 0.97
 
 void	modify_cam(int keycode, t_cam *cam)
 {
 	if (keycode == XK_w)
-		cam->position = vec_add(cam->position, cam->direction);
+		cam->position = vec_add(cam->position, cam->direction_n);
 	if (keycode == XK_s)
-		cam->position = vec_sub(cam->position, cam->direction);
+		cam->position = vec_sub(cam->position, cam->direction_n);
 	if (keycode == XK_d)
 		cam->position = vec_add(cam->position, cam->base.h_normal);
 	if (keycode == XK_a)
@@ -33,16 +33,16 @@ void	modify_cam(int keycode, t_cam *cam)
 	if (keycode == XK_Shift_L)
 		cam->position = vec_sub(cam->position, cam->base.v_normal);
 	if (keycode == XK_Left)
-		cam->direction = vec_sub(vec_mul(cam->direction, COS),
+		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.h_normal, SIN));
 	if (keycode == XK_Right)
-		cam->direction = vec_add(vec_mul(cam->direction, COS),
+		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.h_normal, SIN));
 	if (keycode == XK_Up)
-		cam->direction = vec_add(vec_mul(cam->direction, COS),
+		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.v_normal, SIN));
 	if (keycode == XK_Down)
-		cam->direction = vec_sub(vec_mul(cam->direction, COS),
+		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.v_normal, SIN));
 	set_cam_base(cam);
 }
@@ -77,7 +77,7 @@ void	modify_pl(int keycode, t_pl *pl)
 		pl->point = vec_add(pl->point, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		pl->point = vec_sub(pl->point, (t_vect){0, 0, 1});
-	pl->d = -dot_prod(pl->point, pl->normal);
+	pl->d = -dot_prod(pl->point, pl->normal_n);
 }
 
 void	modify_cy(int keycode, t_cy *cy)
@@ -94,10 +94,10 @@ void	modify_cy(int keycode, t_cy *cy)
 		cy->center = vec_add(cy->center, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		cy->center = vec_sub(cy->center, (t_vect){0, 0, 1});
-	cy->top = get_point(cy->center, cy->axis, cy->semi_height);
-	cy->dt = -dot_prod(cy->top, cy->axis);
-	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->semi_height);
-	cy->db = -dot_prod(cy->bottom, cy->axis);
+	cy->top = get_point(cy->center, cy->axis_n, cy->semi_height);
+	cy->dt = -dot_prod(cy->top, cy->axis_n);
+	cy->bottom = get_point(cy->center, vec_mul(cy->axis_n, -1), cy->semi_height);
+	cy->db = -dot_prod(cy->bottom, cy->axis_n);
 }
 
 int	key_hook(int keycode, t_rt *rt)

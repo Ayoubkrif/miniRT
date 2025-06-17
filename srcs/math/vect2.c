@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:22:50 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 13:33:41 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/17 17:03:18 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ double	dot_prod(t_vect u, t_vect v)
 t_vect	get_normalized_vec(t_vect u)
 {
 	return (vec_mul(u, 1 / vec_norm(u)));
+}
+
+int	vect_eq(t_vect u, t_vect v)
+{
+	return (double_eq(u.x, v.x) && double_eq(u.y, v.y) && double_eq(u.z, v.z));
 }

@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 17:18:13 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/17 14:54:44 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int	get_cam_info(char **tok, t_rt *rt)
 {
 	if (fill_vec(tok[1], &rt->camera.position))
 		return (1);
-	if (fill_vec(tok[2], &rt->camera.direction))
+	if (fill_vec(tok[2], &rt->camera.direction_n))
 		return (1);
 	if (!tok[3])
 		return (1);
 	rt->camera.fov = ft_atoi(tok[3]);
+	rt->camera.direction_n = get_normalized_vec(rt->camera.direction_n);
 	return (0);
 }
 
@@ -60,11 +61,11 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	if (!tok[2])
 		return (1);
 	sphere->diameter = atof(tok[2]);
-	sphere->radius = sphere->diameter / 2;
 	if (fill_rgb(tok[3], &sphere->color))
 		return (1);
 	rt->object[rt->nb_object] = (t_type *)sphere;
 	rt->nb_object += 1;
+	sphere->radius = sphere->diameter / 2;
 	return (0);
 }
 
@@ -76,24 +77,25 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	cy->type = CYLINDER;
 	if (fill_vec(tok[1], &cy->center))
 		return (1);
-	if (fill_vec(tok[2], &cy->axis))
+	if (fill_vec(tok[2], &cy->axis_n))
 		return (1);
 	if (!tok[3])
 		return (1);
 	cy->diameter = atof(tok[3]);
-	cy->radius = cy->diameter / 2;
 	if (!tok[4])
 		return (1);
 	cy->height = atof(tok[4]);
-	cy->semi_height = cy->height / 2;
 	if (fill_rgb(tok[5], &cy->color))
 		return (1);
 	rt->object[rt->nb_object] = (t_type *)cy;
 	rt->nb_object += 1;
-	cy->top = get_point(cy->center, cy->axis, cy->semi_height);
-	cy->dt = -dot_prod(cy->top, cy->axis);
-	cy->bottom = get_point(cy->center, vec_mul(cy->axis, -1), cy->semi_height);
-	cy->db = -dot_prod(cy->bottom, cy->axis);
+	cy->semi_height = cy->height / 2;
+	cy->radius = cy->diameter / 2;
+	cy->axis_n = get_normalized_vec(cy->axis_n);
+	cy->top = get_point(cy->center, cy->axis_n, cy->semi_height);
+	cy->dt = -dot_prod(cy->top, cy->axis_n);
+	cy->bottom = get_point(cy->center, vec_mul(cy->axis_n, -1), cy->semi_height);
+	cy->db = -dot_prod(cy->bottom, cy->axis_n);
 	return (0);
 }
 
@@ -105,12 +107,13 @@ int	get_plane_info(char **tok, t_rt *rt)
 	pl->type = PLANE;
 	if (fill_vec(tok[1], &pl->point))
 		return (1);
-	if (fill_vec(tok[2], &pl->normal))
+	if (fill_vec(tok[2], &pl->normal_n))
 		return (1);
 	if (fill_rgb(tok[3], &pl->color))
 		return (1);
 	rt->object[rt->nb_object] = (t_type *)pl;
 	rt->nb_object += 1;
-	pl->d = -dot_prod(pl->point, pl->normal);
+	pl->normal_n = get_normalized_vec(pl->normal_n);
+	pl->d = -dot_prod(pl->point, pl->normal_n);
 	return (0);
 }
