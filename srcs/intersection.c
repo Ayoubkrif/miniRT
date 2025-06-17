@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 17:46:43 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/17 12:49:51 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "math_utils.h"
 #include "libft.h"
 #include "vect.h"
+#include <math.h>
 #include <stdio.h>
 
 void	push_inter(t_rt *rt, t_rgb color, double t)
@@ -65,6 +66,39 @@ void	inter_disk(t_rt *rt, t_vect ray, t_cy *cy)
 
 void	inter_cylinder(t_rt *rt, t_vect ray, t_cy *cy)
 {
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+	t_vect	camera;
+	t_vect	ortho_ray;
+	t_vect	ortho_cam_center;
+	t_vect	axis;
+	t_vect	ray_n;
+
+	axis = vec_mul(cy->axis, 1 / vec_norm(cy->axis));
+	ray_n = vec_mul(ray, 1 / vec_norm(ray));
+	camera = rt->camera.position;
+	ortho_ray = vec_sub(ray_n, vec_mul(axis, dot_prod(ray_n, axis)));
+	ortho_cam_center = vec_sub(camera, cy->center);
+	ortho_cam_center = vec_sub(ortho_cam_center, vec_mul(axis, dot_prod(ortho_cam_center, axis)));
+	
+	a = dot_prod(ortho_ray, ortho_ray);
+	if (!a)
+		return ;
+	b = 2 * dot_prod(ortho_cam_center, ortho_ray);
+	c = dot_prod(ortho_cam_center, ortho_cam_center) - p2(cy->diameter / 2);
+	delta = delta_2nd(a, b, c);
+	if (delta <= 0)
+		return ;
+	double	root;
+	
+	root = dot_prod(axis, vec_sub(cy->center, get_point_d(camera, ray, (-b + sqrt(delta)) / (2 * a))));
+	if (root <= cy->semi_height && root >= -cy->semi_height)
+		push_inter(rt, cy->color, (-b + sqrt(delta)) / (2 * a));
+	root = dot_prod(axis, vec_sub(cy->center, get_point_d(camera, ray, (-b - sqrt(delta)) / (2 * a))));
+	if (root <= cy->semi_height && root >= -cy->semi_height)
+		push_inter(rt, cy->color, (-b - sqrt(delta)) / (2 * a));
 	inter_disk(rt, ray, cy);
 }
 
@@ -81,34 +115,3 @@ void	inter_plane(t_rt *rt, t_vect ray, t_pl *pl)
 	t = - (dot_prod(pl->normal, camera) + pl->d) / dot_n_ray;
 	push_inter(rt, pl->color, t);
 }
-	/*double	a;*/
-	/*double	b;*/
-	/*double	c;*/
-	/*double	delta;*/
-	/*t_vect	camera;*/
-	/*t_vect	ortho_ray;*/
-	/*t_vect	ortho_cam_center;*/
-	/*t_vect	axis;*/
-
-	/*axis = vec_mul(cy->axis, 1 / vec_norm(cy->axis));*/
-	/*camera = rt->camera.position;*/
-	/*ortho_ray = vec_sub(ray, vec_mul(axis, dot_prod(ray, axis)));*/
-	/*ortho_cam_center = vec_sub(camera, cy->center);*/
-	/*ortho_cam_center = vec_sub(ortho_cam_center, vec_mul(axis, dot_prod(ortho_cam_center, axis)));*/
-	/**/
-	/*a = dot_prod(ortho_ray, ortho_ray);*/
-	/*if (!a)*/
-	/*	return ;*/
-	/*b = 2 * dot_prod(ortho_cam_center, ortho_ray);*/
-	/*c = dot_prod(ortho_cam_center, ortho_cam_center) - p2(cy->diameter / 2);*/
-	/*delta = delta_2nd(a, b, c);*/
-	/*if (delta <= 0)*/
-	/*	return ;*/
-	/*double	root;*/
-	/**/
-	/*root = dot_prod(axis, vec_sub(camera, get_point_d(camera, ray, -b + sqrt(delta) / (2 * a))));*/
-	/*if (root <= cy->height / 2 && root >= -cy->height / 2)*/
-	/*	push_inter(rt, ray, inter, cy->color, (-b + sqrt(delta)) / (2 * a));*/
-	/*root = dot_prod(axis, vec_sub(camera, get_point_d(camera, ray, -b - sqrt(delta) / (2 * a))));*/
-	/*if (root <= cy->height / 2 && root >= -cy->height / 2)*/
-	/*	push_inter(rt, ray, inter, cy->color, (-b - sqrt(delta)) / (2 * a));*/
