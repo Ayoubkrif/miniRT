@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/17 15:26:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/17 18:23:30 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 void	print_solids(t_rt *rt)
 {
-	/*printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\n",*/
-	/*	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.brightness);*/
+	printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
+		rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.color.brightness
+		, rt->light.color.r * 255, rt->light.color.g * 255, rt->light.color.b * 255);
 	printf("ambient =======\nlightning  :%f\ncolor      :%.f,%.f,%.f\n",
 		rt->ambiant.color.brightness, rt->ambiant.color.r * 255, rt->ambiant.color.g * 255, rt->ambiant.color.b * 255);
 	if (rt->menu == 0)
