@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:22:50 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/17 17:03:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:09:59 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ double	vec_norm(t_vect u)
 
 t_vect	get_point_d(t_vect start, t_vect dir, double t)
 {
-	return ((t_vect)
-		{
-			start.x + dir.x * t,
-			start.y + dir.y * t,
-			start.z + dir.z * t,
-		});
+	return (vec_add(start, vec_mul(dir, t)));
 }
 
 t_vect	get_point(t_vect start, t_vect dir, double norm)
@@ -50,4 +45,16 @@ t_vect	get_normalized_vec(t_vect u)
 int	vect_eq(t_vect u, t_vect v)
 {
 	return (double_eq(u.x, v.x) && double_eq(u.y, v.y) && double_eq(u.z, v.z));
+}
+
+int	vect_col(t_vect u, t_vect v)
+{
+	double	x_div;
+	double	y_div;
+	double	z_div;
+
+	x_div = u.x / v.x;
+	y_div = u.y / v.y;
+	z_div = u.z / v.z;
+	return (double_eq(x_div, y_div) && double_eq(x_div, z_div));
 }

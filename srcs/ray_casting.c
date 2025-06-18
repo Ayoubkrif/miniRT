@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/17 22:55:43 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:33:26 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "mlx.h"
 
-t_inter	add_inter(t_rt *rt, t_vect ray)
+t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 {
 	int		i;
 	t_inter	inter;
@@ -24,11 +24,11 @@ t_inter	add_inter(t_rt *rt, t_vect ray)
 	while (rt->object[i])
 	{
 		if (*rt->object[i] == SPHERE)
-			inter_sphere(rt, ray, (t_sp *)rt->object[i], &inter);
+			inter_sphere(rt, ray, (t_sp *)rt->object[i], &inter, start);
 		else if (*rt->object[i] == CYLINDER)
-			inter_cylinder(rt, ray, (t_cy *)rt->object[i], &inter);
+			inter_cylinder(rt, ray, (t_cy *)rt->object[i], &inter, start);
 		else if (*rt->object[i] == PLANE)
-			inter_plane(rt, ray, (t_pl *)rt->object[i], &inter);
+			inter_plane(rt, ray, (t_pl *)rt->object[i], &inter, start);
 		i++;
 	}
 	return (inter);
@@ -40,52 +40,62 @@ t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse)
 	(void)diffuse;
 	return ((t_rgb)
 		{
-			color.r *  ((rt->ambiant.color.r * rt->ambiant.color.brightness) + (diffuse.brightness * diffuse.r)),
-			color.g *  ((rt->ambiant.color.g * rt->ambiant.color.brightness) + (diffuse.brightness * diffuse.g)),
-			color.b *  ((rt->ambiant.color.b * rt->ambiant.color.brightness) + (diffuse.brightness * diffuse.b)),
+			color.r
+			* ((rt->ambiant.color.r * rt->ambiant.color.brightness)
+				+ (diffuse.brightness * diffuse.r)),
+			color.g
+			* ((rt->ambiant.color.g * rt->ambiant.color.brightness)
+				+ (diffuse.brightness * diffuse.g)),
+			color.b
+			* ((rt->ambiant.color.b * rt->ambiant.color.brightness)
+				+ (diffuse.brightness * diffuse.b)),
 			1
 		});
 }
+
+#include <stdio.h>
 
 t_rgb	is_it_touching(t_rt *rt, double x, double y)
 {
 	t_vect	ray_cam_obj;
 	t_cam	*cam;
-	t_inter	inter_ray_obj;
+	t_inter	inter_cam_obj;
 
 	cam = &rt->camera;
 	ray_cam_obj = vec_add(vec_mul(cam->screen.pix_x, x),
 			vec_mul(cam->screen.pix_y, y));
 	ray_cam_obj = vec_add(cam->screen.center, ray_cam_obj);
 	ray_cam_obj = vec_sub(ray_cam_obj, cam->position);
-	inter_ray_obj = add_inter(rt, ray_cam_obj);
-
+	inter_cam_obj = add_inter(rt, ray_cam_obj, rt->camera.position);
+	if (inter_cam_obj.obj == NULL)
+		return (inter_cam_obj.color);
 	t_vect	inter_obj_cam;
 	t_vect	ray_light_obj;
 	t_inter	diffuse;
-	t_vect	inter_obj_light;
+	t_vect	inter_light_obj;
 
-	inter_obj_cam = get_point_d(rt->camera.position, ray_cam_obj, inter_ray_obj.t);
+	inter_obj_cam = get_point_d(rt->camera.position, ray_cam_obj, inter_cam_obj.t);
 	ray_light_obj = vec_sub(inter_obj_cam, rt->light.position);
-	diffuse = add_inter(rt, ray_light_obj);
-	inter_obj_light = get_point_d(rt->light.position, ray_light_obj, diffuse.t);
-	if (vect_eq(inter_obj_cam, inter_obj_light))
+	diffuse = add_inter(rt, ray_light_obj, rt->light.position);
+	inter_light_obj = get_point_d(rt->light.position, ray_light_obj, diffuse.t);
+	/*printf("cam-->inter\nposition   :%f,%f,%f\nlight-->inter\nposition   :%f,%f,%f\n",*/
+	/*	inter_obj_cam.x, inter_obj_cam.y, inter_obj_cam.z,*/
+	/*	inter_light_obj.x, inter_light_obj.y, inter_light_obj.z);*/
+	if (vect_eq(inter_obj_cam, inter_light_obj))
 		diffuse.color = rt->light.color;
 	else
-		diffuse.color = (t_rgb){1, 1, 1, 1};
-	return (shaker_ambiant_solid(rt, inter_ray_obj.color, diffuse.color));
+		diffuse.color = (t_rgb){0, 0, 0, 0};
+	return (shaker_ambiant_solid(rt, inter_cam_obj.color, diffuse.color));
 }
-
-#include <stdio.h>
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt)
 {
 	int	i;
 	int	j;
 
-	printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
-		rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.color.brightness
-		, rt->light.color.r * 255, rt->light.color.g * 255, rt->light.color.b * 255);
+	/*printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",*/
+	/*	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.color.brightness*/
+	/*	, rt->light.color.r * 255, rt->light.color.g * 255, rt->light.color.b * 255);*/
 	i = -WIN_X / 2;
 	while (i < WIN_X / 2)
 	{

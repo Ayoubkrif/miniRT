@@ -6,13 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:25:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/17 16:57:15 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/18 12:42:16 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math_utils.h"
 
-#define EPSILON 0.1
+#define EPSILON 0.0001
 
 double	to_deg(double angle)
 {
@@ -39,7 +39,7 @@ int	double_eq(double d1, double d2)
 	double	diff;
 
 	diff = d1 - d2;
-	if (diff < EPSILON && diff > -EPSILON)
+	if (fabs(diff) < EPSILON)
 		return (1);
 	return (0);
 }
