@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/18 14:27:43 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/18 18:35:32 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef enum e_type
 	NONE = 0,
 	CYLINDER,
 	SPHERE,
-	PLANE
+	PLANE,
+	DISK_TOP,
+	DISK_BOT
 }	t_type;
 
 typedef struct s_rgb
@@ -51,6 +53,7 @@ typedef struct s_inter
 	double	t;
 	t_rgb	color;
 	t_type	*obj;
+	t_type	mode;
 }	t_inter;
 
 typedef struct s_base
