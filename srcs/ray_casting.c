@@ -6,13 +6,16 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/18 20:07:22 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/18 23:45:03 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "libft.h"
 #include "mlx.h"
+
+#define KA 0.5
+#define KD 0.5
 
 t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 {
@@ -36,19 +39,17 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 
 t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse)
 {
-	(void)rt;
-	(void)diffuse;
 	return ((t_rgb)
 		{
 			color.r
-			* ((rt->ambiant.color.r * rt->ambiant.color.brightness)
-				+ (diffuse.brightness * diffuse.r)),
+			* ((KA * rt->ambiant.color.r * rt->ambiant.color.brightness)
+				+ (KD * diffuse.brightness * diffuse.r)),
 			color.g
-			* ((rt->ambiant.color.g * rt->ambiant.color.brightness)
-				+ (diffuse.brightness * diffuse.g)),
+			* ((KA * rt->ambiant.color.g * rt->ambiant.color.brightness)
+				+ (KD * diffuse.brightness * diffuse.g)),
 			color.b
-			* ((rt->ambiant.color.b * rt->ambiant.color.brightness)
-				+ (diffuse.brightness * diffuse.b)),
+			* ((KA * rt->ambiant.color.b * rt->ambiant.color.brightness)
+				+ (KD * diffuse.brightness * diffuse.b)),
 			1
 		});
 }
