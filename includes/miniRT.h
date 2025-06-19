@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/19 08:17:27 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/19 10:30:47 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_cy
 	float	diameter;
 	float	height;
 
+	t_base	base;
 	float	radius;
 	float	semi_height;
 	t_vect	top;

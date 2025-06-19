@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/19 09:07:59 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/19 10:38:21 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	sp->diameter = atof(tok[2]);
 	if (fill_rgb(tok[3], &sp->color))
 		return (1);
+
 	sp->color = color_mul(sp->color, (t_rgb){255, 255, 255, 1});
 	rt->object[rt->nb_object] = (t_type *)sp;
 	rt->nb_object += 1;
@@ -93,12 +94,21 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	cy->height = atof(tok[4]);
 	if (fill_rgb(tok[5], &cy->color))
 		return (1);
-	cy->color = color_mul(cy->color, (t_rgb){255, 255, 255, 1});
 	rt->object[rt->nb_object] = (t_type *)cy;
+
+
+
+	cy->axis_n = get_normalized_vec(cy->axis_n);
+	cy->base.h_normal = vec_prod(cy->axis_n, vec(0, 0, 1));
+	if (vect_eq(cy->base.h_normal, (t_vect){0, 0, 0}))
+		cy->base.h_normal = vec_prod(cy->axis_n, vec(0, 1, 0));
+	cy->base.h_normal = get_normalized_vec(cy->base.h_normal);
+	cy->base.v_normal = vec_prod(cy->base.h_normal, cy->axis_n);
+
+	cy->color = color_mul(cy->color, (t_rgb){255, 255, 255, 1});
 	rt->nb_object += 1;
 	cy->semi_height = cy->height / 2;
 	cy->radius = cy->diameter / 2;
-	cy->axis_n = get_normalized_vec(cy->axis_n);
 	cy->top = get_point(cy->center, cy->axis_n, cy->semi_height);
 	cy->dt = -dot_prod(cy->top, cy->axis_n);
 	cy->bottom = get_point(cy->center, vec_mul(cy->axis_n, -1), cy->semi_height);
