@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/17 14:54:44 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/19 09:02:09 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "libft.h"
 #include "miniRT.h"
 #include <stdlib.h>
+
+
+#define KA 0.2
+#define KD 0.9
+
 
 int	get_cam_info(char **tok, t_rt *rt)
 {
@@ -36,7 +41,7 @@ int	get_light_info(char **tok, t_rt *rt)
 		return (1);
 	if (fill_rgb(tok[3], &rt->light.color))
 		return (1);
-	rt->light.color.brightness = atof(tok[2]);
+	rt->light.color.brightness = atof(tok[2]) * KD;
 	return (0);
 }
 
@@ -46,7 +51,7 @@ int	get_ambient_info(char **tok, t_rt *rt)
 		return (1);
 	if (fill_rgb(tok[2], &rt->ambiant.color))
 		return (1);
-	rt->ambiant.color.brightness = atof(tok[1]);
+	rt->ambiant.color.brightness = atof(tok[1]) * KA;
 	return (0);
 }
 

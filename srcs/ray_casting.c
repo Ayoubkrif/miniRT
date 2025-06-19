@@ -6,16 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/18 23:45:03 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/19 08:58:06 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "libft.h"
 #include "mlx.h"
-
-#define KA 0.5
-#define KD 0.5
 
 t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 {
@@ -38,20 +35,8 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 }
 
 t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse)
-{
-	return ((t_rgb)
-		{
-			color.r
-			* ((KA * rt->ambiant.color.r * rt->ambiant.color.brightness)
-				+ (KD * diffuse.brightness * diffuse.r)),
-			color.g
-			* ((KA * rt->ambiant.color.g * rt->ambiant.color.brightness)
-				+ (KD * diffuse.brightness * diffuse.g)),
-			color.b
-			* ((KA * rt->ambiant.color.b * rt->ambiant.color.brightness)
-				+ (KD * diffuse.brightness * diffuse.b)),
-			1
-		});
+{	
+	return (color_mul(color, color_add(diffuse, rt->ambiant.color)));
 }
 
 #include <stdio.h>
@@ -77,7 +62,7 @@ t_rgb	diffuse_color(t_rt *rt, t_inter inter, t_vect point)
 	double	dot_n_camera;
 
 	normal_n = normal_vect(inter, point);
-	dot_n_light = dot_prod(vec_sub(rt->light.position, point), normal_n);
+	dot_n_light = dot_prod(get_normalized_vec(vec_sub(rt->light.position, point)), normal_n);
 	dot_n_camera = dot_prod(vec_sub(rt->camera.position, point), normal_n);
 	if ((dot_n_light > 0 && dot_n_camera > 0) || (dot_n_light < 0 && dot_n_camera < 0))
 		return ((t_rgb){rt->light.color.r, rt->light.color.g, rt->light.color.b, rt->light.color.brightness * fabs(dot_n_light)});
@@ -109,9 +94,6 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	ray_light_obj = vec_sub(inter_obj_cam, rt->light.position);
 	diffuse = add_inter(rt, ray_light_obj, rt->light.position);
 	inter_light_obj = get_point_d(rt->light.position, ray_light_obj, diffuse.t);
-	/*printf("cam-->inter\nposition   :%f,%f,%f\nlight-->inter\nposition   :%f,%f,%f\n",*/
-	/*	inter_obj_cam.x, inter_obj_cam.y, inter_obj_cam.z,*/
-	/*	inter_light_obj.x, inter_light_obj.y, inter_light_obj.z);*/
 	if (vect_eq(inter_obj_cam, inter_light_obj))
 		diffuse.color = diffuse_color(rt, diffuse, inter_obj_cam);
 	else
@@ -124,9 +106,6 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 	int	i;
 	int	j;
 
-	/*printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",*/
-	/*	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.color.brightness*/
-	/*	, rt->light.color.r * 255, rt->light.color.g * 255, rt->light.color.b * 255);*/
 	i = -WIN_X / 2;
 	while (i < WIN_X / 2)
 	{
@@ -141,14 +120,3 @@ void	throwing_rays_through_the_wide_universe(t_rt *rt)
 	}
 	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);
 }
-/*color = shaker_ambiant_solid(rt, is_it_touching(rt, (double)i, -(double)j));*/
-/*my_mlx_pixel_put(rt, i, j, color);*/
-/*int		shaker_ambiant_solid(t_rt *rt, t_rgb color)*/
-/*{*/
-/*	int		final_color;*/
-/*	t_rgb	light_color;*/
-/**/
-/*	final_color = (((int)(color.r * 255 * rt->ambiant) << 16))*/
-/*		| (((int)(color.g * 255) << 8))*/
-/*		| ((int)(color.b * 255));*/
-/*}*/

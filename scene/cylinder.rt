@@ -8,7 +8,7 @@
 #	PLAN	pl	point  (vect)		normal	  (vect)										color (rgb)
 
 A 0.1 255,255,255
-L 3,5,0 1.1 255,255,255
+L 3,5,0 0.7 255,255,255
 
 C   0,0,0       1,0,0                 90
 
