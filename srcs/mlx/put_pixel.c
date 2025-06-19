@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:00:10 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/19 08:58:35 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/19 09:04:45 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color)
 {
 	int	final_color;
 
-	color.r = 255 * color.r;
-	color.g = 255 * color.g;
-	color.b = 255 * color.b;
 	if (color.r > 255)
 		color.r = 255;
 	else if (color.r < 0)

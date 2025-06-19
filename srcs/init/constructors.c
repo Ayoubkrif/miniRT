@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/19 09:02:09 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/19 09:07:59 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,21 @@ int	get_ambient_info(char **tok, t_rt *rt)
 
 int	get_sphere_info(char **tok, t_rt *rt)
 {
-	t_sp	*sphere;
+	t_sp	*sp;
 
-	sphere = malloc(sizeof(t_sp));
-	sphere->type = SPHERE;
-	if (fill_vec(tok[1], &sphere->center))
+	sp = malloc(sizeof(t_sp));
+	sp->type = SPHERE;
+	if (fill_vec(tok[1], &sp->center))
 		return (1);
 	if (!tok[2])
 		return (1);
-	sphere->diameter = atof(tok[2]);
-	if (fill_rgb(tok[3], &sphere->color))
+	sp->diameter = atof(tok[2]);
+	if (fill_rgb(tok[3], &sp->color))
 		return (1);
-	rt->object[rt->nb_object] = (t_type *)sphere;
+	sp->color = color_mul(sp->color, (t_rgb){255, 255, 255, 1});
+	rt->object[rt->nb_object] = (t_type *)sp;
 	rt->nb_object += 1;
-	sphere->radius = sphere->diameter / 2;
+	sp->radius = sp->diameter / 2;
 	return (0);
 }
 
@@ -92,6 +93,7 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	cy->height = atof(tok[4]);
 	if (fill_rgb(tok[5], &cy->color))
 		return (1);
+	cy->color = color_mul(cy->color, (t_rgb){255, 255, 255, 1});
 	rt->object[rt->nb_object] = (t_type *)cy;
 	rt->nb_object += 1;
 	cy->semi_height = cy->height / 2;
@@ -116,6 +118,7 @@ int	get_plane_info(char **tok, t_rt *rt)
 		return (1);
 	if (fill_rgb(tok[3], &pl->color))
 		return (1);
+	pl->color = color_mul(pl->color, (t_rgb){255, 255, 255, 1});
 	rt->object[rt->nb_object] = (t_type *)pl;
 	rt->nb_object += 1;
 	pl->normal_n = get_normalized_vec(pl->normal_n);
