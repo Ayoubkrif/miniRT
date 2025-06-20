@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/20 17:52:06 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:25:00 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 	ray_light_obj = vec_sub(inter_obj_cam, rt->light.position);
 	diffuse = add_inter(rt, ray_light_obj, rt->light.position);
 	inter_light_obj = get_point_d(rt->light.position, ray_light_obj, diffuse.t);
-	if (vect_eq(inter_obj_cam, inter_light_obj) || inter_cam_obj.mode == CYLINDER)
+	if (vect_eq(inter_obj_cam, inter_light_obj))
 		diffuse.color = diffuse_color(rt, diffuse, inter_obj_cam);
 	else
 		diffuse.color = (t_rgb){0, 0, 0, 0};

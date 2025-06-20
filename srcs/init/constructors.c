@@ -6,11 +6,10 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/19 10:38:21 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:14:04 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "libft.h"
 #include "miniRT.h"
 #include <stdlib.h>

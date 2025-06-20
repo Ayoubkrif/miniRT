@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/18 13:32:26 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:13:23 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "miniRT.h"
 #include "mlx.h"
 #include "define.h"
-#include "math_utils.h"
 #include <stdio.h>
 
 void	get_scene_info(t_rt *rt, char **av);

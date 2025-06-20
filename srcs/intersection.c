@@ -6,13 +6,12 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/20 17:50:16 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:23:07 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "math_utils.h"
-#include "libft.h"
 #include "vect.h"
 #include <math.h>
 #include <stdio.h>
@@ -69,28 +68,24 @@ void	inter_cylinder(t_rt *rt, t_vect ray, t_cy *cy, t_inter *inter, t_vect start
 	t_vect	d_cam_center;
 	t_vect	prod_d_cy;
 	t_vect	prod_ray_cy;
-	t_vect	ray_n;
 
-	ray_n = vec_mul(ray, 1 / vec_norm(ray));
-
-	d_cam_center = vec_sub(start, cy->center);
-	prod_ray_cy = vec_prod(cy->axis_n, ray_n);
+	d_cam_center = vec_sub(cy->center, start);
+	prod_ray_cy = vec_prod(cy->axis_n, ray);
 	prod_d_cy = vec_prod(cy->axis_n, d_cam_center);
-	// a = p2(cy->axis_n.y * ray.z - cy->axis_n.z * ray.y) + p2(cy->axis_n.z * ray.x - cy->axis_n.x * ray.z) + p2(cy->axis_n.x * ray.y - cy->axis_n.y * ray.x);
 	a = dot_prod(prod_ray_cy, prod_ray_cy);
-	if (!double_eq(a, 0))
+	if (!double_eq(a, 0)) // a != 0 
 	{
 		b = -2 * dot_prod(prod_d_cy, prod_ray_cy);
-		c = dot_prod(prod_d_cy, prod_d_cy);
-		delta = delta_2nd(a, b, c) - p2(cy->radius);
+		c = dot_prod(prod_d_cy, prod_d_cy) - p2(cy->radius);
+		delta = delta_2nd(a, b, c);
 		double	root;
-		if (delta < 0)
+		if (delta > 0)
 		{
-			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray_n, (-b + sqrt(delta)) / (2 * a)), cy->center));
-			if (fabs(root) <= cy->semi_height || 1)
+			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, (-b + sqrt(delta)) / (2 * a)), cy->center));
+			if (fabs(root) <= cy->semi_height)
 				push_inter((t_type *)cy, cy->color, (-b + sqrt(delta)) / (2 * a), inter, CYLINDER);
-			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray_n, (-b - sqrt(delta)) / (2 * a)), cy->center));
-			if (fabs(root) <= cy->semi_height || 1)
+			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, (-b - sqrt(delta)) / (2 * a)), cy->center));
+			if (fabs(root) <= cy->semi_height)
 				push_inter((t_type *)cy, cy->color, (-b - sqrt(delta)) / (2 * a), inter, CYLINDER);
 		}
 	}

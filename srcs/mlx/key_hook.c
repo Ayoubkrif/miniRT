@@ -6,13 +6,11 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/17 16:59:10 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:13:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "define.h"
-#include "math_utils.h"
 #include <X11/keysym.h>
 
 #define SIN	0.26

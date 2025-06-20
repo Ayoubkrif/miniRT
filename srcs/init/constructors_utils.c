@@ -6,15 +6,13 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/16 16:17:39 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:14:42 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "libft.h"
-#include "vect.h"
 #include "miniRT.h"
-#include <stdlib.h>
+#include <stdio.h>
 
 static char	*get_next_number(char *str)
 {
