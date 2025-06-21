@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/21 13:34:25 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/21 15:09:05 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,13 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 		double	root;
 		if (delta > 0)
 		{
-			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, (-b + sqrt(delta)) / (2 * a)), cy->center));
+			delta = sqrt(delta);
+			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, (-b + delta) / (2 * a)), cy->center));
 			if (fabs(root) <= cy->semi_height)
-				push_inter((t_type *)cy, cy->color, (-b + sqrt(delta)) / (2 * a), inter, CYLINDER);
-			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, (-b - sqrt(delta)) / (2 * a)), cy->center));
+				push_inter((t_type *)cy, cy->color, (-b + delta) / (2 * a), inter, CYLINDER);
+			root = dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, (-b - delta) / (2 * a)), cy->center));
 			if (fabs(root) <= cy->semi_height)
-				push_inter((t_type *)cy, cy->color, (-b - sqrt(delta)) / (2 * a), inter, CYLINDER);
+				push_inter((t_type *)cy, cy->color, (-b - delta) / (2 * a), inter, CYLINDER);
 		}
 	}
 	inter_disk(ray, cy, inter, start);

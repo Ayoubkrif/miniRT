@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/21 13:42:13 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:56:02 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ void	modify_sp(int keycode, t_sp *sp)
 		sp->center = vec_add(sp->center, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		sp->center = vec_sub(sp->center, (t_vect){0, 0, 1});
+	if (keycode == XK_parenleft)
+	{
+		sp->diameter += 0.5;
+		sp->radius += 0.25;
+	}
+	if (keycode == XK_parenright)
+	{
+		sp->diameter -= 0.5;
+		sp->radius -= 0.25;
+	}
 }
 
 void	modify_pl(int keycode, t_pl *pl)
