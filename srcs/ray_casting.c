@@ -6,13 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/20 18:25:00 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/21 13:38:17 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "libft.h"
 #include "mlx.h"
+#include <stdio.h>
 
 t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 {
@@ -24,11 +24,11 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 	while (rt->object[i])
 	{
 		if (*rt->object[i] == SPHERE)
-			inter_sphere(rt, ray, (t_sp *)rt->object[i], &inter, start);
+			inter_sphere(ray, (t_sp *)rt->object[i], &inter, start);
 		else if (*rt->object[i] == CYLINDER)
-			inter_cylinder(rt, ray, (t_cy *)rt->object[i], &inter, start);
+			inter_cylinder(ray, (t_cy *)rt->object[i], &inter, start);
 		else if (*rt->object[i] == PLANE)
-			inter_plane(rt, ray, (t_pl *)rt->object[i], &inter, start);
+			inter_plane(ray, (t_pl *)rt->object[i], &inter, start);
 		i++;
 	}
 	return (inter);
@@ -39,16 +39,16 @@ t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse)
 	return (color_mul(color, color_add(diffuse, rt->ambiant.color)));
 }
 
-#include <stdio.h>
-
 t_vect	normal_vect(t_inter inter, t_vect point)
 {
 	if (inter.mode == SPHERE)
-		return (get_normalized_vec(vec_sub(((t_sp *)inter.obj)->center, point)));
+		return (get_normalized_vec(
+				vec_sub(((t_sp *)inter.obj)->center, point)));
 	if (inter.mode == PLANE)
 		return (((t_pl *)inter.obj)->normal_n);
 	if (inter.mode == CYLINDER)
-		return (get_normalized_vec(vec_sub(point, ((t_cy *)inter.obj)->center)));
+		return (get_normalized_vec(
+				vec_sub(point, ((t_cy *)inter.obj)->center)));
 	if (inter.mode == DISK_BOT)
 		return (((t_cy *)inter.obj)->axis_n);
 	else
@@ -62,10 +62,13 @@ t_rgb	diffuse_color(t_rt *rt, t_inter inter, t_vect point)
 	double	dot_n_camera;
 
 	normal_n = normal_vect(inter, point);
-	dot_n_light = dot_prod(get_normalized_vec(vec_sub(rt->light.position, point)), normal_n);
+	dot_n_light = dot_prod(get_normalized_vec(
+				vec_sub(rt->light.position, point)), normal_n);
 	dot_n_camera = dot_prod(vec_sub(rt->camera.position, point), normal_n);
-	if ((dot_n_light > 0 && dot_n_camera > 0) || (dot_n_light < 0 && dot_n_camera < 0))
-		return ((t_rgb){rt->light.color.r, rt->light.color.g, rt->light.color.b, rt->light.color.brightness * fabs(dot_n_light)});
+	if ((dot_n_light > 0 && dot_n_camera > 0)
+		|| (dot_n_light < 0 && dot_n_camera < 0))
+		return ((t_rgb){rt->light.color.r, rt->light.color.g, rt->light.color.b,
+			rt->light.color.brightness * fabs(dot_n_light)});
 	else
 		return ((t_rgb){0, 0, 0, 0});
 }
