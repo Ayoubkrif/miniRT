@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/16 17:16:46 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/21 13:15:08 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	fill_vec(char *str, t_vect *vec)
 	vec->x = atof(cursor);
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
-		return (dprintf(2, "no first coma :\'%s\'\n", str), 1);
+		return (1);
 	cursor++;
 	vec->y = atof(cursor);
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
-		return (dprintf(2, "no second coma :\'%s\'\n", str), 1);
+		return (1);
 	cursor++;
 	vec->z = atof(cursor);
 	return (0);
@@ -111,8 +111,8 @@ void	get_scene_info(t_rt *rt, char **av)
 		}
 		if (fill_scene(str, rt))
 		{
-			dprintf(2, "%s wrong format", str);
 			free(str);
+			free_rt(rt);
 			exit(1);
 		}
 		free(str);

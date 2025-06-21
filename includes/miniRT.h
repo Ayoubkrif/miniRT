@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/19 10:30:47 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/21 13:17:18 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,15 +139,18 @@ typedef struct s_rt
 }	t_rt;
 
 void	check_args(int argc);
+int		print_error(char *message, char *complement);
 
 int		fill_vec(char *str, t_vect *vec);
-int		fill_rgb(char *str, t_rgb *color);
+int		fill_rgb(char *str, t_rgb *color, char *error);
 
 int		get_cam_info(char **tok, t_rt *rt);
 int		get_light_info(char **tok, t_rt *rt);
 int		get_ambient_info(char **tok, t_rt *rt);
 int		get_sphere_info(char **tok, t_rt *rt);
+void	set_sp(t_sp *sp);
 int		get_cylinder_info(char **tok, t_rt *rt);
+void	set_cy(t_cy *cy);
 int		get_plane_info(char **tok, t_rt *rt);
 
 void	set_cam_base(t_cam *cam);

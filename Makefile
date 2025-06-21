@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/19 08:22:34 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/21 13:20:59 by cbordeau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,9 @@ LIBFT		= libft
 MLX			= minilibx-linux
 
 SOURCES		= main.c \
-			  init/check_arguments.c init/fill_scene.c \
+			  init/check_arguments.c init/fill_scene.c init/error.c \
 			  init/constructors.c init/constructors_utils.c \
+			  init/constructors_base.c \
 			  mlx/put_pixel.c mlx/key_hook.c \
 			  math/vect.c math/vect2.c math/math_utils.c \
 			  utils.c \
