@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/21 13:32:13 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/22 13:28:00 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ void	set_cy(t_cy *cy);
 int		get_plane_info(char **tok, t_rt *rt);
 
 void	set_cam_base(t_cam *cam);
+void	set_base(t_base *base, t_vect direction_n);
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt);
 

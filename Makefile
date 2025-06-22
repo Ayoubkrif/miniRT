@@ -6,14 +6,13 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/21 14:38:40 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/22 14:20:42 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= miniRT
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g -MMD -DP 
-#-O3 -flto -ffast-math -march=native -pipe
+CFLAGS		= -Wall -Wextra -Werror -g -MMD -DP -O3 -flto -ffast-math -march=native -pipe
 INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 
 SRC_PATH	= srcs
@@ -30,7 +29,7 @@ SOURCES		= main.c \
 			  init/constructors.c init/constructors_utils.c \
 			  init/constructors_base.c \
 			  mlx/put_pixel.c mlx/key_hook.c \
-			  math/vect.c math/vect2.c math/math_utils.c \
+			  math/vect.c math/vect2.c math/vect3.c math/math_utils.c \
 			  utils.c \
 			  exit_minirt.c \
 			  print/print_scene.c \
