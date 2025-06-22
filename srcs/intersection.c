@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 16:53:53 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/22 19:18:41 by cbordeau         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	t_vect		prod_d_cy;
 	t_vect		prod_ray_cy;
 
-	inter_disk(ray, cy, inter, start);
 	d_cam_center = vec_sub(cy->center, start);
 	prod_ray_cy = vec_prod(cy->axis_n, ray);
 	prod_d_cy = vec_prod(cy->axis_n, d_cam_center);
@@ -73,9 +72,9 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	quad.c = dot_prod(prod_d_cy, prod_d_cy) - p2(cy->radius);
 	if (!delta_2nd(&quad))
 		return ;
-	if (fabs(quad.first_root) <= cy->semi_height)
+	if (fabs(dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, quad.first_root), cy->center))) <= cy->semi_height)
 		push_inter((t_type *)cy, cy->color, quad.first_root, inter, CYLINDER);
-	if (fabs(quad.second_root) <= cy->semi_height)
+	if (fabs(dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, quad.second_root), cy->center))) <= cy->semi_height)
 		push_inter((t_type *)cy, cy->color, quad.second_root, inter, CYLINDER);
 }
 

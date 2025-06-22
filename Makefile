@@ -6,13 +6,14 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/22 16:37:14 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/22 19:27:26 by cbordeau         ###   LAUSANNE.ch        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= miniRT
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g -MMD -DP -O3 -flto -ffast-math -march=native -pipe
+CFLAGS		= -Wall -Wextra -Werror -g -MMD -DP
+#-O3 -flto -ffast-math -march=native -pipe
 INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 
 SRC_PATH	= srcs

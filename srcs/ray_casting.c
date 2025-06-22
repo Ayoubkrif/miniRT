@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 16:36:09 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/22 19:19:55 by cbordeau         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 		if (*rt->object[i] == SPHERE)
 			inter_sphere(ray, (t_sp *)rt->object[i], &inter, start);
 		else if (*rt->object[i] == CYLINDER)
+		{
 			inter_cylinder(ray, (t_cy *)rt->object[i], &inter, start);
+			inter_disk(ray, (t_cy *)rt->object[i], &inter, start);
+		}
 		else if (*rt->object[i] == PLANE)
 			inter_plane(ray, (t_pl *)rt->object[i], &inter, start);
 		i++;
