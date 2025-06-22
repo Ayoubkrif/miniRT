@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/21 13:38:17 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/06/22 16:36:09 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,35 +73,37 @@ t_rgb	diffuse_color(t_rt *rt, t_inter inter, t_vect point)
 		return ((t_rgb){0, 0, 0, 0});
 }
 
+t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y)
+{
+	t_vect	ray_cam_obj;
+
+	ray_cam_obj = vec_add(vec_mul(cam.screen.pix_x, x),
+			vec_mul(cam.screen.pix_y, y));
+	ray_cam_obj = vec_add(cam.screen.center, ray_cam_obj);
+	ray_cam_obj = vec_sub(ray_cam_obj, cam.position);
+	return (ray_cam_obj);
+}
+
 t_rgb	is_it_touching(t_rt *rt, double x, double y)
 {
 	t_vect	ray_cam_obj;
-	t_cam	*cam;
-	t_inter	inter_cam_obj;
-
-	cam = &rt->camera;
-	ray_cam_obj = vec_add(vec_mul(cam->screen.pix_x, x),
-			vec_mul(cam->screen.pix_y, y));
-	ray_cam_obj = vec_add(cam->screen.center, ray_cam_obj);
-	ray_cam_obj = vec_sub(ray_cam_obj, cam->position);
-	inter_cam_obj = add_inter(rt, ray_cam_obj, rt->camera.position);
-	if (inter_cam_obj.obj == NULL)
-		return (inter_cam_obj.color);
-
-	t_vect	inter_obj_cam;
+	t_inter	inter_obj_cam;
+	t_vect	point_obj_cam;	
 	t_vect	ray_light_obj;
 	t_inter	diffuse;
 	t_vect	inter_light_obj;
 
-	inter_obj_cam = get_point_d(rt->camera.position, ray_cam_obj, inter_cam_obj.t);
-	ray_light_obj = vec_sub(inter_obj_cam, rt->light.position);
+	ray_cam_obj = ray_from_camera_to_objects(rt->camera, x, y);
+	inter_obj_cam = add_inter(rt, ray_cam_obj, rt->camera.position);
+	point_obj_cam = get_point_d(rt->camera.position, ray_cam_obj, inter_obj_cam.t);
+	ray_light_obj = vec_sub(point_obj_cam, rt->light.position);
 	diffuse = add_inter(rt, ray_light_obj, rt->light.position);
 	inter_light_obj = get_point_d(rt->light.position, ray_light_obj, diffuse.t);
-	if (vect_eq(inter_obj_cam, inter_light_obj))
-		diffuse.color = diffuse_color(rt, diffuse, inter_obj_cam);
+	if (vect_eq(point_obj_cam, inter_light_obj))
+		diffuse.color = diffuse_color(rt, diffuse, point_obj_cam);
 	else
 		diffuse.color = (t_rgb){0, 0, 0, 0};
-	return (shaker_ambiant_solid(rt, inter_cam_obj.color, diffuse.color));
+	return (shaker_ambiant_solid(rt, inter_obj_cam.color, diffuse.color));
 }
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt)

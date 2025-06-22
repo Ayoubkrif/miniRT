@@ -6,13 +6,12 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:00:46 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 13:27:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/22 15:55:58 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "math_utils.h"
-#include <stdlib.h>
 #include "vect.h"
 
 void	set_cam_base(t_cam *cam)

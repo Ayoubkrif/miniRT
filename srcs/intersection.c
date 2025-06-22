@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 14:22:07 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/22 16:49:46 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	prod_ray_cy = vec_prod(cy->axis_n, ray);
 	prod_d_cy = vec_prod(cy->axis_n, d_cam_center);
 	quad.a = dot_prod(prod_ray_cy, prod_ray_cy);
-	if (!double_eq(quad.a, 0))
+	if (double_eq(quad.a, 0))
 		return ;
 	quad.b = -2 * dot_prod(prod_d_cy, prod_ray_cy);
 	quad.c = dot_prod(prod_d_cy, prod_d_cy) - p2(cy->radius);
