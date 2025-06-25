@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:28:09 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 14:01:53 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/25 13:42:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ typedef struct s_quadratic
 	double	b;
 	double	c;
 	double	delta;
-	double	first_root;
-	double	second_root;
+	double	sq_delta;
+	double	root;
 }	t_quadratic;
 
 # define PI 3.14

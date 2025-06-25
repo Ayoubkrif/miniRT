@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 19:19:55 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/25 09:38:50 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 }
 
 t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse)
-{	
+{
 	return (color_mul(color, color_add(diffuse, rt->ambiant.color)));
 }
 

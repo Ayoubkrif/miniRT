@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/22 19:27:13 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/25 09:36:19 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ int	fill_rgb(char *str, t_rgb *color, char *error)
 		return (print_error(ARGS, error));
 	cursor = str;
 	color->r = (float)ft_atoi(cursor) / 255;
-	if (color->r > 1 || color->r < 0)
-		return (print_error(COLOR, error));
+	// if (color->r > 1 || color->r < 0)
+	// 	return (print_error(COLOR, error));
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
 		return (print_error(ARGS, error));
 	cursor++;
 	color->g = (float)ft_atoi(cursor) / 255;
-	if (color->g > 1 || color->g < 0)
-		return (print_error(COLOR, error));
+	// if (color->g > 1 || color->g < 0)
+	// 	return (print_error(COLOR, error));
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
 		return (print_error(ARGS, error));
 	cursor++;
 	color->b = (float)ft_atoi(cursor) / 255;
-	if (color->b > 1 || color->b < 0)
-		return (print_error(COLOR, error));
+	// if (color->b > 1 || color->b < 0)
+	// 	return (print_error(COLOR, error));
 	color->brightness = 1;
 	return (0);
 }

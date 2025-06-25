@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 19:18:41 by cbordeau         ###   LAUSANNE.ch       */
+/*   Updated: 2025/06/25 13:44:04 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	inter_sphere(t_vect ray, t_sp *sp, t_inter *inter, t_vect start)
 	quad.c = p2(vec_norm(vec_sub(start, sp->center))) - p2(sp->radius);
 	if (!delta_2nd(&quad))
 		return ;
-	push_inter((t_type *)sp, sp->color, quad.first_root, inter, SPHERE);
-	push_inter((t_type *)sp, sp->color, quad.second_root, inter, SPHERE);
+	push_inter((t_type *)sp, sp->color, quad.root, inter, SPHERE);
 }
 
 void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
@@ -63,8 +62,8 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	t_vect		prod_ray_cy;
 
 	d_cam_center = vec_sub(cy->center, start);
-	prod_ray_cy = vec_prod(cy->axis_n, ray);
 	prod_d_cy = vec_prod(cy->axis_n, d_cam_center);
+	prod_ray_cy = vec_prod(cy->axis_n, ray);
 	quad.a = dot_prod(prod_ray_cy, prod_ray_cy);
 	if (double_eq(quad.a, 0))
 		return ;
@@ -72,10 +71,8 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	quad.c = dot_prod(prod_d_cy, prod_d_cy) - p2(cy->radius);
 	if (!delta_2nd(&quad))
 		return ;
-	if (fabs(dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, quad.first_root), cy->center))) <= cy->semi_height)
-		push_inter((t_type *)cy, cy->color, quad.first_root, inter, CYLINDER);
-	if (fabs(dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, quad.second_root), cy->center))) <= cy->semi_height)
-		push_inter((t_type *)cy, cy->color, quad.second_root, inter, CYLINDER);
+	if (fabs(dot_prod(cy->axis_n, vec_sub(get_point_d(start, ray, quad.root), cy->center))) <= cy->semi_height)
+		push_inter((t_type *)cy, cy->color, quad.root, inter, CYLINDER);
 }
 
 void	inter_plane(t_vect ray, t_pl *pl, t_inter *inter, t_vect start)
