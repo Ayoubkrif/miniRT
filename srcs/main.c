@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 13:53:26 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/29 21:55:56 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,37 @@ void	free_rt(t_rt *rt)
 	}
 }
 
+
+int	select_solid(int button, int x, int y, t_rt *rt)
+{
+	t_vect	ray;
+	t_type	*obj;
+	int		i;
+
+	if (button == 1)
+	{
+		if (x < WIN_X && x >= 0)
+			x -= WIN_X / 2;
+		else
+			return (1);
+		if (y < WIN_Y && y >= 0)
+			y = -y + WIN_Y / 2;
+		else
+			return (1);
+	}
+	else
+		return (1);
+	ray = ray_from_camera_to_objects(rt->camera, x, y);
+	obj = add_inter(rt, ray, rt->camera.position).obj;
+	if (!obj)
+		return (1);
+	i = 0;
+	while (rt->object[i] != obj)
+		i++;
+	rt->menu = i + 1;
+	return (0);
+}
+
 int	main(int ac, char *av[])
 {
 	t_rt	rt;
@@ -57,6 +88,9 @@ int	main(int ac, char *av[])
 	throwing_rays_through_the_wide_universe(&rt);
 	mlx_hook(rt.mlx.win, EVENT_KEY_PRESS, 1L << 0, key_hook, &rt);
 	mlx_hook(rt.mlx.win, EVENT_DESTROY, 1L << 0, exit_minirt, &rt);
+	/*mlx_hook(rt.mlx.win, 4, 0, select_solid, &rt);*/
+	/*mlx_hook(rt.mlx.win, EVENT_MOUSE_RELEASE, 1L << 0, select_solid, &rt);*/
+	mlx_mouse_hook(rt.mlx.win, select_solid, &rt);
 	mlx_loop(rt.mlx.disp);
 	return (0);
 }
