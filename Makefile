@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/25 09:32:29 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/06/30 17:58:57 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ re: fclean all
 
 mlx: $(MLX)
 	@echo "$(GREEN)Compiling mlx ...$(CYAN)"
-	@make -C $(MLX) -s
+	@make --silent -C $(MLX)
 	@echo "$(GREEN)mlx compiled !$(CYAN)"
 
 $(MLX):

@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/21 17:56:02 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:02:09 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ int	key_hook(int keycode, t_rt *rt)
 {
 	if (keycode == XK_Escape)
 		exit_minirt(rt);
+	else if (keycode == XK_c)
+		rt->menu = 0;
 	else if (keycode == XK_n)
 	{
 		if (rt->menu == rt->nb_object)
