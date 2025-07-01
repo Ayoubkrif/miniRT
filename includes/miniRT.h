@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/01 08:51:36 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:38:36 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color);
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
 void	put_string(t_rt *rt);
 
-t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse);
+t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb solid_color, t_rgb diffuse, t_rgb specular);
 t_rgb	color_mul(t_rgb	c1, t_rgb c2);
 t_rgb	color_add(t_rgb	c1, t_rgb c2);
 

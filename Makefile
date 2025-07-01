@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/01 09:15:51 by cbordeau         ###   ########.fr        #
+#    Updated: 2025/07/01 12:29:26 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SOURCES		= main.c \
 			  exit_minirt.c \
 			  print/print_scene.c print/put_string.c print/ftoa.c \
 			  colors_utils.c \
-			  ray_casting.c \
+			  ray_casting.c phong.c \
 			  set_cam_base.c \
 			  intersection.c \
 
