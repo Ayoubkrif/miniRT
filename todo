@@ -1,0 +1,10 @@
+Mandatory:
+	atof
+	ftoa
+	cam 0,0,0 && 0,0,1
+
+Bonuses:
+	more lights
+	torus
+	
+
