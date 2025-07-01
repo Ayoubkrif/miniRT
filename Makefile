@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/06/30 17:58:57 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/01 09:15:51 by cbordeau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SOURCES		= main.c \
 			  math/vect.c math/vect2.c math/vect3.c math/math_utils.c \
 			  utils.c \
 			  exit_minirt.c \
-			  print/print_scene.c \
+			  print/print_scene.c print/put_string.c print/ftoa.c \
 			  colors_utils.c \
 			  ray_casting.c \
 			  set_cam_base.c \

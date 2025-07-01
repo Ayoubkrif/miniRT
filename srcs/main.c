@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/29 21:55:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/01 08:53:30 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	select_solid(int button, int x, int y, t_rt *rt)
 	while (rt->object[i] != obj)
 		i++;
 	rt->menu = i + 1;
+	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);
+	put_string(rt);
 	return (0);
 }
 

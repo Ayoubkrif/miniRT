@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/29 21:18:49 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/01 08:51:36 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ int		exit_minirt(t_rt *rt);
 int		key_hook(int keycode, t_rt *rt);
 void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color);
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
+void	put_string(t_rt *rt);
 
 t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse);
 t_rgb	color_mul(t_rgb	c1, t_rgb c2);
