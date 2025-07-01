@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/21 17:45:53 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/01 10:37:27 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@
 # define BRIGHTNESS "Wrong range for brightness :"
 
 # define KA 0.2
-# define KD 0.9
+# define KD 0.8
 
 #endif

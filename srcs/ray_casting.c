@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/01 09:01:11 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:32:38 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb color, t_rgb diffuse)
 	return (color_mul(color, color_add(diffuse, rt->ambiant.color)));
 }
 
+t_vect	normal_cylinder(t_cy *cy, t_vect point)
+{
+	return (vec_sub(point,
+			vec_add(cy->center,
+				vec_mul(cy->axis_n,
+					dot_prod(cy->axis_n, vec_sub(point, cy->center)) / dot_prod(cy->axis_n, cy->axis_n)))));
+}
+
 t_vect	normal_vect(t_inter inter, t_vect point)
 {
 	if (inter.mode == SPHERE)
@@ -50,8 +58,9 @@ t_vect	normal_vect(t_inter inter, t_vect point)
 	if (inter.mode == PLANE)
 		return (((t_pl *)inter.obj)->normal_n);
 	if (inter.mode == CYLINDER)
-		return (get_normalized_vec(
-				vec_sub(point, ((t_cy *)inter.obj)->center)));
+	{
+		return (normal_cylinder((t_cy *)inter.obj, point));
+	}
 	if (inter.mode == DISK_BOT)
 		return (((t_cy *)inter.obj)->axis_n);
 	else

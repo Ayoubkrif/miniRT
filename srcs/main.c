@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/01 08:53:30 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:14:09 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	free_rt(t_rt *rt)
 		i++;
 	}
 }
-
 
 int	select_solid(int button, int x, int y, t_rt *rt)
 {
