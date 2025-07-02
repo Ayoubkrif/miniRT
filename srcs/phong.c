@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/02 12:57:37 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/02 12:59:48 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ t_rgb	is_it_touching(t_rt *rt, double x, double y)
 
 	phong.ray_cam_obj_n = get_normalized_vec(ray_from_camera_to_objects(rt->camera, x, y));
 	phong.inter_cam = add_inter(rt, phong.ray_cam_obj_n, rt->camera.position);
-
+	if (!phong.inter_cam.obj)
+		return ((t_rgb){0, 0, 0, 0});
 	phong.point_cam = get_point_d(rt->camera.position, phong.ray_cam_obj_n, phong.inter_cam.t);
 	
 	phong.ray_light_obj_n = get_normalized_vec(vec_sub(phong.point_cam, rt->light.position));
