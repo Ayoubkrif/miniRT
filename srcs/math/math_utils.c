@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:25:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/25 13:46:26 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/02 14:41:01 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ double	to_rad(double angle)
 {
 	return ((angle * 2 * PI) / 360);
 }
-
-	// quad->second_root = (-quad->b - root) / (2 * quad->a);
 
 int	delta_2nd(t_quadratic *quad)
 {

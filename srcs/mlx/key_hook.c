@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/01 08:33:15 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:37:30 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	modify_pl(int keycode, t_pl *pl)
 		pl->point = vec_add(pl->point, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		pl->point = vec_sub(pl->point, (t_vect){0, 0, 1});
-	pl->d = -dot_prod(pl->point, pl->normal_n);
+	pl->d = -dot(pl->point, pl->normal_n);
 }
 
 void	modify_cy(int keycode, t_cy *cy)
@@ -102,11 +102,11 @@ void	modify_cy(int keycode, t_cy *cy)
 		cy->center = vec_add(cy->center, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		cy->center = vec_sub(cy->center, (t_vect){0, 0, 1});
-	cy->top = get_point(cy->center, cy->axis_n, cy->semi_height);
-	cy->dt = -dot_prod(cy->top, cy->axis_n);
+	cy->top = get_point_t(cy->center, cy->axis_n, cy->semi_height);
+	cy->dt = -dot(cy->top, cy->axis_n);
 	cy->bottom
-		= get_point(cy->center, vec_mul(cy->axis_n, -1), cy->semi_height);
-	cy->db = -dot_prod(cy->bottom, cy->axis_n);
+		= get_point_t(cy->center, vec_mul(cy->axis_n, -1), cy->semi_height);
+	cy->db = -dot(cy->bottom, cy->axis_n);
 }
 
 int	key_hook(int keycode, t_rt *rt)

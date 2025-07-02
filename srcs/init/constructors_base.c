@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/02 12:47:03 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/02 14:49:05 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_cam_info(char **tok, t_rt *rt)
 	rt->camera.fov = ft_atoi(tok[3]);
 	if (rt->camera.fov < 0 || rt->camera.fov > 180)
 		return (print_error(FOV, "camera"));
-	rt->camera.direction_n = get_normalized_vec(rt->camera.direction_n);
+	rt->camera.direction_n = normalize(rt->camera.direction_n);
 	return (0);
 }
 

@@ -6,13 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:45:57 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/12 21:24:41 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/02 14:37:48 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vect.h"
 
-t_vect	vec_prod(t_vect u, t_vect v)
+t_vect	cross(t_vect u, t_vect v)
 {
 	return ((t_vect)
 		{
