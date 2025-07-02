@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/25 09:36:19 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/02 12:26:47 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	set_cy(t_cy *cy)
 		cy->base.h_normal = vec_prod(cy->axis_n, vec(0, 1, 0));
 	cy->base.h_normal = get_normalized_vec(cy->base.h_normal);
 	cy->base.v_normal = vec_prod(cy->base.h_normal, cy->axis_n);
-	cy->color = color_mul(cy->color, (t_rgb){255, 255, 255, 1});
+	/*cy->color = color_mul(cy->color, (t_rgb){255, 255, 255, 1});*/
 	cy->semi_height = cy->height / 2;
 	cy->radius = cy->diameter / 2;
 	cy->top = get_point(cy->center, cy->axis_n, cy->semi_height);
@@ -73,6 +73,6 @@ void	set_cy(t_cy *cy)
 
 void	set_sp(t_sp *sp)
 {
-	sp->color = color_mul(sp->color, (t_rgb){255, 255, 255, 1});
+	/*sp->color = color_mul(sp->color, (t_rgb){255, 255, 255, 1});*/
 	sp->radius = sp->diameter / 2;
 }

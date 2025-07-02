@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/01 18:31:47 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/02 12:47:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@
 # define FOV "Wrong range for fov :"
 # define BRIGHTNESS "Wrong range for brightness :"
 
-# define KA 0.35
-# define KD 0.75
+#define KA 0.2
+#define KD 0.5
+#define KS 0.5
+#define ALPHA_S 200
 
 #endif

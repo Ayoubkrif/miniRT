@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/21 13:19:46 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:26:56 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	get_plane_info(char **tok, t_rt *rt)
 		return (print_error(VECT_NORM, "plane normal"));
 	if (fill_rgb(tok[3], &pl->color, "plane"))
 		return (1);
-	pl->color = color_mul(pl->color, (t_rgb){255, 255, 255, 1});
+	/*pl->color = color_mul(pl->color, (t_rgb){255, 255, 255, 1});*/
 	pl->normal_n = get_normalized_vec(pl->normal_n);
 	pl->d = -dot_prod(pl->point, pl->normal_n);
 	return (0);
