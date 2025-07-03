@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 08:05:06 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/03 09:33:28 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ void	set_cam_base(t_cam *cam);
 void	set_base(t_base *base, t_vect direction_n);
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt);
-t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);
 t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start);
 
 void	inter_sphere(t_vect ray, t_sp *sp, t_inter *inter, t_vect start);
@@ -177,8 +176,11 @@ void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color);
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
 void	put_string(t_rt *rt);
 
-t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb solid_color, t_rgb diffuse, t_rgb specular, int i);
+void	add_lights(t_rgb *light_color, t_rgb diffuse, t_rgb specular, t_light light);
 t_rgb	color_mul(t_rgb	c1, t_rgb c2);
 t_rgb	color_add(t_rgb	c1, t_rgb c2);
+
+t_vect	normal_vect(t_inter inter, t_vect point);
+t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);
 
 #endif

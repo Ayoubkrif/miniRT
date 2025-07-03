@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:11:22 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 08:35:20 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/03 09:46:35 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int intToStr(int x, char str[], int d)
 
     // If number of digits required is more, then 
     // add 0s at the beginning 
-   while (i < d) 
-       str[i++] = '0'; 
+   /*while (i < d) */
+   /*    str[i++] = '0'; */
 
     reverse(str, i); 
     str[i] = '\0'; 

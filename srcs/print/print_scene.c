@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 08:01:37 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/03 10:07:36 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 void	print_solids(t_rt *rt)
 {
 	(void)rt;
-	// printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
-	// 	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.color.brightness
-	// 	, rt->light.color.r * 255, rt->light.color.g * 255, rt->light.color.b * 255);
+	printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
+		rt->light[0].position.x, rt->light[0].position.y, rt->light[0].position.z, rt->light[0].color.brightness
+		, rt->light[0].color.r * 255, rt->light[0].color.g * 255, rt->light[0].color.b * 255);
+	printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
+		rt->light[1].position.x, rt->light[1].position.y, rt->light[1].position.z, rt->light[1].color.brightness
+		, rt->light[1].color.r * 255, rt->light[1].color.g * 255, rt->light[1].color.b * 255);
 	// printf("ambient =======\nlightning  :%f\ncolor      :%.f,%.f,%.f\n",
 	// 	rt->ambiant.color.brightness, rt->ambiant.color.r * 255, rt->ambiant.color.g * 255, rt->ambiant.color.b * 255);
 	// if (rt->menu == 0)

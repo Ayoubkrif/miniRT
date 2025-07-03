@@ -6,12 +6,14 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:01:20 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/01 11:56:15 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 09:49:17 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "mlx.h"
+#include <string.h>
+#include <stdio.h>
 
 void ftoa(float n, char* res, int afterpoint);
 
@@ -20,7 +22,6 @@ void	put_cam(t_rt *rt)
 	char res[10];
 
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 160, WIN_Y - 20, 0xFFFFFF, " camera");
-
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 230, WIN_Y - 20, 0xFFFFFF, " position :");
 	ftoa(rt->camera.position.x, res, 4);
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 300, WIN_Y - 20, 0xFFFFFF, res);

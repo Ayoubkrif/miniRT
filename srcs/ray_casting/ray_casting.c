@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/01 12:29:13 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 08:56:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 		i++;
 	}
 	return (inter);
-}
-
-t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y)
-{
-	t_vect	ray_cam_obj;
-
-	ray_cam_obj = vec_add(vec_mul(cam.screen.pix_x, x),
-			vec_mul(cam.screen.pix_y, y));
-	ray_cam_obj = vec_add(cam.screen.center, ray_cam_obj);
-	ray_cam_obj = vec_sub(ray_cam_obj, cam.position);
-	return (ray_cam_obj);
 }
 
 void	throwing_rays_through_the_wide_universe(t_rt *rt)
