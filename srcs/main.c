@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 10:11:41 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 12:02:25 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,11 @@ int	main(int ac, char *av[])
 	check_args(ac);
 	ft_memset(&rt, 0, sizeof(t_rt));
 	init_mini_rt(&rt, av);
-	/*print_solids(&rt);*/
-	/*return (0);*/
-	printf("%d \n", rt.nb_light);
+	set_base(&rt.camera.base, rt.camera.direction_n);
 	set_cam_base(&rt.camera);
 	throwing_rays_through_the_wide_universe(&rt);
 	mlx_hook(rt.mlx.win, EVENT_KEY_PRESS, 1L << 0, key_hook, &rt);
 	mlx_hook(rt.mlx.win, EVENT_DESTROY, 1L << 0, exit_minirt, &rt);
-	/*mlx_hook(rt.mlx.win, 4, 0, select_solid, &rt);*/
 	/*mlx_hook(rt.mlx.win, EVENT_MOUSE_RELEASE, 1L << 0, select_solid, &rt);*/
 	mlx_mouse_hook(rt.mlx.win, select_solid, &rt);
 	mlx_loop(rt.mlx.disp);

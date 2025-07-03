@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/02 12:47:51 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 11:40:07 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define AMBIENT "Too many ambient"
 # define CAM "Too many cam"
 # define VECT_NORM "Wrong range for vector :"
+# define VECT_NULL "Director vector norm is 0 :"
 # define COLOR "Wrong range for color :"
 # define FOV "Wrong range for fov :"
 # define BRIGHTNESS "Wrong range for brightness :"

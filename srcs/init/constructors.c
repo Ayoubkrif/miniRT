@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/02 14:49:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 11:57:31 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	if (cy->axis_n.x < -1 || cy->axis_n.x > 1 || cy->axis_n.y < -1
 		|| cy->axis_n.y > 1 || cy->axis_n.z < -1 || cy->axis_n.z > 1)
 		return (print_error(VECT_NORM, "cylinder axis"));
+	if (vect_eq(cy->axis_n, vec(0, 0, 0)))
+		return (print_error(VECT_NULL, "cylinder axis"));
 	if (!tok[3])
 		return (print_error(ARGS, "cylinder diameter"));
 	cy->diameter = atof(tok[3]);
@@ -60,6 +62,7 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	cy->height = atof(tok[4]);
 	if (fill_rgb(tok[5], &cy->color, "cylinder"))
 		return (1);
+	cy->axis_n = normalize(cy->axis_n);
 	set_cy(cy);
 	return (0);
 }
@@ -82,10 +85,11 @@ int	get_plane_info(char **tok, t_rt *rt)
 		|| pl->normal_n.y < -1 || pl->normal_n.y > 1
 		|| pl->normal_n.z < -1 || pl->normal_n.z > 1)
 		return (print_error(VECT_NORM, "plane normal"));
+	if (vect_eq(pl->normal_n, vec(0, 0, 0)))
+		return (print_error(VECT_NULL, "plane normal"));
 	if (fill_rgb(tok[3], &pl->color, "plane"))
 		return (1);
-	/*pl->color = color_mul(pl->color, (t_rgb){255, 255, 255, 1});*/
 	pl->normal_n = normalize(pl->normal_n);
-	pl->d = -dot(pl->point, pl->normal_n);
+	set_pl(pl);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 09:33:28 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 11:56:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int		get_cylinder_info(char **tok, t_rt *rt);
 void	set_cy(t_cy *cy);
 int		get_plane_info(char **tok, t_rt *rt);
 
+void	set_pl(t_pl *pl);
 void	set_cam_base(t_cam *cam);
 void	set_base(t_base *base, t_vect direction_n);
 

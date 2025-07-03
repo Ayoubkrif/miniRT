@@ -6,15 +6,49 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/02 14:37:30 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:17:56 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include <X11/keysym.h>
 
-#define SIN	0.26
-#define COS 0.97
+#define SIN	1
+#define COS 0
+
+static void	rotate_cam(int keycode, t_cam *cam)
+{
+	t_vect	temp;
+	temp = cam->direction_n;
+	if (keycode == XK_Left)
+	{
+		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
+				vec_mul(cam->base.h_normal, SIN));
+		cam->base.h_normal = vec_add(vec_mul(cam->base.h_normal, COS),
+				vec_mul(temp, SIN));
+	}
+	if (keycode == XK_Right)
+	{
+		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
+				vec_mul(cam->base.h_normal, SIN));
+		cam->base.h_normal = vec_sub(vec_mul(cam->base.h_normal, COS),
+				vec_mul(temp, SIN));
+	}
+	if (keycode == XK_Up)
+	{
+		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
+				vec_mul(cam->base.v_normal, SIN));
+		cam->base.v_normal = vec_sub(vec_mul(cam->base.v_normal, COS),
+				vec_mul(temp, SIN));
+	}
+	if (keycode == XK_Down)
+	{
+		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
+				vec_mul(cam->base.v_normal, SIN));
+		cam->base.v_normal = vec_add(vec_mul(cam->base.v_normal, COS),
+				vec_mul(temp, SIN));
+	}
+}
 
 void	modify_cam(int keycode, t_cam *cam)
 {
@@ -30,18 +64,8 @@ void	modify_cam(int keycode, t_cam *cam)
 		cam->position = vec_add(cam->position, cam->base.v_normal);
 	if (keycode == XK_Shift_L)
 		cam->position = vec_sub(cam->position, cam->base.v_normal);
-	if (keycode == XK_Left)
-		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.h_normal, SIN));
-	if (keycode == XK_Right)
-		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.h_normal, SIN));
-	if (keycode == XK_Up)
-		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.v_normal, SIN));
-	if (keycode == XK_Down)
-		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.v_normal, SIN));
+	rotate_cam(keycode, cam);
+	/*set_base(&cam->base, cam->direction_n);*/
 	set_cam_base(cam);
 }
 
