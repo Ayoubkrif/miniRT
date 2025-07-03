@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:11:22 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/01 09:12:13 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/03 08:35:20 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,23 @@ void reverse(char* str, int len)
 // If d is more than the number of digits in x, 
 // then 0s are added at the beginning. 
 int intToStr(int x, char str[], int d) 
-{ 
-    int i = 0; 
-    while (x) { 
-        str[i++] = (x % 10) + '0'; 
-        x = x / 10; 
-    } 
+{
+	(void)d;
+    int i = 0;
+	if (x == 0)
+		str[i++] = '0';
+	else
+	{
+		while (x) { 
+			str[i++] = (x % 10) + '0'; 
+			x = x / 10; 
+		}
+	}
 
     // If number of digits required is more, then 
     // add 0s at the beginning 
-    while (i < d) 
-        str[i++] = '0'; 
+   while (i < d) 
+       str[i++] = '0'; 
 
     reverse(str, i); 
     str[i] = '\0'; 
@@ -51,7 +57,16 @@ int intToStr(int x, char str[], int d)
 
 // Converts a floating-point/double number to a string. 
 void ftoa(float n, char* res, int afterpoint) 
-{ 
+{
+	int	i;
+
+	i = 0;
+	if (n < 0)
+	{
+		res[i] = '-';
+		n = -n;
+		i++;
+	}
     // Extract integer part 
     int ipart = (int)n; 
 
@@ -59,7 +74,7 @@ void ftoa(float n, char* res, int afterpoint)
     float fpart = n - (float)ipart; 
 
     // convert integer part to string 
-    int i = intToStr(ipart, res, 0); 
+    i += intToStr(ipart, &res[i], 20 - i); 
 
     // check for display option after point 
     if (afterpoint != 0) { 

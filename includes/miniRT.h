@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/02 14:01:27 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 08:05:06 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ typedef struct s_rt
 {
 	t_mlx		mlx;
 	t_cam		camera;
-	t_light		light;
+	t_light		light[20];
+	int			nb_light;
 	t_ambient	ambiant;
 	int			nb_object;
 	t_type		*object[20];
@@ -176,7 +177,7 @@ void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color);
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
 void	put_string(t_rt *rt);
 
-t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb solid_color, t_rgb diffuse, t_rgb specular);
+t_rgb	shaker_ambiant_solid(t_rt *rt, t_rgb solid_color, t_rgb diffuse, t_rgb specular, int i);
 t_rgb	color_mul(t_rgb	c1, t_rgb c2);
 t_rgb	color_add(t_rgb	c1, t_rgb c2);
 

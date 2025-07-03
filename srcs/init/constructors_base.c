@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/02 14:49:05 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 07:59:47 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,18 @@ int	get_cam_info(char **tok, t_rt *rt)
 
 int	get_light_info(char **tok, t_rt *rt)
 {
-	static int	nb = 0;
-
-	if (nb == 1)
+	if (rt->nb_light > 20)
 		return (print_error(LIGHT, NULL));
-	else
-		nb = 1;
-	if (fill_vec(tok[1], &rt->light.position))
+	if (fill_vec(tok[1], &rt->light[rt->nb_light].position))
 		return (print_error(ARGS, "light position"));
 	if (!tok[2])
 		return (print_error(ARGS, "light grightness"));
-	if (fill_rgb(tok[3], &rt->light.color, "light"))
+	if (fill_rgb(tok[3], &rt->light[rt->nb_light].color, "light"))
 		return (1);
-	rt->light.color.brightness = atof(tok[2]);
-	if (rt->light.color.brightness < 0 || rt->light.color.brightness > 1)
+	rt->light[rt->nb_light].color.brightness = atof(tok[2]);
+	if (rt->light[rt->nb_light].color.brightness < 0 || rt->light[rt->nb_light].color.brightness > 1)
 		return (print_error(BRIGHTNESS, "light"));
+	rt->nb_light += 1;
 	return (0);
 }
 

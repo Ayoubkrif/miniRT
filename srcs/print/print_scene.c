@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/17 18:23:30 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 08:01:37 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 
 void	print_solids(t_rt *rt)
 {
-	printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
-		rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.color.brightness
-		, rt->light.color.r * 255, rt->light.color.g * 255, rt->light.color.b * 255);
-	printf("ambient =======\nlightning  :%f\ncolor      :%.f,%.f,%.f\n",
-		rt->ambiant.color.brightness, rt->ambiant.color.r * 255, rt->ambiant.color.g * 255, rt->ambiant.color.b * 255);
-	if (rt->menu == 0)
-	{
-		printf("camera =======\nposition   :%f,%f,%f\ndirection  :%f,%f,%f\nfov        :%f\n",
-			rt->camera.position.x, rt->camera.position.y, rt->camera.position.z,
-			rt->camera.direction_n.x, rt->camera.direction_n.y, rt->camera.direction_n.z,
-			rt->camera.fov);
-	}
+	(void)rt;
+	// printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
+	// 	rt->light.position.x, rt->light.position.y, rt->light.position.z, rt->light.color.brightness
+	// 	, rt->light.color.r * 255, rt->light.color.g * 255, rt->light.color.b * 255);
+	// printf("ambient =======\nlightning  :%f\ncolor      :%.f,%.f,%.f\n",
+	// 	rt->ambiant.color.brightness, rt->ambiant.color.r * 255, rt->ambiant.color.g * 255, rt->ambiant.color.b * 255);
+	// if (rt->menu == 0)
+	// {
+	// 	printf("camera =======\nposition   :%f,%f,%f\ndirection  :%f,%f,%f\nfov        :%f\n",
+	// 		rt->camera.position.x, rt->camera.position.y, rt->camera.position.z,
+	// 		rt->camera.direction_n.x, rt->camera.direction_n.y, rt->camera.direction_n.z,
+	// 		rt->camera.fov);
+	// }
 /*	else
 	{
 		if (*rt->object[rt->menu.obj - 1] == PLANE)
