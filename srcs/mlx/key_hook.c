@@ -6,19 +6,20 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 13:17:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:55:37 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include <X11/keysym.h>
 
-#define SIN	1
-#define COS 0
+#define SIN	0.26
+#define COS 0.97
 
 static void	rotate_cam(int keycode, t_cam *cam)
 {
 	t_vect	temp;
+
 	temp = cam->direction_n;
 	if (keycode == XK_Left)
 	{
@@ -83,12 +84,12 @@ void	modify_sp(int keycode, t_sp *sp)
 		sp->center = vec_add(sp->center, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		sp->center = vec_sub(sp->center, (t_vect){0, 0, 1});
-	if (keycode == XK_parenleft)
+	if (keycode == XK_KP_Add)
 	{
 		sp->diameter += 0.5;
 		sp->radius += 0.25;
 	}
-	if (keycode == XK_parenright)
+	if (keycode == XK_KP_Subtract)
 	{
 		sp->diameter -= 0.5;
 		sp->radius -= 0.25;
@@ -109,7 +110,7 @@ void	modify_pl(int keycode, t_pl *pl)
 		pl->point = vec_add(pl->point, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		pl->point = vec_sub(pl->point, (t_vect){0, 0, 1});
-	pl->d = -dot(pl->point, pl->normal_n);
+	set_pl(pl);
 }
 
 void	modify_cy(int keycode, t_cy *cy)
@@ -126,6 +127,16 @@ void	modify_cy(int keycode, t_cy *cy)
 		cy->center = vec_add(cy->center, (t_vect){0, 0, 1});
 	if (keycode == XK_Shift_L)
 		cy->center = vec_sub(cy->center, (t_vect){0, 0, 1});
+	if (keycode == XK_KP_Add)
+	{
+		cy->diameter += 0.5;
+		cy->radius += 0.25;
+	}
+	if (keycode == XK_KP_Subtract)
+	{
+		cy->diameter -= 0.5;
+		cy->radius -= 0.25;
+	}
 	cy->top = get_point_t(cy->center, cy->axis_n, cy->semi_height);
 	cy->dt = -dot(cy->top, cy->axis_n);
 	cy->bottom
