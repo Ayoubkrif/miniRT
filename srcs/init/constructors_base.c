@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 11:42:30 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/05 09:35:35 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	get_cam_info(char **tok, t_rt *rt)
 
 int	get_light_info(char **tok, t_rt *rt)
 {
+	float	brightness;
+
 	if (rt->nb_light > 20)
 		return (print_error(LIGHT, NULL));
 	if (fill_vec(tok[1], &rt->light[rt->nb_light].position))
@@ -52,8 +54,8 @@ int	get_light_info(char **tok, t_rt *rt)
 		return (print_error(ARGS, "light grightness"));
 	if (fill_rgb(tok[3], &rt->light[rt->nb_light].color, "light"))
 		return (1);
-	rt->light[rt->nb_light].color.brightness = atof(tok[2]);
-	if (rt->light[rt->nb_light].color.brightness < 0 || rt->light[rt->nb_light].color.brightness > 1)
+	brightness = atof(tok[2]);
+	if (brightness < 0 || brightness > 1)
 		return (print_error(BRIGHTNESS, "light"));
 	rt->nb_light += 1;
 	return (0);
@@ -62,6 +64,7 @@ int	get_light_info(char **tok, t_rt *rt)
 int	get_ambient_info(char **tok, t_rt *rt)
 {
 	static int	nb = 0;
+	float		brightness;
 
 	if (nb == 1)
 		return (print_error(AMBIENT, NULL));
@@ -71,8 +74,8 @@ int	get_ambient_info(char **tok, t_rt *rt)
 		return (print_error(ARGS, "ambient color"));
 	if (fill_rgb(tok[2], &rt->ambiant.color, "ambient"))
 		return (1);
-	rt->ambiant.color.brightness = atof(tok[1]) * KA;
-	if (rt->ambiant.color.brightness < 0 || rt->ambiant.color.brightness > 1)
+	brightness = atof(tok[1]) * KA;
+	if (brightness < 0 || brightness > 1)
 		return (print_error(BRIGHTNESS, "ambient"));
 	return (0);
 }

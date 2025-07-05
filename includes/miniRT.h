@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 11:56:51 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/05 09:27:40 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_rgb
 	float	r;
 	float	g;
 	float	b;
-	float	brightness;
 }	t_rgb;
 
 typedef struct s_mlx
