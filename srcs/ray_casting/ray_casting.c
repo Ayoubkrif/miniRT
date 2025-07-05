@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 08:56:51 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/05 09:48:18 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 	t_inter	inter;
 
 	i = 0;
-	inter = (t_inter){-1, (t_rgb){0, 0, 0, 1}, NULL, NONE};
+	inter = (t_inter){-1, (t_rgb){0, 0, 0}, NULL, NONE};
 	while (rt->object[i])
 	{
 		if (*rt->object[i] == SPHERE)

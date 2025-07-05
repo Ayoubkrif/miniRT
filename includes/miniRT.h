@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/05 09:27:40 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/05 09:52:46 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct s_rt
 	t_cam		camera;
 	t_light		light[20];
 	int			nb_light;
-	t_ambient	ambiant;
+	t_ambient	ambient;
 	int			nb_object;
 	t_type		*object[20];
 	int			menu;
