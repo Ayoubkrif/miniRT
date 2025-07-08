@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 08:56:54 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 08:57:51 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:40:40 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static t_vect	normal_cylinder(t_cy *cy, t_vect point)
 				vec_add(cy->center,
 					vec_mul(cy->axis_n,
 						dot(cy->axis_n,
-							vec_sub(point, cy->center)) / dot(cy->axis_n, cy->axis_n))))));
+							vec_sub(point, cy->center))
+						/ dot(cy->axis_n, cy->axis_n))))));
 }
 
 t_vect	normal_vect(t_inter inter, t_vect point)

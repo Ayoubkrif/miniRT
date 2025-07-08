@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:01:20 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 09:49:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:45:29 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include <string.h>
 #include <stdio.h>
 
-void ftoa(float n, char* res, int afterpoint);
+void	ftoa(float n, char *res, int afterpoint);
 
 void	put_cam(t_rt *rt)
 {
-	char res[10];
+	char	res[10];
 
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 160, WIN_Y - 20, 0xFFFFFF, " camera");
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 230, WIN_Y - 20, 0xFFFFFF, " position :");
@@ -38,7 +38,7 @@ void	put_cam(t_rt *rt)
 
 void	put_sp(t_rt *rt)
 {
-	char res[10];
+	char	res[10];
 
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 160, WIN_Y - 20, 0xFFFFFF, " sphere");
 
@@ -53,7 +53,7 @@ void	put_sp(t_rt *rt)
 
 void	put_pl(t_rt *rt)
 {
-	char res[10];
+	char	res[10];
 
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 160, WIN_Y - 20, 0xFFFFFF, " plane");
 
@@ -76,7 +76,7 @@ void	put_pl(t_rt *rt)
 
 void	put_cy(t_rt *rt)
 {
-	char res[10];
+	char	res[10];
 
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 160, WIN_Y - 20, 0xFFFFFF, " cylinder");
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 230, WIN_Y - 20, 0xFFFFFF, " center :");

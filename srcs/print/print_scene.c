@@ -6,16 +6,16 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:46:08 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/05 09:53:16 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:43:28 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-#include "utils.h"
-
-void	print_solids(t_rt *rt)
-{
-	(void)rt;
+// #include "miniRT.h"
+// #include "utils.h"
+//
+// void	print_solids(t_rt *rt)
+// {
+// 	(void)rt;
 	// printf("light =======\nposition   :%f,%f,%f\nbrightness :%f\ncolor    :%f%f%f\n",
 	// 	rt->light[0].position.x, rt->light[0].position.y, rt->light[0].position.z, rt->light[0].color.brightness
 	// 	, rt->light[0].color.r * 255, rt->light[0].color.g * 255, rt->light[0].color.b * 255);
@@ -64,16 +64,16 @@ void	print_solids(t_rt *rt)
 				((t_cy *)rt->object[rt->menu.obj - 1])->color.b);
 		}
 	}*/
-}
+// }
 
-void	print_cam_base(t_rt *rt)
-{
-	t_cam	*cam;
-
-	cam = &rt->camera;
-	printf("cam_base =======\npixel_x     :%f,%f,%f\npixel_y       :%f,%f,%f\nstart   :%f,%f,%f\n",
-			cam->screen.pix_x.x, cam->screen.pix_x.y, cam->screen.pix_x.z,
-			cam->screen.pix_y.x, cam->screen.pix_y.y, cam->screen.pix_y.z,
-			cam->screen.center.x, cam->screen.center.y, cam->screen.center.z);
-
-}
+// void	print_cam_base(t_rt *rt)
+// {
+// 	t_cam	*cam;
+//
+// 	cam = &rt->camera;
+// 	printf("cam_base =======\npixel_x     :%f,%f,%f\npixel_y       :%f,%f,%f\nstart   :%f,%f,%f\n",
+// 			cam->screen.pix_x.x, cam->screen.pix_x.y, cam->screen.pix_x.z,
+// 			cam->screen.pix_y.x, cam->screen.pix_y.y, cam->screen.pix_y.z,
+// 			cam->screen.center.x, cam->screen.center.y, cam->screen.center.z);
+//
+// }
