@@ -6,13 +6,14 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 11:57:31 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/08 09:04:11 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "define.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	get_sphere_info(char **tok, t_rt *rt)
 {
@@ -31,6 +32,10 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	sp->diameter = atof(tok[2]);
 	if (fill_rgb(tok[3], &sp->color, "sphere"))
 		return (1);
+	if (tok[4])
+		sp->reflexion = atof(tok[4]);
+	else
+		sp->reflexion = 0;
 	set_sp(sp);
 	return (0);
 }
@@ -63,6 +68,10 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	if (fill_rgb(tok[5], &cy->color, "cylinder"))
 		return (1);
 	cy->axis_n = normalize(cy->axis_n);
+	if (tok[6])
+		cy->reflexion = atof(tok[6]);
+	else
+		cy->reflexion = 0;
 	set_cy(cy);
 	return (0);
 }
@@ -90,6 +99,10 @@ int	get_plane_info(char **tok, t_rt *rt)
 	if (fill_rgb(tok[3], &pl->color, "plane"))
 		return (1);
 	pl->normal_n = normalize(pl->normal_n);
+	if (tok[4])
+		pl->reflexion = atof(tok[4]);
+	else
+		pl->reflexion = 0;
 	set_pl(pl);
 	return (0);
 }

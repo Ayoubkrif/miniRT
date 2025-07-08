@@ -6,13 +6,15 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/05 13:55:57 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/08 09:21:27 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "math_utils.h"
 #include "miniRT.h"
 #include "define.h"
 #include "vect.h"
+#include <stdio.h>
 
 typedef struct s_phong
 {
@@ -32,7 +34,7 @@ typedef struct s_phong
 	t_rgb	specular;
 }	t_phong;
 
-#define N_REFLECTION 15
+#define N_REFLECTION 5
 
 void	add_lights(t_rgb *light_color, t_rgb diffuse, t_rgb specular, t_light light)
 {
@@ -82,7 +84,7 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 		phong.dot_normal_ray *= -1;
 	}
 	phong.reflected = vec_sub(vec_mul(phong.normal_n, 2 * phong.dot_normal_ray), vec_mul(ray, -1));
-	if (phong.inter_ray.mode == SPHERE && precision)
+	if (phong.inter_ray.reflexion > EPSILON && precision)
 		return (cast_ray_from(rt, phong.reflected, vec_add(phong.point_ray, vec_mul(phong.reflected, EPSILON)), precision - 1));
 	else
 	{
