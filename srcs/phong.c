@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 11:56:10 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:14:17 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,41 @@ t_rgb	blin_phong(t_rt *rt, t_vect ray, t_phong phong)
 	return (phong.lights_color);
 }
 
+t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision);
+
+t_rgb	reflect_phong(t_rt *rt, t_vect ray, t_phong phong, int precision)
+{
+	int		r;
+	int		l;
+	t_rgb	lights;
+	t_rgb	reflected;
+
+	l = 1;
+	r = 1;
+	reflected = (t_rgb){0, 0, 0};
+	lights = (t_rgb){0, 0, 0};
+	if (phong.inter_ray.reflexion > EPSILON && precision)
+		reflected = cast_ray_from(rt, phong.reflected, vec_add(phong.point_ray, vec_mul(phong.reflected, EPSILON)), precision - 1);
+	else
+		r = 0;
+	if (!(phong.inter_ray.reflexion > 1 - EPSILON && precision))
+		lights = blin_phong(rt, ray, phong);
+	else
+		l = 0;
+	lights = color_add(rt->ambient.color, lights);
+	if (l && r)
+		return (color_add(color_k(color_mul(phong.solid_color, lights), 1 - phong.inter_ray.reflexion), color_k(reflected, phong.inter_ray.reflexion)));
+	else if (!r && l)
+		return (color_mul(phong.solid_color, lights));
+	else if (r && !l)
+		return (reflected);
+	else
+		return((t_rgb){0, 0, 0});
+}
+
 t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 {
 	t_phong	phong;
-	t_rgb	lights;
-	t_rgb	reflected;
 
 	ray = normalize(ray);
 	phong.inter_ray = add_inter(rt, ray, from);
@@ -111,25 +141,7 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 	}
 	phong.reflected = vec_sub(vec_mul(phong.normal_n, 2 * phong.dot_normal_ray), vec_mul(ray, -1));
 	phong.solid_color = phong.inter_ray.color;
-	int	r = 1;
-	int	l = 1;
-	if (phong.inter_ray.reflexion > EPSILON && precision)
-		reflected = cast_ray_from(rt, phong.reflected, vec_add(phong.point_ray, vec_mul(phong.reflected, EPSILON)), precision - 1);
-	else
-		reflected = (t_rgb){0, 0, 0}, r = 0;
-	if (!(phong.inter_ray.reflexion > 1 - EPSILON && precision))
-		lights = blin_phong(rt, ray, phong);
-	else
-		lights = (t_rgb){0, 0, 0}, l = 0;
-	lights = color_add(rt->ambient.color, lights);
-	if (l && r)
-		return (color_add(color_k(color_mul(phong.solid_color, lights), 1 - phong.inter_ray.reflexion), color_k(reflected, phong.inter_ray.reflexion)));
-	else if (!r && l)
-		return (color_mul(phong.solid_color, lights));
-	else if (r && !l)
-		return (reflected);
-	else
-		return((t_rgb){0, 0, 0});
+	return (reflect_phong(rt, ray, phong, precision));
 }
 
 t_rgb	is_it_touching(t_rt *rt, double x, double y)

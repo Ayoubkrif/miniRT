@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 11:40:07 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:26:28 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 #define KA 0.2
 #define KD 0.5
-#define KS 0.5
+#define KS 0.9
 #define ALPHA_S 200
 
 #endif
