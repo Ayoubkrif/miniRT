@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 08:33:10 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/08 09:39:34 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ void	put_string(t_rt *rt);
 void	add_lights(t_rgb *light_color, t_rgb diffuse, t_rgb specular, t_light light);
 t_rgb	color_mul(t_rgb	c1, t_rgb c2);
 t_rgb	color_add(t_rgb	c1, t_rgb c2);
+t_rgb	color_k(t_rgb	c1, float k);
 
 t_vect	normal_vect(t_inter inter, t_vect point);
 t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 09:21:27 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/08 11:56:10 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ typedef struct s_phong
 	t_vect	reflected;
 	double	dot_normal_light;
 	double	dot_normal_ray;
-	t_rgb	diffuse;
-	t_vect	h;
-	t_rgb	specular;
 }	t_phong;
 
 #define N_REFLECTION 5
@@ -54,23 +51,52 @@ t_rgb	diffuse_color(t_phong phong, t_light light)
 		));
 }
 
-t_rgb	specular_color(t_phong phong, t_light light)
+t_rgb	specular_color(t_phong phong, t_light light, t_vect h)
 {
 	float	ks;
 
-	ks = KS * fabs(pow(dot(phong.normal_n, phong.h), ALPHA_S));
+	ks = KS * fabs(pow(dot(phong.normal_n, h), ALPHA_S));
 	return (
 		color_mul((t_rgb){ks, ks, ks},
 		(t_rgb){light.color.r, light.color.g, light.color.b}
 		));
 }
 
+t_rgb	blin_phong(t_rt *rt, t_vect ray, t_phong phong)
+{
+	int		i;
+	t_rgb	diffuse;
+	t_rgb	specular;
+	t_vect	h;
+
+	i = 0;
+	while (i < rt->nb_light)
+	{
+		phong.light_obj_n = normalize(vec_sub(phong.point_ray, rt->light[i].position));
+		phong.inter_light = add_inter(rt, phong.light_obj_n, rt->light[i].position);
+		phong.point_light = get_point(rt->light[i].position, phong.light_obj_n, phong.inter_light.t);
+		if (vect_eq(phong.point_ray, phong.point_light))
+		{
+			phong.dot_normal_light = dot(vec_mul(phong.light_obj_n, -1), phong.normal_n);
+			if (phong.dot_normal_light > 0)
+			{
+				diffuse = diffuse_color(phong, rt->light[i]);
+				h = normalize(vec_add(phong.light_obj_n, ray));
+				specular = specular_color(phong, rt->light[i], h);
+				add_lights(&phong.lights_color, diffuse, specular, rt->light[i]);
+			}
+		}
+		i++;
+	}
+	return (phong.lights_color);
+}
+
 t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 {
 	t_phong	phong;
-	int	i;
+	t_rgb	lights;
+	t_rgb	reflected;
 
-	i = 0;
 	ray = normalize(ray);
 	phong.inter_ray = add_inter(rt, ray, from);
 	if (!phong.inter_ray.obj)
@@ -84,32 +110,26 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 		phong.dot_normal_ray *= -1;
 	}
 	phong.reflected = vec_sub(vec_mul(phong.normal_n, 2 * phong.dot_normal_ray), vec_mul(ray, -1));
+	phong.solid_color = phong.inter_ray.color;
+	int	r = 1;
+	int	l = 1;
 	if (phong.inter_ray.reflexion > EPSILON && precision)
-		return (cast_ray_from(rt, phong.reflected, vec_add(phong.point_ray, vec_mul(phong.reflected, EPSILON)), precision - 1));
+		reflected = cast_ray_from(rt, phong.reflected, vec_add(phong.point_ray, vec_mul(phong.reflected, EPSILON)), precision - 1);
 	else
-	{
-		phong.solid_color = phong.inter_ray.color;
-		phong.lights_color = rt->ambient.color;
-		while (i < rt->nb_light)
-		{
-			phong.light_obj_n = normalize(vec_sub(phong.point_ray, rt->light[i].position));
-			phong.inter_light = add_inter(rt, phong.light_obj_n, rt->light[i].position);
-			phong.point_light = get_point(rt->light[i].position, phong.light_obj_n, phong.inter_light.t);
-			if (vect_eq(phong.point_ray, phong.point_light))
-			{
-				phong.dot_normal_light = dot(vec_mul(phong.light_obj_n, -1), phong.normal_n);
-				if (phong.dot_normal_light > 0)
-				{
-					phong.diffuse = diffuse_color(phong, rt->light[i]);
-					phong.h = normalize(vec_add(phong.light_obj_n, ray));
-					phong.specular = specular_color(phong, rt->light[i]);
-					add_lights(&phong.lights_color, phong.diffuse, phong.specular, rt->light[i]);
-				}
-			}
-			i++;
-		}
-	}
-	return (color_mul(phong.solid_color, phong.lights_color));
+		reflected = (t_rgb){0, 0, 0}, r = 0;
+	if (!(phong.inter_ray.reflexion > 1 - EPSILON && precision))
+		lights = blin_phong(rt, ray, phong);
+	else
+		lights = (t_rgb){0, 0, 0}, l = 0;
+	lights = color_add(rt->ambient.color, lights);
+	if (l && r)
+		return (color_add(color_k(color_mul(phong.solid_color, lights), 1 - phong.inter_ray.reflexion), color_k(reflected, phong.inter_ray.reflexion)));
+	else if (!r && l)
+		return (color_mul(phong.solid_color, lights));
+	else if (r && !l)
+		return (reflected);
+	else
+		return((t_rgb){0, 0, 0});
 }
 
 t_rgb	is_it_touching(t_rt *rt, double x, double y)
