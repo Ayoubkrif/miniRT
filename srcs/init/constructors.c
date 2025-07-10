@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/10 09:57:57 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:13:03 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	get_sphere_info(char **tok, t_rt *rt)
 		sp->reflexion = atof(tok[4]);
 	else
 		sp->reflexion = 0;
+
 	set_sp(sp);
 	return (0);
 }
@@ -67,11 +68,12 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	cy->height = atof(tok[4]);
 	if (fill_rgb(tok[5], &cy->color, "cylinder"))
 		return (1);
-	cy->axis_n = normalize(cy->axis_n);
 	if (tok[6])
 		cy->reflexion = atof(tok[6]);
 	else
 		cy->reflexion = 0;
+
+	cy->axis_n = normalize(cy->axis_n);
 	set_cy(cy);
 	return (0);
 }
@@ -98,18 +100,19 @@ int	get_plane_info(char **tok, t_rt *rt)
 		return (print_error(VECT_NULL, "plane normal"));
 	if (fill_rgb(tok[3], &pl->color, "plane"))
 		return (1);
-	pl->normal_n = normalize(pl->normal_n);
 	if (tok[4])
 		pl->reflexion = atof(tok[4]);
 	else
 		pl->reflexion = 0;
+
+	pl->normal_n = normalize(pl->normal_n);
 	set_pl(pl);
 	return (0);
 }
 
 int	get_cone_info(char **tok, t_rt *rt)
 {
-	t_cy	*co;
+	t_co	*co;
 
 	co = malloc(sizeof(t_co));
 	if (!co)
@@ -134,11 +137,15 @@ int	get_cone_info(char **tok, t_rt *rt)
 	co->height = atof(tok[4]);
 	if (fill_rgb(tok[5], &co->color, "cone"))
 		return (1);
-	co->axis_n = normalize(co->axis_n);
 	if (tok[6])
 		co->reflexion = atof(tok[6]);
 	else
 		co->reflexion = 0;
-	co->radius = p2(co->diameter);
+
+	co->axis_n = normalize(co->axis_n);
+	co->apex = get_point_t(co->center, co->axis_n, co->height);
+	co->axis_n = vec_mul(co->axis_n, -1);
+	co->radius = co->diameter / 2;
+	co->k = co->height / co->radius;
 	return (0);
 }

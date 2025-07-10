@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 13:55:37 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/10 13:36:57 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,37 @@ void	modify_cy(int keycode, t_cy *cy)
 	cy->db = -dot(cy->bottom, cy->axis_n);
 }
 
+void	modify_co(int keycode, t_co *co)
+{
+	if (keycode == XK_w)
+		co->center = vec_add(co->center, (t_vect){1, 0, 0});
+	if (keycode == XK_s)
+		co->center = vec_sub(co->center, (t_vect){1, 0, 0});
+	if (keycode == XK_a)
+		co->center = vec_add(co->center, (t_vect){0, 1, 0});
+	if (keycode == XK_d)
+		co->center = vec_sub(co->center, (t_vect){0, 1, 0});
+	if (keycode == XK_space)
+		co->center = vec_add(co->center, (t_vect){0, 0, 1});
+	if (keycode == XK_Shift_L)
+		co->center = vec_sub(co->center, (t_vect){0, 0, 1});
+	if (keycode == XK_KP_Add)
+	{
+		co->diameter += 0.5;
+		co->radius += 0.25;
+	}
+	if (keycode == XK_KP_Subtract)
+	{
+		co->diameter -= 0.5;
+		co->radius -= 0.25;
+	}
+	/*co->top = get_point_t(co->center, co->axis_n, co->semi_height);*/
+	/*co->dt = -dot(co->top, co->axis_n);*/
+	/*co->bottom*/
+	/*	= get_point_t(co->center, vec_mul(co->axis_n, -1), co->semi_height);*/
+	/*co->db = -dot(co->bottom, co->axis_n);*/
+}
+
 int	key_hook(int keycode, t_rt *rt)
 {
 	if (keycode == XK_Escape)
@@ -169,6 +200,8 @@ int	key_hook(int keycode, t_rt *rt)
 				modify_sp(keycode, (t_sp *)rt->object[rt->menu - 1]);
 			if (*rt->object[rt->menu - 1] == CYLINDER)
 				modify_cy(keycode, (t_cy *)rt->object[rt->menu - 1]);
+			if (*rt->object[rt->menu - 1] == CONE)
+				modify_co(keycode, (t_co *)rt->object[rt->menu - 1]);
 		}
 		throwing_rays_through_the_wide_universe(rt);
 	}

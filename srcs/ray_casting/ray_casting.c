@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 08:39:34 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:31:18 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 			inter_cylinder(ray, (t_cy *)rt->object[i], &inter, start);
 			inter_disk(ray, (t_cy *)rt->object[i], &inter, start);
 		}
+		else if (*rt->object[i] == CONE)
+			inter_cone(ray, (t_co *)rt->object[i], &inter, start);
 		else if (*rt->object[i] == PLANE)
 			inter_plane(ray, (t_pl *)rt->object[i], &inter, start);
 		i++;

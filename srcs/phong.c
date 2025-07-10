@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 13:14:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/10 14:13:19 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ t_rgb	reflect_phong(t_rt *rt, t_vect ray, t_phong phong, int precision)
 	r = 1;
 	reflected = (t_rgb){0, 0, 0};
 	lights = (t_rgb){0, 0, 0};
+
 	if (phong.inter_ray.reflexion > EPSILON && precision)
 		reflected = cast_ray_from(rt, phong.reflected, vec_add(phong.point_ray, vec_mul(phong.reflected, EPSILON)), precision - 1);
 	else
