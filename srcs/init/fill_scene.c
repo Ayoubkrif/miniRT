@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/21 13:15:08 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/10 09:52:30 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	get_identifier(char *str, char **tok, t_rt *rt)
 		return (get_cylinder_info(tok, rt));
 	if (!ft_strcmp(str, "pl"))
 		return (get_plane_info(tok, rt));
+	if (!ft_strcmp(str, "co"))
+		return (get_cone_info(tok, rt));
 	return (dprintf(2, "unknown identifier \"%s\" ", str), 1);
 }
 

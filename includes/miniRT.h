@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 09:39:34 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/10 09:57:19 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef enum e_type
 	CYLINDER,
 	SPHERE,
 	PLANE,
+	CONE,
 	DISK_TOP,
 	DISK_BOT
 }	t_type;
@@ -95,9 +96,10 @@ typedef struct s_sp
 	t_type	type;
 	t_vect	center;
 	float	diameter;
-	float	radius;
 	t_rgb	color;
 	float	reflexion;
+
+	float	radius;
 }	t_sp;
 
 typedef struct s_pl
@@ -118,6 +120,8 @@ typedef struct s_cy
 	t_vect	axis_n;
 	float	diameter;
 	float	height;
+	t_rgb	color;
+	float	reflexion;
 
 	t_base	base;
 	float	radius;
@@ -126,9 +130,20 @@ typedef struct s_cy
 	t_vect	bottom;
 	double	dt;
 	double	db;
+}	t_cy;
+
+typedef struct s_co
+{
+	t_type	type;
+	t_vect	center;
+	t_vect	axis_n;
+	float	diameter;
+	float	height;
 	t_rgb	color;
 	float	reflexion;
-}	t_cy;
+
+	float	radius;
+}	t_co;
 
 typedef struct s_rt
 {
@@ -156,6 +171,7 @@ void	set_sp(t_sp *sp);
 int		get_cylinder_info(char **tok, t_rt *rt);
 void	set_cy(t_cy *cy);
 int		get_plane_info(char **tok, t_rt *rt);
+int	get_cone_info(char **tok, t_rt *rt);
 
 void	set_pl(t_pl *pl);
 void	set_cam_base(t_cam *cam);

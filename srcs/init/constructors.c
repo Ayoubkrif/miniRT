@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/08 09:04:11 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/10 09:57:57 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,41 @@ int	get_plane_info(char **tok, t_rt *rt)
 	else
 		pl->reflexion = 0;
 	set_pl(pl);
+	return (0);
+}
+
+int	get_cone_info(char **tok, t_rt *rt)
+{
+	t_cy	*co;
+
+	co = malloc(sizeof(t_co));
+	if (!co)
+		return (print_error(MALLOC, "cone"));
+	co->type = CONE;
+	rt->object[rt->nb_object] = (t_type *)co;
+	rt->nb_object += 1;
+	if (fill_vec(tok[1], &co->center))
+		return (print_error(ARGS, "cone center"));
+	if (fill_vec(tok[2], &co->axis_n))
+		return (print_error(ARGS, "cone axis"));
+	if (co->axis_n.x < -1 || co->axis_n.x > 1 || co->axis_n.y < -1
+		|| co->axis_n.y > 1 || co->axis_n.z < -1 || co->axis_n.z > 1)
+		return (print_error(VECT_NORM, "cone axis"));
+	if (vect_eq(co->axis_n, vec(0, 0, 0)))
+		return (print_error(VECT_NULL, "cone axis"));
+	if (!tok[3])
+		return (print_error(ARGS, "cone diameter"));
+	co->diameter = atof(tok[3]);
+	if (!tok[4])
+		return (print_error(ARGS, "cone height"));
+	co->height = atof(tok[4]);
+	if (fill_rgb(tok[5], &co->color, "cone"))
+		return (1);
+	co->axis_n = normalize(co->axis_n);
+	if (tok[6])
+		co->reflexion = atof(tok[6]);
+	else
+		co->reflexion = 0;
+	co->radius = p2(co->diameter);
 	return (0);
 }
