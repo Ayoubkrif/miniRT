@@ -1,0 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_board.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
+/*   Updated: 2025/07/10 17:28:11 by aykrifa          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "miniRT.h"
+
+t_rgb	get_sp_checkerboard(t_vect point, t_sp *sp)
+{
+	int	theta;
+	int	phi;
+	t_vect	p;
+
+	p = vec_sub(point, sp->center);
+	phi = 35 * atan(p.x / p.y) / (PI);
+	theta = 27 * acos(p.z / sp->radius) / (PI);
+	if ((theta + phi) % 2)
+		return ((t_rgb){0, 0, 0});
+	else
+		return ((t_rgb){255, 255, 255});
+}

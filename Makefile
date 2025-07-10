@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/08 09:29:10 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/10 17:09:22 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SOURCES		= main.c \
 			  utils.c utils_rt.c \
 			  exit_minirt.c \
 			  colors_utils.c \
+			  checker_board.c \
 
 
 SRCS		= $(addprefix $(SRC_PATH)/,$(SOURCES))

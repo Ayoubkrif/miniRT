@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/10 14:13:19 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/10 17:08:57 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ t_rgb	reflect_phong(t_rt *rt, t_vect ray, t_phong phong, int precision)
 	r = 1;
 	reflected = (t_rgb){0, 0, 0};
 	lights = (t_rgb){0, 0, 0};
-
 	if (phong.inter_ray.reflexion > EPSILON && precision)
 		reflected = cast_ray_from(rt, phong.reflected, vec_add(phong.point_ray, vec_mul(phong.reflected, EPSILON)), precision - 1);
 	else
@@ -121,7 +120,7 @@ t_rgb	reflect_phong(t_rt *rt, t_vect ray, t_phong phong, int precision)
 	else if (r && !l)
 		return (reflected);
 	else
-		return((t_rgb){0, 0, 0});
+		return ((t_rgb){0, 0, 0});
 }
 
 t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
@@ -142,6 +141,8 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 	}
 	phong.reflected = vec_sub(vec_mul(phong.normal_n, 2 * phong.dot_normal_ray), vec_mul(ray, -1));
 	phong.solid_color = phong.inter_ray.color;
+	if (phong.inter_ray.mode == SPHERE)
+		phong.solid_color = get_sp_checkerboard(phong.point_ray, (t_sp *)phong.inter_ray.obj);
 	return (reflect_phong(rt, ray, phong, precision));
 }
 
