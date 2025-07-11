@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/11 12:40:01 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 17:34:08 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,7 @@ t_vect	normal_vect(t_inter inter, t_vect point);
 t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);
 
 t_rgb	get_sp_checkerboard(t_vect point, t_sp *sp);
+t_rgb	get_pl_checkerboard(t_vect point, t_pl *pl);
+t_rgb	get_cy_checkerboard(t_vect point, t_cy *cy);
 
 #endif

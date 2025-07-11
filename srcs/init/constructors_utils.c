@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/11 15:32:50 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 17:20:19 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,7 @@ int	fill_rgb(char *str, t_rgb *color, char *error)
 
 void	set_cy(t_cy *cy)
 {
-	cy->base.h_normal = cross(cy->axis_n, vec(0, 0, 1));
-	if (vect_eq(cy->base.h_normal, (t_vect){0, 0, 0}))
-		cy->base.h_normal = cross(cy->axis_n, vec(0, 1, 0));
-	cy->base.h_normal = normalize(cy->base.h_normal);
-	cy->base.v_normal = cross(cy->base.h_normal, cy->axis_n);
+	set_base(&cy->base, cy->axis_n);
 	cy->semi_height = cy->height / 2;
 	cy->radius = cy->diameter / 2;
 	cy->top = get_point_t(cy->center, cy->axis_n, cy->semi_height);
