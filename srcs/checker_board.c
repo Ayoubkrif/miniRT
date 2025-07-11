@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/11 15:41:59 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 15:53:02 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ t_rgb	get_pl_checkerboard(t_vect point, t_pl *pl)
 	int		beta;
 
 	p = vec_sub(point, pl->point);
-	if ((theta + phi) % 2)
+	alpha = (int)floor(dot(pl->base.h_normal, p));
+	beta = (int)floor(dot(pl->base.v_normal, p));
+	if (((alpha + beta)) % 2)
 		return ((t_rgb){0, 0, 0});
 	else
-		return (sp->color);
+		return (pl->color);
 }
