@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/10 17:08:45 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 12:40:01 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "miniRT_solids.h"
 // # include "assert.h"
 
-# define WIN_X	1000
-# define WIN_Y	1000
+# define WIN_X	710
+# define WIN_Y	710
 
 typedef struct s_mlx
 {
