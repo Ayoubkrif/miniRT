@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/10 17:08:45 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 12:05:39 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "miniRT_solids.h"
 // # include "assert.h"
 
-# define WIN_X	1000
-# define WIN_Y	1000
+# define WIN_X	700
+# define WIN_Y	700
 
 typedef struct s_mlx
 {
@@ -37,7 +37,7 @@ typedef struct s_inter
 	t_rgb	color;
 	t_type	*obj;
 	t_type	mode;
-	float	reflexion;
+	double	reflexion;
 }	t_inter;
 
 typedef struct s_screen
@@ -51,7 +51,7 @@ typedef struct s_cam
 {
 	t_vect		position;
 	t_vect		direction_n;
-	float		fov;
+	double		fov;
 
 	t_base		base;
 	t_screen	screen;
@@ -123,7 +123,7 @@ void	put_string(t_rt *rt);
 void	add_lights(t_rgb *light_color, t_rgb diffuse, t_rgb specular, t_light light);
 t_rgb	color_mul(t_rgb	c1, t_rgb c2);
 t_rgb	color_add(t_rgb	c1, t_rgb c2);
-t_rgb	color_k(t_rgb	c1, float k);
+t_rgb	color_k(t_rgb	c1, double k);
 
 t_vect	normal_vect(t_inter inter, t_vect point);
 t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);

@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/08 08:33:30 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/11 11:34:25 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	get_cam_info(char **tok, t_rt *rt)
 
 int	get_light_info(char **tok, t_rt *rt)
 {
-	float	brightness;
+	double	brightness;
 
 	if (rt->nb_light > 20)
 		return (print_error(LIGHT, NULL));
@@ -66,7 +66,7 @@ int	get_light_info(char **tok, t_rt *rt)
 int	get_ambient_info(char **tok, t_rt *rt)
 {
 	static int	nb = 0;
-	float		brightness;
+	double		brightness;
 
 	if (nb == 1)
 		return (print_error(AMBIENT, NULL));

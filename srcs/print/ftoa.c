@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:11:22 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/03 09:46:35 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:55:25 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 // Reverses a string 'str' of length 'len' 
 void reverse(char* str, int len) 
 { 
-    int i = 0, j = len - 1, temp; 
+    int		i = 0, j = len - 1;
+	char	temp; 
     while (i < j) { 
         temp = str[i]; 
         str[i] = str[j]; 
@@ -55,8 +56,8 @@ int intToStr(int x, char str[], int d)
     return i; 
 } 
 
-// Converts a floating-point/double number to a string. 
-void ftoa(float n, char* res, int afterpoint) 
+// Converts a doubleing-point/double number to a string. 
+void ftoa(double n, char* res, int afterpoint) 
 {
 	int	i;
 
@@ -70,8 +71,8 @@ void ftoa(float n, char* res, int afterpoint)
     // Extract integer part 
     int ipart = (int)n; 
 
-    // Extract floating part 
-    float fpart = n - (float)ipart; 
+    // Extract doubleing part 
+    double fpart = n - (double)ipart; 
 
     // convert integer part to string 
     i += intToStr(ipart, &res[i], 20 - i); 
@@ -93,7 +94,7 @@ void ftoa(float n, char* res, int afterpoint)
 // int main() 
 // { 
 //     char res[20]; 
-//     float n = 233.007; 
+//     double n = 233.007; 
 //     ftoa(n, res, 4); 
 //     printf("\"%s\"\n", res); 
 //     return 0; 

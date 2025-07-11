@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 07:58:52 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 09:39:11 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:35:13 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_rgb	color_mul(t_rgb	c1, t_rgb c2)
 		});
 }
 
-t_rgb	color_k(t_rgb	c1, float k)
+t_rgb	color_k(t_rgb	c1, double k)
 {
 	return ((t_rgb)
 		{

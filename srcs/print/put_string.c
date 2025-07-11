@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:01:20 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/10 13:37:55 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:35:56 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 #include <stdio.h>
 
-void	ftoa(float n, char *res, int afterpoint);
+void	ftoa(double n, char *res, int afterpoint);
 
 void	put_cam(t_rt *rt)
 {
