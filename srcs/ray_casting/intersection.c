@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/10 14:04:48 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:50:22 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	double	t;
 
 	dot_n_ray = dot(ray, cy->axis_n);
-	if (!dot_n_ray)
+	if (double_eq(dot_n_ray, 0))
 		return ;
 	dot_axis_start = dot(cy->axis_n, start);
 	t = - (dot_axis_start + cy->dt) / dot_n_ray;
@@ -87,12 +87,12 @@ void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 {
 	t_quadratic	quad;
 	t_vect		d = vec_sub(start, co->apex);
-	float		u = dot(ray, co->axis_n);
-	float		v = dot(d, co->axis_n);
-	float		w = dot(d, ray);
-	float		p2d = dot(d, d);
+	double		u = dot(ray, co->axis_n);
+	double		v = dot(d, co->axis_n);
+	double		w = dot(d, ray);
+	double		p2d = dot(d, d);
 
-	float		p2k = p2(co->k);
+	double		p2k = p2(co->k);
 	quad.a = 1 - ((1 + p2k) * p2(u));
 	if (double_eq(quad.a, 0))
 		return ;
@@ -100,7 +100,7 @@ void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 	quad.c = p2d - (1 + p2k) * p2(v);
 	if (!delta_2nd(&quad))
 		return ;
-	/*float	dist = dot(co->axis_n, vec_sub(get_point(start, ray, quad.root), co->center));*/
+	/*double	dist = dot(co->axis_n, vec_sub(get_point(start, ray, quad.root), co->center));*/
 	/*if (dist <= co->height && dist > 0) // c fo*/
 	push_inter((t_type *)co, co->color, quad.root, inter, CONE);
 }
@@ -111,7 +111,7 @@ void	inter_plane(t_vect ray, t_pl *pl, t_inter *inter, t_vect start)
 	double	t;
 
 	dot_n_ray = dot(ray, pl->normal_n);
-	if (!dot_n_ray)
+	if (double_eq(dot_n_ray, 0))
 		return ;
 	t = - (dot(pl->normal_n, start) + pl->d) / dot_n_ray;
 	push_inter((t_type *)pl, pl->color, t, inter, PLANE);
