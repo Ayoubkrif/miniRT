@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/10 17:08:57 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 14:42:48 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_phong
 {
 	t_inter	inter_ray;
 	t_rgb	solid_color;
-	t_rgb	lights_color;
 	t_vect	light_obj_n;
 	t_inter	inter_light;
 	t_vect	point_ray;
@@ -65,10 +64,12 @@ t_rgb	specular_color(t_phong phong, t_light light, t_vect h)
 t_rgb	blin_phong(t_rt *rt, t_vect ray, t_phong phong)
 {
 	int		i;
+	t_rgb	lights_color;
 	t_rgb	diffuse;
 	t_rgb	specular;
 	t_vect	h;
 
+	lights_color = (t_rgb){0, 0, 0};
 	i = 0;
 	while (i < rt->nb_light)
 	{
@@ -83,12 +84,12 @@ t_rgb	blin_phong(t_rt *rt, t_vect ray, t_phong phong)
 				diffuse = diffuse_color(phong, rt->light[i]);
 				h = normalize(vec_add(phong.light_obj_n, ray));
 				specular = specular_color(phong, rt->light[i], h);
-				add_lights(&phong.lights_color, diffuse, specular, rt->light[i]);
+				add_lights(&lights_color, diffuse, specular, rt->light[i]);
 			}
 		}
 		i++;
 	}
-	return (phong.lights_color);
+	return (lights_color);
 }
 
 t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision);

@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/05 09:34:03 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 15:32:50 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	set_sp(t_sp *sp)
 void	set_pl(t_pl *pl)
 {
 	pl->d = -dot(pl->point, pl->normal_n);
+	set_base(&pl->base, pl->normal_n);
 }

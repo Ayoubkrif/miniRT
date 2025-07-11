@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/10 13:51:00 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/11 15:10:31 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_pl
 	t_type	type;
 	t_vect	point;
 	t_vect	normal_n;
+	t_base	base;
 	t_rgb	color;
 	float	reflexion;
 
