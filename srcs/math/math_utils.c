@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:25:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 13:38:17 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/11 11:43:58 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	delta_2nd(t_quadratic *quad)
 				/ (2 * quad->a), 1);
 		return (quad->root = (-quad->b - quad->sq_delta) / (2 * quad->a), 1);
 	}
-	return (-quad->b / (2 * quad->a));
+	return (quad->root = -quad->b / (2 * quad->a), 1);
 }
 
 double	p2(double x)
