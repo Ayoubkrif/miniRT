@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/10 13:36:57 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 10:30:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ void	modify_co(int keycode, t_co *co)
 		co->diameter -= 0.5;
 		co->radius -= 0.25;
 	}
+	co->gamma = p2(co->height) / (p2(co->radius) + p2(co->height));
+	co->apex = get_point_t(co->center, co->axis_n, co->height);
 	/*co->top = get_point_t(co->center, co->axis_n, co->semi_height);*/
 	/*co->dt = -dot(co->top, co->axis_n);*/
 	/*co->bottom*/

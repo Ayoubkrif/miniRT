@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 07:51:58 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:28:01 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode)
 {
 	if (t > EPSILON && (!inter->obj || inter->t > t))
 	{
-		*inter = (t_inter){t, color, obj, mode, 0, 0};
+		*inter = (t_inter){t, color, obj, mode, 0, -1};
 		if (mode == SPHERE)
 		{
 			inter->reflexion = ((t_sp *)obj)->reflexion;
@@ -95,22 +95,25 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 {
 	t_quadratic	quad;
-	t_vect		d = vec_sub(start, co->apex);
-	double		u = dot(ray, co->axis_n);
-	double		v = dot(d, co->axis_n);
-	double		w = dot(d, ray);
-	double		p2d = dot(d, d);
+	t_vect		delta = vec_sub(start, co->apex);
+	double		d_dot_u = dot(co->axis_n, ray);
+	double		u_dot_u = dot(ray, ray);
+	double		delta_dot_d = dot(delta, co->axis_n);
+	double		delta_dot_u = dot(delta, ray);
+	double		delta_dot_delta = dot(delta, delta);
 
-	double		p2k = p2(co->k);
-	quad.a = 1 - ((1 + p2k) * p2(u));
+	quad.a = p2(d_dot_u) - co->gamma * u_dot_u;
 	if (double_eq(quad.a, 0))
 		return ;
-	quad.b = 2 * w - 2 * (1 + p2k) * v * u;
-	quad.c = p2d - (1 + p2k) * p2(v);
+	/*printf("a ok \n");*/
+	quad.b = 2 * (d_dot_u * delta_dot_d - co->gamma * delta_dot_u);
+	quad.c = p2(delta_dot_d) - co->gamma * delta_dot_delta;
 	if (!delta_2nd(&quad))
 		return ;
+	/*printf("delta ok \n");*/
 	/*double	dist = dot(co->axis_n, vec_sub(get_point(start, ray, quad.root), co->center));*/
 	/*if (dist <= co->height && dist > 0) // c fo*/
+	if (quad.root * d_dot_u + delta_dot_d <= co->height && quad.root * d_dot_u + delta_dot_d > 0)
 	push_inter((t_type *)co, co->color, quad.root, inter, CONE);
 }
 

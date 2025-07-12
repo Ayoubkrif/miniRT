@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 07:34:12 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:09:36 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_co
 
 	t_vect	apex;
 	float	radius;
-	float	k;
+	float	gamma;
 }	t_co;
 
 #endif
