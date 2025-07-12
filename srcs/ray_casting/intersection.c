@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 10:28:01 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 16:40:59 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,28 @@ void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 	double		delta_dot_u = dot(delta, ray);
 	double		delta_dot_delta = dot(delta, delta);
 
-	quad.a = p2(d_dot_u) - co->gamma * u_dot_u;
+	quad.a = (p2(d_dot_u) - co->gamma * u_dot_u);
 	if (double_eq(quad.a, 0))
 		return ;
-	/*printf("a ok \n");*/
-	quad.b = 2 * (d_dot_u * delta_dot_d - co->gamma * delta_dot_u);
-	quad.c = p2(delta_dot_d) - co->gamma * delta_dot_delta;
-	if (!delta_2nd(&quad))
+	quad.b = 2 * (d_dot_u * delta_dot_d - (co->gamma * delta_dot_u));
+	quad.c = p2(delta_dot_d) - (co->gamma * delta_dot_delta);
+
+	quad.delta = p2(quad.b) - (4 * quad.a * quad.c);
+	if (quad.delta < -EPSILON)
 		return ;
-	/*printf("delta ok \n");*/
-	/*double	dist = dot(co->axis_n, vec_sub(get_point(start, ray, quad.root), co->center));*/
-	/*if (dist <= co->height && dist > 0) // c fo*/
-	if (quad.root * d_dot_u + delta_dot_d <= co->height && quad.root * d_dot_u + delta_dot_d > 0)
-	push_inter((t_type *)co, co->color, quad.root, inter, CONE);
+	quad.sq_delta = sqrt(quad.delta);
+	double	limit;
+
+	quad.root = (-quad.b - quad.sq_delta)
+		/ (2 * quad.a);
+	limit = quad.root * d_dot_u + delta_dot_d;
+	if (limit <= co->height && limit > 0)
+		push_inter((t_type *)co, co->color, quad.root, inter, CONE);
+	quad.root = (-quad.b + quad.sq_delta)
+		/ (2 * quad.a);
+	limit = quad.root * d_dot_u + delta_dot_d;
+	if (limit <= co->height && limit > 0)
+		push_inter((t_type *)co, co->color, quad.root, inter, CONE);
 }
 
 void	inter_plane(t_vect ray, t_pl *pl, t_inter *inter, t_vect start)
