@@ -6,12 +6,13 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/10 14:13:03 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 09:24:23 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "define.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -35,7 +36,14 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	if (tok[4])
 		sp->reflexion = atof(tok[4]);
 	else
-		sp->reflexion = 0;
+		return (print_error(REFLEXION, "sphere"));
+	if (tok[5])
+	{
+		if (!ft_strcmp(tok[5], "checker\n"))
+			sp->map = 0;
+	}
+	else
+		sp->map = -1;
 
 	set_sp(sp);
 	return (0);
@@ -71,7 +79,14 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	if (tok[6])
 		cy->reflexion = atof(tok[6]);
 	else
-		cy->reflexion = 0;
+		return (print_error(REFLEXION, "cylinder"));
+	if (tok[7])
+	{
+		if (!ft_strcmp(tok[7], "checker"))
+			cy->map = 0;
+	}
+	else
+		cy->map = -1;
 
 	cy->axis_n = normalize(cy->axis_n);
 	set_cy(cy);
@@ -103,7 +118,16 @@ int	get_plane_info(char **tok, t_rt *rt)
 	if (tok[4])
 		pl->reflexion = atof(tok[4]);
 	else
-		pl->reflexion = 0;
+		return (print_error(REFLEXION, "plane"));
+	if (tok[5])
+	{
+		if (!ft_strcmp(tok[5], "checker\n"))
+		{
+			pl->map = 0;
+		}
+	}
+	else
+		pl->map = -1;
 
 	pl->normal_n = normalize(pl->normal_n);
 	set_pl(pl);
@@ -140,7 +164,14 @@ int	get_cone_info(char **tok, t_rt *rt)
 	if (tok[6])
 		co->reflexion = atof(tok[6]);
 	else
-		co->reflexion = 0;
+		return (print_error(REFLEXION, "cone"));
+	if (tok[7])
+	{
+		if (!ft_strcmp(tok[7], "checker"))
+			co->map = 0;
+	}
+	else
+		co->map = -1;
 
 	co->axis_n = normalize(co->axis_n);
 	co->apex = get_point_t(co->center, co->axis_n, co->height);

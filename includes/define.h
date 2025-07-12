@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/08 13:26:28 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 09:27:47 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@
 # define COLOR "Wrong range for color :"
 # define FOV "Wrong range for fov :"
 # define BRIGHTNESS "Wrong range for brightness :"
+# define REFLEXION "No reflexion :"
 
-#define KA 0.2
-#define KD 0.5
+#define KA 0.3
+#define KD 0.7
 #define KS 0.9
 #define ALPHA_S 200
 

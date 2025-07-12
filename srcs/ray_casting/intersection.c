@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/11 11:50:22 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 07:51:58 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,22 @@ void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode)
 {
 	if (t > EPSILON && (!inter->obj || inter->t > t))
 	{
-		*inter = (t_inter){t, color, obj, mode, 0};
+		*inter = (t_inter){t, color, obj, mode, 0, 0};
 		if (mode == SPHERE)
+		{
 			inter->reflexion = ((t_sp *)obj)->reflexion;
+			inter->map = ((t_sp *)obj)->map;
+		}
 		if (mode == PLANE)
+		{
 			inter->reflexion = ((t_pl *)obj)->reflexion;
+			inter->map = ((t_pl *)obj)->map;
+		}
 		if (mode == CYLINDER || mode == DISK_BOT || mode == DISK_TOP)
+		{
 			inter->reflexion = ((t_cy *)obj)->reflexion;
+			inter->map = ((t_cy *)obj)->map;
+		}
 	}
 }
 

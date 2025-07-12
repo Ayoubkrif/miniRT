@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/11 17:33:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 08:51:04 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,11 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 	}
 	phong.reflected = vec_sub(vec_mul(phong.normal_n, 2 * phong.dot_normal_ray), vec_mul(ray, -1));
 	phong.solid_color = phong.inter_ray.color;
-	if (phong.inter_ray.mode == SPHERE)
+	if (phong.inter_ray.mode == SPHERE && phong.inter_ray.map == 0)
 		phong.solid_color = get_sp_checkerboard(phong.point_ray, (t_sp *)phong.inter_ray.obj);
-	if (phong.inter_ray.mode == PLANE)
+	if (phong.inter_ray.mode == PLANE && phong.inter_ray.map == 0)
 		phong.solid_color = get_pl_checkerboard(phong.point_ray, (t_pl *)phong.inter_ray.obj);
-	if (phong.inter_ray.mode == CYLINDER)
+	if (phong.inter_ray.mode == CYLINDER && phong.inter_ray.map == 0)
 		phong.solid_color = get_cy_checkerboard(phong.point_ray, (t_cy *)phong.inter_ray.obj);
 	return (reflect_phong(rt, ray, phong, precision));
 }
