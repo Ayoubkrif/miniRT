@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:49:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/22 13:53:09 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 15:31:44 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,14 @@ int	vect_col(t_vect u, t_vect v)
 	y_div = u.y / v.y;
 	z_div = u.z / v.z;
 	return (double_eq(x_div, y_div) && double_eq(x_div, z_div));
+}
+
+t_vect	op(t_vect u)
+{
+	return ((t_vect)
+		{
+			-u.x,
+			-u.y,
+			-u.z,
+		});
 }
