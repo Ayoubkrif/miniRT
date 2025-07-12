@@ -6,11 +6,19 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 08:56:54 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/08 13:40:40 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:01:01 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+static t_vect	normal_cone(t_co *co, t_vect point)
+{
+	t_vect	cy_n;
+
+	cy_n = normalize(vec_sub(point, vec_add(co->apex, vec_mul(co->axis_n, dot(co->axis_n, vec_sub(point, co->apex)) / dot(co->axis_n, co->axis_n)))));
+	return (vec_add(vec_mul(cy_n, cos(co->theta)), vec_mul(co->axis_n, -sin(co->theta))));
+}
 
 static t_vect	normal_cylinder(t_cy *cy, t_vect point)
 {
@@ -34,8 +42,8 @@ t_vect	normal_vect(t_inter inter, t_vect point)
 	{
 		return (normal_cylinder((t_cy *)inter.obj, point));
 	}
-	if (inter.mode == DISK_BOT)
-		return (((t_cy *)inter.obj)->axis_n);
+	if (inter.mode == CONE)
+		return (normal_cone((t_co *)inter.obj, point));
 	else
 		return (((t_cy *)inter.obj)->axis_n);
 }
