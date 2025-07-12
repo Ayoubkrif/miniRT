@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/12 15:00:06 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 15:21:26 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ int	get_cone_info(char **tok, t_rt *rt)
 
 	co->axis_n = normalize(co->axis_n);
 	co->apex = get_point_t(co->center, co->axis_n, co->height);
-	co->axis_n = vec_mul(co->axis_n, -1);
 	co->radius = co->diameter / 2;
 	co->gamma = p2(co->height) / (p2(co->radius) + p2(co->height));
 	co->theta = atan(co->height / co->radius);

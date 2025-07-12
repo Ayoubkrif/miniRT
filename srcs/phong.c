@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 14:58:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/12 15:13:13 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ typedef struct s_phong
 
 #define N_REFLECTION 5
 
-void	add_lights(t_rgb *light_color, t_rgb diffuse, t_rgb specular, t_light light)
+void	add_lights(t_rgb *light_color, t_rgb diffuse, t_rgb specular)
 {
-	(void)light;
 	*light_color = color_add(*light_color, color_add(diffuse, specular));
 }
 
-//(t_rgb){}
 t_rgb	diffuse_color(t_phong *phong, t_light light)
 {
 	float	kd;
@@ -78,7 +76,7 @@ t_rgb	blin_phong(t_rt *rt, t_vect ray, t_phong *phong)
 				diffuse = diffuse_color(phong, rt->light[i]);
 				h = normalize(vec_add(phong->light_obj_n, ray));
 				specular = specular_color(phong, rt->light[i], h);
-				add_lights(&lights_color, diffuse, specular, rt->light[i]);
+				add_lights(&lights_color, diffuse, specular);
 			}
 		}
 		i++;

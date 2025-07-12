@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 09:23:49 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:09:58 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 t_rgb	get_sp_checkerboard(t_vect point, t_sp *sp)
 {
-	int	theta;
-	int	phi;
+	int		theta;
+	int		phi;
 	t_vect	p;
 
 	p = vec_sub(point, sp->center);
@@ -34,7 +34,6 @@ t_rgb	get_pl_checkerboard(t_vect point, t_pl *pl)
 	int		alpha;
 	int		beta;
 
-	// printf("pl map is 0 \n");
 	p = vec_sub(point, pl->point);
 	alpha = (int)floor(dot(pl->base.h_normal, p));
 	beta = (int)floor(dot(pl->base.v_normal, p));
