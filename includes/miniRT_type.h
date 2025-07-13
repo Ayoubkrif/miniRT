@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:27:28 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:28:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 14:11:56 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_texture
 typedef struct s_rt
 {
 	t_mlx		mlx;
+	char		name;
 	t_cam		camera;
 	t_light		light[20];
 	int			nb_light;
@@ -78,6 +79,7 @@ typedef struct s_rt
 	int			nb_object;
 	t_type		*object[20];
 	int			menu;
+	char		name5;
 	t_bump		bump;
 	t_texture	texture;
 }	t_rt;

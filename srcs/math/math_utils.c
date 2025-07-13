@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:25:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 16:11:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 14:19:50 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	to_rad(double angle)
 int	delta_2nd(t_quadratic *quad)
 {
 	quad->delta = p2(quad->b) - (4 * quad->a * quad->c);
-	if (quad->delta < -EPSILON)
+	if (quad->delta < 0)
 		return (0);
 	else if (quad->delta > EPSILON)
 	{
@@ -35,10 +35,10 @@ int	delta_2nd(t_quadratic *quad)
 			if (quad->b > quad->sq_delta && quad->b > -quad->sq_delta)
 				return (0);
 			else if (quad->b < quad->sq_delta && quad->b > -quad->sq_delta)
-				return (quad->root = (-quad->b - quad->sq_delta)
+				return (quad->root = (-quad->b + quad->sq_delta)
 					/ (2 * quad->a), 1);
 			else
-				return (quad->root = (-quad->b + quad->sq_delta)
+				return (quad->root = (-quad->b - quad->sq_delta)
 					/ (2 * quad->a), 1);
 		}
 		else
@@ -46,10 +46,10 @@ int	delta_2nd(t_quadratic *quad)
 			if (quad->b < quad->sq_delta && quad->b < -quad->sq_delta)
 				return (0);
 			else if (quad->b > quad->sq_delta && quad->b < -quad->sq_delta)
-				return (quad->root = (-quad->b - quad->sq_delta)
+				return (quad->root = (-quad->b + quad->sq_delta)
 					/ (2 * quad->a), 1);
 			else
-				return (quad->root = (-quad->b + quad->sq_delta) / (2 * quad->a), 1);
+				return (quad->root = (-quad->b - quad->sq_delta) / (2 * quad->a), 1);
 		}
 	}
 	return (quad->root = -quad->b / (2 * quad->a), 1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sp_hook.c                                          :+:      :+:    :+:   */
+/*   hook_sp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 13:20:48 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 14:16:48 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ static void	increase_radius(int keycode, t_sp *sp)
 	if (keycode == XK_KP_Add)
 	{
 		sp->diameter += 0.5;
-		sp->radius += 0.25;
 	}
 	if (keycode == XK_KP_Subtract)
 	{
 		sp->diameter -= 0.5;
-		sp->radius -= 0.25;
 	}
 }
 
@@ -47,5 +45,6 @@ void	modify_sp(int keycode, t_sp *sp)
 {
 	translate_sp(keycode, sp);
 	increase_radius(keycode, sp);
+	set_sp(sp);
 }
 

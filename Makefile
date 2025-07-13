@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/13 13:33:36 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/13 14:11:13 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SOURCES		= main.c \
 
 SRCS		= $(addprefix $(SRC_PATH)/,$(SOURCES))
 OBJS		= $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
+DEPS		= $(addprefix $(OBJ_PATH)/,$(OBJS:.o=.d))
 
 ### COLORS ###
 NOC         = \033[0m
@@ -73,6 +74,8 @@ all: $(NAME)
 $(NAME): tmp lib $(OBJS)
 	@$(CC) $(CFLAGS) -L $(LIBFT) -L $(MLX) -o $@ $(OBJS) -lft -lmlx -lXext -lX11 -lm $(INCLUDES)
 	@echo "$(GREEN)Project successfully compiled$(NOC)"
+
+-include $(DEPS)
 
 clean:
 	@echo "$(RED)Cleaning object files...$(NOC)"
@@ -107,7 +110,7 @@ tmp:
 	@$(foreach dir, $(SRC_DIRS), mkdir -p $(OBJ_PATH)/$(dir);)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ $(INCLUDES)
 	@echo "$(BLUE)Compiling $(WHITE)$(notdir $<)$(BLUE) → $(WHITE)$(notdir $@) $(RED)[OK]$(NOC)"
 
 bear:

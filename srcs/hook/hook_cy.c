@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cy_hook.c                                          :+:      :+:    :+:   */
+/*   hook_cy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 13:21:42 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 14:16:54 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ static void	increase_radius(int keycode, t_cy *cy)
 	if (keycode == XK_KP_Add)
 	{
 		cy->diameter += 0.5;
-		cy->radius += 0.25;
 	}
 	if (keycode == XK_KP_Subtract)
 	{
 		cy->diameter -= 0.5;
-		cy->radius -= 0.25;
 	}
 }
 
@@ -50,10 +48,5 @@ void	modify_cy(int keycode, t_cy *cy)
 {
 	translate_cy(keycode, cy);
 	increase_radius(keycode, cy);
-
-	cy->top = get_point_t(cy->center, cy->axis_n, cy->semi_height);
-	cy->dt = -dot(cy->top, cy->axis_n);
-	cy->bottom
-		= get_point_t(cy->center, vec_mul(cy->axis_n, -1), cy->semi_height);
-	cy->db = -dot(cy->bottom, cy->axis_n);
+	set_cy(cy);
 }
