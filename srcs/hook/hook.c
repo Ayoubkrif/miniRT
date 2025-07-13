@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 13:31:47 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 15:55:17 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,88 +19,8 @@
 void	modify_sp(int keycode, t_sp *sp);
 void	modify_pl(int keycode, t_pl *pl);
 void	modify_cy(int keycode, t_cy *cy);
-
-static void	rotate_cam(int keycode, t_cam *cam)
-{
-	t_vect	temp;
-
-	temp = cam->direction_n;
-	if (keycode == XK_Left)
-	{
-		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.h_normal, SIN));
-		cam->base.h_normal = vec_add(vec_mul(cam->base.h_normal, COS),
-				vec_mul(temp, SIN));
-	}
-	if (keycode == XK_Right)
-	{
-		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.h_normal, SIN));
-		cam->base.h_normal = vec_sub(vec_mul(cam->base.h_normal, COS),
-				vec_mul(temp, SIN));
-	}
-	if (keycode == XK_Up)
-	{
-		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.v_normal, SIN));
-		cam->base.v_normal = vec_sub(vec_mul(cam->base.v_normal, COS),
-				vec_mul(temp, SIN));
-	}
-	if (keycode == XK_Down)
-	{
-		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
-				vec_mul(cam->base.v_normal, SIN));
-		cam->base.v_normal = vec_add(vec_mul(cam->base.v_normal, COS),
-				vec_mul(temp, SIN));
-	}
-}
-
-void	modify_cam(int keycode, t_cam *cam)
-{
-	if (keycode == XK_w)
-		cam->position = vec_add(cam->position, cam->direction_n);
-	if (keycode == XK_s)
-		cam->position = vec_sub(cam->position, cam->direction_n);
-	if (keycode == XK_d)
-		cam->position = vec_add(cam->position, cam->base.h_normal);
-	if (keycode == XK_a)
-		cam->position = vec_sub(cam->position, cam->base.h_normal);
-	if (keycode == XK_space)
-		cam->position = vec_add(cam->position, cam->base.v_normal);
-	if (keycode == XK_Shift_L)
-		cam->position = vec_sub(cam->position, cam->base.v_normal);
-	rotate_cam(keycode, cam);
-	/*set_base(&cam->base, cam->direction_n);*/
-	set_cam_base(cam);
-}
-
-void	modify_co(int keycode, t_co *co)
-{
-	if (keycode == XK_w)
-		co->center = vec_add(co->center, (t_vect){1, 0, 0});
-	if (keycode == XK_s)
-		co->center = vec_sub(co->center, (t_vect){1, 0, 0});
-	if (keycode == XK_a)
-		co->center = vec_add(co->center, (t_vect){0, 1, 0});
-	if (keycode == XK_d)
-		co->center = vec_sub(co->center, (t_vect){0, 1, 0});
-	if (keycode == XK_space)
-		co->center = vec_add(co->center, (t_vect){0, 0, 1});
-	if (keycode == XK_Shift_L)
-		co->center = vec_sub(co->center, (t_vect){0, 0, 1});
-	if (keycode == XK_KP_Add)
-	{
-		co->diameter += 0.5;
-		co->radius += 0.25;
-	}
-	if (keycode == XK_KP_Subtract)
-	{
-		co->diameter -= 0.5;
-		co->radius -= 0.25;
-	}
-	co->gamma = p2(co->height) / (p2(co->radius) + p2(co->height));
-	co->apex = get_point_t(co->center, op(co->axis_n), co->height);
-}
+void	modify_co(int keycode, t_co *co);
+void	modify_cam(int keycode, t_cam *cam);
 
 int	key_hook(int keycode, t_rt *rt)
 {

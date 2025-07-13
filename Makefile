@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/13 14:11:13 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/13 15:54:19 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ SOURCES		= main.c \
 			  math/math_utils.c \
 			  mlx/put_pixel.c \
 			  hook/hook.c \
+			  hook/hook_cam.c \
+			  hook/hook_co.c \
 			  hook/hook_cy.c \
 			  hook/hook_pl.c \
 			  hook/hook_sp.c \
