@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/13 17:49:30 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/13 19:30:58 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SOURCES		= main.c \
 			  keyhook/hook_cy.c \
 			  keyhook/hook_pl.c \
 			  keyhook/hook_sp.c \
-			  math/vect.c math/vect2.c math/vect3.c \
+			  math/vect.c math/vect2.c math/vect3.c math/vect4.c \
 			  set_cam_base.c \
 			  intersection/intersection.c \
 			  intersection/intersection2.c \
