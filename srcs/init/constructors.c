@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 13:29:50 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 16:38:45 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,26 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 		cy->map = -1;
 	cy->axis_n = normalize(cy->axis_n);
 	set_cy(cy);
+
+	cy->topdi.color = &cy->color;
+	cy->topdi.map = cy->map;
+	cy->topdi.reflexion = &cy->reflexion;
+	cy->topdi.center = &cy->center;
+
+	cy->topdi.radius = &cy->radius;
+	cy->topdi.d = &cy->dt;
+	cy->topdi.normal_n = &cy->axis_n;
+	cy->topdi.base = &cy->base;
+
+	cy->bottomdi.color = &cy->color;
+	cy->bottomdi.map = cy->map;
+	cy->bottomdi.reflexion = &cy->reflexion;
+	cy->bottomdi.center = &cy->center;
+
+	cy->bottomdi.radius = &cy->radius;
+	cy->bottomdi.d = &cy->dt;
+	cy->bottomdi.normal_n = &cy->axis_n;
+	cy->bottomdi.base = &cy->base;
 	return (0);
 }
 

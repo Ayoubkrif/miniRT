@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:56:38 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 16:40:20 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 
 void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode);
 
-void	inter_disc(t_vect ray, t_di *cy, t_inter *inter, t_vect start)
+void	inter_disc(t_vect ray, t_di *di, t_inter *inter, t_vect start)
 {
 	double	dot_n_ray;
 	double	dot_axis_start;
 	double	t;
 
-	dot_n_ray = dot(ray, cy->normal_n);
+	dot_n_ray = dot(ray, *di->normal_n);
 	if (double_eq(dot_n_ray, 0))
 		return ;
-	dot_axis_start = dot(cy->normal_n, start);
-	t = - (dot_axis_start + cy->d) / dot_n_ray;
-	if (norm(vec_sub(cy->center, get_point(start, ray, t))) < cy->radius)
-		push_inter((t_type *)cy, cy->color, t, inter, DISK);
+	dot_axis_start = dot(*di->normal_n, start);
+	t = - (dot_axis_start + *di->d) / dot_n_ray;
+	if (norm(vec_sub(*di->center, get_point(start, ray, t))) < *di->radius)
+		push_inter((t_type *)di, *di->color, t, inter, DISK);
 }
 
 void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)

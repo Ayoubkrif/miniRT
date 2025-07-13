@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 14:07:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 16:44:26 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ typedef struct s_pl
 typedef struct s_di
 {
 	t_type	type;
-	t_vect	center;
-	t_vect	normal_n;
-	float	diameter;
-	t_rgb	color;
-	float	reflexion;
+	t_type	*from;
+	t_vect	*center;
+	t_vect	*normal_n;
+	t_rgb	*color;
+	float	*reflexion;
 	int		map;
 
-	t_base	base;
-	float	radius;
-	double	d;
+	t_base	*base;
+	float	*radius;
+	double	*d;
 }	t_di;
 
 typedef struct s_cy
