@@ -6,11 +6,12 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 15:55:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 16:11:34 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include "mlx.h"
 #include <X11/keysym.h>
 
 #define SIN	0.26
@@ -21,6 +22,38 @@ void	modify_pl(int keycode, t_pl *pl);
 void	modify_cy(int keycode, t_cy *cy);
 void	modify_co(int keycode, t_co *co);
 void	modify_cam(int keycode, t_cam *cam);
+
+int	select_solid(int button, int x, int y, t_rt *rt)
+{
+	t_vect	ray;
+	t_type	*obj;
+	int		i;
+
+	if (button == 1)
+	{
+		if (x < WIN_X && x >= 0)
+			x -= WIN_X / 2;
+		else
+			return (1);
+		if (y < WIN_Y && y >= 0)
+			y = -y + WIN_Y / 2;
+		else
+			return (1);
+	}
+	else
+		return (1);
+	ray = ray_from_camera_to_objects(rt->camera, x, y);
+	obj = nearest_inter(rt, ray, rt->camera.position).obj;
+	if (!obj)
+		return (1);
+	i = 0;
+	while (rt->object[i] != obj)
+		i++;
+	rt->menu = i + 1;
+	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);
+	put_string(rt);
+	return (0);
+}
 
 int	key_hook(int keycode, t_rt *rt)
 {

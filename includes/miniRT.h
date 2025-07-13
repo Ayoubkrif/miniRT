@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:34:13 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 16:10:56 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	set_sp(t_sp *sp);
 int		get_cylinder_info(char **tok, t_rt *rt);
 void	set_cy(t_cy *cy);
 int		get_plane_info(char **tok, t_rt *rt);
-int	get_cone_info(char **tok, t_rt *rt);
+int		get_cone_info(char **tok, t_rt *rt);
 
 void	set_pl(t_pl *pl);
 void	set_cam_base(t_cam *cam);
@@ -46,6 +46,8 @@ void	free_rt(t_rt *rt);
 int		exit_minirt(t_rt *rt);
 
 int		key_hook(int keycode, t_rt *rt);
+int		select_solid(int button, int x, int y, t_rt *rt);
+
 void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color);
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
 void	put_string(t_rt *rt);
