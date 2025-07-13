@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 15:49:21 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 15:56:33 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ void	modify_cam(int keycode, t_cam *cam)
 {
 	translate_cam(keycode, cam);
 	rotate_cam(keycode, cam);
-	/*set_base(&cam->base, cam->direction_n);*/
 	set_cam_base(cam);
 }

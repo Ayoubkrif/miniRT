@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 14:16:48 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 15:56:21 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ void	modify_sp(int keycode, t_sp *sp)
 	increase_radius(keycode, sp);
 	set_sp(sp);
 }
-

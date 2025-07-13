@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/13 15:54:19 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/13 15:58:23 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SOURCES		= main.c \
 			  phong.c \
 			  print/print_scene.c print/put_string.c print/ftoa.c \
 			  utils.c utils_rt.c \
-			  exit_minirt.c \
+			  mlx/exit_minirt.c \
 			  colors_utils.c \
 			  checker_board.c \
 
