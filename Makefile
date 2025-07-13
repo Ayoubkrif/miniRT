@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/13 12:50:18 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/13 13:33:36 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 SRC_PATH	= srcs
 OBJ_PATH	= objs
 
-SRC_DIRS	= math init print key_hook mlx intersection
+SRC_DIRS	= math init print key_hook mlx intersection hook
 SRC_DIRS_PATHS = $(addprefix $(SRC_PATH)/,$(SRC_DIRS))
 
 LIBFT		= libft
@@ -32,9 +32,13 @@ SOURCES		= main.c \
 			  init/constructors.c \
 			  init/constructors_utils.c \
 			  init/constructors_base.c \
+			  init/solids_set.c \
 			  math/math_utils.c \
 			  mlx/put_pixel.c \
-			  mlx/key_hook.c \
+			  hook/hook.c \
+			  hook/hook_cy.c \
+			  hook/hook_pl.c \
+			  hook/hook_sp.c \
 			  math/vect.c math/vect2.c math/vect3.c \
 			  set_cam_base.c \
 			  intersection/intersection.c \

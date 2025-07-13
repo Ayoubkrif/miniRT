@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:33:10 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:51:39 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	main(int ac, char *av[])
 	window_cast(&rt);
 	mlx_hook(rt.mlx.win, EVENT_KEY_PRESS, 1L << 0, key_hook, &rt);
 	mlx_hook(rt.mlx.win, EVENT_DESTROY, 1L << 0, exit_minirt, &rt);
-	/*mlx_hook(rt.mlx.win, EVENT_MOUSE_RELEASE, 1L << 0, select_solid, &rt);*/
 	mlx_mouse_hook(rt.mlx.win, select_solid, &rt);
 	mlx_loop(rt.mlx.disp);
 	return (0);

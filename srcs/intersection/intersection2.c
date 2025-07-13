@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:45:59 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:56:38 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@
 #include <stdio.h>
 
 void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode);
+
+void	inter_disc(t_vect ray, t_di *cy, t_inter *inter, t_vect start)
+{
+	double	dot_n_ray;
+	double	dot_axis_start;
+	double	t;
+
+	dot_n_ray = dot(ray, cy->normal_n);
+	if (double_eq(dot_n_ray, 0))
+		return ;
+	dot_axis_start = dot(cy->normal_n, start);
+	t = - (dot_axis_start + cy->d) / dot_n_ray;
+	if (norm(vec_sub(cy->center, get_point(start, ray, t))) < cy->radius)
+		push_inter((t_type *)cy, cy->color, t, inter, DISK);
+}
 
 void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 {
@@ -30,10 +45,10 @@ void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	dot_axis_start = dot(cy->axis_n, start);
 	t = - (dot_axis_start + cy->dt) / dot_n_ray;
 	if (norm(vec_sub(cy->top, get_point(start, ray, t))) < cy->radius)
-		push_inter((t_type *)cy, cy->color, t, inter, DISK_TOP);
+		push_inter((t_type *)cy, cy->color, t, inter, DISK);
 	t = - (dot_axis_start + cy->db) / dot_n_ray;
 	if (norm(vec_sub(cy->bottom, get_point(start, ray, t))) < cy->radius)
-		push_inter((t_type *)cy, cy->color, t, inter, DISK_BOT);
+		push_inter((t_type *)cy, cy->color, t, inter, DISK);
 }
 
 void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:45:07 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:56:46 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode)
 			inter->reflexion = ((t_pl *)obj)->reflexion;
 			inter->map = ((t_pl *)obj)->map;
 		}
-		if (mode == CYLINDER || mode == DISK_BOT || mode == DISK_TOP)
+		if (mode == CYLINDER || mode == DISK || mode == DISK)
 		{
 			inter->reflexion = ((t_cy *)obj)->reflexion;
 			inter->map = ((t_cy *)obj)->map;

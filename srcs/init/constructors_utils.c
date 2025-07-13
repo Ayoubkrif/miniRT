@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/11 17:20:19 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 13:30:19 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,4 @@ int	fill_rgb(char *str, t_rgb *color, char *error)
 	// if (color->b > 1 || color->b < 0)
 	// 	return (print_error(COLOR, error));
 	return (0);
-}
-
-void	set_cy(t_cy *cy)
-{
-	set_base(&cy->base, cy->axis_n);
-	cy->semi_height = cy->height / 2;
-	cy->radius = cy->diameter / 2;
-	cy->top = get_point_t(cy->center, cy->axis_n, cy->semi_height);
-	cy->dt = -dot(cy->top, cy->axis_n);
-	cy->bottom = get_point_t(cy->center, vec_mul(cy->axis_n, -1),
-			cy->semi_height);
-	cy->db = -dot(cy->bottom, cy->axis_n);
-}
-
-void	set_sp(t_sp *sp)
-{
-	sp->radius = sp->diameter / 2;
-}
-
-void	set_pl(t_pl *pl)
-{
-	pl->d = -dot(pl->point, pl->normal_n);
-	set_base(&pl->base, pl->normal_n);
 }

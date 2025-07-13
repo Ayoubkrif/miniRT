@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 12:35:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 13:31:47 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 #define SIN	0.26
 #define COS 0.97
+
+void	modify_sp(int keycode, t_sp *sp);
+void	modify_pl(int keycode, t_pl *pl);
+void	modify_cy(int keycode, t_cy *cy);
 
 static void	rotate_cam(int keycode, t_cam *cam)
 {
@@ -68,80 +72,6 @@ void	modify_cam(int keycode, t_cam *cam)
 	rotate_cam(keycode, cam);
 	/*set_base(&cam->base, cam->direction_n);*/
 	set_cam_base(cam);
-}
-
-void	modify_sp(int keycode, t_sp *sp)
-{
-	if (keycode == XK_w)
-		sp->center = vec_add(sp->center, (t_vect){1, 0, 0});
-	if (keycode == XK_s)
-		sp->center = vec_sub(sp->center, (t_vect){1, 0, 0});
-	if (keycode == XK_a)
-		sp->center = vec_add(sp->center, (t_vect){0, 1, 0});
-	if (keycode == XK_d)
-		sp->center = vec_sub(sp->center, (t_vect){0, 1, 0});
-	if (keycode == XK_space)
-		sp->center = vec_add(sp->center, (t_vect){0, 0, 1});
-	if (keycode == XK_Shift_L)
-		sp->center = vec_sub(sp->center, (t_vect){0, 0, 1});
-	if (keycode == XK_KP_Add)
-	{
-		sp->diameter += 0.5;
-		sp->radius += 0.25;
-	}
-	if (keycode == XK_KP_Subtract)
-	{
-		sp->diameter -= 0.5;
-		sp->radius -= 0.25;
-	}
-}
-
-void	modify_pl(int keycode, t_pl *pl)
-{
-	if (keycode == XK_w)
-		pl->point = vec_add(pl->point, (t_vect){1, 0, 0});
-	if (keycode == XK_s)
-		pl->point = vec_sub(pl->point, (t_vect){1, 0, 0});
-	if (keycode == XK_a)
-		pl->point = vec_add(pl->point, (t_vect){0, 1, 0});
-	if (keycode == XK_d)
-		pl->point = vec_sub(pl->point, (t_vect){0, 1, 0});
-	if (keycode == XK_space)
-		pl->point = vec_add(pl->point, (t_vect){0, 0, 1});
-	if (keycode == XK_Shift_L)
-		pl->point = vec_sub(pl->point, (t_vect){0, 0, 1});
-	set_pl(pl);
-}
-
-void	modify_cy(int keycode, t_cy *cy)
-{
-	if (keycode == XK_w)
-		cy->center = vec_add(cy->center, (t_vect){1, 0, 0});
-	if (keycode == XK_s)
-		cy->center = vec_sub(cy->center, (t_vect){1, 0, 0});
-	if (keycode == XK_a)
-		cy->center = vec_add(cy->center, (t_vect){0, 1, 0});
-	if (keycode == XK_d)
-		cy->center = vec_sub(cy->center, (t_vect){0, 1, 0});
-	if (keycode == XK_space)
-		cy->center = vec_add(cy->center, (t_vect){0, 0, 1});
-	if (keycode == XK_Shift_L)
-		cy->center = vec_sub(cy->center, (t_vect){0, 0, 1});
-	if (keycode == XK_KP_Add)
-	{
-		cy->diameter += 0.5;
-		cy->radius += 0.25;
-	}
-	if (keycode == XK_KP_Subtract)
-	{
-		cy->diameter -= 0.5;
-		cy->radius -= 0.25;
-	}
-	cy->top = get_point_t(cy->center, cy->axis_n, cy->semi_height);
-	cy->dt = -dot(cy->top, cy->axis_n);
-	cy->bottom
-		= get_point_t(cy->center, vec_mul(cy->axis_n, -1), cy->semi_height);
-	cy->db = -dot(cy->bottom, cy->axis_n);
 }
 
 void	modify_co(int keycode, t_co *co)
