@@ -6,96 +6,18 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 15:10:50 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:34:13 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "math_utils.h"
-# include "miniRT_solids.h"
-// # include "assert.h"
+# include "miniRT_type.h"
+# include "miniRT_inter.h"
 
 # define WIN_X	710
 # define WIN_Y	710
-
-typedef struct s_mlx
-{
-	void	*disp;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_mlx;
-
-typedef struct s_inter
-{
-	double	t;
-	t_rgb	color;
-	t_type	*obj;
-	t_type	mode;
-	float	reflexion;
-	int		map;
-}	t_inter;
-
-typedef struct s_screen
-{
-	t_vect	pix_x;
-	t_vect	pix_y;
-	t_vect	center;
-}	t_screen;
-
-typedef struct s_cam
-{
-	t_vect		position;
-	t_vect		direction_n;
-	float		fov;
-
-	t_base		base;
-	t_screen	screen;
-}	t_cam;
-
-typedef struct s_ambient
-{
-	t_rgb	color;
-}	t_ambient;
-
-typedef struct s_light
-{
-	t_vect	position;
-	t_rgb	color;
-}	t_light;
-
-typedef struct s_bump
-{
-	void		*bump[10];
-	char		*bump_name[10];
-	int			nb_bump;
-}	t_bump;
-
-typedef struct s_texture
-{
-	void		*texture[10];
-	char		*texture_name[10];
-	int			nb_texture;
-}	t_texture;
-
-typedef struct s_rt
-{
-	t_mlx		mlx;
-	t_cam		camera;
-	t_light		light[20];
-	int			nb_light;
-	t_ambient	ambient;
-	int			nb_object;
-	t_type		*object[20];
-	int			menu;
-	t_bump		bump;
-	t_texture	texture;
-}	t_rt;
 
 void	check_args(int argc);
 int		print_error(char *message, char *complement);
@@ -116,15 +38,6 @@ int	get_cone_info(char **tok, t_rt *rt);
 void	set_pl(t_pl *pl);
 void	set_cam_base(t_cam *cam);
 void	set_base(t_base *base, t_vect direction_n);
-
-void	throwing_rays_through_the_wide_universe(t_rt *rt);
-t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start);
-
-void	inter_sphere(t_vect ray, t_sp *sp, t_inter *inter, t_vect start);
-void	inter_cylinder(t_vect ray, t_cy*cy, t_inter *inter, t_vect start);
-void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start);
-void	inter_plane(t_vect ray, t_pl *pl, t_inter *inter, t_vect start);
-void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start);
 
 void	print_solids(t_rt *rt);
 void	print_cam_base(t_rt *rt);

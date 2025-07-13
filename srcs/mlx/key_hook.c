@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/12 15:46:14 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:35:17 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int	key_hook(int keycode, t_rt *rt)
 			if (*rt->object[rt->menu - 1] == CONE)
 				modify_co(keycode, (t_co *)rt->object[rt->menu - 1]);
 		}
-		throwing_rays_through_the_wide_universe(rt);
+		window_cast(rt);
 	}
 	return (0);
 }

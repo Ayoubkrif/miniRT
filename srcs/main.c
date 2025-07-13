@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/03 12:02:25 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:33:10 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	select_solid(int button, int x, int y, t_rt *rt)
 	else
 		return (1);
 	ray = ray_from_camera_to_objects(rt->camera, x, y);
-	obj = add_inter(rt, ray, rt->camera.position).obj;
+	obj = nearest_inter(rt, ray, rt->camera.position).obj;
 	if (!obj)
 		return (1);
 	i = 0;
@@ -87,7 +87,7 @@ int	main(int ac, char *av[])
 	init_mini_rt(&rt, av);
 	set_base(&rt.camera.base, rt.camera.direction_n);
 	set_cam_base(&rt.camera);
-	throwing_rays_through_the_wide_universe(&rt);
+	window_cast(&rt);
 	mlx_hook(rt.mlx.win, EVENT_KEY_PRESS, 1L << 0, key_hook, &rt);
 	mlx_hook(rt.mlx.win, EVENT_DESTROY, 1L << 0, exit_minirt, &rt);
 	/*mlx_hook(rt.mlx.win, EVENT_MOUSE_RELEASE, 1L << 0, select_solid, &rt);*/

@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/12 07:54:47 by cbordeau         ###   ########.fr        #
+#    Updated: 2025/07/13 12:50:18 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,20 +19,28 @@ INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 SRC_PATH	= srcs
 OBJ_PATH	= objs
 
-SRC_DIRS	= math init print key_hook mlx ray_casting
+SRC_DIRS	= math init print key_hook mlx intersection
 SRC_DIRS_PATHS = $(addprefix $(SRC_PATH)/,$(SRC_DIRS))
 
 LIBFT		= libft
 MLX			= minilibx-linux
 
 SOURCES		= main.c \
-			  init/check_arguments.c init/fill_scene.c init/error.c \
-			  init/constructors.c init/constructors_utils.c \
+			  init/check_arguments.c \
+			  init/fill_scene.c \
+			  init/error.c \
+			  init/constructors.c \
+			  init/constructors_utils.c \
 			  init/constructors_base.c \
-			  mlx/put_pixel.c mlx/key_hook.c \
-			  math/vect.c math/vect2.c math/vect3.c math/math_utils.c \
+			  math/math_utils.c \
+			  mlx/put_pixel.c \
+			  mlx/key_hook.c \
+			  math/vect.c math/vect2.c math/vect3.c \
 			  set_cam_base.c \
-			  ray_casting/intersection.c ray_casting/ray_casting.c phong.c \
+			  intersection/intersection.c \
+			  intersection/intersection2.c \
+			  intersection/ray_casting.c\
+			  phong.c \
 			  print/print_scene.c print/put_string.c print/ftoa.c \
 			  utils.c utils_rt.c \
 			  exit_minirt.c \

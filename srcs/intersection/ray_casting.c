@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 07:53:20 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/13 12:31:25 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_rgb	is_it_touching(t_rt *rt, double x, double y);
 
-t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
+t_inter	nearest_inter(t_rt *rt, t_vect ray, t_vect	start)
 {
 	int		i;
 	t_inter	inter;
@@ -41,7 +41,7 @@ t_inter	add_inter(t_rt *rt, t_vect ray, t_vect	start)
 	return (inter);
 }
 
-void	throwing_rays_through_the_wide_universe(t_rt *rt)
+void	window_cast(t_rt *rt)
 {
 	int	i;
 	int	j;
