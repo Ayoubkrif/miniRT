@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 13:06:40 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 16:50:41 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 #include <stdio.h>
 
 t_rgb	is_it_touching(t_rt *rt, double x, double y);
-void	inter_disc(t_vect ray, t_di *cy, t_inter *inter, t_vect start);
 
 t_inter	nearest_inter(t_rt *rt, t_vect ray, t_vect	start)
 {
 	int		i;
 	t_inter	inter;
-	t_cy	*cy;
 
 	i = 0;
 	inter = (t_inter){-1, (t_rgb){0, 0, 0}, NULL, NONE, 0, -1};
@@ -31,10 +29,8 @@ t_inter	nearest_inter(t_rt *rt, t_vect ray, t_vect	start)
 			inter_sphere(ray, (t_sp *)rt->object[i], &inter, start);
 		else if (*rt->object[i] == CYLINDER)
 		{
-			cy = (t_cy *)rt->object[i];
 			inter_cylinder(ray, (t_cy *)rt->object[i], &inter, start);
-			inter_disc(ray, &cy->topdi, &inter, start);
-			inter_disc(ray, &cy->bottomdi, &inter, start);
+			inter_disk(ray, (t_cy *)rt->object[i], &inter, start);
 		}
 		else if (*rt->object[i] == CONE)
 			inter_cone(ray, (t_co *)rt->object[i], &inter, start);

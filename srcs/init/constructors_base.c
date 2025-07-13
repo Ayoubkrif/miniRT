@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 16:00:38 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 19:14:46 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_cam_info(char **tok, t_rt *rt)
 		|| rt->camera.direction_n.y < -1 || rt->camera.direction_n.y > 1
 		|| rt->camera.direction_n.z < -1 || rt->camera.direction_n.z > 1)
 		return (print_error(VECT_NORM, "camera direction"));
-	if (vect_eq(rt->camera.direction_n, vec(0, 0, 0)))
+	if (vect_nul(&rt->camera.direction_n))
 		return (print_error(VECT_NULL, "camera direction"));
 	if (!tok[3])
 		return (print_error(ARGS, "camera fov"));

@@ -1,37 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vect2.c                                            :+:      :+:    :+:   */
+/*   vect4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 10:22:50 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 18:14:10 by aykrifa          ###   ########.fr       */
+/*   Created: 2025/07/13 18:02:04 by aykrifa           #+#    #+#             */
+/*   Updated: 2025/07/13 19:12:46 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "vect.h"
-#include "math_utils.h"
 
-double	norm(t_vect u)
+void	vec_add_to(t_vect *u, t_vect *v)
 {
-	return (sqrt(p2(u.x) + p2(u.y) + p2(u.z)));
+	u->x += v->x;
+	u->y += v->y;
+	u->z += v->z;
 }
 
-t_vect	get_point(t_vect start, t_vect dir, double t)
+void	vec_sub_to(t_vect *u, t_vect *v)
 {
-	return (vec_add(start, vec_mul(dir, t)));
+	u->x -= v->x;
+	u->y -= v->y;
+	u->z -= v->z;
 }
 
-t_vect	get_point_t(t_vect start, t_vect dir, double norm)
+void	vec_mul_to(t_vect *u, double k)
 {
-	double	t;
-
-	t = sqrt(p2(norm) / (p2(dir.x) + p2(dir.y) + p2(dir.z)));
-	return (get_point(start, dir, t));
+	u->x *= k;
+	u->y *= k;
+	u->z *= k;
 }
 
-double	dot(t_vect u, t_vect v)
+void	normalize_to(t_vect *u)
 {
-	return ((u.x * v.x) + (u.y * v.y) + (u.z * v.z));
+	double	temp;
+
+	temp = 1 / norm(*u);
+	vec_mul_to(u, temp);
+}
+
+void	op_to(t_vect *u)
+{
+	u->x *= -1;
+	u->y *= -1;
+	u->z *= -1;
 }

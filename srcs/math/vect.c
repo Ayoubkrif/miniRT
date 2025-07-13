@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:45:57 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/02 14:37:48 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 18:17:11 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,6 @@ t_vect	vec_sub(t_vect u, t_vect v)
 		});
 }
 
-t_vect	vec(double x, double y, double z)
-{
-	return ((t_vect)
-		{
-			x,
-			y,
-			z,
-		});
-}
-
 t_vect	vec_mul(t_vect u, double k)
 {
 	return ((t_vect)
@@ -60,4 +50,9 @@ t_vect	vec_mul(t_vect u, double k)
 			u.y * k,
 			u.z * k,
 		});
+}
+
+t_vect	normalize(t_vect u)
+{
+	return (vec_mul(u, 1 / norm(u)));
 }

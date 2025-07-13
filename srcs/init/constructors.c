@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 13:29:50 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 19:14:35 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	if (cy->axis_n.x < -1 || cy->axis_n.x > 1 || cy->axis_n.y < -1
 		|| cy->axis_n.y > 1 || cy->axis_n.z < -1 || cy->axis_n.z > 1)
 		return (print_error(VECT_NORM, "cylinder axis"));
-	if (vect_eq(cy->axis_n, vec(0, 0, 0)))
+	if (vect_nul(&cy->axis_n))
 		return (print_error(VECT_NULL, "cylinder axis"));
 	if (!tok[3])
 		return (print_error(ARGS, "cylinder diameter"));
@@ -110,7 +110,7 @@ int	get_plane_info(char **tok, t_rt *rt)
 		|| pl->normal_n.y < -1 || pl->normal_n.y > 1
 		|| pl->normal_n.z < -1 || pl->normal_n.z > 1)
 		return (print_error(VECT_NORM, "plane normal"));
-	if (vect_eq(pl->normal_n, vec(0, 0, 0)))
+	if (vect_nul(&pl->normal_n))
 		return (print_error(VECT_NULL, "plane normal"));
 	if (fill_rgb(tok[3], &pl->color, "plane"))
 		return (1);
@@ -149,7 +149,7 @@ int	get_cone_info(char **tok, t_rt *rt)
 	if (co->axis_n.x < -1 || co->axis_n.x > 1 || co->axis_n.y < -1
 		|| co->axis_n.y > 1 || co->axis_n.z < -1 || co->axis_n.z > 1)
 		return (print_error(VECT_NORM, "cone axis"));
-	if (vect_eq(co->axis_n, vec(0, 0, 0)))
+	if (vect_nul(&co->axis_n))
 		return (print_error(VECT_NULL, "cone axis"));
 	if (!tok[3])
 		return (print_error(ARGS, "cone diameter"));
@@ -173,5 +173,3 @@ int	get_cone_info(char **tok, t_rt *rt)
 	co->axis_n = normalize(co->axis_n);
 	return (0);
 }
-
-

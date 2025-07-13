@@ -6,16 +6,16 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:49:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 15:31:44 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 19:11:09 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vect.h"
 #include "math_utils.h"
 
-int	vect_eq(t_vect u, t_vect v)
+int	vect_eq(t_vect *u, t_vect *v)
 {
-	return (double_eq(u.x, v.x) && double_eq(u.y, v.y) && double_eq(u.z, v.z));
+	return (double_eq(u->x, v->x) && double_eq(u->y, v->y) && double_eq(u->z, v->z));
 }
 
 int	vect_col(t_vect u, t_vect v)
@@ -38,4 +38,9 @@ t_vect	op(t_vect u)
 			-u.y,
 			-u.z,
 		});
+}
+
+int	vect_nul(t_vect *u)
+{
+	return (double_eq(u->x, 0) && double_eq(u->y, 0) && double_eq(u->z, 0));
 }

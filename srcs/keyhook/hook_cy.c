@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 14:16:54 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 17:48:25 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,46 @@ static void	increase_radius(int keycode, t_cy *cy)
 	}
 }
 
+static void	rotate_cy(int keycode, t_cy *cy)
+{
+	/*t_vect	temp;*/
+	/**/
+	/*temp = cy->axis_n;*/
+	if (keycode == XK_Left)
+	{
+		cy->axis_n = vec_sub(vec_mul(cy->axis_n, COS),
+				vec_mul(cy->base.h_normal, SIN));
+		/*cy->base.h_normal = vec_add(vec_mul(cy->base.h_normal, COS),*/
+		/*		vec_mul(temp, SIN));*/
+	}
+	if (keycode == XK_Right)
+	{
+		cy->axis_n = vec_add(vec_mul(cy->axis_n, COS),
+				vec_mul(cy->base.h_normal, SIN));
+		/*cy->base.h_normal = vec_sub(vec_mul(cy->base.h_normal, COS),*/
+		/*		vec_mul(temp, SIN));*/
+	}
+	if (keycode == XK_Up)
+	{
+		cy->axis_n = vec_add(vec_mul(cy->axis_n, COS),
+				vec_mul(cy->base.v_normal, SIN));
+		/*cy->base.v_normal = vec_sub(vec_mul(cy->base.v_normal, COS),*/
+		/*		vec_mul(temp, SIN));*/
+	}
+	if (keycode == XK_Down)
+	{
+		cy->axis_n = vec_sub(vec_mul(cy->axis_n, COS),
+				vec_mul(cy->base.v_normal, SIN));
+		/*cy->base.v_normal = vec_add(vec_mul(cy->base.v_normal, COS),*/
+		/*		vec_mul(temp, SIN));*/
+	}
+}
+
 void	modify_cy(int keycode, t_cy *cy)
 {
 	translate_cy(keycode, cy);
+	rotate_cy(keycode, cy);
 	increase_radius(keycode, cy);
+	set_base(&cy->base, cy->axis_n);
 	set_cy(cy);
 }

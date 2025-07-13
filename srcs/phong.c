@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:36:14 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/13 19:28:12 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_rgb	blin_phong(t_rt *rt, t_vect ray, t_phong *phong)
 		phong->light_obj_n = normalize(vec_sub(phong->point_ray, rt->light[i].position));
 		phong->inter_light = nearest_inter(rt, phong->light_obj_n, rt->light[i].position);
 		phong->point_light = get_point(rt->light[i].position, phong->light_obj_n, phong->inter_light.t);
-		if (vect_eq(phong->point_ray, phong->point_light))
+		if (vect_eq(&phong->point_ray, &phong->point_light))
 		{
 			phong->dot_normal_light = dot(vec_mul(phong->light_obj_n, -1), phong->normal_n);
 			if (phong->dot_normal_light > 0)
@@ -120,7 +120,7 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 {
 	t_phong	phong;
 
-	ray = normalize(ray);
+	normalize_to(&ray);
 	phong.inter_ray = nearest_inter(rt, ray, from);
 	if (!phong.inter_ray.obj)
 		return ((t_rgb){0, 0, 0});
