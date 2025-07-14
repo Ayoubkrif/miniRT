@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 10:51:31 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:08:00 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 	quad.c = p2(delta_dot_d) - (co->gamma * delta_dot_delta);
 	if (!delta_2nd(&quad))
 		return ;
-	double limit = dot(co->axis_n, vec_sub(get_point(start, ray, quad.root), co->center));
+	double limit = quad.root * d_dot_u + delta_dot_d;
 	if ( limit <= co->height && limit > 0)
 		push_inter((t_type *)co, co->color, quad.root, inter, CONE);
 }
