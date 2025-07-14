@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/14 13:31:32 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:46:44 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ int	get_cone_info(char **tok, t_rt *rt)
 	co->type = CONE;
 	rt->object[rt->nb_object] = (t_type *)co;
 	rt->nb_object += 1;
-	if (fill_vec(tok[1], &co->center))
-		return (print_error(ARGS, "cone center"));
+	if (fill_vec(tok[1], &co->apex))
+		return (print_error(ARGS, "cone apex"));
 	if (fill_vec(tok[2], &co->axis_n))
 		return (print_error(ARGS, "cone axis"));
 	if (co->axis_n.x < -1 || co->axis_n.x > 1 || co->axis_n.y < -1
@@ -172,7 +172,7 @@ int	get_cone_info(char **tok, t_rt *rt)
 	}
 	else
 		co->map = -1;
-	co->axis_n = normalize(co->axis_n);
+	normalize_to(&co->axis_n);
 	set_co(co);
 	return (0);
 }

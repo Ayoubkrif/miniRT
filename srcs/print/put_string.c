@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:01:20 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/10 13:37:55 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:48:52 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ void	put_co(t_rt *rt)
 	char	res[10];
 
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 160, WIN_Y - 20, 0xFFFFFF, " cone");
-	mlx_string_put(rt->mlx.disp, rt->mlx.win, 230, WIN_Y - 20, 0xFFFFFF, " center :");
-	ftoa(((t_co *)rt->object[rt->menu - 1])->center.x, res, 4);
+	mlx_string_put(rt->mlx.disp, rt->mlx.win, 230, WIN_Y - 20, 0xFFFFFF, " apex :");
+	ftoa(((t_co *)rt->object[rt->menu - 1])->apex.x, res, 4);
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 300, WIN_Y - 20, 0xFFFFFF, res);
-	ftoa(((t_co *)rt->object[rt->menu - 1])->center.y, res, 4);
+	ftoa(((t_co *)rt->object[rt->menu - 1])->apex.y, res, 4);
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 350, WIN_Y - 20, 0xFFFFFF, res);
-	ftoa(((t_co *)rt->object[rt->menu - 1])->center.z, res, 4);
+	ftoa(((t_co *)rt->object[rt->menu - 1])->apex.z, res, 4);
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 400, WIN_Y - 20, 0xFFFFFF, res);
 }
 

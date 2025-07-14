@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 10:26:08 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:58:52 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode)
 		{
 			inter->reflexion = ((t_cy *)obj)->reflexion;
 			inter->map = ((t_cy *)obj)->map;
+		}
+		if (mode == CONE || mode == DISK)
+		{
+			inter->reflexion = ((t_co *)obj)->reflexion;
+			inter->map = ((t_co *)obj)->map;
 		}
 	}
 }

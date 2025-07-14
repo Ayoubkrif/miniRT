@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 13:30:54 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 13:31:08 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:15:09 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	set_pl(t_pl *pl)
 void	set_co(t_co *co)
 {
 	set_base(&co->base, co->axis_n);
-	co->apex = get_point_t(co->center, co->axis_n, co->height);
-	co->axis_n = op(co->axis_n);
 	co->radius = co->diameter / 2;
 	co->gamma = p2(co->height) / (p2(co->radius) + p2(co->height));
-	co->theta = atan(co->height / co->radius);
+	co->theta = atan(co->radius / co->height);
+	co->center = get_point_t(co->apex, co->axis_n, co->height);
+	co->d = -dot(co->center, co->axis_n);
+	/*co->gamma = p2(cos(co->theta));*/
 }
