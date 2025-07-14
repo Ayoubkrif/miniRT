@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 10:44:12 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:11:43 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_rgb	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
 		p = vec_sub(point, cy->top);
 	theta = (int)floor(6 * atan(dot(p, cy->base.h_normal) / dot(p, cy->base.v_normal)) / (PI));
 	alpha = (int)floor(2 * (norm(p) / cy->radius));
-	if (!((theta + alpha) % 2))
+	if ((((theta + alpha) % 2) && mode == DISK_BOT) || (!((theta + alpha) % 2) && mode == DISK_TOP))
 		return ((t_rgb){0, 0, 0});
 	else
 		return (cy->color);

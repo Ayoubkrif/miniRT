@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 10:25:47 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 13:33:22 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_sp
 	t_rgb	color;
 	float	reflexion;
 	int		map;
+	void	*texture;
 
 	float	radius;
 }	t_sp;

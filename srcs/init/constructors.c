@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/14 09:46:41 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 13:31:32 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	{
 		if (!ft_strcmp(tok[5], "checker\n"))
 			sp->map = 0;
+		else
+			;
 	}
 	else
 		sp->map = -1;
