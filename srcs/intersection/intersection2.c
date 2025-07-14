@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 15:18:20 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:40:23 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 	t_quadratic	quad;
 	t_vect		delta = vec_sub(start, co->apex);
 	double		d_dot_u = dot(co->axis_n, ray);
-	double		u_dot_u = dot(ray, ray);
+	double		u_dot_u = dot(ray, ray); //
 	double		delta_dot_d = dot(delta, co->axis_n);
-	double		delta_dot_u = dot(delta, ray);
-	double		delta_dot_delta = dot(delta, delta);
+	double		delta_dot_u = dot(delta, ray); // 
+	double		delta_dot_delta = dot(delta, delta); //
 
 	quad.a = -(p2(d_dot_u) - co->gamma * u_dot_u);
 	if (double_eq(quad.a, 0))

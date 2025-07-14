@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 10:31:19 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 16:53:16 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,14 +134,19 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 	}
 	phong.reflected = vec_sub(vec_mul(phong.normal_n, 2 * phong.dot_normal_ray), vec_mul(ray, -1));
 	phong.solid_color = phong.inter_ray.color;
+
 	if (phong.inter_ray.mode == SPHERE && phong.inter_ray.map == 0)
 		phong.solid_color = get_sp_checkerboard(phong.point_ray, (t_sp *)phong.inter_ray.obj);
 	if (phong.inter_ray.mode == PLANE && phong.inter_ray.map == 0)
 		phong.solid_color = get_pl_checkerboard(phong.point_ray, (t_pl *)phong.inter_ray.obj);
 	if (phong.inter_ray.mode == CYLINDER && phong.inter_ray.map == 0)
 		phong.solid_color = get_cy_checkerboard(phong.point_ray, (t_cy *)phong.inter_ray.obj);
-	if ((phong.inter_ray.mode == DISK_BOT ||  phong.inter_ray.mode == DISK_TOP) && phong.inter_ray.map == 0)
-		phong.solid_color = get_cyd_checkerboard(phong.point_ray, (t_cy *)phong.inter_ray.obj, phong.inter_ray.mode);
+	if ((phong.inter_ray.mode == DISK_BOT ||  phong.inter_ray.mode == DISK_TOP || phong.inter_ray.mode == DISK) && phong.inter_ray.map == 0)
+		phong.solid_color = get_disk_checkerboard(phong.point_ray, phong.inter_ray.obj, phong.inter_ray.mode);
+	if (phong.inter_ray.mode == CONE && phong.inter_ray.map == 0)
+		phong.solid_color = get_co_checkerboard(phong.point_ray, (t_co *)phong.inter_ray.obj);
+
+
 	return (reflect_phong(rt, ray, &phong, precision));
 }
 

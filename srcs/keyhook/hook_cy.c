@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/14 09:28:52 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 17:13:08 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ static void	increase_radius(int keycode, t_cy *cy)
 	if (keycode == XK_KP_Subtract)
 	{
 		cy->diameter -= 0.5;
+	}
+}
+
+static void	increase_height(int keycyde, t_cy *cy)
+{
+	if (keycyde == XK_KP_Multiply)
+	{
+		cy->height += 0.5;
+	}
+	if (keycyde == XK_KP_Divide)
+	{
+		cy->height -= 0.5;
 	}
 }
 
@@ -84,6 +96,7 @@ void	modify_cy(int keycode, t_cy *cy)
 	translate_cy(keycode, cy);
 	rotate_cy(keycode, cy);
 	increase_radius(keycode, cy);
+	increase_height(keycode, cy);
 	/*set_base(&cy->base, cy->axis_n);*/
 	set_cy(cy);
 }

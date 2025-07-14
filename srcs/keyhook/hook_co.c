@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/14 14:54:43 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 17:12:26 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,22 @@ static void	increase_radius(int keycode, t_co *co)
 	}
 }
 
+static void	increase_height(int keycode, t_co *co)
+{
+	if (keycode == XK_KP_Multiply)
+	{
+		co->height += 0.5;
+	}
+	if (keycode == XK_KP_Divide)
+	{
+		co->height -= 0.5;
+	}
+}
+
 void	modify_co(int keycode, t_co *co)
 {
 	increase_radius(keycode, co);
+	increase_height(keycode, co);
 	translate_co(keycode, co);
 	set_co(co);
 }
