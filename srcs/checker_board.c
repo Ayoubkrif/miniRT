@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 15:09:58 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 10:44:12 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,27 @@ t_rgb	get_cy_checkerboard(t_vect point, t_cy *cy)
 	t_vect	p;
 
 	p = vec_sub(point, cy->center);
-	theta = (int)floor(5 * atan(p.x / p.y) / (PI));
-	alpha = (int)floor(1.5 * dot(cy->axis_n, p));
+	theta = (int)floor(6 * atan(dot(p, cy->base.h_normal) / dot(p, cy->base.v_normal)) / (PI));	
+	alpha = (int)floor(3 * dot(cy->axis_n, p));
 	if ((theta + alpha) % 2)
+		return ((t_rgb){0, 0, 0});
+	else
+		return (cy->color);
+}
+
+t_rgb	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
+{
+	int		theta;
+	int		alpha;
+	t_vect	p;
+
+	if (mode == DISK_BOT)
+		p = vec_sub(point, cy->bottom);
+	else
+		p = vec_sub(point, cy->top);
+	theta = (int)floor(6 * atan(dot(p, cy->base.h_normal) / dot(p, cy->base.v_normal)) / (PI));
+	alpha = (int)floor(2 * (norm(p) / cy->radius));
+	if (!((theta + alpha) % 2))
 		return ((t_rgb){0, 0, 0});
 	else
 		return (cy->color);

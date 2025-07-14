@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 16:49:13 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 10:25:47 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef enum e_type
 	SPHERE,
 	PLANE,
 	CONE,
+	DISK_BOT,
+	DISK_TOP,
 	DISK
 }	t_type;
 

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 16:49:39 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 10:51:31 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	dot_axis_start = dot(cy->axis_n, start);
 	t = - (dot_axis_start + cy->dt) / dot_n_ray;
 	if (norm(vec_sub(cy->top, get_point(start, ray, t))) < cy->radius)
-		push_inter((t_type *)cy, cy->color, t, inter, DISK);
+		push_inter((t_type *)cy, cy->color, t, inter, DISK_TOP);
 	t = - (dot_axis_start + cy->db) / dot_n_ray;
 	if (norm(vec_sub(cy->bottom, get_point(start, ray, t))) < cy->radius)
-		push_inter((t_type *)cy, cy->color, t, inter, DISK);
+		push_inter((t_type *)cy, cy->color, t, inter, DISK_BOT);
 }
 
 void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
@@ -72,21 +72,9 @@ void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 		return ;
 	quad.b = 2 * (d_dot_u * delta_dot_d - (co->gamma * delta_dot_u));
 	quad.c = p2(delta_dot_d) - (co->gamma * delta_dot_delta);
-
-	quad.delta = p2(quad.b) - (4 * quad.a * quad.c);
-	if (quad.delta < -EPSILON)
+	if (!delta_2nd(&quad))
 		return ;
-	quad.sq_delta = sqrt(quad.delta);
-	double	limit;
-
-	quad.root = (-quad.b - quad.sq_delta)
-		/ (2 * quad.a);
-	limit = quad.root * d_dot_u + delta_dot_d;
-	if (limit <= co->height && limit > 0)
-		push_inter((t_type *)co, co->color, quad.root, inter, CONE);
-	quad.root = (-quad.b + quad.sq_delta)
-		/ (2 * quad.a);
-	limit = quad.root * d_dot_u + delta_dot_d;
-	if (limit <= co->height && limit > 0)
+	double limit = dot(co->axis_n, vec_sub(get_point(start, ray, quad.root), co->center));
+	if ( limit <= co->height && limit > 0)
 		push_inter((t_type *)co, co->color, quad.root, inter, CONE);
 }

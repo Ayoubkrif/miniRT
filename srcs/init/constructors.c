@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 19:14:35 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 09:46:41 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,6 @@ int	get_cone_info(char **tok, t_rt *rt)
 	else
 		co->map = -1;
 	co->axis_n = normalize(co->axis_n);
+	set_co(co);
 	return (0);
 }

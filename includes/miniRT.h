@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 16:10:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 10:31:41 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ int		get_cam_info(char **tok, t_rt *rt);
 int		get_light_info(char **tok, t_rt *rt);
 int		get_ambient_info(char **tok, t_rt *rt);
 int		get_sphere_info(char **tok, t_rt *rt);
-void	set_sp(t_sp *sp);
 int		get_cylinder_info(char **tok, t_rt *rt);
-void	set_cy(t_cy *cy);
 int		get_plane_info(char **tok, t_rt *rt);
 int		get_cone_info(char **tok, t_rt *rt);
 
+void	set_co(t_co *co);
+void	set_cy(t_cy *cy);
 void	set_pl(t_pl *pl);
+void	set_sp(t_sp *sp);
 void	set_cam_base(t_cam *cam);
 void	set_base(t_base *base, t_vect direction_n);
 
@@ -63,5 +64,6 @@ t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);
 t_rgb	get_sp_checkerboard(t_vect point, t_sp *sp);
 t_rgb	get_pl_checkerboard(t_vect point, t_pl *pl);
 t_rgb	get_cy_checkerboard(t_vect point, t_cy *cy);
+t_rgb	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode);
 
 #endif

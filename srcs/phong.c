@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 19:28:12 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/14 10:31:19 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 		phong.solid_color = get_pl_checkerboard(phong.point_ray, (t_pl *)phong.inter_ray.obj);
 	if (phong.inter_ray.mode == CYLINDER && phong.inter_ray.map == 0)
 		phong.solid_color = get_cy_checkerboard(phong.point_ray, (t_cy *)phong.inter_ray.obj);
+	if ((phong.inter_ray.mode == DISK_BOT ||  phong.inter_ray.mode == DISK_TOP) && phong.inter_ray.map == 0)
+		phong.solid_color = get_cyd_checkerboard(phong.point_ray, (t_cy *)phong.inter_ray.obj, phong.inter_ray.mode);
 	return (reflect_phong(rt, ray, &phong, precision));
 }
 
