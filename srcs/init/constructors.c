@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/15 12:57:18 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:47:55 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,8 @@ int	get_cone_info(char **tok, t_rt *rt)
 		else
 		{
 			co->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], &co->texture.width, &co->texture.height);
+			if (!co->texture.img)
+				printf("i dont have a xpm\n");
 			co->map = 1;
 		}
 	}

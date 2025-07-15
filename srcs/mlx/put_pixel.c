@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:00:10 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 12:30:00 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:57:49 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)
 				+ x * (rt->mlx.bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
+}
+
+int	my_mlx_pixel_get(t_img *img, int x, int y)
+{
+	char	*dst;
+
+	dst = img->data + (y * img->size_line
+			+ x * (img->bpp / 8));
+	return (*(unsigned int *)dst);
 }
 
 void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color)

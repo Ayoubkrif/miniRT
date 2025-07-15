@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/15 10:01:11 by cbordeau         ###   ########.fr        #
+#    Updated: 2025/07/15 17:51:05 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 SRC_PATH	= srcs
 OBJ_PATH	= objs
 
-SRC_DIRS	= math init print key_hook mlx intersection keyhook
+SRC_DIRS	= math init print key_hook mlx intersection keyhook checkerboard
 SRC_DIRS_PATHS = $(addprefix $(SRC_PATH)/,$(SRC_DIRS))
 
 LIBFT		= libft
@@ -52,7 +52,7 @@ SOURCES		= main.c \
 			  utils.c utils_rt.c \
 			  mlx/exit_minirt.c \
 			  colors_utils.c \
-			  checker_board.c \
+			  checkerboard/checker_board.c \
 
 
 SRCS		= $(addprefix $(SRC_PATH)/,$(SOURCES))
