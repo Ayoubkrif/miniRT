@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 16:09:47 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 12:48:08 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	get_scene_info(t_rt *rt, char **av);
 
 void	init_mini_rt(t_rt *rt, char **av)
 {
-	get_scene_info(rt, av);
 	rt->mlx.disp = mlx_init();
 	if (!rt->mlx.disp)
 		(printf("init failed\n"), exit(1));
@@ -32,6 +31,7 @@ void	init_mini_rt(t_rt *rt, char **av)
 		(printf("img failed\n"), exit(1));
 	rt->mlx.addr = mlx_get_data_addr(rt->mlx.img, &rt->mlx.bits_per_pixel,
 			&rt->mlx.line_length, &rt->mlx.endian);
+	get_scene_info(rt, av);
 }
 
 void	free_rt(t_rt *rt)

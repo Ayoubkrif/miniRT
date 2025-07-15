@@ -5,6 +5,8 @@
 !srcs/*
 !srcs/*/*.c
 !scene
+!texture
+!texture/*
 !scene/*.rt
 !includes
 !includes/*.h

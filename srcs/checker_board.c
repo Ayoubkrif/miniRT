@@ -6,30 +6,56 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:45:56 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 13:57:48 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "stdio.h"
+#include	"mlx_int.h"
+#include <assert.h>
 
 #define CHECK_R 255
 #define CHECK_G 0
 #define CHECK_B 255
-#define CHECK_COLOR 0xFFFFFF
+#define CHECK_COLOR 0xF000FF
+
+int	my_mlx_pixel_get(t_img *img, int x, int y);
+
+int	my_mlx_pixel_get(t_img *img, int x, int y)
+{
+	char	*dst;
+
+	// printf("x is %d, y is %d\n", x, y);
+	dst = img->data + (y * img->size_line
+			+ x * (img->bpp / 8));
+	return (*(unsigned int *)dst);
+}
 
 int	get_sp_checkerboard(t_vect point, t_sp *sp)
 {
 	float		theta;
 	float		phi;
-	t_vect	p;
+	t_vect		p;
+	t_img		*img;
 
+	img = sp->texture.img;
 	p = vec_sub(point, sp->center);
-	phi = floor(10 * atan(p.x / p.y) / (PI));
-	theta = floor(10 * acos(p.z / sp->radius) / (PI));
+	phi = (atan(p.x / p.y) / (PI)) + 0.5;
+	theta = acos(p.z / sp->radius) / (PI);
+	if (phi < 0)
+	{
+		printf("theta is %f, phi is %f\n", theta, phi);
+		phi = 0;
+	}
+	if (phi > 1)
+	{
+		printf("theta is %f, phi is %f\n", theta, phi);
+		phi = 1;
+	}
 	if (sp->map == 1)
-		;
-	if ((int)(theta + phi) % 2)
+		return (my_mlx_pixel_get(img, phi * img->width, (theta) * img->height));
+	if ((int)(floor(10 * theta) + floor(10 * phi)) % 2)
 		return (CHECK_COLOR);
 	else
 		return (sp->color);
@@ -49,6 +75,7 @@ int	get_pl_checkerboard(t_vect point, t_pl *pl)
 	else
 		return (pl->color);
 }
+		// return (*(img->data + (int)((theta / 10) * img->width + (phi / 10) * img->height * img->bpp / 8)));
 
 int	get_cy_checkerboard(t_vect point, t_cy *cy)
 {

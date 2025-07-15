@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:34:29 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:54:12 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_SOLIDS_H
 
 # include "math_utils.h"
+#include	"mlx_int.h"
 
 typedef struct s_rgb
 {
@@ -30,9 +31,9 @@ typedef struct s_base
 
 typedef struct s_texture
 {
-	void	*img;
-	int		*width;
-	int		*height;
+	t_img	*img;
+	int		width;
+	int		height;
 }	t_texture;
 
 typedef enum e_type

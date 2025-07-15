@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/15 09:43:43 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:57:18 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int	get_sphere_info(char **tok, t_rt *rt)
 			sp->map = 0;
 		else
 		{
-			sp->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], sp->texture.width, sp->texture.height);
+			sp->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], &sp->texture.width, &sp->texture.height);
+			if (!sp->texture.img)
+				printf("i dont have a xpm\n");
 			sp->map = 1;
 		}
 	}
@@ -96,7 +98,7 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 			cy->map = 0;
 		else
 		{
-			cy->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], cy->texture.width, cy->texture.height);
+			cy->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], &cy->texture.width, &cy->texture.height);
 			cy->map = 1;
 		}
 	}
@@ -141,7 +143,7 @@ int	get_plane_info(char **tok, t_rt *rt)
 			pl->map = 0;
 		else
 		{
-			pl->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], pl->texture.width, pl->texture.height);
+			pl->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], &pl->texture.width, &pl->texture.height);
 			pl->map = 1;
 		}
 	}
@@ -191,7 +193,7 @@ int	get_cone_info(char **tok, t_rt *rt)
 			co->map = 0;
 		else
 		{
-			co->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], co->texture.width, co->texture.height);
+			co->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], &co->texture.width, &co->texture.height);
 			co->map = 1;
 		}
 	}
