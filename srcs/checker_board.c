@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 13:57:48 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:49:41 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	my_mlx_pixel_get(t_img *img, int x, int y)
 {
 	char	*dst;
 
-	// printf("x is %d, y is %d\n", x, y);
 	dst = img->data + (y * img->size_line
 			+ x * (img->bpp / 8));
 	return (*(unsigned int *)dst);
@@ -41,18 +40,12 @@ int	get_sp_checkerboard(t_vect point, t_sp *sp)
 
 	img = sp->texture.img;
 	p = vec_sub(point, sp->center);
-	phi = (atan(p.x / p.y) / (PI)) + 0.5;
-	theta = acos(p.z / sp->radius) / (PI);
+	phi = atan2(p.y, p.x);
 	if (phi < 0)
-	{
-		printf("theta is %f, phi is %f\n", theta, phi);
-		phi = 0;
-	}
-	if (phi > 1)
-	{
-		printf("theta is %f, phi is %f\n", theta, phi);
-		phi = 1;
-	}
+		phi += 2.0 * PI;
+	theta = acos(p.z / sp->radius);
+	phi /= (2.0 * PI);
+	theta /= PI;
 	if (sp->map == 1)
 		return (my_mlx_pixel_get(img, phi * img->width, (theta) * img->height));
 	if ((int)(floor(10 * theta) + floor(10 * phi)) % 2)
@@ -64,29 +57,44 @@ int	get_sp_checkerboard(t_vect point, t_sp *sp)
 int	get_pl_checkerboard(t_vect point, t_pl *pl)
 {
 	t_vect	p;
-	int		alpha;
-	int		beta;
+	float	alpha;
+	float	beta;
+	t_img	*img;
 
+	img = pl->texture.img;
 	p = vec_sub(point, pl->point);
-	alpha = (int)floor(dot(pl->base.h_normal, p));
-	beta = (int)floor(dot(pl->base.v_normal, p));
-	if (((alpha + beta)) % 2)
+	alpha = floor(dot(pl->base.h_normal, p));
+	beta = floor(dot(pl->base.v_normal, p));
+	if (pl->map == 1)
+		return (my_mlx_pixel_get(img, alpha * img->width, (beta) * img->height));
+	if (((int)(alpha + beta)) % 2)
 		return (CHECK_COLOR);
 	else
 		return (pl->color);
 }
-		// return (*(img->data + (int)((theta / 10) * img->width + (phi / 10) * img->height * img->bpp / 8)));
 
 int	get_cy_checkerboard(t_vect point, t_cy *cy)
 {
-	int		theta;
-	int		alpha;
-	t_vect	p;
+	float		theta;
+	float		alpha;
+	t_vect		p;
+	t_img		*img;
 
+	img = cy->texture.img;
 	p = vec_sub(point, cy->center);
-	theta = (int)floor(6 * atan(dot(p, cy->base.h_normal) / dot(p, cy->base.v_normal)) / (PI));	
-	alpha = (int)floor(3 * dot(cy->axis_n, p));
-	if ((theta + alpha) % 2)
+	theta = atan2(dot(p, cy->base.h_normal), dot(p, cy->base.v_normal));
+	theta /= 2 * PI;
+	if (theta < 0)
+		theta += 1.0;
+	alpha = dot(cy->axis_n, p);
+	alpha /= cy->height;
+	alpha += 0.5;
+	if (alpha > 1 || alpha < 0 || theta > 1 || theta < 0)
+		printf("alpha is %f, theta is %f\n", alpha, theta);
+	assert(!(alpha > 1 || alpha < 0 || theta > 1 || theta < 0));
+	if (cy->map == 1)
+		return (my_mlx_pixel_get(img, theta * img->width, (alpha) * img->height));
+	if ((int)(floor(10 * theta) + floor(10 * alpha)) % 2)
 		return (CHECK_COLOR);
 	else
 		return (cy->color);
@@ -99,7 +107,7 @@ int	get_co_checkerboard(t_vect point, t_co *co)
 	t_vect	p;
 
 	p = vec_sub(point, co->center);
-	theta = (int)floor(6 * atan(dot(p, co->base.h_normal) / dot(p, co->base.v_normal)) / (PI));	
+	theta = (int)floor(6 * atan(dot(p, co->base.h_normal) / dot(p, co->base.v_normal)) / (PI));
 	alpha = (int)floor(3 * dot(co->axis_n, p));
 	if ((theta + alpha) % 2)
 		return (CHECK_COLOR);
