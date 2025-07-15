@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/15 08:35:06 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 08:45:52 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	get_sphere_info(char **tok, t_rt *rt)
 		sp->reflexion = atof(tok[4]);
 	else
 		return (print_error(REFLEXION, "sphere"));
-	sp->img.texture = NULL;
+	sp->texture.img = NULL;
 	if (tok[5])
 	{
 		if (!ft_strcmp(tok[5], "checker"))
 			sp->map = 0;
 		else
 		{
-			sp->img.texture = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], sp->img.width, sp->img.height);
+			sp->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], sp->texture.width, sp->texture.height);
 			sp->map = 1;
 		}
 	}
@@ -89,14 +89,14 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 		cy->reflexion = atof(tok[6]);
 	else
 		return (print_error(REFLEXION, "cylinder"));
-	cy->img.texture = NULL;
+	cy->texture.img = NULL;
 	if (tok[7])
 	{
 		if (!ft_strcmp(tok[7], "checker"))
 			cy->map = 0;
 		else
 		{
-			cy->img.texture = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], cy->img.width, cy->img.height);
+			cy->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], cy->texture.width, cy->texture.height);
 			cy->map = 1;
 		}
 	}
@@ -134,14 +134,14 @@ int	get_plane_info(char **tok, t_rt *rt)
 		pl->reflexion = atof(tok[4]);
 	else
 		return (print_error(REFLEXION, "plane"));
-	pl->img.texture = NULL;
+	pl->texture.img = NULL;
 	if (tok[5])
 	{
 		if (!ft_strcmp(tok[5], "checker"))
 			pl->map = 0;
 		else
 		{
-			pl->img.texture = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], pl->img.width, pl->img.height);
+			pl->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], pl->texture.width, pl->texture.height);
 			pl->map = 1;
 		}
 	}
@@ -184,14 +184,14 @@ int	get_cone_info(char **tok, t_rt *rt)
 		co->reflexion = atof(tok[6]);
 	else
 		return (print_error(REFLEXION, "cone"));
-	co->img.texture = NULL;
+	co->texture.img = NULL;
 	if (tok[7])
 	{
 		if (!ft_strcmp(tok[7], "checker"))
 			co->map = 0;
 		else
 		{
-			co->img.texture = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], co->img.width, co->img.height);
+			co->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], co->texture.width, co->texture.height);
 			co->map = 1;
 		}
 	}

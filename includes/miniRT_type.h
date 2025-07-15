@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:27:28 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 14:11:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 08:42:04 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,6 @@ typedef struct s_light
 	t_rgb	color;
 }	t_light;
 
-typedef struct s_bump
-{
-	void		*bump[10];
-	char		*bump_name[10];
-	int			nb_bump;
-}	t_bump;
-
-typedef struct s_texture
-{
-	void		*texture[10];
-	char		*texture_name[10];
-	int			nb_texture;
-}	t_texture;
-
 typedef struct s_rt
 {
 	t_mlx		mlx;
@@ -80,8 +66,6 @@ typedef struct s_rt
 	t_type		*object[20];
 	int			menu;
 	char		name5;
-	t_bump		bump;
-	t_texture	texture;
 }	t_rt;
 
 #endif
