@@ -6,13 +6,14 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/15 08:48:09 by cbordeau         ###   ########.fr        #
+#    Updated: 2025/07/15 10:01:11 by cbordeau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= miniRT
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g
+#-Wconversion -Wsign-conversion -Wfloat-conversion
 #-O3 -flto -ffast-math -march=native -pipe
 INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 08:34:24 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 09:34:29 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_sp
 	t_type		type;
 	t_vect		center;
 	float		diameter;
-	t_rgb		color;
+	int			color;
 	float		reflexion;
 	int			map;
 	t_texture	texture;
@@ -66,12 +66,12 @@ typedef struct s_pl
 	t_vect		point;
 	t_vect		normal_n;
 	t_base		base;
-	t_rgb		color;
+	int			color;
 	float		reflexion;
 	int			map;
 	t_texture	texture;
 
-	double	d;
+	double		d;
 }	t_pl;
 
 typedef struct s_cy
@@ -81,7 +81,7 @@ typedef struct s_cy
 	t_vect		axis_n;
 	float		diameter;
 	float		height;
-	t_rgb		color;
+	int			color;
 	float		reflexion;
 	int			map;
 	t_texture	texture;
@@ -98,12 +98,11 @@ typedef struct s_cy
 typedef struct s_co
 {
 	t_type		type;
-	/*t_vect	center;*/
 	t_vect		apex;
 	t_vect		axis_n;
 	float		diameter;
 	float		height;
-	t_rgb		color;
+	int			color;
 	float		reflexion;
 	int			map;
 	t_texture	texture;

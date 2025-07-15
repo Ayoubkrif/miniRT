@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/15 08:45:52 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 09:43:43 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	if (!tok[2])
 		return (print_error(ARGS, "sphere diameter"));
 	sp->diameter = atof(tok[2]);
-	if (fill_rgb(tok[3], &sp->color, "sphere"))
+	if (fill_int_color(tok[3], &sp->color, "sphere"))
 		return (1);
 //bonus parsing
 	if (tok[4])
@@ -82,7 +82,7 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	if (!tok[4])
 		return (print_error(ARGS, "cylinder height"));
 	cy->height = atof(tok[4]);
-	if (fill_rgb(tok[5], &cy->color, "cylinder"))
+	if (fill_int_color(tok[5], &cy->color, "cylinder"))
 		return (1);
 //bonus parsing
 	if (tok[6])
@@ -127,7 +127,7 @@ int	get_plane_info(char **tok, t_rt *rt)
 		return (print_error(VECT_NORM, "plane normal"));
 	if (vect_nul(&pl->normal_n))
 		return (print_error(VECT_NULL, "plane normal"));
-	if (fill_rgb(tok[3], &pl->color, "plane"))
+	if (fill_int_color(tok[3], &pl->color, "plane"))
 		return (1);
 //bonus parsing
 	if (tok[4])
@@ -177,7 +177,7 @@ int	get_cone_info(char **tok, t_rt *rt)
 	if (!tok[4])
 		return (print_error(ARGS, "cone height"));
 	co->height = atof(tok[4]);
-	if (fill_rgb(tok[5], &co->color, "cone"))
+	if (fill_int_color(tok[5], &co->color, "cone"))
 		return (1);
 //bonus parsing
 	if (tok[6])

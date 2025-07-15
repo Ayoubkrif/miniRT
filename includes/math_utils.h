@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:28:09 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 19:04:56 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 09:34:22 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "vect.h"
 # include <math.h>
 
-#define EPSILON 0.00001
+# define EPSILON 0.00001
 
 typedef struct s_quadratic
 {

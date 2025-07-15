@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT_add_inter.h                                 :+:      :+:    :+:   */
+/*   miniRT_inter.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:23:31 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 12:34:24 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 09:33:11 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_inter
 {
 	double	t;
-	t_rgb	color;
+	int		color;
 	t_type	*obj;
 	t_type	mode;
 	float	reflexion;

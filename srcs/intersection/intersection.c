@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 14:58:52 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 09:44:02 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 
-void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode)
+void	push_inter(t_type *obj, int color, double t, t_inter *inter, t_type mode)
 {
 	if (t > EPSILON && (!inter->obj || inter->t > t))
 	{

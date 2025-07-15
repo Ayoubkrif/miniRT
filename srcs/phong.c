@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 16:53:16 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 09:50:20 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct s_phong
 {
 	t_inter	inter_ray;
-	t_rgb	solid_color;
+	int		solid_color;
 	t_vect	light_obj_n;
 	t_inter	inter_light;
 	t_vect	point_ray;
@@ -107,9 +107,9 @@ t_rgb	reflect_phong(t_rt *rt, t_vect ray, t_phong *phong, int precision)
 		l = 0;
 	lights = color_add(rt->ambient.color, lights);
 	if (l && r)
-		return (color_add(color_k(color_mul(phong->solid_color, lights), 1 - phong->inter_ray.reflexion), color_k(reflected, phong->inter_ray.reflexion)));
+		return (color_add(color_k(mul_rgb(phong->solid_color, lights), 1 - phong->inter_ray.reflexion), color_k(reflected, phong->inter_ray.reflexion)));
 	else if (!r && l)
-		return (color_mul(phong->solid_color, lights));
+		return (mul_rgb(phong->solid_color, lights));
 	else if (r && !l)
 		return (reflected);
 	else

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:28:43 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 09:45:56 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #define CHECK_R 255
 #define CHECK_G 0
 #define CHECK_B 255
+#define CHECK_COLOR 0xFFFFFF
 
-t_rgb	get_sp_checkerboard(t_vect point, t_sp *sp)
+int	get_sp_checkerboard(t_vect point, t_sp *sp)
 {
 	float		theta;
 	float		phi;
@@ -29,12 +30,12 @@ t_rgb	get_sp_checkerboard(t_vect point, t_sp *sp)
 	if (sp->map == 1)
 		;
 	if ((int)(theta + phi) % 2)
-		return ((t_rgb){CHECK_R, CHECK_G, CHECK_B});
+		return (CHECK_COLOR);
 	else
 		return (sp->color);
 }
 
-t_rgb	get_pl_checkerboard(t_vect point, t_pl *pl)
+int	get_pl_checkerboard(t_vect point, t_pl *pl)
 {
 	t_vect	p;
 	int		alpha;
@@ -44,12 +45,12 @@ t_rgb	get_pl_checkerboard(t_vect point, t_pl *pl)
 	alpha = (int)floor(dot(pl->base.h_normal, p));
 	beta = (int)floor(dot(pl->base.v_normal, p));
 	if (((alpha + beta)) % 2)
-		return ((t_rgb){CHECK_R, CHECK_G, CHECK_B});
+		return (CHECK_COLOR);
 	else
 		return (pl->color);
 }
 
-t_rgb	get_cy_checkerboard(t_vect point, t_cy *cy)
+int	get_cy_checkerboard(t_vect point, t_cy *cy)
 {
 	int		theta;
 	int		alpha;
@@ -59,12 +60,12 @@ t_rgb	get_cy_checkerboard(t_vect point, t_cy *cy)
 	theta = (int)floor(6 * atan(dot(p, cy->base.h_normal) / dot(p, cy->base.v_normal)) / (PI));	
 	alpha = (int)floor(3 * dot(cy->axis_n, p));
 	if ((theta + alpha) % 2)
-		return ((t_rgb){CHECK_R, CHECK_G, CHECK_B});
+		return (CHECK_COLOR);
 	else
 		return (cy->color);
 }
 
-t_rgb	get_co_checkerboard(t_vect point, t_co *co)
+int	get_co_checkerboard(t_vect point, t_co *co)
 {
 	int		theta;
 	int		alpha;
@@ -74,12 +75,12 @@ t_rgb	get_co_checkerboard(t_vect point, t_co *co)
 	theta = (int)floor(6 * atan(dot(p, co->base.h_normal) / dot(p, co->base.v_normal)) / (PI));	
 	alpha = (int)floor(3 * dot(co->axis_n, p));
 	if ((theta + alpha) % 2)
-		return ((t_rgb){CHECK_R, CHECK_G, CHECK_B});
+		return (CHECK_COLOR);
 	else
 		return (co->color);
 }
 
-t_rgb	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
+int	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
 {
 	int		theta;
 	int		alpha;
@@ -92,12 +93,12 @@ t_rgb	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
 	theta = (int)floor(6 * atan(dot(p, cy->base.h_normal) / dot(p, cy->base.v_normal)) / (PI));
 	alpha = (int)floor(2 * (norm(p) / cy->radius));
 	if ((((theta + alpha) % 2) && mode == DISK_BOT) || (!((theta + alpha) % 2) && mode == DISK_TOP))
-		return ((t_rgb){CHECK_R, CHECK_G, CHECK_B});
+		return (CHECK_COLOR);
 	else
 		return (cy->color);
 }
 
-t_rgb	get_cod_checkerboard(t_vect point, t_co *co)
+int	get_cod_checkerboard(t_vect point, t_co *co)
 {
 	int		theta;
 	int		alpha;
@@ -107,12 +108,12 @@ t_rgb	get_cod_checkerboard(t_vect point, t_co *co)
 	theta = (int)floor(6 * atan(dot(p, co->base.h_normal) / dot(p, co->base.v_normal)) / (PI));
 	alpha = (int)floor(2 * (norm(p) / co->radius));
 	if (!((theta + alpha) % 2))
-		return ((t_rgb){CHECK_R, CHECK_G, CHECK_B});
+		return (CHECK_COLOR);
 	else
 		return (co->color);
 }
 
-t_rgb	get_disk_checkerboard(t_vect point, t_type *obj, t_type mode)
+int	get_disk_checkerboard(t_vect point, t_type *obj, t_type mode)
 {
 	if (mode == DISK)
 		return (get_cod_checkerboard(point, (t_co *)obj));

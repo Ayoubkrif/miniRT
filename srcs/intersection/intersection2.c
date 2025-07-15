@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:22:04 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 09:44:16 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 
-void	push_inter(t_type *obj, t_rgb color, double t, t_inter *inter, t_type mode);
+void	push_inter(t_type *obj, int color, double t, t_inter *inter, t_type mode);
 
 void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 {
