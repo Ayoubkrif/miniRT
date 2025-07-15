@@ -6,20 +6,20 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:00:10 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 17:57:49 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 18:04:21 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
 	if (x >= 0 && x < WIN_X && y >= 0 && y < WIN_Y)
 	{
-		dst = rt->mlx.addr + (y * rt->mlx.line_length
-				+ x * (rt->mlx.bits_per_pixel / 8));
+		dst = img->data + (y * img->size_line
+				+ x * (img->bpp / 8));
 		*(unsigned int *)dst = color;
 	}
 }
@@ -33,7 +33,7 @@ int	my_mlx_pixel_get(t_img *img, int x, int y)
 	return (*(unsigned int *)dst);
 }
 
-void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color)
+void	put_a_pixel(t_img *img, int x, int y, t_rgb color)
 {
 	int	final_color;
 
@@ -52,5 +52,5 @@ void	put_a_pixel(t_rt *rt, int x, int y, t_rgb color)
 	final_color = (((int)(color.r) << 16))
 		| (((int)(color.g) << 8))
 		| ((int)(color.b));
-	my_mlx_pixel_put(rt, x, y, final_color);
+	my_mlx_pixel_put(img, x, y, final_color);
 }

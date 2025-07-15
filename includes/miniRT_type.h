@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:27:28 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 08:42:04 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:03:00 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ typedef struct s_mlx
 	void	*disp;
 	void	*win;
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	t_img	*addr;
 }	t_mlx;
 
 typedef struct s_screen

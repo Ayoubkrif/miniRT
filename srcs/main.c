@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 12:48:08 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:04:44 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	init_mini_rt(t_rt *rt, char **av)
 	rt->mlx.img = mlx_new_image(rt->mlx.disp, WIN_X, WIN_Y);
 	if (!rt->mlx.img)
 		(printf("img failed\n"), exit(1));
-	rt->mlx.addr = mlx_get_data_addr(rt->mlx.img, &rt->mlx.bits_per_pixel,
-			&rt->mlx.line_length, &rt->mlx.endian);
 	get_scene_info(rt, av);
 }
 

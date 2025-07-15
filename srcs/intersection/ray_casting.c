@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:44:27 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:06:11 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	window_cast(t_rt *rt)
 		j = -WIN_Y / 2;
 		while (j < WIN_Y / 2)
 		{
-			put_a_pixel(rt, i + (WIN_X / 2), j + (WIN_Y / 2),
+			put_a_pixel(rt->mlx.img, i + (WIN_X / 2), j + (WIN_Y / 2),
 				is_it_touching(rt, (double)i, -(double)j));
 			j++;
 		}
