@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 17:21:49 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 09:28:43 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@
 
 t_rgb	get_sp_checkerboard(t_vect point, t_sp *sp)
 {
-	int		theta;
-	int		phi;
+	float		theta;
+	float		phi;
 	t_vect	p;
 
 	p = vec_sub(point, sp->center);
-	phi = (int)floor(10 * atan(p.x / p.y) / (PI));
-	theta = (int)floor(10 * acos(p.z / sp->radius) / (PI));
-	if ((theta + phi) % 2)
+	phi = floor(10 * atan(p.x / p.y) / (PI));
+	theta = floor(10 * acos(p.z / sp->radius) / (PI));
+	if (sp->map == 1)
+		;
+	if ((int)(theta + phi) % 2)
 		return ((t_rgb){CHECK_R, CHECK_G, CHECK_B});
 	else
 		return (sp->color);

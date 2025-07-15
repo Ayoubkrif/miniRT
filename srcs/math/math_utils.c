@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:25:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 14:19:50 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/15 09:11:43 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	delta_2nd(t_quadratic *quad)
 	quad->delta = p2(quad->b) - (4 * quad->a * quad->c);
 	if (quad->delta < 0)
 		return (0);
-	else if (quad->delta > EPSILON)
+	else if (quad->delta > 0)
 	{
 		quad->sq_delta = sqrt(quad->delta);
 		if (quad->a > 0)
