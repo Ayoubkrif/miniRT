@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/16 12:14:50 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:06:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	sp_bonus(t_rt *rt, t_sp *sp, char **tok)
 	else
 		return (print_error(REFLEXION, "sphere"));
 	sp->texture.img = NULL;
-	if (tok[5])
+	if (tok[5] && *tok[5] != '\n')
 	{
 		if (!ft_strcmp(tok[5], "checker"))
 			sp->map = 0;
@@ -55,7 +55,7 @@ int	cy_bonus(t_rt *rt, t_cy *cy, char **tok)
 	else
 		return (print_error(REFLEXION, "cylinder"));
 	cy->texture.img = NULL;
-	if (tok[7])
+	if (tok[7] && *tok[7] != '\n')
 	{
 		if (!ft_strcmp(tok[7], "checker"))
 			cy->map = 0;
@@ -84,7 +84,7 @@ int	co_bonus(t_rt *rt, t_co *co, char **tok)
 	else
 		return (print_error(REFLEXION, "cone"));
 	co->texture.img = NULL;
-	if (tok[7])
+	if (tok[7] && *tok[7] != '\n')
 	{
 		if (!ft_strcmp(tok[7], "checker"))
 			co->map = 0;
@@ -115,7 +115,7 @@ int	pl_bonus(t_rt *rt, t_pl *pl, char **tok)
 	else
 		return (print_error(REFLEXION, "plane"));
 	pl->texture.img = NULL;
-	if (tok[5])
+	if (tok[5] && *tok[5] != '\n')
 	{
 		if (!ft_strcmp(tok[5], "checker"))
 			pl->map = 0;

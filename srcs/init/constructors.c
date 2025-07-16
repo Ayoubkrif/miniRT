@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/16 12:07:04 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:06:03 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,8 @@ int	get_cone_info(char **tok, t_rt *rt)
 	if (fill_int_color(tok[5], &co->color, "cone"))
 		return (1);
 	if (co_bonus(rt, co, tok))
-		normalize_to(&co->axis_n);
+		return (printf("Error bonus\n"), 1);
+	normalize_to(&co->axis_n);
 	set_co(co);
 	return (0);
 }
