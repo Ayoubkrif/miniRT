@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/16 17:35:42 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 18:14:57 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,28 +116,6 @@ t_rgb	reflect_phong(t_rt *rt, t_vect ray, t_phong *phong, int precision)
 		return ((t_rgb){0, 0, 0});
 }
 
-
-void	get_solid_color_normal(t_phong *phong)
-{
-	t_vect	map;
-
-	phong->normal_n = normal_vect(phong->inter_ray, phong->point_ray);
-	phong->solid_color = phong->inter_ray.color;
-	if (phong->inter_ray.map)
-	{
-		if (phong->inter_ray.mode == SPHERE)
-			get_sp_map(phong->point_ray, (t_sp *)phong->inter_ray.obj, &map);
-		if (phong->inter_ray.mode == PLANE)
-			get_pl_map(phong->point_ray, (t_pl *)phong->inter_ray.obj, &map);
-		if (phong->inter_ray.mode == CYLINDER)
-			get_cy_map(phong->point_ray, (t_cy *)phong->inter_ray.obj, &map);
-		if (phong->inter_ray.mode >= DISK)
-			get_disk_map(phong->point_ray, phong->inter_ray.obj, phong->inter_ray.mode, &map);
-		if (phong->inter_ray.mode == CONE)
-			get_co_map(phong->point_ray, (t_co *)phong->inter_ray.obj, &map);
-	}
-}
-
 t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 {
 	t_phong	phong;
@@ -147,7 +125,7 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision)
 	if (!phong.inter_ray.obj)
 		return ((t_rgb){0, 0, 0});
 	phong.point_ray = get_point(from, ray, phong.inter_ray.t);
-	get_solid_color_normal(&phong);
+	get_solid_color_normal(&phong.inter_ray, &phong.normal_n, &phong.solid_color, &phong.point_ray);
 	phong.dot_normal_ray = -dot(ray, phong.normal_n);
 	if (phong.dot_normal_ray < 0)
 	{
