@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/15 17:51:05 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/16 11:58:36 by cbordeau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SOURCES		= main.c \
 			  init/fill_scene.c \
 			  init/error.c \
 			  init/constructors.c \
+			  init/constructors_bonus.c \
 			  init/constructors_utils.c \
 			  init/constructors_base.c \
 			  init/solids_set.c \

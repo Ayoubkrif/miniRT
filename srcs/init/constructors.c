@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/15 17:47:55 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 12:07:04 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include <stdlib.h>
 #include "mlx.h"
 #include <stdio.h>
+
+int	sp_bonus(t_rt *rt, t_sp *sp, char **tok);
+int	cy_bonus(t_rt *rt, t_cy *cy, char **tok);
+int	co_bonus(t_rt *rt, t_co *co, char **tok);
+int	pl_bonus(t_rt *rt, t_pl *pl, char **tok);
 
 int	get_sphere_info(char **tok, t_rt *rt)
 {
@@ -34,27 +39,8 @@ int	get_sphere_info(char **tok, t_rt *rt)
 	sp->diameter = atof(tok[2]);
 	if (fill_int_color(tok[3], &sp->color, "sphere"))
 		return (1);
-//bonus parsing
-	if (tok[4])
-		sp->reflexion = atof(tok[4]);
-	else
-		return (print_error(REFLEXION, "sphere"));
-	sp->texture.img = NULL;
-	if (tok[5])
-	{
-		if (!ft_strcmp(tok[5], "checker"))
-			sp->map = 0;
-		else
-		{
-			sp->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], &sp->texture.width, &sp->texture.height);
-			if (!sp->texture.img)
-				printf("i dont have a xpm\n");
-			sp->map = 1;
-		}
-	}
-	else
-		sp->map = -1;
-
+	if (sp_bonus(rt, sp, tok))
+		return (printf("Error bonus\n"), 1);
 	set_sp(sp);
 	return (0);
 }
@@ -86,24 +72,8 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 	cy->height = atof(tok[4]);
 	if (fill_int_color(tok[5], &cy->color, "cylinder"))
 		return (1);
-//bonus parsing
-	if (tok[6])
-		cy->reflexion = atof(tok[6]);
-	else
-		return (print_error(REFLEXION, "cylinder"));
-	cy->texture.img = NULL;
-	if (tok[7])
-	{
-		if (!ft_strcmp(tok[7], "checker"))
-			cy->map = 0;
-		else
-		{
-			cy->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], &cy->texture.width, &cy->texture.height);
-			cy->map = 1;
-		}
-	}
-	else
-		cy->map = -1;
+	if (cy_bonus(rt, cy, tok))
+		return (printf("Error bonus\n"), 1);
 	cy->axis_n = normalize(cy->axis_n);
 	set_cy(cy);
 	return (0);
@@ -131,24 +101,8 @@ int	get_plane_info(char **tok, t_rt *rt)
 		return (print_error(VECT_NULL, "plane normal"));
 	if (fill_int_color(tok[3], &pl->color, "plane"))
 		return (1);
-//bonus parsing
-	if (tok[4])
-		pl->reflexion = atof(tok[4]);
-	else
-		return (print_error(REFLEXION, "plane"));
-	pl->texture.img = NULL;
-	if (tok[5])
-	{
-		if (!ft_strcmp(tok[5], "checker"))
-			pl->map = 0;
-		else
-		{
-			pl->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[5], &pl->texture.width, &pl->texture.height);
-			pl->map = 1;
-		}
-	}
-	else
-		pl->map = -1;
+	if (pl_bonus(rt, pl, tok))
+		return (printf("Error bonus\n"), 1);
 	pl->normal_n = normalize(pl->normal_n);
 	set_pl(pl);
 	return (0);
@@ -181,27 +135,8 @@ int	get_cone_info(char **tok, t_rt *rt)
 	co->height = atof(tok[4]);
 	if (fill_int_color(tok[5], &co->color, "cone"))
 		return (1);
-//bonus parsing
-	if (tok[6])
-		co->reflexion = atof(tok[6]);
-	else
-		return (print_error(REFLEXION, "cone"));
-	co->texture.img = NULL;
-	if (tok[7])
-	{
-		if (!ft_strcmp(tok[7], "checker"))
-			co->map = 0;
-		else
-		{
-			co->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[7], &co->texture.width, &co->texture.height);
-			if (!co->texture.img)
-				printf("i dont have a xpm\n");
-			co->map = 1;
-		}
-	}
-	else
-		co->map = -1;
-	normalize_to(&co->axis_n);
+	if (co_bonus(rt, co, tok))
+		normalize_to(&co->axis_n);
 	set_co(co);
 	return (0);
 }

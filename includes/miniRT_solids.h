@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 12:54:12 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:42:58 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIRT_SOLIDS_H
 
 # include "math_utils.h"
-#include	"mlx_int.h"
+# include	"mlx_int.h"
 
 typedef struct s_rgb
 {
@@ -35,6 +35,13 @@ typedef struct s_texture
 	int		width;
 	int		height;
 }	t_texture;
+
+typedef struct s_bump
+{
+	t_img	*img;
+	int		width;
+	int		height;
+}	t_bump;
 
 typedef enum e_type
 {
@@ -57,6 +64,7 @@ typedef struct s_sp
 	float		reflexion;
 	int			map;
 	t_texture	texture;
+	t_bump		bump;
 
 	float		radius;
 }	t_sp;
@@ -71,6 +79,7 @@ typedef struct s_pl
 	float		reflexion;
 	int			map;
 	t_texture	texture;
+	t_bump		bump;
 
 	double		d;
 }	t_pl;
@@ -86,6 +95,7 @@ typedef struct s_cy
 	float		reflexion;
 	int			map;
 	t_texture	texture;
+	t_bump		bump;
 
 	t_base		base;
 	float		radius;
@@ -107,6 +117,7 @@ typedef struct s_co
 	float		reflexion;
 	int			map;
 	t_texture	texture;
+	t_bump		bump;
 
 	t_base		base;
 	float		radius;
