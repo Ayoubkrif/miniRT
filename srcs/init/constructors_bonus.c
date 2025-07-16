@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/16 13:06:51 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 13:46:29 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	sp_bonus(t_rt *rt, t_sp *sp, char **tok)
 		}
 	}
 	else
+	{
 		sp->map = -1;
+		return (0);
+	}
 	sp->bump.img = NULL;
 	if (tok[6] && *tok[6] != '\n')
 	{
@@ -66,7 +69,10 @@ int	cy_bonus(t_rt *rt, t_cy *cy, char **tok)
 		}
 	}
 	else
+	{
 		cy->map = -1;
+		return (0);
+	}
 	cy->bump.img = NULL;
 	if (tok[8] && *tok[8] != '\n')
 	{
@@ -97,7 +103,10 @@ int	co_bonus(t_rt *rt, t_co *co, char **tok)
 		}
 	}
 	else
+	{
 		co->map = -1;
+		return (0);
+	}
 	co->bump.img = NULL;
 	if (tok[8] && *tok[8] != '\n')
 	{
@@ -126,7 +135,10 @@ int	pl_bonus(t_rt *rt, t_pl *pl, char **tok)
 		}
 	}
 	else
+	{
 		pl->map = -1;
+		return (0);
+	}
 	pl->bump.img = NULL;
 	if (tok[6] && *tok[6] != '\n')
 	{
