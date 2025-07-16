@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/16 14:05:02 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 17:39:46 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,29 @@
 #define CHECK_B 255
 #define CHECK_COLOR 0xF000FF
 
-void	linear_remap(float *to_remap, float min, float max)
+void	linear_remap(double *to_remap, double min, double max)
 {
 	*to_remap = min + (max - min) * *to_remap;
 }
 
-int	get_cy_checkerboard(t_vect point, t_cy *cy)
+void	get_cy_map(t_vect point, t_cy *cy, t_vect *map)
 {
-	float		theta;
-	float		alpha;
 	t_vect		p;
 	t_img		*img;
 
 	img = cy->texture.img;
 	p = vec_sub(point, cy->center);
-	theta = atan2(dot(p, cy->base.h_normal), dot(p, cy->base.v_normal));
-	theta /= 2 * PI;
-	theta += 0.5;
-	if (theta < 0)
-		theta += 1.0;
-	if (theta > 1)
-		theta -= 1.0;
-	alpha = dot(cy->axis_n, p);
-	alpha /= cy->height;
-	alpha += 0.5;
-	linear_remap(&alpha, 0.2, 0.8);
+	map->x = atan2(dot(p, cy->base.h_normal), dot(p, cy->base.v_normal));
+	map->x /= 2 * PI;
+	map->x += 0.5;
+	if (map->x < 0)
+		map->x += 1.0;
+	if (map->x > 1)
+		map->x -= 1.0;
+	map->y = dot(cy->axis_n, p);
+	map->y /= cy->height;
+	map->y += 0.5;
+	linear_remap(&map->y, 0.2, 0.8);
 	if (cy->map == 1)
 		return (my_mlx_pixel_get(img, theta * img->width, (alpha) * img->height));
 	if ((int)(floor(10 * theta) + floor(10 * alpha)) % 2)
@@ -53,7 +51,7 @@ int	get_cy_checkerboard(t_vect point, t_cy *cy)
 		return (cy->color);
 }
 
-int	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
+void	get_cyd_map(t_vect point, t_cy *cy, t_type mode)
 {
 	float	theta;
 	float	alpha;
@@ -86,7 +84,7 @@ int	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
 		return (cy->color);
 }
 
-int	get_co_checkerboard(t_vect point, t_co *co)
+void	get_co_map(t_vect point, t_co *co)
 {
 	float		theta;
 	float		alpha;
@@ -118,30 +116,28 @@ int	get_co_checkerboard(t_vect point, t_co *co)
 		return (co->color);
 }
 
-int	get_cod_checkerboard(t_vect point, t_co *co)
+void	get_co_disk_map(t_vect point, t_co *co, t_vect *map)
 {
-	float	theta;
-	float	alpha;
 	t_vect	p;
 	t_img	*img;
 
 	img = co->texture.img;
 	p = vec_sub(point, co->center);
-	theta = atan2(dot(p, co->base.h_normal), dot(p, co->base.v_normal));
-	theta /= 2 * PI;
-	/*theta *= -1;*/
-	theta += 0.5;
-	while (theta < 0)
-		theta += 1.0;
-	while (theta > 1)
-		theta -= 1.0;
-	alpha = norm(p) / co->radius;
-	alpha *= -1;
-	while (alpha < 0)
-		alpha += 1.0;
-	while (alpha > 1)
-		alpha -= 1.0;
-	linear_remap(&alpha, 0.8, 1);
+	map->x = atan2(dot(p, co->base.h_normal), dot(p, co->base.v_normal));
+	map->x /= 2 * PI;
+	/*map->x *= -1;*/
+	map->x += 0.5;
+	while (map->x < 0)
+		map->x += 1.0;
+	while (map->x > 1)
+		map->x -= 1.0;
+	map->y = norm(p) / co->radius;
+	map->y *= -1;
+	while (map->y < 0)
+		map->y += 1.0;
+	while (map->y > 1)
+		map->y -= 1.0;
+	linear_remap(&map->y, 0.8, 1);
 	if (co->map == 1)
 		return (my_mlx_pixel_get(img, theta * img->width, (alpha) * img->height));
 	if (((int)(floor(10 * theta) + floor(10 * alpha))) % 2)
@@ -150,10 +146,10 @@ int	get_cod_checkerboard(t_vect point, t_co *co)
 		return (co->color);
 }
 
-int	get_disk_checkerboard(t_vect point, t_type *obj, t_type mode)
+void	get_disk_map(t_vect point, t_type *obj, t_type mode)
 {
 	if (mode == DISK)
-		return (get_cod_checkerboard(point, (t_co *)obj));
+		return (get_co_disk_map(point, (t_co *)obj));
 	else
-		return (get_cyd_checkerboard(point, (t_cy *)obj, mode));
+		return (get_cy_disk_map(point, (t_cy *)obj, mode));
 }
