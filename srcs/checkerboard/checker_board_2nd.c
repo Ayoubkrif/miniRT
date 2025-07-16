@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_board.c                                    :+:      :+:    :+:   */
+/*   checker_board_2nd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 17:57:38 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 12:18:04 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 
 int	my_mlx_pixel_get(t_img *img, int x, int y);
 
-void linear_remap(float *to_remap, float min, float max)
+void	linear_remap(float *to_remap, float min, float max)
 {
-    *to_remap = min + (max - min) * *to_remap;
+	*to_remap = min + (max - min) * *to_remap;
 }
 
 int	get_sp_checkerboard(t_vect point, t_sp *sp)
@@ -111,7 +111,7 @@ int	get_co_checkerboard(t_vect point, t_co *co)
 	alpha /= co->height;
 	alpha += 0.5;
 	linear_remap(&alpha, 0.2, 0.8);
-	if (co->map == 1)
+	if (co->map == 5)
 		return (my_mlx_pixel_get(img, theta * img->width, (alpha) * img->height));
 	if ((int)(floor(10 * theta) + floor(10 * alpha)) % 2)
 		return (CHECK_COLOR);
@@ -121,17 +121,25 @@ int	get_co_checkerboard(t_vect point, t_co *co)
 
 int	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode)
 {
-	int		theta;
-	int		alpha;
+	float	theta;
+	float	alpha;
 	t_vect	p;
 
 	if (mode == DISK_BOT)
 		p = vec_sub(point, cy->bottom);
 	else
 		p = vec_sub(point, cy->top);
-	theta = (int)floor(6 * atan(dot(p, cy->base.h_normal) / dot(p, cy->base.v_normal)) / (PI));
-	alpha = (int)floor(2 * (norm(p) / cy->radius));
-	if ((((theta + alpha) % 2) && mode == DISK_BOT) || (!((theta + alpha) % 2) && mode == DISK_TOP))
+	theta = atan2(dot(p, cy->base.h_normal), dot(p, cy->base.v_normal));
+	theta /= 2 * PI;
+	if (theta < 0)
+		theta += 1.0;
+	alpha = (norm(p) / cy->radius);
+	if (mode == DISK_BOT)
+		linear_remap(&alpha, 0, 0.2);
+	else
+		linear_remap(&alpha, 0.8, 1);
+	if ((mode == DISK_BOT && (int)(floor(theta * 5) + floor(alpha * 5)) % 2)
+			|| (mode == DISK_TOP && ((int)(floor(5 * theta) + floor(5 * alpha))) % 2))
 		return (CHECK_COLOR);
 	else
 		return (cy->color);
@@ -144,9 +152,12 @@ int	get_cod_checkerboard(t_vect point, t_co *co)
 	t_vect	p;
 
 	p = vec_sub(point, co->center);
-	theta = (int)floor(6 * atan(dot(p, co->base.h_normal) / dot(p, co->base.v_normal)) / (PI));
-	alpha = (int)floor(2 * (norm(p) / co->radius));
-	if (!((theta + alpha) % 2))
+	theta = atan2(dot(p, co->base.h_normal), dot(p, co->base.v_normal));
+	theta /= 2 * PI;
+	if (theta < 0)
+		theta += 1.0;
+	alpha = norm(p) / co->radius;
+	if (((int)(floor(5 * theta) + floor(5 * alpha))) % 2)
 		return (CHECK_COLOR);
 	else
 		return (co->color);
