@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/16 13:09:24 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 17:32:39 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define CHECK_B 255
 #define CHECK_COLOR 0xF000FF
 
-int	get_sp_checkerboard(t_vect point, t_sp *sp)
+int	get_sp_map(t_vect point, t_sp *sp, t_vect *map)
 {
 	float		theta;
 	float		phi;
@@ -43,7 +43,7 @@ int	get_sp_checkerboard(t_vect point, t_sp *sp)
 		return (sp->color);
 }
 
-int	get_pl_checkerboard(t_vect point, t_pl *pl)
+int	get_pl_map(t_vect point, t_pl *pl, t_vect *map)
 {
 	t_vect	p;
 	float	alpha;

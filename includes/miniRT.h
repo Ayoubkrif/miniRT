@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/16 13:09:00 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 17:10:28 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ t_rgb	color_k(t_rgb	c1, float k);
 t_vect	normal_vect(t_inter inter, t_vect point);
 t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);
 
-int	get_sp_checkerboard(t_vect point, t_sp *sp);
-int	get_pl_checkerboard(t_vect point, t_pl *pl);
-int	get_cy_checkerboard(t_vect point, t_cy *cy);
-int	get_co_checkerboard(t_vect point, t_co *co);
-int	get_disk_checkerboard(t_vect point, t_type *obj, t_type mode);
-int	get_cyd_checkerboard(t_vect point, t_cy *cy, t_type mode);
-int	get_cod_checkerboard(t_vect point, t_co *co);
+void	get_sp_map(t_vect point, t_sp *sp, t_vect *map);
+void	get_pl_map(t_vect point, t_pl *pl, t_vect *map);
+void	get_cy_map(t_vect point, t_cy *cy, t_vect *map);
+void	get_co_map(t_vect point, t_co *co, t_vect *map);
+void	get_disk_map(t_vect point, t_type *obj, t_type mode, t_vect *map);
+void	get_cy_disk_map(t_vect point, t_cy *cy, t_type mode, t_vect *map);
+void	get_co_disk_map(t_vect point, t_co *co, t_vect *map);
 
 #endif
