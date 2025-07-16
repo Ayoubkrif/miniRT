@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/16 13:46:29 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 17:39:59 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,41 @@
 #include <stdlib.h>
 #include "mlx.h"
 #include <stdio.h>
+
+int	obj_bonus(t_rt *rt, t_obj *obj, char **tok)
+{
+	obj->map = 0;
+	if (tok[1])
+		obj->reflexion = atof(tok[1]);
+	else
+		return (print_error(REFLEXION, "sphere"));
+	obj->texture.img = NULL;
+	if (tok[2] && *tok[2] != '\n')
+	{
+		if (!ft_strcmp(tok[2], "checker"))
+			obj->map += 1;
+		else
+		{
+			obj->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[2], &obj->texture.width, &obj->texture.height);
+			if (!obj->texture.img)
+				printf("i dont have a xpm\n");
+			obj->map += 1;
+		}
+	}
+	else
+	{
+		return (0);
+	}
+	obj->bump.img = NULL;
+	if (tok[3] && *tok[3] != '\n')
+	{
+		obj->bump.img = mlx_xpm_file_to_image(rt->mlx.disp, tok[3], &obj->bump.width, &obj->bump.height);
+		if (!obj->texture.img)
+			return (printf("i dont have a bump on sp\n"), 1);
+		obj->map += 3;
+	}
+	return (0);
+}
 
 int	sp_bonus(t_rt *rt, t_sp *sp, char **tok)
 {
