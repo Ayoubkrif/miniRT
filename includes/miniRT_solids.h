@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/16 17:34:54 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/16 17:50:55 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,25 @@ typedef enum e_type
 	DISK_TOP
 }	t_type;
 
-typedef struct s_sp
+typedef struct s_obj
 {
 	t_type		type;
-	t_vect		center;
-	float		diameter;
-	int			color;
-	float		reflexion;
 	int			map;
 	t_texture	texture;
 	t_bump		bump;
+	float		reflexion;
+}	t_obj;
+
+typedef struct s_sp
+{
+	t_type		type;
+	int			map;
+	t_texture	texture;
+	t_bump		bump;
+	float		reflexion;
+	t_vect		center;
+	float		diameter;
+	int			color;
 
 	float		radius;
 }	t_sp;
@@ -72,14 +81,14 @@ typedef struct s_sp
 typedef struct s_pl
 {
 	t_type		type;
+	int			map;
+	t_texture	texture;
+	t_bump		bump;
+	float		reflexion;
 	t_vect		point;
 	t_vect		normal_n;
 	t_base		base;
 	int			color;
-	float		reflexion;
-	int			map;
-	t_texture	texture;
-	t_bump		bump;
 
 	double		d;
 }	t_pl;
@@ -87,15 +96,15 @@ typedef struct s_pl
 typedef struct s_cy
 {
 	t_type		type;
+	int			map;
+	t_texture	texture;
+	t_bump		bump;
+	float		reflexion;
 	t_vect		center;
 	t_vect		axis_n;
 	float		diameter;
 	float		height;
 	int			color;
-	float		reflexion;
-	int			map;
-	t_texture	texture;
-	t_bump		bump;
 
 	t_base		base;
 	float		radius;
@@ -109,15 +118,15 @@ typedef struct s_cy
 typedef struct s_co
 {
 	t_type		type;
+	int			map;
+	t_texture	texture;
+	t_bump		bump;
+	float		reflexion;
 	t_vect		apex;
 	t_vect		axis_n;
 	float		diameter;
 	float		height;
 	int			color;
-	float		reflexion;
-	int			map;
-	t_texture	texture;
-	t_bump		bump;
 
 	t_base		base;
 	float		radius;
