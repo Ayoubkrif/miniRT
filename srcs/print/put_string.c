@@ -6,14 +6,12 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:01:20 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/17 08:36:01 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:33:37 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "mlx.h"
-#include <string.h>
-#include <stdio.h>
 
 void	put_sp(t_rt *rt);
 void	put_pl(t_rt *rt);

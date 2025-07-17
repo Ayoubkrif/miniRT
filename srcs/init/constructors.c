@@ -6,15 +6,13 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/17 07:53:14 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:34:47 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "define.h"
-#include "libft.h"
 #include <stdlib.h>
-#include "mlx.h"
 #include <stdio.h>
 
 int	obj_bonus(t_rt *rt, t_obj *obj, char **tok);

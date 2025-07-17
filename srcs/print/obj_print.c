@@ -6,14 +6,12 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 08:32:51 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/17 08:34:03 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:33:50 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "mlx.h"
-#include <string.h>
-#include <stdio.h>
 
 void	ftoa(float n, char *res, int afterpoint);
 

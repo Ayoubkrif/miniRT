@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 16:11:34 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 09:11:18 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	modify_cam(int keycode, t_cam *cam);
 int	select_solid(int button, int x, int y, t_rt *rt)
 {
 	t_vect	ray;
-	t_type	*obj;
+	t_obj	*obj;
 	int		i;
 
 	if (button == 1)
@@ -47,7 +47,7 @@ int	select_solid(int button, int x, int y, t_rt *rt)
 	if (!obj)
 		return (1);
 	i = 0;
-	while (rt->object[i] != obj)
+	while (rt->object[i] != (t_type *)obj)
 		i++;
 	rt->menu = i + 1;
 	mlx_put_image_to_window(rt->mlx.disp, rt->mlx.win, rt->mlx.img, 0, 0);

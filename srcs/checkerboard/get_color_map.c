@@ -1,7 +1,11 @@
-
-	/*if (cy->map == 1)*/
-	/*	return (my_mlx_pixel_get(img, theta * img->width, (alpha) * img->height));*/
-	/*if ((int)(floor(10 * theta) + floor(10 * alpha)) % 2)*/
-	/*	return (CHECK_COLOR);*/
-	/*else*/
-	/*	return (cy->color);*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_color_map.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/17 09:29:57 by cbordeau          #+#    #+#             */
+/*   Updated: 2025/07/17 09:30:06 by cbordeau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */

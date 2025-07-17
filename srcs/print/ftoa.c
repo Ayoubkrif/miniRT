@@ -6,13 +6,12 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:11:22 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/17 08:27:33 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:34:01 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // C program for implementation of ftoa() 
 #include <math.h> 
-#include <stdio.h> 
 
 // Reverses a string 'str' of length 'len' 
 void	reverse(char *str, int len)

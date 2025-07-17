@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:23:31 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:33:11 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:02:56 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@
 
 typedef struct s_inter
 {
+	t_obj	*obj;
 	double	t;
-	int		color;
-	t_type	*obj;
 	t_type	mode;
-	float	reflexion;
-	int		map;
 }	t_inter;
 
 void	window_cast(t_rt *rt);

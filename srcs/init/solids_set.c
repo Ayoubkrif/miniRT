@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 13:30:54 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/14 15:15:09 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 09:31:00 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,4 @@ void	set_co(t_co *co)
 	co->theta = atan(co->radius / co->height);
 	co->center = get_point_t(co->apex, co->axis_n, co->height);
 	co->d = -dot(co->center, co->axis_n);
-	/*co->gamma = p2(cos(co->theta));*/
 }

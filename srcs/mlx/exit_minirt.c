@@ -6,13 +6,12 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:13:31 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/06/21 13:42:53 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:31:21 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "mlx.h"
-#include "utils.h"
 
 int	exit_minirt(t_rt *rt)
 {

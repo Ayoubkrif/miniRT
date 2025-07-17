@@ -6,13 +6,11 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/16 19:26:32 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 09:29:32 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "stdio.h"
-#include	"mlx_int.h"
 #include <assert.h>
 
 #define CHECK_R 255
@@ -34,27 +32,30 @@ void	get_obj_map(t_vect *point, t_type *obj, t_vect *map, t_type mode)
 		get_co_map(*point, (t_co *)obj, map);
 }
 
-void	get_solid_color_normal(t_inter *inter, t_vect *normal, int *color, t_vect *point)
+void	get_color_normal(
+		t_inter *inter, t_vect *normal, int *color, t_vect *point)
 {
 	t_vect	map;
-	t_obj	*obj = (t_obj *)inter->obj;
+	t_obj	*obj;
 
+	obj = (t_obj *)inter->obj;
 	*normal = normal_vect(*inter, *point);
-	if (inter->map)
+	if (inter->obj->map)
 	{
-		get_obj_map(point, inter->obj, &map, inter->mode);
+		get_obj_map(point, (t_type *)inter->obj, &map, inter->mode);
 	}
-	if (!(inter->map % 3))
-		*color = inter->color;
-	else if (inter->map % 3 == 1)
+	if (!(inter->obj->map % 3))
+		*color = inter->obj->color;
+	else if (inter->obj->map % 3 == 1)
 	{
 		if ((int)(floor(10 * map.x) + floor(10 * map.y)) % 2)
 			*color = CHECK_COLOR;
 		else
-			*color = inter->color;
+			*color = inter->obj->color;
 	}
 	else
-		*color = my_mlx_pixel_get(obj->texture.img, map.x * obj->texture.width, (map.y) * obj->texture.height);
+		*color = my_mlx_pixel_get(obj->texture.img,
+				map.x * obj->texture.width, map.y * obj->texture.height);
 }
 
 void	get_sp_map(t_vect point, t_sp *sp, t_vect *map)
@@ -68,12 +69,6 @@ void	get_sp_map(t_vect point, t_sp *sp, t_vect *map)
 	map->y = acos(p.z / sp->radius);
 	map->x /= (2.0 * PI);
 	map->y /= PI;
-	/*if (sp->map == 1)*/
-	/*	return (my_mlx_pixel_get(img, phi * img->width, (theta) * img->height));*/
-	/*if ((int)(floor(10 * theta) + floor(10 * phi)) % 2)*/
-	/*	return (CHECK_COLOR);*/
-	/*else*/
-	/*	return (sp->color);*/
 }
 
 void	get_pl_map(t_vect point, t_pl *pl, t_vect *map)
@@ -83,12 +78,12 @@ void	get_pl_map(t_vect point, t_pl *pl, t_vect *map)
 	p = vec_sub(point, pl->point);
 	map->x = floor(dot(pl->base.h_normal, p));
 	map->y = floor(dot(pl->base.v_normal, p));
-	/*t_img	*img;*/
-	/*img = pl->texture.img;*/
-	/*if (pl->map == 1)*/
-	/*	return (my_mlx_pixel_get(img, map->x * img->width, (map->y) * img->height));*/
-	/*if (((int)(map->x + map->y)) % 2)*/
-	/*	return (CHECK_COLOR);*/
-	/*else*/
-	/*	return (pl->color);*/
+}
+
+void	get_disk_map(t_vect point, t_type *obj, t_type mode, t_vect *map)
+{
+	if (mode == DISK)
+		return (get_co_disk_map(point, (t_co *)obj, map));
+	else
+		return (get_cy_disk_map(point, (t_cy *)obj, mode, map));
 }

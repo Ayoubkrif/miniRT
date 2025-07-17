@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 18:06:11 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 09:12:52 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_inter	nearest_inter(t_rt *rt, t_vect ray, t_vect	start)
 	t_inter	inter;
 
 	i = 0;
-	inter = (t_inter){-1, 0, NULL, NONE, 0, -1};
+	inter = (t_inter){NULL, -1, NONE};
 	while (rt->object[i])
 	{
 		if (*rt->object[i] == SPHERE)

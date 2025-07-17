@@ -6,17 +6,16 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 08:45:42 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:31:43 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_inter.h"
 #include "math_utils.h"
 #include "vect.h"
 #include <math.h>
-#include <stdio.h>
 
-void	push_inter(t_type *obj, int color, double t, t_inter *inter, t_type mode);
+void	push_inter(t_obj *obj, double t, t_inter *inter, t_type mode);
 
 void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 {
@@ -30,10 +29,10 @@ void	inter_disk(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	dot_axis_start = dot(cy->axis_n, start);
 	t = - (dot_axis_start + cy->dt) / dot_n_ray;
 	if (norm(vec_sub(cy->top, get_point(start, ray, t))) < cy->radius)
-		push_inter((t_type *)cy, cy->color, t, inter, DISK_TOP);
+		push_inter((t_obj *)cy, t, inter, DISK_TOP);
 	t = - (dot_axis_start + cy->db) / dot_n_ray;
 	if (norm(vec_sub(cy->bottom, get_point(start, ray, t))) < cy->radius)
-		push_inter((t_type *)cy, cy->color, t, inter, DISK_BOT);
+		push_inter((t_obj *)cy, t, inter, DISK_BOT);
 }
 
 void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
@@ -55,7 +54,7 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 		return ;
 	if (fabs(dot(cy->axis_n, vec_sub(get_point(start, ray, quad.root),
 					cy->center))) <= cy->semi_height)
-		push_inter((t_type *)cy, cy->color, quad.root, inter, CYLINDER);
+		push_inter((t_obj *)cy, quad.root, inter, CYLINDER);
 }
 
 void	inter_disc(t_vect ray, t_co *co, t_inter *inter, t_vect start)
@@ -70,8 +69,9 @@ void	inter_disc(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 	dot_axis_start = dot(co->axis_n, start);
 	t = - (dot_axis_start + co->d) / dot_n_ray;
 	if (norm(vec_sub(co->center, get_point(start, ray, t))) < co->radius)
-		push_inter((t_type *)co, co->color, t, inter, DISK);
+		push_inter((t_obj *)co, t, inter, DISK);
 }
+
 void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 {
 	t_quadratic	quad;
@@ -93,7 +93,7 @@ void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 		return ;
 	limit = quad.root * d_dot_u + delta_dot_d;
 	if (limit <= co->height && limit >= 0)
-		push_inter((t_type *)co, co->color, quad.root, inter, CONE);
+		push_inter((t_obj *)co, quad.root, inter, CONE);
 }
 /*
  * void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
