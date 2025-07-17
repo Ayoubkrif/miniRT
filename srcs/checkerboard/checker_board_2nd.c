@@ -6,12 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:25:29 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:10:30 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include <assert.h>
+#include "math_utils.h"
+#include <math.h>
 
 #define CHECK_R 255
 #define CHECK_G 0

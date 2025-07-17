@@ -6,11 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:21:50 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:11:11 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT_inter.h"
+#include <assert.h>
+#include "math_utils.h"
 
 void	push_inter(t_obj *obj, double t, t_inter *inter, t_type mode)
 {

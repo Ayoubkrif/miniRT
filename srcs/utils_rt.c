@@ -6,11 +6,12 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 08:56:54 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 08:18:41 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:16:22 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include <math.h>
 
 static t_vect	normal_cone(t_co *co, t_vect point)
 {

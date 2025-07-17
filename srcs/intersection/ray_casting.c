@@ -6,13 +6,12 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:12:52 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:14:15 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "mlx.h"
-#include <stdio.h>
 
 t_rgb	is_it_touching(t_rt *rt, double x, double y);
 

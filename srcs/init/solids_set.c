@@ -6,11 +6,14 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 13:30:54 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:31:00 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:14:36 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include "math_utils.h"
+#include "vect.h"
+#include <math.h>
 
 void	set_cy(t_cy *cy)
 {

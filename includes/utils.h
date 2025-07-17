@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:08:39 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/05 15:12:16 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 10:05:54 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define UTILS_H
 
 # include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
 # include <stdbool.h>
 # include <fcntl.h>
 

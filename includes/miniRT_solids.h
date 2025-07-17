@@ -6,14 +6,14 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:23:03 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 08:56:50 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:42:48 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_SOLIDS_H
 # define MINIRT_SOLIDS_H
 
-# include "math_utils.h"
+# include "vect.h"
 # include	"mlx_int.h"
 
 typedef struct s_rgb

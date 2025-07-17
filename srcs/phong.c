@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:27:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:34:15 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:10:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "miniRT.h"
 #include "define.h"
 #include "vect.h"
+#include "math_utils.h"
+#include <math.h>
 
 typedef struct s_phong
 {

@@ -6,12 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:22:50 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 18:14:10 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 10:15:56 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vect.h"
 #include "math_utils.h"
+#include <math.h>
 
 double	norm(t_vect u)
 {

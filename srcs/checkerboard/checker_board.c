@@ -6,12 +6,13 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:29:32 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:36:12 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include <assert.h>
+#include "math_utils.h"
+#include <math.h>
 
 #define CHECK_R 255
 #define CHECK_G 0
@@ -76,8 +77,19 @@ void	get_pl_map(t_vect point, t_pl *pl, t_vect *map)
 	t_vect	p;
 
 	p = vec_sub(point, pl->point);
-	map->x = floor(dot(pl->base.h_normal, p));
-	map->y = floor(dot(pl->base.v_normal, p));
+	/*normalize_to(&p)*/
+	map->x = floor(10 * dot(pl->base.h_normal, p)) / 100;
+	map->y = floor(10 * dot(pl->base.v_normal, p)) / 100;
+	while (map->y < 0)
+		map->y += 1.0;
+	while (map->y > 1)
+		map->y -= 1.0;
+	while (map->x < 0)
+		map->x += 1.0;
+	while (map->x > 1)
+		map->x -= 1.0;
+	/*map->x /= 10;*/
+	/*map->y /= 10;*/
 }
 
 void	get_disk_map(t_vect point, t_type *obj, t_type mode, t_vect *map)

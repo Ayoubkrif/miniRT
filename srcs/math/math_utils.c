@@ -6,11 +6,12 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:25:35 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:11:43 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:16:00 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math_utils.h"
+#include <math.h>
 
 double	to_deg(double angle)
 {

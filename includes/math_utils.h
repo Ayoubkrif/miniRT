@@ -6,17 +6,15 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:28:09 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:34:22 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:10:01 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATH_UTILS_H
 # define MATH_UTILS_H
 
-# include "vect.h"
-# include <math.h>
-
 # define EPSILON 0.00001
+# define PI 3.14
 
 typedef struct s_quadratic
 {
@@ -27,8 +25,6 @@ typedef struct s_quadratic
 	double	sq_delta;
 	double	root;
 }	t_quadratic;
-
-# define PI 3.14
 
 double	to_deg(double angle);
 double	to_rad(double angle);
