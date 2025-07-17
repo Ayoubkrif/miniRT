@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:49:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/13 19:11:09 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 08:36:54 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 int	vect_eq(t_vect *u, t_vect *v)
 {
-	return (double_eq(u->x, v->x) && double_eq(u->y, v->y) && double_eq(u->z, v->z));
+	return (double_eq(u->x, v->x) && double_eq(u->y, v->y)
+		&& double_eq(u->z, v->z));
 }
 
 int	vect_col(t_vect u, t_vect v)

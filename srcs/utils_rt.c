@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 08:56:54 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/12 15:01:01 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 08:18:41 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ static t_vect	normal_cone(t_co *co, t_vect point)
 {
 	t_vect	cy_n;
 
-	cy_n = normalize(vec_sub(point, vec_add(co->apex, vec_mul(co->axis_n, dot(co->axis_n, vec_sub(point, co->apex)) / dot(co->axis_n, co->axis_n)))));
-	return (vec_add(vec_mul(cy_n, cos(co->theta)), vec_mul(co->axis_n, -sin(co->theta))));
+	cy_n = normalize(vec_sub(point,
+				vec_add(co->apex,
+					vec_mul(co->axis_n,
+						dot(co->axis_n,
+							vec_sub(point, co->apex))
+						/ dot(co->axis_n, co->axis_n)))));
+	return (vec_add(vec_mul(cy_n, cos(co->theta)),
+			vec_mul(co->axis_n, -sin(co->theta))));
 }
 
 static t_vect	normal_cylinder(t_cy *cy, t_vect point)

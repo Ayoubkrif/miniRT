@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/16 18:41:23 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 07:53:14 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 #include "mlx.h"
 #include <stdio.h>
 
-int	sp_bonus(t_rt *rt, t_sp *sp, char **tok);
-int	cy_bonus(t_rt *rt, t_cy *cy, char **tok);
-int	co_bonus(t_rt *rt, t_co *co, char **tok);
-int	pl_bonus(t_rt *rt, t_pl *pl, char **tok);
 int	obj_bonus(t_rt *rt, t_obj *obj, char **tok);
 
 int	get_sphere_info(char **tok, t_rt *rt)

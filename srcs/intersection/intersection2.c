@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:01:11 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 09:44:16 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 08:45:42 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	inter_cylinder(t_vect ray, t_cy *cy, t_inter *inter, t_vect start)
 	quad.c = dot(prod_d_cy, prod_d_cy) - p2(cy->radius);
 	if (!delta_2nd(&quad))
 		return ;
-	if (fabs(dot(cy->axis_n, vec_sub(get_point(start, ray, quad.root), cy->center))) <= cy->semi_height)
+	if (fabs(dot(cy->axis_n, vec_sub(get_point(start, ray, quad.root),
+					cy->center))) <= cy->semi_height)
 		push_inter((t_type *)cy, cy->color, quad.root, inter, CYLINDER);
 }
 
@@ -74,22 +75,23 @@ void	inter_disc(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 void	inter_cone(t_vect ray, t_co *co, t_inter *inter, t_vect start)
 {
 	t_quadratic	quad;
-	t_vect		delta = vec_sub(start, co->apex);
-	double		d_dot_u = dot(co->axis_n, ray);
-	double		u_dot_u = dot(ray, ray); //
-	double		delta_dot_d = dot(delta, co->axis_n);
-	double		delta_dot_u = dot(delta, ray); // 
-	double		delta_dot_delta = dot(delta, delta); //
+	t_vect		delta;
+	double		d_dot_u;
+	double		delta_dot_d;
+	double		limit;
 
+	delta = vec_sub(start, co->apex);
+	d_dot_u = dot(co->axis_n, ray);
+	delta_dot_d = dot(delta, co->axis_n);
 	inter_disc(ray, co, inter, start);
-	quad.a = -(p2(d_dot_u) - co->gamma * u_dot_u);
+	quad.a = -(p2(d_dot_u) - co->gamma * dot(ray, ray));
 	if (double_eq(quad.a, 0))
 		return ;
-	quad.b = -2 * (d_dot_u * delta_dot_d - (co->gamma * delta_dot_u));
-	quad.c = -(p2(delta_dot_d) - (co->gamma * delta_dot_delta));
+	quad.b = -2 * (d_dot_u * delta_dot_d - (co->gamma * dot(delta, ray)));
+	quad.c = -(p2(delta_dot_d) - (co->gamma * dot(delta, delta)));
 	if (!delta_2nd(&quad))
 		return ;
-	double limit = quad.root * d_dot_u + delta_dot_d;
+	limit = quad.root * d_dot_u + delta_dot_d;
 	if (limit <= co->height && limit >= 0)
 		push_inter((t_type *)co, co->color, quad.root, inter, CONE);
 }

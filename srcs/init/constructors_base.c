@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 19:14:46 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/17 07:54:27 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	get_light_info(char **tok, t_rt *rt)
 	if (brightness < 0 || brightness > 1)
 		return (print_error(BRIGHTNESS, "light"));
 	brightness /= 255;
-	rt->light[rt->nb_light].color = color_k(rt->light[rt->nb_light].color, brightness);
+	rt->light[rt->nb_light].color
+		= color_k(rt->light[rt->nb_light].color, brightness);
 	rt->nb_light += 1;
 	return (0);
 }

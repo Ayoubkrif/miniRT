@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/15 09:38:06 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/17 08:04:41 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ int	fill_int_color(char *str, int *color, char *error)
 	b = ft_atoi(cursor);
 	if (b > 255 || b < 0)
 		return (print_error(COLOR, error));
-	*color = (r << 16) | (g << 8) | b;
-	return (0);
+	return (*color = (r << 16) | (g << 8) | b, 0);
 }
