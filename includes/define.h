@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/15 10:03:43 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:55:54 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define REFLEXION "No reflexion :"
 
 # define KA 0.3
-# define KD 0.7
+# define KD 0.5
 # define KS 0.9
 # define ALPHA_S 200
 

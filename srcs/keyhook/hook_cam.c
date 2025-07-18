@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/13 17:46:27 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/18 15:29:39 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,25 @@
 
 static void	rotate_cam(int keycode, t_cam *cam)
 {
-	/*t_vect	temp;*/
-	/**/
-	/*temp = cam->direction_n;*/
 	if (keycode == XK_Left)
 	{
 		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.h_normal, SIN));
-		/*cam->base.h_normal = vec_add(vec_mul(cam->base.h_normal, COS),*/
-		/*		vec_mul(temp, SIN));*/
 	}
 	if (keycode == XK_Right)
 	{
 		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.h_normal, SIN));
-		/*cam->base.h_normal = vec_sub(vec_mul(cam->base.h_normal, COS),*/
-		/*		vec_mul(temp, SIN));*/
 	}
 	if (keycode == XK_Up)
 	{
 		cam->direction_n = vec_add(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.v_normal, SIN));
-		/*cam->base.v_normal = vec_sub(vec_mul(cam->base.v_normal, COS),*/
-		/*		vec_mul(temp, SIN));*/
 	}
 	if (keycode == XK_Down)
 	{
 		cam->direction_n = vec_sub(vec_mul(cam->direction_n, COS),
 				vec_mul(cam->base.v_normal, SIN));
-		/*cam->base.v_normal = vec_add(vec_mul(cam->base.v_normal, COS),*/
-		/*		vec_mul(temp, SIN));*/
 	}
 }
 

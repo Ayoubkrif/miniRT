@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/18 14:10:27 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/18 14:18:07 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	fill_bump(t_rt *rt, t_obj *obj, char *tok)
 			&obj->bump.width, &obj->bump.height);
 	if (!obj->bump.img)
 		return (perror("open"), 1);
-	obj->map += 3;
+	obj->map += 4;
 	return (0);
 }
 
