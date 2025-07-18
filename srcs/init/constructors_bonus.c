@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/18 10:09:39 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:10:27 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	fill_bump(t_rt *rt, t_obj *obj, char *tok)
 	tok += 2;
 	obj->bump.img = mlx_xpm_file_to_image(rt->mlx.disp, tok,
 			&obj->bump.width, &obj->bump.height);
-	if (!obj->texture.img)
-		return (printf("i dont have a bump on sp\n"), 1);
+	if (!obj->bump.img)
+		return (perror("open"), 1);
 	obj->map += 3;
 	return (0);
 }
@@ -72,7 +72,7 @@ int	obj_bonus(t_rt *rt, t_obj *obj, char **tok)
 		if (!ft_strncmp("b:", tok[i], 2))
 		{
 			if (fill_bump(rt, obj, tok[i]))
-				return (printf("Error on texture\n"), 1);
+				return (printf("Error on bump\n"), 1);
 		}
 		i++;
 	}
