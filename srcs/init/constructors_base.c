@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/17 07:54:27 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:09:12 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	get_light_info(char **tok, t_rt *rt)
 		return (print_error(ARGS, "light grightness"));
 	if (fill_rgb(tok[3], &rt->light[rt->nb_light].color, "light"))
 		return (1);
-	brightness = atof(tok[2]);
+	brightness = ft_atof(tok[2]);
 	if (brightness < 0 || brightness > 1)
 		return (print_error(BRIGHTNESS, "light"));
 	brightness /= 255;
@@ -77,7 +77,7 @@ int	get_ambient_info(char **tok, t_rt *rt)
 		return (print_error(ARGS, "ambient color"));
 	if (fill_rgb(tok[2], &rt->ambient.color, "ambient"))
 		return (1);
-	brightness = atof(tok[1]) * KA;
+	brightness = ft_atof(tok[1]) * KA;
 	if (brightness < 0 || brightness > 1)
 		return (print_error(BRIGHTNESS, "ambient"));
 	brightness /= 255;

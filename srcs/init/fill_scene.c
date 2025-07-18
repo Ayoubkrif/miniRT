@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/10 09:52:30 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:08:46 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	fill_vec(char *str, t_vect *vec)
 	if (!str)
 		return (1);
 	cursor = str;
-	vec->x = atof(cursor);
+	vec->x = ft_atof(cursor);
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
 		return (1);
 	cursor++;
-	vec->y = atof(cursor);
+	vec->y = ft_atof(cursor);
 	cursor = get_next_number(cursor);
 	if (*cursor != ',')
 		return (1);

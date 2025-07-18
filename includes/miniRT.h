@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:27:01 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:06:28 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define WIN_X	710
 # define WIN_Y	710
 
+float	ft_atof(const char *nptr);
 void	check_args(int argc);
 int		print_error(char *message, char *complement);
 

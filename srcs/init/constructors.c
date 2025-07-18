@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/17 09:34:47 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:08:00 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_sphere_info(char **tok, t_rt *rt)
 		return (print_error(ARGS, "sphere center"));
 	if (!tok[2])
 		return (print_error(ARGS, "sphere diameter"));
-	sp->diameter = atof(tok[2]);
+	sp->diameter = ft_atof(tok[2]);
 	if (fill_int_color(tok[3], &sp->color, "sphere"))
 		return (1);
 	if (obj_bonus(rt, (t_obj *)sp, tok + 4))
@@ -61,10 +61,10 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 		return (print_error(VECT_NULL, "cylinder axis"));
 	if (!tok[3])
 		return (print_error(ARGS, "cylinder diameter"));
-	cy->diameter = atof(tok[3]);
+	cy->diameter = ft_atof(tok[3]);
 	if (!tok[4])
 		return (print_error(ARGS, "cylinder height"));
-	cy->height = atof(tok[4]);
+	cy->height = ft_atof(tok[4]);
 	if (fill_int_color(tok[5], &cy->color, "cylinder"))
 		return (1);
 	if (obj_bonus(rt, (t_obj *)cy, tok + 6))
@@ -124,10 +124,10 @@ int	get_cone_info(char **tok, t_rt *rt)
 		return (print_error(VECT_NULL, "cone axis"));
 	if (!tok[3])
 		return (print_error(ARGS, "cone diameter"));
-	co->diameter = atof(tok[3]);
+	co->diameter = ft_atof(tok[3]);
 	if (!tok[4])
 		return (print_error(ARGS, "cone height"));
-	co->height = atof(tok[4]);
+	co->height = ft_atof(tok[4]);
 	if (fill_int_color(tok[5], &co->color, "cone"))
 		return (1);
 	if (obj_bonus(rt, (t_obj *)co, tok + 6))
