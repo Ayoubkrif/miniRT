@@ -1,0 +1,21 @@
+/* XPM */
+static char *pic_xpm[] = {
+"10 10 6 1",
+"A c #000000",  // noir
+"B c #202020",
+"C c #505050",
+"D c #808080",
+"E c #B0B0B0",
+"F c #FFFFFF",  // blanc
+"AAABBBBAAA",
+"AABDDDDBBA",
+"ABDEEEEDBA",
+"BDDEFFEDDB",
+"BDEFFFFEDB",
+"BDEFFFFEDB",
+"BDDEFFEDDB",
+"ABDEEEEDBA",
+"AABDDDDBBA",
+"AAABBBBAAA"
+};
+
