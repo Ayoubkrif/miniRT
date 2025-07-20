@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/18 10:08:46 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:39:31 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	fill_scene(char *str, t_rt *rt)
 {
 	char	**tok;
 
-	tok = ft_split(str, ' ');
+	tok = ft_strtok(str, " \n\t");
 	if (!tok)
 	{
 		perror("malloc");
@@ -86,10 +86,10 @@ int	fill_scene(char *str, t_rt *rt)
 	}
 	if (get_identifier(tok[0], tok, rt))
 	{
-		fall(tok);
+		free(tok);
 		return (1);
 	}
-	fall(tok);
+	free(tok);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ayoub <ayoub@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:48:37 by ayoub             #+#    #+#             */
-/*   Updated: 2025/04/05 11:10:15 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:29:38 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int nb, int fd);
 
 char	*get_next_line(int fd);
+char	**ft_strtok(char *s, char *tok);
 
 typedef struct s_list
 {

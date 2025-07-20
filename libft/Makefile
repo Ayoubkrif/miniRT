@@ -11,7 +11,8 @@ SRC = ft_memcmp.c ft_strncmp.c ft_atoi.c \
       ft_memchr.c ft_strlen.c ft_tolower.c \
       ft_isascii.c ft_memset.c ft_strlcat.c \
       ft_isalpha.c ft_strnstr.c ft_strjoin.c \
-      ft_strchr.c ft_strcmp.c get_next_line.c
+      ft_strchr.c ft_strcmp.c get_next_line.c \
+	  ft_strtok.c
 
 OBJ = $(SRC:.c=.o)
 
