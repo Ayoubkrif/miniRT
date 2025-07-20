@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:07:36 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/06/05 15:07:55 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:33:36 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,13 @@ void	fall(char **split)
 	while (split[i])
 		free(split[i++]);
 	free(split);
+}
+
+void	fall1(char **split)
+{
+	while (*split)
+	{
+		free(*split);
+		split++;
+	}
 }
