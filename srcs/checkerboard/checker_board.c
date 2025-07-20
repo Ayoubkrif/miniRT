@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/18 16:17:36 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:48:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	normal_perturbation(t_bump *bump, t_vect *normal, t_vect *map, float height
 	else
 		next_h.y = 0;
 	next_h.z = rgb_to_height(my_mlx_pixel_get(bump->img, next_h.x, next_h.y), height);
-	vec_sub_to(&next_h, &actu);
 	if (actu.x < bump->width)
 		next_v.x = actu.x + 1;
 	else
@@ -112,7 +111,7 @@ void	get_color_normal(
 	else
 		*color = inter->obj->color;
 	if (inter->obj->map >= 4)
-		normal_perturbation(&obj->bump, normal, &map, 50);
+		normal_perturbation(&obj->bump, normal, &map, 100);
 }
 
 void	get_sp_map(t_vect point, t_sp *sp, t_vect *map)
@@ -143,8 +142,6 @@ void	get_pl_map(t_vect point, t_pl *pl, t_vect *map)
 		map->x += 1.0;
 	while (map->x > 1)
 		map->x -= 1.0;
-	/*map->x /= 10;*/
-	/*map->y /= 10;*/
 }
 
 void	get_disk_map(t_vect point, t_type *obj, t_type mode, t_vect *map)
