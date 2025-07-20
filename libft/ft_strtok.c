@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:44:06 by ayoub             #+#    #+#             */
-/*   Updated: 2025/07/20 18:28:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/20 19:34:09 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static size_t	count_words(const char *s, char *c)
 	return (words);
 }
 
-static void	filldest(char **dest, char *s, char *c, unsigned int n_words)
+static void	filldest(char **dest, char *s, char *c)
 {
 	unsigned int	i;
 	bool			in_word;
 
 	in_word = false;
 	i = 0;
-	while (i < n_words)
+	while (*s)
 	{
 		if (ft_strchr(c, *s))
 		{
@@ -67,6 +67,6 @@ char	**ft_strtok(char *s, char *tok)
 	dest = ft_calloc(sizeof(char *), (n_words + 1));
 	if (dest == NULL)
 		return (NULL);
-	filldest(dest, s, tok, n_words);
+	filldest(dest, s, tok);
 	return (dest);
 }
