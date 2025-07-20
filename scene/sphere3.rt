@@ -8,10 +8,10 @@
 # #	PLAN	pl	point  (vect)		normal	  (vect)										color (rgb)
 
 A 0.7 255,255,255
-C 20,0,0 -1,0,0 70
+C -4,0,0 1,0,0 70
 # L -10000,4,4 0.9 255,255,255
 # L 50,4,4 0.6 255,255,255
-L 20,20,0 0.6 255,255,255
+L 0,0,0 0.6 255,255,255
 
 # sp 8,3,0 1 255,1,1 r:0.8
 # sp 8,0,0 1 1,1,255 r:0.8
@@ -27,7 +27,11 @@ L 20,20,0 0.6 255,255,255
 # pl 0,0,6 0,0,1 150,0,150 r:0 
 # pl 0,0,-6 0,0,1 150,0,150 r:0 t:checker 
 
-sp 8,-3,0 1 150,150,150 t:texture/glace.xpm    
-sp 8,-2,0 1 150,150,150 t:texture/glace.xpm b:bump/glace.xpm    
-sp 8,-1,0 1 150,150,150 b:bump/glace.xpm    
-sp 8,0,0 1 150,150,150  
+# sp 8,-3,0 1 150,150,150 t:texture/earth.xpm    
+sp 0,1,0 1 150,150,150 b:bump/earth.xpm    
+sp 0,-1,0 1 150,150,150 b:bump/earth.xpm    
+# sp -1,0,0 1 150,150,150 b:bump/earth.xpm    
+# sp 1,0,0 1 150,150,150 b:bump/earth.xpm    
+sp 0,0,1 1 150,150,150 b:bump/earth.xpm    
+sp 0,0,-1 1 150,150,150 b:bump/earth.xpm    
+# sp 8,0,0 1 150,150,150  
