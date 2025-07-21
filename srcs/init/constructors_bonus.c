@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/18 14:18:07 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/21 15:15:18 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	init_obj(t_obj *obj)
 	obj->map = 0;
 	obj->texture.img = NULL;
 	obj->bump.img = NULL;
+	obj->u_offset = 0;
+	obj->v_offset = 0;
 }
 
 int	obj_bonus(t_rt *rt, t_obj *obj, char **tok)

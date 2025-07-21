@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/18 15:30:22 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/21 15:14:02 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	get_sp_map(t_vect point, t_sp *sp, t_vect *map);
 void	get_pl_map(t_vect point, t_pl *pl, t_vect *map);
 void	get_cy_map(t_vect point, t_cy *cy, t_vect *map);
 void	get_co_map(t_vect point, t_co *co, t_vect *map);
-void	get_disk_map(t_vect point, t_type *obj, t_type mode, t_vect *map);
+void	get_disk_map(t_vect point, t_obj *obj, t_type mode, t_vect *map);
 void	get_cy_disk_map(t_vect point, t_cy *cy, t_type mode, t_vect *map);
 void	get_co_disk_map(t_vect point, t_co *co, t_vect *map);
 
