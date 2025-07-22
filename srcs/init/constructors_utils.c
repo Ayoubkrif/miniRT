@@ -6,13 +6,14 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 10:25:11 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 12:42:17 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "miniRT.h"
 #include "define.h"
+#include "vect.h"
 
 static char	*get_next_number(char *str)
 {
@@ -93,12 +94,14 @@ int	check_rt_format(char *name)
 int	fill_normal(t_vect *vect, char *tok)
 {
 	if (fill_vec(tok, vect))
-		return (print_error(ARGS, "cylinder axis"));
+		return (print_error(ARGS, tok));
 	if (vect->x < -1 || vect->x > 1 || vect->y < -1
 		|| vect->y > 1 || vect->z < -1 || vect->z > 1)
-		return (print_error(VECT_NORM, "cylinder axis"));
+		return (print_error(VECT_R, tok));
 	//has to be normalised
+	// if (norm(*vect) != 1)
+	// 	return (print_error(VECT_NORM, tok));
 	if (vect_nul(vect))
-		return (print_error(VECT_NULL, "cylinder axis"));
+		return (print_error(VECT_NULL, tok));
 	return (0);
 }

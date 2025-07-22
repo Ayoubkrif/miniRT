@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 10:02:05 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 12:40:54 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 # define AMBIENT "Too many ambient"
 # define OBJ "Too many object"
 # define CAM "Too many cam"
-# define VECT_NORM "Wrong range for vector :"
+# define VECT_R "Wrong range for vector :"
+# define VECT_NORM "Vector is not normalised :"
 # define VECT_NULL "Director vector norm is 0 :"
 # define COLOR "Wrong range for color :"
 # define FOV "Wrong range for fov :"
