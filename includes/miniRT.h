@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 11:13:06 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 13:22:58 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ t_rgb	color_k(t_rgb	c1, float k);
 
 t_vect	normal_vect(t_inter inter, t_vect point);
 t_vect	ray_from_camera_to_objects(t_cam cam, double x, double y);
+t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision);
+void	blin_phong(t_rt *rt, t_vect ray, t_phong *phong, t_rgb *lights);
 
 void	bump_texture(t_inter *inter, t_vect *normal, int *color, t_vect *point);
 void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map, float height);

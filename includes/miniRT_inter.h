@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:23:31 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/17 09:02:56 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:22:32 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ typedef struct s_inter
 	double	t;
 	t_type	mode;
 }	t_inter;
+
+typedef struct s_phong
+{
+	t_inter	inter_ray;
+	int		solid_color;
+	t_vect	hit_ray;
+	t_vect	normal_n;
+	t_vect	reflected;
+	double	dot_normal_ray;
+}	t_phong;
 
 void	window_cast(t_rt *rt);
 t_inter	nearest_inter(t_rt *rt, t_vect ray, t_vect	start);

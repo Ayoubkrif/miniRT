@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:00:46 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/21 13:27:28 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 13:03:42 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,4 @@ void	set_base(t_base *base, t_vect direction_n)
 		base->h_normal = cross(direction_n, h_ref);
 	normalize_to(&base->h_normal);
 	base->v_normal = cross(base->h_normal, direction_n);
-	/*op_to(&base->v_normal);*/
 }

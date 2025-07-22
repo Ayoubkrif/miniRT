@@ -6,14 +6,14 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:58:38 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 11:27:22 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 13:19:12 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "mlx.h"
 
-t_rgb	is_it_touching(t_rt *rt, double x, double y);
+#define N_REFLECTION 5
 
 t_inter	nearest_inter(t_rt *rt, t_vect ray, t_vect	start)
 {
@@ -38,6 +38,14 @@ t_inter	nearest_inter(t_rt *rt, t_vect ray, t_vect	start)
 		i++;
 	}
 	return (inter);
+}
+
+t_rgb	is_it_touching(t_rt *rt, double x, double y)
+{
+	return (cast_ray_from(rt,
+			ray_from_camera_to_objects(rt->camera, x, y),
+			rt->camera.position,
+			N_REFLECTION));
 }
 
 void	window_cast(t_rt *rt)
