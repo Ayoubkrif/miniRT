@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 11:17:51 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 13:33:25 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,20 @@ void	get_obj_map(t_vect *point, t_obj *obj, t_vect *map, t_type mode)
 		map->x -= 1.0;
 }
 
+void	checkerboard(t_inter *inter, int *color, t_vect *map)
+{
+	if ((int)(floor(10 * map->x) + floor(10 * map->y)) % 2)
+		*color = CHECK_COLOR;
+	else
+		*color = inter->obj->color;
+}
+
 void	bump_texture(
 		t_inter *inter, t_vect *normal, int *color, t_vect *point)
 {
 	t_vect	map;
 	t_obj	*obj;
+	int		temp;
 
 	obj = (t_obj *)inter->obj;
 	*normal = normal_vect(*inter, *point);
@@ -57,16 +66,9 @@ void	bump_texture(
 		return ;
 	}
 	get_obj_map(point, inter->obj, &map, inter->mode);
-	int		temp;
-
 	temp = inter->obj->map & 0b11;
 	if (temp == 1)
-	{
-		if ((int)(floor(10 * map.x) + floor(10 * map.y)) % 2)
-			*color = CHECK_COLOR;
-		else
-			*color = inter->obj->color;
-	}
+		checkerboard(inter, color, &map);
 	else if (temp == 2)
 		*color = my_mlx_pixel_get(obj->texture.img,
 				map.x * obj->texture.width, map.y * obj->texture.height);
