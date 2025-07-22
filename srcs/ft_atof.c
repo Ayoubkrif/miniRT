@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 09:26:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/18 10:04:57 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:35:03 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ float	ft_atof(const char *nptr)
 {
 	float	ipart;
 	float	fpart;
-	float	precision;
 	float	s;
 	int		i;
 
@@ -55,7 +54,6 @@ float	ft_atof(const char *nptr)
 	s = 1;
 	ipart = 0;
 	fpart = 0;
-	precision = 0;
 	while (ft_isisspace(nptr[i]))
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
@@ -69,12 +67,7 @@ float	ft_atof(const char *nptr)
 		ipart = ipart * 10 + nptr[i] - '0';
 		i++;
 	}
-	if (nptr[i] == '.')
-	{
-		i++;
-		fpart = ft_atof(&nptr[i]);
-		precision = int_len((char *)&nptr[i]);
-		fpart = convert_nb(fpart, precision);
-	}
+	if (nptr[i++] == '.')
+		fpart = convert_nb(ft_atof(&nptr[i]), int_len((char *)&nptr[i]));
 	return (s * (ipart + fpart));
 }
