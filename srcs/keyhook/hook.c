@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 10:30:33 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:25:17 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,10 @@ int	select_solid(int button, int x, int y, t_rt *rt)
 	t_obj	*obj;
 	int		i;
 
-	if (button == 1)
-	{
-		if (x < WIN_X && x >= 0)
-			x -= WIN_X / 2;
-		else
-			return (1);
-		if (y < WIN_Y && y >= 0)
-			y = -y + WIN_Y / 2;
-		else
-			return (1);
-	}
-	else
+	if (button != 1 || x > WIN_X || x < 0 || y > WIN_Y || y < 0)
 		return (1);
+	x -= WIN_X / 2;
+	y = -y + WIN_Y / 2;
 	ray = ray_from_camera_to_objects(rt->camera, x, y);
 	obj = nearest_inter(rt, ray, rt->camera.position).obj;
 	if (!obj)
