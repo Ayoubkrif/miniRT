@@ -6,13 +6,14 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:27:28 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 18:03:00 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 10:07:47 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_TYPE_H
 # define MINIRT_TYPE_H
 
+# include "define.h"
 # include "miniRT_solids.h"
 
 typedef struct s_mlx
@@ -60,7 +61,7 @@ typedef struct s_rt
 	int			nb_light;
 	t_ambient	ambient;
 	int			nb_object;
-	t_type		*object[20];
+	t_type		*object[MAX_OBJ];
 	int			menu;
 	char		name5;
 }	t_rt;

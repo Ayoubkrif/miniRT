@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/21 15:32:30 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 10:30:33 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	modify_obj(int keycode, t_type *obj)
 int	key_hook(int keycode, t_rt *rt)
 {
 	if (keycode == XK_Escape)
-		exit_minirt(rt);
+		exit_minirt(rt, 0);
 	else if (keycode == XK_c)
 		rt->menu = 0;
 	else if (keycode == XK_n)

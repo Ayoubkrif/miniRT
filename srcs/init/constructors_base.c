@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/18 10:09:12 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 08:14:26 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	get_cam_info(char **tok, t_rt *rt)
 		|| rt->camera.direction_n.y < -1 || rt->camera.direction_n.y > 1
 		|| rt->camera.direction_n.z < -1 || rt->camera.direction_n.z > 1)
 		return (print_error(VECT_NORM, "camera direction"));
+	//has to be normalized
 	if (vect_nul(&rt->camera.direction_n))
 		return (print_error(VECT_NULL, "camera direction"));
 	if (!tok[3])
@@ -77,9 +78,10 @@ int	get_ambient_info(char **tok, t_rt *rt)
 		return (print_error(ARGS, "ambient color"));
 	if (fill_rgb(tok[2], &rt->ambient.color, "ambient"))
 		return (1);
-	brightness = ft_atof(tok[1]) * KA;
+	brightness = ft_atof(tok[1]);
 	if (brightness < 0 || brightness > 1)
 		return (print_error(BRIGHTNESS, "ambient"));
+	brightness *= KA;
 	brightness /= 255;
 	rt->ambient.color = color_k(rt->ambient.color, brightness);
 	return (0);

@@ -6,14 +6,17 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/20 18:39:31 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 10:06:56 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "define.h"
 #include "utils.h"
 #include "libft.h"
 #include "vect.h"
 #include "miniRT.h"
+
+int	check_rt_format(char *name);
 
 static char	*get_next_number(char *str)
 {
@@ -98,9 +101,11 @@ void	get_scene_info(t_rt *rt, char **av)
 	int		fd;
 	char	*str;
 
+	if (check_rt_format(av[1]))
+		(print_error(FORMAT, NULL), exit_minirt(rt, 1));
 	fd = open(av[1], O_RDONLY);
 	if (fd == OPEN_FAILURE)
-		(perror("open"), exit(1));
+		(perror("open"), exit_minirt(rt, 1));
 	while (true)
 	{
 		str = get_next_line(fd);
@@ -112,11 +117,7 @@ void	get_scene_info(t_rt *rt, char **av)
 			continue ;
 		}
 		if (fill_scene(str, rt))
-		{
-			free(str);
-			free_rt(rt);
-			exit(1);
-		}
+			(free(str), close(fd), exit_minirt(rt, 1));
 		free(str);
 	}
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/18 14:55:54 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 10:02:05 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 # define EVENT_MOUSE_RELEASE 5
 # define EVENT_DESTROY 17
 
+# define FORMAT "Wrong format for scene file"
 # define MALLOC "Malloc failed"
 # define ARGS "Missing arg for "
 # define LIGHT "Too many lights"
 # define AMBIENT "Too many ambient"
+# define OBJ "Too many object"
 # define CAM "Too many cam"
 # define VECT_NORM "Wrong range for vector :"
 # define VECT_NULL "Director vector norm is 0 :"
@@ -34,10 +36,12 @@
 # define FOV "Wrong range for fov :"
 # define BRIGHTNESS "Wrong range for brightness :"
 # define REFLEXION "No reflexion :"
+# define BONUS "Error in bonus parsing :"
 
 # define KA 0.3
 # define KD 0.5
 # define KS 0.9
 # define ALPHA_S 200
+# define MAX_OBJ 50
 
 #endif

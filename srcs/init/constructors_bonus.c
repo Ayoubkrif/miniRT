@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/21 15:15:18 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 09:57:21 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	fill_texture(t_rt *rt, t_obj *obj, char *tok)
 		obj->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok,
 				&obj->texture.width, &obj->texture.height);
 		if (!obj->texture.img)
-			return (printf("i dont have a xpm\n"), 1);
+			return (perror("open"), 1);
 		obj->map += 2;
 	}
 	return (0);
@@ -59,7 +59,6 @@ int	obj_bonus(t_rt *rt, t_obj *obj, char **tok)
 	int	i;
 
 	i = -1;
-	init_obj(obj);
 	while (tok[i])
 	{
 		if (!ft_strncmp("r:", tok[i], 2))

@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/15 18:04:44 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 10:49:59 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ void	free_rt(t_rt *rt)
 	i = 0;
 	while (i < rt->nb_object)
 	{
+		if (((t_obj *)rt->object[i])->bump.img)
+			mlx_destroy_image(rt->mlx.disp, ((t_obj *)rt->object[i])->bump.img);
+		if (((t_obj *)rt->object[i])->texture.img)
+			mlx_destroy_image(rt->mlx.disp,
+				((t_obj *)rt->object[i])->texture.img);
 		free(rt->object[i]);
 		i++;
 	}

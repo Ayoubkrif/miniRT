@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/21 15:14:02 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 09:59:46 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_solids(t_rt *rt);
 void	print_cam_base(t_rt *rt);
 
 void	free_rt(t_rt *rt);
-int		exit_minirt(t_rt *rt);
+int		exit_minirt(t_rt *rt, int code);
 
 int		key_hook(int keycode, t_rt *rt);
 int		select_solid(int button, int x, int y, t_rt *rt);
