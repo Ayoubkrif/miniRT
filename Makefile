@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/22 11:20:07 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/22 13:25:27 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SOURCES		= main.c \
 			  intersection/intersection.c \
 			  intersection/intersection2.c \
 			  intersection/ray_casting.c\
-			  phong.c \
+			  intersection/blinn-phong.c \
+			  intersection/cast_ray_from.c \
 			  print/put_string.c print/ftoa.c print/obj_print.c \
 			  utils.c utils_rt.c \
 			  mlx/exit_minirt.c \
