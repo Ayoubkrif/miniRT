@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/14 17:12:26 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:34:27 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,28 @@ static void	increase_height(int keycode, t_co *co)
 	}
 }
 
+static void	rotate_co(int keycode, t_co *co)
+{
+	if (keycode == XK_Left)
+		co->axis_n = vec_sub(vec_mul(co->axis_n, COS),
+				vec_mul(co->base.h_normal, SIN));
+	if (keycode == XK_Right)
+		co->axis_n = vec_add(vec_mul(co->axis_n, COS),
+				vec_mul(co->base.h_normal, SIN));
+	if (keycode == XK_Up)
+		co->axis_n = vec_add(vec_mul(co->axis_n, COS),
+				vec_mul(co->base.v_normal, SIN));
+	if (keycode == XK_Down)
+		co->axis_n = vec_sub(vec_mul(co->axis_n, COS),
+				vec_mul(co->base.v_normal, SIN));
+}
+
 void	modify_co(int keycode, t_co *co)
 {
 	increase_radius(keycode, co);
 	increase_height(keycode, co);
 	translate_co(keycode, co);
+	rotate_co(keycode, co);
+	set_base(&co->base, co->axis_n);
 	set_co(co);
 }

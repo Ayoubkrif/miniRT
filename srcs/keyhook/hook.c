@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:07:12 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 11:25:17 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:27:38 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int	key_hook(int keycode, t_rt *rt)
 			modify_obj(keycode, rt->object[rt->menu - 1]);
 		window_cast(rt);
 	}
+	put_string(rt);
 	return (0);
 }
