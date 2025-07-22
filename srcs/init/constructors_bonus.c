@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 12:46:17 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:45:52 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ int	obj_bonus(t_rt *rt, t_obj *obj, char **tok)
 	i = -1;
 	while (tok[i])
 	{
-		if (!ft_strncmp("r:", tok[i], 2))
+		if (!ft_strncmp("r:", tok[i], 2) && !obj->reflexion)
 			obj->reflexion = ft_atof(tok[i] + 2);
 		if (obj->reflexion < 0 || obj->reflexion > 1)
 			return (printf("Wrong range for reflexion\n"), 1);
-		if (!ft_strncmp("t:", tok[i], 2))
+		if (!ft_strncmp("t:", tok[i], 2) && !obj->texture.img)
 		{
 			if (fill_texture(rt, obj, tok[i]))
 				return (printf("Error on texture\n"), 1);
 		}
-		if (!ft_strncmp("b:", tok[i], 2))
+		if (!ft_strncmp("b:", tok[i], 2) && !obj->bump.img)
 		{
 			if (fill_bump(rt, obj, tok[i]))
 				return (printf("Error on bump\n"), 1);

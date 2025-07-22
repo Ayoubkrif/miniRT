@@ -6,12 +6,11 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 08:52:36 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 13:08:11 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:08:21 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "math_utils.h"
 #include "miniRT.h"
 #include "define.h"
 #include "vect.h"

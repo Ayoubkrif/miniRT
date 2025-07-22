@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:00:46 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 13:03:42 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/22 14:05:24 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	set_cam_base(t_cam *cam)
 void	set_base(t_base *base, t_vect direction_n)
 {
 	static t_vect	v_ref = {0, 0, -1};
-	static t_vect	h_ref = {0, -1, 0};
+	static t_vect	h_ref = {-1, 0, 0};
 
 	base->h_normal = cross(v_ref, direction_n);
 	if (vect_nul(&base->h_normal))
-		base->h_normal = cross(direction_n, h_ref);
-	normalize_to(&base->h_normal);
+		base->h_normal = h_ref;
+	else
+		normalize_to(&base->h_normal);
 	base->v_normal = cross(base->h_normal, direction_n);
 }

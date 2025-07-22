@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 13:04:47 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:08:11 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "define.h"
 #include "miniRT_solids.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 int		obj_bonus(t_rt *rt, t_obj *obj, char **tok);
 void	init_obj(t_obj *obj, t_type mode);
