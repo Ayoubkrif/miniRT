@@ -6,7 +6,7 @@
 /*   By: cbordeau <bordeau@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 18:58:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 12:47:26 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:04:47 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int	get_cylinder_info(char **tok, t_rt *rt)
 		return (1);
 	if (obj_bonus(rt, (t_obj *)cy, tok + 6))
 		return (print_error(BONUS, "cylinder"), 1);
-	cy->axis_n = normalize(cy->axis_n);
-	return (set_cy(cy), 0);
+	return (normalize_to(&cy->axis_n), set_cy(cy), 0);
 }
 
 int	get_plane_info(char **tok, t_rt *rt)
@@ -126,6 +125,5 @@ int	get_cone_info(char **tok, t_rt *rt)
 		return (1);
 	if (obj_bonus(rt, (t_obj *)co, tok + 6))
 		return (print_error(BONUS, "cone"), 1);
-	normalize_to(&co->axis_n);
-	return (set_co(co), 0);
+	return (normalize_to(&co->axis_n), set_co(co), 0);
 }
