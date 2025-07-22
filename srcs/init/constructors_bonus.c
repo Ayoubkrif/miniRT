@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:52:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 09:57:21 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/22 12:46:17 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int	fill_bump(t_rt *rt, t_obj *obj, char *tok)
 	return (0);
 }
 
-void	init_obj(t_obj *obj)
+void	init_obj(t_obj *obj, t_type mode)
 {
+	obj->type = mode;
 	obj->reflexion = 0;
 	obj->map = 0;
 	obj->texture.img = NULL;
