@@ -6,46 +6,56 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 09:29:57 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 13:48:05 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/23 12:32:20 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "math_utils.h"
-#include <math.h>
 
 float	rgb_to_height(int color, float height)
 {
-	int	r = (color >> 16) & 0xFF;
-	int	g = (color >> 8) & 0xFF;
-	int	b = color & 0xFF;
-	return (height * (r + g + b) / 765.0f);
+	float	ret_val;
+
+	ret_val = (color >> 16) & 0xFF;
+	ret_val += (color >> 8) & 0xFF;
+	ret_val += color & 0xFF;
+	return (height * (ret_val) / 765.0f);
 }
 
-void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map, float height)
+float	average(float x1, float x2)
+{
+	return ((x1 - x2) * 0.5);
+}
+
+void	edge_secure(t_bump *bump, int x, int y, int h[4])
+{
+	if (x > 0)
+		h[0] = x - 1;
+	else
+		h[0] = x;
+	if (x < bump->width - 1)
+		h[1] = x + 1;
+	else
+		h[1] = x;
+	if (y > 0)
+		h[2] = y - 1;
+	else
+		h[2] = y;
+	if (y < bump->height - 1)
+		h[3] = y + 1;
+	else
+		h[3] = y;
+}
+
+void	normal_perturbation(t_vect *normal, float h[4])
 {
 	t_base	base;
+	t_vect	bump_normal;
 	t_vect	new_normal;
-	int		x = (int)(map->x * (bump->width - 1));
-	int		y = (int)(map->y * (bump->height - 1));
-	// Sécurisation des bords
-	int		xm1 = (x > 0) ? x - 1 : x;
-	int		xp1 = (x < bump->width - 1) ? x + 1 : x;
-	int		ym1 = (y > 0) ? y - 1 : y;
-	int		yp1 = (y < bump->height - 1) ? y + 1 : y;
-	// Lecture des hauteurs voisines
-	float	hL = rgb_to_height(my_mlx_pixel_get(bump->img, xm1, y), height);
-	float	hR = rgb_to_height(my_mlx_pixel_get(bump->img, xp1, y), height);
-	float	hD = rgb_to_height(my_mlx_pixel_get(bump->img, x, ym1), height);
-	float	hU = rgb_to_height(my_mlx_pixel_get(bump->img, x, yp1), height);
-	// Estimation des dérivées
-	float	dhx = (hR - hL) * 0.5f;
-	float	dhy = (hU - hD) * 0.5f;
-	// Normale bump (dans l’espace de la heightmap)
-	t_vect bump_normal = {-dhx, -dhy, 1.0f};
+
+	bump_normal = (t_vect){-average(h[1], h[0]), -average(h[3], h[2]), 1};
 	normalize_to(&bump_normal);
-	// Transformation vers l’espace local de la surface
-	set_base(&base, *normal); // *normal est la normale originale
+	set_base(&base, *normal);
 	new_normal.x = bump_normal.x * base.h_normal.x
 		+ bump_normal.y * base.v_normal.x
 		+ bump_normal.z * normal->x;
@@ -57,4 +67,21 @@ void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map, float height)
 		+ bump_normal.z * normal->z;
 	normalize_to(&new_normal);
 	*normal = new_normal;
+}
+
+void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map, float height)
+{
+	float	hf[4];
+	int		h[4];
+	int		x;
+	int		y;
+
+	x = (int)(map->x * (bump->width - 1));
+	y = (int)(map->y * (bump->height - 1));
+	edge_secure(bump, x, y, h);
+	hf[0] = rgb_to_height(my_mlx_pixel_get(bump->img, h[0], y), height);
+	hf[1] = rgb_to_height(my_mlx_pixel_get(bump->img, h[1], y), height);
+	hf[2] = rgb_to_height(my_mlx_pixel_get(bump->img, x, h[2]), height);
+	hf[3] = rgb_to_height(my_mlx_pixel_get(bump->img, x, h[3]), height);
+	normal_perturbation(normal, hf);
 }
