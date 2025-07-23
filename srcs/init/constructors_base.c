@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/23 11:29:38 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 12:45:52 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 
 int	get_cam_info(char **tok, t_rt *rt)
 {
-	static int	nb = 0;
-
-	if (nb == 1)
+	if (rt->n_cam == 1)
 		return (print_error(CAM, NULL));
 	else
-		nb = 1;
+		rt->n_cam++;
 	if (fill_vec(tok[1], &rt->camera.position))
 		return (print_error(ARGS, "camera position"));
 	if (fill_vec(tok[2], &rt->camera.direction_n))

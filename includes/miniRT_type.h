@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:27:28 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/23 11:29:22 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 12:44:53 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_rt
 	int			nb_object;
 	t_type		*object[MAX_OBJ];
 	int			menu;
-	char		name5;
+	int			n_cam;
 }	t_rt;
 
 #endif

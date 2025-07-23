@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 13:40:34 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/23 12:35:03 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #define CHECK_G 0
 #define CHECK_B 255
 #define CHECK_COLOR 0xF000FF
+#define BUMP_HEIGHT 1
 
 void	get_obj_map(t_vect *point, t_obj *obj, t_vect *map, t_type mode)
 {
@@ -74,5 +75,5 @@ void	bump_texture(
 	else
 		*color = inter->obj->color;
 	if (inter->obj->map >= 4)
-		bump_normal(&obj->bump, normal, &map, 10);
+		bump_normal(&obj->bump, normal, &map, BUMP_HEIGHT);
 }

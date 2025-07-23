@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:08:05 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 10:49:59 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 12:51:00 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	init_mini_rt(t_rt *rt, char **av)
 	if (!rt->mlx.img)
 		(printf("img failed\n"), exit(1));
 	get_scene_info(rt, av);
+	if (!rt->n_cam)
+	{
+		print_error(F_CAM, NULL);
+		exit_minirt(rt, 1);
+	}
 }
 
 void	free_rt(t_rt *rt)
