@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:18:10 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 13:08:52 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:29:38 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_light_info(char **tok, t_rt *rt)
 {
 	float	brightness;
 
-	if (rt->nb_light > 20)
+	if (rt->nb_light > MAX_LIGHT)
 		return (print_error(LIGHT, NULL));
 	if (fill_vec(tok[1], &rt->light[rt->nb_light].position))
 		return (print_error(ARGS, "light position"));

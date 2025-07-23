@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:14:19 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 10:06:56 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:00:26 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	get_identifier(char *str, char **tok, t_rt *rt)
 		return (get_plane_info(tok, rt));
 	if (!ft_strcmp(str, "co"))
 		return (get_cone_info(tok, rt));
-	return (dprintf(2, "unknown identifier \"%s\" ", str), 1);
+	return (dprintf(2, "unknown identifier \"%s\" \n", str), 1);
 }
 
 int	fill_scene(char *str, t_rt *rt)
@@ -105,7 +105,7 @@ void	get_scene_info(t_rt *rt, char **av)
 		(print_error(FORMAT, NULL), exit_minirt(rt, 1));
 	fd = open(av[1], O_RDONLY);
 	if (fd == OPEN_FAILURE)
-		(perror("open"), exit_minirt(rt, 1));
+		(printf("Error\n"), perror("open"), exit_minirt(rt, 1));
 	while (true)
 	{
 		str = get_next_line(fd);

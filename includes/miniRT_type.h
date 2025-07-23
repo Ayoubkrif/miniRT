@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:27:28 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/22 10:07:47 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:29:22 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_rt
 	t_mlx		mlx;
 	char		name;
 	t_cam		camera;
-	t_light		light[20];
+	t_light		light[MAX_LIGHT];
 	int			nb_light;
 	t_ambient	ambient;
 	int			nb_object;

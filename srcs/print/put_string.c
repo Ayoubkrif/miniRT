@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:01:20 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/17 09:33:37 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:24:00 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	put_cam(t_rt *rt)
 
 void	put_string(t_rt *rt)
 {
+	if (WIN_Y < 20 || WIN_X < 700)
+		return ;
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 50, WIN_Y - 20, 0xFFFFFF,
 		" selected object :");
 	if (rt->menu == 0)
