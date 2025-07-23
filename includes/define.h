@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:10:01 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 12:40:54 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:30:19 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@
 # define KS 0.9
 # define ALPHA_S 200
 # define MAX_OBJ 50
+# define MAX_LIGHT 20
 
 #endif
