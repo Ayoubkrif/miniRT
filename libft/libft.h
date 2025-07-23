@@ -6,7 +6,7 @@
 /*   By: ayoub <ayoub@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:48:37 by ayoub             #+#    #+#             */
-/*   Updated: 2025/07/20 18:29:38 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/07/23 11:01:20 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	ft_putnbr_fd(int nb, int fd);
 
 char	*get_next_line(int fd);
 char	**ft_strtok(char *s, char *tok);
+int		ft_isspace(int c);
+float	ft_atof(const char *nptr);
 
 typedef struct s_list
 {

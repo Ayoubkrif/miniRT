@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/22 13:25:27 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/07/23 11:20:49 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 SRC_PATH	= srcs
 OBJ_PATH	= objs
 
-SRC_DIRS	= math init print key_hook mlx intersection keyhook bump_texture
+SRC_DIRS	= math init print key_hook mlx intersection keyhook bump_texture utils
 SRC_DIRS_PATHS = $(addprefix $(SRC_PATH)/,$(SRC_DIRS))
 
 LIBFT		= libft
@@ -35,7 +35,6 @@ SOURCES		= main.c \
 			  init/constructors_utils.c \
 			  init/constructors_base.c \
 			  init/solids_set.c \
-			  math/math_utils.c \
 			  mlx/put_pixel.c \
 			  keyhook/hook.c \
 			  keyhook/hook_cam.c \
@@ -43,22 +42,22 @@ SOURCES		= main.c \
 			  keyhook/hook_cy.c \
 			  keyhook/hook_pl.c \
 			  keyhook/hook_sp.c \
+			  math/math_utils.c \
 			  math/vect.c math/vect2.c math/vect3.c math/vect4.c \
-			  set_cam_base.c \
 			  intersection/intersection.c \
 			  intersection/intersection2.c \
 			  intersection/ray_casting.c\
 			  intersection/blinn-phong.c \
 			  intersection/cast_ray_from.c \
 			  print/put_string.c print/ftoa.c print/obj_print.c \
-			  utils.c utils_rt.c \
+			  utils/set_cam_base.c \
+			  utils/utils.c utils/utils_rt.c \
+			  utils/colors_utils.c \
 			  mlx/exit_minirt.c \
-			  colors_utils.c \
 			  bump_texture/bump_normal.c \
 			  bump_texture/bump_texture.c \
 			  bump_texture/u_v_map.c \
 			  bump_texture/u_v_map2.c \
-			  ft_atof.c \
 
 
 SRCS		= $(addprefix $(SRC_PATH)/,$(SOURCES))
@@ -78,11 +77,10 @@ VIOLET      = \033[1;35m
 CYAN        = \033[1;36m
 WHITE       = \033[1;37m
 
-all: $(NAME)
+all:tmp lib $(NAME) 
 
-$(NAME): tmp lib $(OBJS)
-	@$(CC) $(CFLAGS) -L $(LIBFT) -L $(MLX) -o $@ $(OBJS) -lft -lmlx -lXext -lX11 -lm $(INCLUDES)
-	@echo "$(GREEN)Project successfully compiled$(NOC)"
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -L $(LIBFT) -L $(MLX) -o $@ $(OBJS) -lft -lmlx -lXext -lX11 -lm $(INCLUDES)
 
 -include $(DEPS)
 
@@ -100,19 +98,13 @@ fclean: clean
 re: fclean all
 
 mlx: $(MLX)
-	@echo "$(GREEN)Compiling mlx ...$(CYAN)"
-	@make --silent -C $(MLX)
-	@echo "$(GREEN)mlx compiled !$(CYAN)"
+	@make -C $(MLX)
 
 $(MLX):
-	@echo "$(GREEN)Cloning mlx ...$(CYAN)"
 	@git clone https://github.com/42Paris/minilibx-linux.git $(MLX)
-	@echo "$(GREEN)Mlx cloned !$(CYAN)"
 
 lib: mlx
-	@echo "$(GREEN)Creating lib files...$(CYAN)"
-	@make bonus -C $(LIBFT) -s
-	@echo "$(GREEN)libft compiled !$(CYAN)"
+	@make -C $(LIBFT)
 
 tmp:
 	@mkdir -p $(OBJ_PATH)

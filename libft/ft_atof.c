@@ -6,34 +6,23 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 09:26:14 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/22 13:35:03 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:00:51 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
-static int	ft_isisspace(int c)
-{
-	return ((c <= 13 && c >= 9) || c == ' ');
-}
-
-int	ft_isdigit(int c)
-{
-	return (c <= '9' && c >= '0');
-}
-
-int	int_len(char *nb)
+static int	int_len(char *nb)
 {
 	int	i;
 
 	i = 0;
-	while (nb[i] >= '0' && nb[i] <= '9')
+	while (ft_isdigit(nb[i]))
 		i++;
 	return (i);
 }
 
-float	convert_nb(float to_convert, float precision)
+static float	convert_nb(float to_convert, float precision)
 {
 	while (precision != 0)
 	{
@@ -54,7 +43,7 @@ float	ft_atof(const char *nptr)
 	s = 1;
 	ipart = 0;
 	fpart = 0;
-	while (ft_isisspace(nptr[i]))
+	while (ft_isspace(nptr[i]))
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
