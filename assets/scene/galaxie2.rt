@@ -1,0 +1,38 @@
+A 0.1 255,255,255
+
+# Caméra - centrée en X, légèrement en hauteur, reculée sur Z
+C 0,200,-5000 0,-0.05,1 70
+
+# Lumière (directionnelle, venant du haut)
+L 0,500,-2500 1.0 255,255,255
+
+# Mercure
+sp 0,0,0 28 169,169,169
+
+# Vénus
+sp 0,0,56 70 218,165,32
+
+# Terre
+sp 0,0,75 74 0,102,204
+
+# Lune (près de la Terre)
+sp 0,0,77.5 20 200,200,200
+
+# Mars
+sp 0,0,110 40 255,69,0
+
+# Jupiter
+sp 0,0,380 800 204,153,102
+
+# Saturne
+sp 0,0,700 660 210,180,140
+
+# Uranus
+sp 0,0,1400 300 173,216,230
+
+# Neptune
+sp 0,0,2200 290 0,0,139
+
+# Pluton
+sp 0,0,2950 14 180,170,160
+

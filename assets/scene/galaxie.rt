@@ -1,0 +1,70 @@
+root assets/
+
+#	AMBiANT	A					 	brightness (int)	color (rgb)
+#	LIGHT	L	position (vect) 	brightness (int)	color (rgb)
+
+#	CAMERA	C	position (vect) 	direction (vect)	fov (float)
+
+#	SPHERE	sp	center (vect)							diameter (float)					color (rgb)
+#	CYLINDR	cy	center (vect)		direction (vect)	diameter (float)	height (float)	color (rgb)
+# #	PLAN	pl	point  (vect)		normal	  (vect)										color (rgb)
+
+A 0.7 				255,255,255
+
+# C 1100,100,-3500 			0,-1,0		70
+C 0,0,0 			1,0,0		90
+
+L 0,0,0 		0.9			255,255,255
+
+# sp 0,-10,30			6			255,255,255	t:texture/earth.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/moonmap1k.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/jupitermap.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/marsmap1k.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/neptunemap.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/plutomap1k.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/saturnmap.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/mercurymap.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/uranusmap.xpm
+# sp 0,-10,30			6			255,255,255	t:texture/venusmap.xpm
+# Soleil
+# sp 0,0,0 400 255,204,0
+
+# Mercure
+# sp 30,2,1 1.4 169,169,169	t:texture/mercurymap.xpm
+sp 30,2,0 1.4 169,169,169	t:texture/mercurymap.xpm
+
+# Vénus
+# sp 41.3,0,34.7 3.5 218,165,32	t:texture/venusmap.xpm
+sp 41.3,0,0 3.5 218,165,32	t:texture/venusmap.xpm
+
+# Terre
+# sp 13.0,0,74 3.7 0,102,204	t:texture/earth.xpm
+sp 13.0,0,0 3.7 0,102,204	t:texture/earth.xpm
+
+# Lune (autour de la Terre)
+# sp 15.5,0,75.5 1 200,200,200	t:texture/moonmap1k.xpm
+sp 15.5,0,0 1 200,200,200	t:texture/moonmap1k.xpm
+
+# Mars
+# sp -57.0,0,98.6 2 255,69,0	t:texture/marsmap1k.xpm
+sp -57.0,0,0 2 255,69,0	t:texture/marsmap1k.xpm
+
+# Jupiter
+# sp -366.3,0,133.4 40 204,153,102	t:texture/jupitermap.xpm
+sp -366.3,0,0 40 204,153,102	t:texture/jupitermap.xpm
+
+# Saturne
+# sp -671.3,0,-244.5 33 210,180,140	t:texture/saturnmap.xpm
+sp -671.3,0,0 33 210,180,140	t:texture/saturnmap.xpm
+
+# Uranus
+# sp -719.0,0,-1244.4 15 173,216,230	t:texture/uranusmap.xpm
+sp -719.0,0,0 15 173,216,230	t:texture/uranusmap.xpm
+
+# Neptune
+# sp -398.6,0,-2220.6 14.5 0,0,139	t:texture/neptunemap.xpm
+sp -398.6,0,0 14.5 0,0,139	t:texture/neptunemap.xpm
+
+# Pluton
+# sp 2515.5,0,-1011.6 0.7 180,170,160	t:texture/plutomap1k.xpm
+sp 2515.5,0,0 0.7 180,170,160	t:texture/plutomap1k.xpm

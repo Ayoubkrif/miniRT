@@ -1,0 +1,49 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    castle.rt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/07/20 19:40:24 by aykrifa           #+#    #+#              #
+#    Updated: 2025/07/20 20:04:55 by aykrifa          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# CAMERA		C		position (vect) 	direction (vect)	fov (float)
+
+C						-60,0,2				1,0,0				90
+
+# AMBiANT		A							brightness (int)										color (rgb)
+
+A											0.7														255,255,255
+
+# LIGHT			L		position (vect) 	brightness (int)										color (rgb)
+
+L						10,30,10			0.9														255,255,255
+L						10,30,10			0.9														255,255,255
+
+# SPHERE		sp		center (vect)							diameter (float)					color (rgb)
+# CYLINDR		cy		center (vect)		direction (vect)	diameter (float)	height (float)	color (rgb)
+# PLAN			pl		point  (vect)		normal	  (vect)										color (rgb)
+
+
+cy						10,0,7.5			0,0,1				5					15				150,150,150
+sp						10,0,-100								205									20,150,14
+
+
+cy						-5,-5,5				0,0,1				2					10				150,150,150
+co						-5,-5,12			0,0,-1				2					2				150,150,150
+
+cy						-5,5,5				0,0,1				2					10				150,150,150
+co						-5,5,12				0,0,-1				2					2				150,150,150
+
+cy						5,5,5				0,0,1				2					10				150,150,150
+co						5,5,12				0,0,-1				2					2				150,150,150
+
+cy						5,-5,5				0,0,1				2					10				150,150,150
+co						5,-5,12				0,0,-1				2					2				150,150,150
+
+pl		0,0,0			0,0,1																		0,0,25			r:0.2
+pl		1000,0,0		1,0,0																		0,255,255
+

@@ -1,0 +1,9 @@
+/* XPM */
+static char *img_xpm[] = {
+"2 2 2 1",
+"A c #FFFFFF",  // blanc
+"B c #000000",  // noir
+"AB",
+"AB"
+};
+

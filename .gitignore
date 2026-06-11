@@ -1,9 +1,5 @@
-*
-!libft/*.[ch]
-!srcs
-!assets
-!includes
-!Makefile
-!.gitgnore
-!README.md
-!Dockerfile
+miniRT
+*.o
+*.d
+*.a
+minilibx-linux/
