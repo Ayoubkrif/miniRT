@@ -1,9 +1,0 @@
-Mandatory:
-	atof
-	-O3 -flto -ffast-math -march=native -pipe
-	entre grosses guillemets cam 0,0,0 && 0,0,1
-
-Bonuses:
-	torus
-	
-

@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/07/23 11:20:49 by aykrifa          ###   ########.fr        #
+#    Updated: 2026/06/11 16:33:51 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,7 @@ fclean: clean
 	@rm -rf $(MLX)
 	@make fclean -C $(LIBFT)
 	@rm -f fsanitize
+	@docker rmi $(DOCKER_IMAGE) 2>/dev/null || true
 
 re: fclean all
 
@@ -102,6 +103,7 @@ mlx: $(MLX)
 
 $(MLX):
 	@git clone https://github.com/42Paris/minilibx-linux.git $(MLX)
+	@git -C $(MLX) checkout 6e7e6ef
 
 lib: mlx
 	@make -C $(LIBFT)
@@ -117,7 +119,18 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 bear:
 	bear -- make re
 
-.PHONY: all fsanitize clean fclean re
+DOCKER_IMAGE	= minirt
+
+docker-build:
+	docker build -t $(DOCKER_IMAGE) .
+
+docker-run:
+	docker run -it --rm -v $(PWD):/app $(DOCKER_IMAGE)
+
+docker-make:
+	docker run --rm -v $(PWD):/app $(DOCKER_IMAGE) make
+
+.PHONY: all fsanitize clean fclean re docker-build docker-run docker-make
 
 # fsanitize: tmp $(OBJS)
 # 	@$(CC) $(CFLAGS) -o $@ $(OBJS) -lpthread -g3 -fsanitize=thread
