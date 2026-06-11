@@ -83,30 +83,55 @@ The binary is produced in the current directory and can then be run on the host.
 
 ## Scene file format
 
+### Mandatory elements
+
 ```
-# Ambient light      ratio  R,G,B
+# Ambient light      ratio   R,G,B
 A  0.2               255,255,255
 
 # Camera             position        direction       FOV
 C  0,0,-5            0,0,1           70
 
-# Light              position        R,G,B
-L  -40,50,0          255,255,255
+# Light              position        brightness      R,G,B
+L  -40,50,0          0.9             255,255,255
+```
 
-# Sphere             center          diameter  R,G,B
+### Primitives
+
+Base parameters only (no extras required):
+
+```
+# Sphere             center          diameter        R,G,B
 sp 0,0,3             2               255,0,0
 
-# Plane              point           normal    R,G,B
+# Plane              point           normal          R,G,B
 pl 0,-1,0            0,1,0           100,200,100
 
 # Cylinder           center          axis      diameter  height  R,G,B
 cy 0,0,3             0,1,0           1         3         0,0,255
 
-# Cone               apex            axis      half-angle  R,G,B
-co 0,3,3             0,-1,0          20         255,165,0
+# Cone               apex            axis      diameter  height  R,G,B
+co 0,3,3             0,-1,0          2         2         255,165,0
 ```
 
-See `assets/scene/` for full examples including textures and bump maps.
+### Optional modifiers (append after base parameters)
+
+| Modifier | Description | Example |
+|---|---|---|
+| `t:path` | XPM texture map | `t:texture/earth.xpm` |
+| `b:path` | XPM bump map | `b:bump/water_bump.xpm` |
+| `r:float` | Reflectivity [0–1] | `r:0.7` |
+
+Modifiers can be combined in any order:
+
+```
+sp 0,0,3   2      255,0,0    t:texture/earth.xpm  b:bump/earth.xpm  r:0.5
+pl 0,-1,0  0,1,0  0,0,255    r:0.7  t:texture/water.xpm  b:bump/water.xpm
+cy 0,0,3   0,1,0  1  3       0,0,255   t:texture/mur.xpm  r:0.3
+co 0,3,3   0,-1,0 2  2       255,165,0  t:texture/tuile.xpm
+```
+
+See `assets/scene/` for full examples.
 
 ---
 
