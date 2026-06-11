@@ -27,6 +27,7 @@ int		fill_vec(char *str, t_vect *vec);
 int		fill_rgb(char *str, t_rgb *color, char *error);
 int		fill_int_color(char *str, int *color, char *error);
 
+int		get_root_info(char **tok, t_rt *rt);
 int		get_cam_info(char **tok, t_rt *rt);
 int		get_light_info(char **tok, t_rt *rt);
 int		get_ambient_info(char **tok, t_rt *rt);

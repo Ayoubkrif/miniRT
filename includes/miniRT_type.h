@@ -64,6 +64,7 @@ typedef struct s_rt
 	t_type		*object[MAX_OBJ];
 	int			menu;
 	int			n_cam;
+	char		*asset_root;
 }	t_rt;
 
 #endif

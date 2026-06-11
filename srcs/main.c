@@ -52,6 +52,7 @@ void	free_rt(t_rt *rt)
 		free(rt->object[i]);
 		i++;
 	}
+	free(rt->asset_root);
 }
 
 int	main(int ac, char *av[])

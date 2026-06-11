@@ -19,25 +19,40 @@
 
 int	fill_texture(t_rt *rt, t_obj *obj, char *tok)
 {
+	char	*path;
+
 	tok += 2;
 	if (!ft_strcmp(tok, "checker"))
-		obj->map += 1;
+		return (obj->map += 1, 0);
+	if (rt->asset_root)
+		path = ft_strjoin(rt->asset_root, tok, 0, 0);
 	else
-	{
-		obj->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, tok,
-				&obj->texture.width, &obj->texture.height);
-		if (!obj->texture.img)
-			return (perror("open"), 1);
-		obj->map += 2;
-	}
+		path = ft_strdup(tok);
+	if (!path)
+		return (1);
+	obj->texture.img = mlx_xpm_file_to_image(rt->mlx.disp, path,
+			&obj->texture.width, &obj->texture.height);
+	free(path);
+	if (!obj->texture.img)
+		return (perror("open"), 1);
+	obj->map += 2;
 	return (0);
 }
 
 int	fill_bump(t_rt *rt, t_obj *obj, char *tok)
 {
+	char	*path;
+
 	tok += 2;
-	obj->bump.img = mlx_xpm_file_to_image(rt->mlx.disp, tok,
+	if (rt->asset_root)
+		path = ft_strjoin(rt->asset_root, tok, 0, 0);
+	else
+		path = ft_strdup(tok);
+	if (!path)
+		return (1);
+	obj->bump.img = mlx_xpm_file_to_image(rt->mlx.disp, path,
 			&obj->bump.width, &obj->bump.height);
+	free(path);
 	if (!obj->bump.img)
 		return (perror("open"), 1);
 	obj->map += 4;

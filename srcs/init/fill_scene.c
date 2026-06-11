@@ -58,8 +58,27 @@ int	fill_vec(char *str, t_vect *vec)
 	return (0);
 }
 
+int	get_root_info(char **tok, t_rt *rt)
+{
+	size_t	len;
+
+	if (!tok[1])
+		return (printf("Error: root requires a directory\n"), 1);
+	free(rt->asset_root);
+	len = ft_strlen(tok[1]);
+	if (len > 0 && tok[1][len - 1] == '/')
+		rt->asset_root = ft_strdup(tok[1]);
+	else
+		rt->asset_root = ft_strjoin(tok[1], "/", 0, 0);
+	if (!rt->asset_root)
+		return (perror("malloc"), 1);
+	return (0);
+}
+
 int	get_identifier(char *str, char **tok, t_rt *rt)
 {
+	if (!ft_strcmp(str, "root"))
+		return (get_root_info(tok, rt));
 	if (!ft_strcmp(str, "C"))
 		return (get_cam_info(tok, rt));
 	if (!ft_strcmp(str, "A"))
