@@ -6,7 +6,7 @@
 /*   By: cbordeau <cbordeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:01:20 by cbordeau          #+#    #+#             */
-/*   Updated: 2025/07/23 11:24:00 by cbordeau         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:33:55 by cbordeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	put_cam(t_rt *rt)
 		" camera");
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 230, WIN_Y - 20, 0xFFFFFF,
 		" position :");
-	ftoa(rt->camera.position.x, res, 4);
+	ftoa(rt->camera.position.x, res, 1);
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 300, WIN_Y - 20, 0xFFFFFF, res);
-	ftoa(rt->camera.position.y, res, 4);
+	ftoa(rt->camera.position.y, res, 1);
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 350, WIN_Y - 20, 0xFFFFFF, res);
-	ftoa(rt->camera.position.z, res, 4);
+	ftoa(rt->camera.position.z, res, 1);
 	mlx_string_put(rt->mlx.disp, rt->mlx.win, 400, WIN_Y - 20, 0xFFFFFF, res);
 }
 
