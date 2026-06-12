@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 14:17:37 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/23 12:41:21 by aykrifa          ###   ########.fr       */
+/*   Updated: 2026/06/12 17:20:32 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "miniRT_type.h"
 # include "miniRT_inter.h"
 
-# define WIN_X	710
-# define WIN_Y	710
+# define WIN_X	1920
+# define WIN_Y	1080
 
 float	ft_atof(const char *nptr);
 void	check_args(int argc);
