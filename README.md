@@ -5,7 +5,7 @@
 <!-- Replace the lines below with actual screenshots once rendered -->
 <!-- Tip: run ./miniRT assets/scene/pretty_sphere.rt and take a screenshot -->
 
-![render preview](docs/renders/preview.png)
+![render preview](docs/renders/castle3.png)
 
 ---
 
@@ -32,10 +32,10 @@
      assets/scene/texture_demo.rt
 -->
 
-| | | |
-|---|---|---|
-| ![](docs/renders/sphere.png) | ![](docs/renders/temple.png) | ![](docs/renders/atoms.png) |
-| Sphere + bump | Temple | Atoms |
+| | |
+|---|---|
+| ![](docs/renders/castle3.png) | ![](docs/renders/pretty_sphere.png) |
+| Castle | Pretty sphere |
 
 ---
 
