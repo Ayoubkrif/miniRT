@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:31:48 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/07/23 12:35:03 by aykrifa          ###   ########.fr       */
+/*   Updated: 2026/06/14 13:48:13 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define CHECK_R 255
 #define CHECK_G 0
 #define CHECK_B 255
-#define CHECK_COLOR 0xF000FF
+#define CHECK_COLOR 0x111111
 #define BUMP_HEIGHT 1
 
 void	get_obj_map(t_vect *point, t_obj *obj, t_vect *map, t_type mode)
@@ -45,7 +45,7 @@ void	get_obj_map(t_vect *point, t_obj *obj, t_vect *map, t_type mode)
 
 void	checkerboard(t_inter *inter, int *color, t_vect *map)
 {
-	if ((int)(floor(10 * map->x) + floor(10 * map->y)) % 2)
+	if ((int)(floor(2 * map->x) + floor(2 * map->y)) % 2)
 		*color = CHECK_COLOR;
 	else
 		*color = inter->obj->color;
