@@ -53,6 +53,7 @@ SOURCES		= main.c \
 			  utils/utils.c utils/utils_rt.c \
 			  utils/colors_utils.c \
 			  mlx/exit_minirt.c \
+			  mlx/screenshot.c \
 			  bump_texture/bump_normal.c \
 			  bump_texture/bump_texture.c \
 			  bump_texture/u_v_map.c \

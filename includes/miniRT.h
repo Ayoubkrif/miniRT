@@ -53,6 +53,7 @@ int		key_hook(int keycode, t_rt *rt);
 int		select_solid(int button, int x, int y, t_rt *rt);
 
 void	put_a_pixel(t_img *rt, int x, int y, t_rgb color);
+void	save_ppm(t_rt *rt);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		my_mlx_pixel_get(t_img *img, int x, int y);
 void	put_string(t_rt *rt);

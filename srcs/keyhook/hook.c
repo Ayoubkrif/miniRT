@@ -75,6 +75,8 @@ int	key_hook(int keycode, t_rt *rt)
 {
 	if (keycode == XK_Escape)
 		exit_minirt(rt, 0);
+	else if (keycode == XK_p)
+		save_ppm(rt);
 	else if (keycode == XK_c)
 		rt->menu = 0;
 	else if (keycode == XK_n)
