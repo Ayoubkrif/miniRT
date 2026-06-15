@@ -5,7 +5,7 @@
 <!-- Replace the lines below with actual screenshots once rendered -->
 <!-- Tip: run ./miniRT assets/scene/pretty_sphere.rt and take a screenshot -->
 
-![render preview](docs/renders/castle.png)
+![render preview](docs/renders/pretty_sphere.png)
 
 ---
 
