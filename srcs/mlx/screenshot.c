@@ -16,15 +16,18 @@
 
 void	save_ppm(t_rt *rt)
 {
+	static int		n = 0;
 	t_img			*img;
 	FILE			*fp;
 	int				x;
 	int				y;
 	unsigned int	color;
 	unsigned char	px[3];
+	char			name[32];
 
+	snprintf(name, sizeof(name), "screenshot_%03d.ppm", n++);
 	img = (t_img *)rt->mlx.img;
-	fp = fopen("screenshot.ppm", "wb");
+	fp = fopen(name, "wb");
 	if (!fp)
 		return (perror("screenshot"));
 	fprintf(fp, "P6\n%d %d\n255\n", WIN_X, WIN_Y);
@@ -45,5 +48,5 @@ void	save_ppm(t_rt *rt)
 		y++;
 	}
 	fclose(fp);
-	printf("screenshot saved: screenshot.ppm\n");
+	printf("screenshot saved: %s\n", name);
 }

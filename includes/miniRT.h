@@ -70,7 +70,8 @@ t_rgb	cast_ray_from(t_rt *rt, t_vect ray, t_vect from, int precision);
 void	blin_phong(t_rt *rt, t_vect ray, t_phong *phong, t_rgb *lights);
 
 void	bump_texture(t_inter *inter, t_vect *normal, int *color, t_vect *point);
-void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map, float height);
+void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map,
+		float height, t_vect t, t_vect b);
 void	get_sp_map(t_vect point, t_sp *sp, t_vect *map);
 void	get_pl_map(t_vect point, t_pl *pl, t_vect *map);
 void	get_cy_map(t_vect point, t_cy *cy, t_vect *map);
