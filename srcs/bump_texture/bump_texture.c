@@ -17,7 +17,7 @@
 #define CHECK_G 0
 #define CHECK_B 255
 #define CHECK_COLOR 0x111111
-#define BUMP_HEIGHT 1
+#define BUMP_HEIGHT 4
 
 void	get_obj_map(t_vect *point, t_obj *obj, t_vect *map, t_type mode)
 {
@@ -51,11 +51,68 @@ void	checkerboard(t_inter *inter, int *color, t_vect *map)
 		*color = inter->obj->color;
 }
 
+static void	get_tb(t_inter *inter, t_vect *point, t_vect *normal,
+		t_vect *t, t_vect *b)
+{
+	t_cy	*cy;
+	t_co	*co;
+	t_pl	*pl;
+	t_vect	radial;
+
+	if (inter->mode == PLANE)
+	{
+		pl = (t_pl *)inter->obj;
+		*t = pl->base.h_normal;
+		*b = vec_mul(pl->base.v_normal, -1);
+	}
+	else if (inter->mode == CYLINDER)
+	{
+		cy = (t_cy *)inter->obj;
+		*t = cross(cy->axis_n, *normal);
+		normalize_to(t);
+		*b = cy->axis_n;
+	}
+	else if (inter->mode == DISK_BOT || inter->mode == DISK_TOP)
+	{
+		cy = (t_cy *)inter->obj;
+		if (inter->mode == DISK_BOT)
+			radial = vec_sub(*point, cy->bottom);
+		else
+			radial = vec_sub(*point, cy->top);
+		normalize_to(&radial);
+		*t = cross(cy->axis_n, radial);
+		*b = radial;
+	}
+	else if (inter->mode == CONE)
+	{
+		co = (t_co *)inter->obj;
+		*t = cross(co->axis_n, *normal);
+		normalize_to(t);
+		*b = cross(*normal, *t);
+	}
+	else if (inter->mode == DISK)
+	{
+		co = (t_co *)inter->obj;
+		radial = vec_sub(*point, co->center);
+		normalize_to(&radial);
+		*t = cross(co->axis_n, radial);
+		*b = radial;
+	}
+	else
+	{
+		*t = (t_vect){-normal->y, normal->x, 0};
+		normalize_to(t);
+		*b = cross(*normal, *t);
+	}
+}
+
 void	bump_texture(
 		t_inter *inter, t_vect *normal, int *color, t_vect *point)
 {
 	t_vect	map;
 	t_obj	*obj;
+	t_vect	t;
+	t_vect	b;
 	int		temp;
 
 	obj = (t_obj *)inter->obj;
@@ -75,5 +132,8 @@ void	bump_texture(
 	else
 		*color = inter->obj->color;
 	if (inter->obj->map >= 4)
-		bump_normal(&obj->bump, normal, &map, BUMP_HEIGHT);
+	{
+		get_tb(inter, point, normal, &t, &b);
+		bump_normal(&obj->bump, normal, &map, BUMP_HEIGHT, t, b);
+	}
 }

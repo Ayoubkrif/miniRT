@@ -24,10 +24,10 @@ void	get_sp_map(t_vect point, t_sp *sp, t_vect *map)
 	t_vect		p;
 
 	p = vec_sub(point, sp->center);
-	map->x = atan2(p.y, p.x);
-	map->x /= (2.0 * PI);
-	map->y = acos(p.z / sp->radius);
-	map->y /= PI;
+	map->x = atan2(p.y, p.x) / (2.0 * PI);
+	if (map->x < 0)
+		map->x += 1.0;
+	map->y = acos(p.z / sp->radius) / PI;
 }
 
 void	get_pl_map(t_vect point, t_pl *pl, t_vect *map)

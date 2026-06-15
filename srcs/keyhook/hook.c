@@ -49,13 +49,13 @@ int	select_solid(int button, int x, int y, t_rt *rt)
 static void	set_offset(int keycode, t_obj *obj)
 {
 	if (keycode == XK_KP_Left)
-		obj->u_offset -= 0.083;
+		obj->u_offset -= 0.033;
 	if (keycode == XK_KP_Right)
-		obj->u_offset += 0.083;
+		obj->u_offset += 0.033;
 	if (keycode == XK_KP_Up)
-		obj->v_offset += 0.083;
+		obj->v_offset += 0.033;
 	if (keycode == XK_KP_Down)
-		obj->v_offset -= 0.083;
+		obj->v_offset -= 0.033;
 }
 
 static void	modify_obj(int keycode, t_type *obj)

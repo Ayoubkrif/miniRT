@@ -47,29 +47,25 @@ void	edge_secure(t_bump *bump, int x, int y, int h[4])
 		h[3] = y;
 }
 
-void	normal_perturbation(t_vect *normal, float h[4])
+void	normal_perturbation(t_vect *normal, float h[4], t_vect t, t_vect b)
 {
-	t_base	base;
 	t_vect	bump_normal;
 	t_vect	new_normal;
 
 	bump_normal = (t_vect){-average(h[1], h[0]), -average(h[3], h[2]), 1};
 	normalize_to(&bump_normal);
-	set_base(&base, *normal);
-	new_normal.x = bump_normal.x * base.h_normal.x
-		+ bump_normal.y * base.v_normal.x
+	new_normal.x = bump_normal.x * t.x + bump_normal.y * b.x
 		+ bump_normal.z * normal->x;
-	new_normal.y = bump_normal.x * base.h_normal.y
-		+ bump_normal.y * base.v_normal.y
+	new_normal.y = bump_normal.x * t.y + bump_normal.y * b.y
 		+ bump_normal.z * normal->y;
-	new_normal.z = bump_normal.x * base.h_normal.z
-		+ bump_normal.y * base.v_normal.z
+	new_normal.z = bump_normal.x * t.z + bump_normal.y * b.z
 		+ bump_normal.z * normal->z;
 	normalize_to(&new_normal);
 	*normal = new_normal;
 }
 
-void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map, float height)
+void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map,
+		float height, t_vect t, t_vect b)
 {
 	float	hf[4];
 	int		h[4];
@@ -83,5 +79,5 @@ void	bump_normal(t_bump *bump, t_vect *normal, t_vect *map, float height)
 	hf[1] = rgb_to_height(my_mlx_pixel_get(bump->img, h[1], y), height);
 	hf[2] = rgb_to_height(my_mlx_pixel_get(bump->img, x, h[2]), height);
 	hf[3] = rgb_to_height(my_mlx_pixel_get(bump->img, x, h[3]), height);
-	normal_perturbation(normal, hf);
+	normal_perturbation(normal, hf, t, b);
 }
