@@ -28,11 +28,5 @@ L 0,0,0 0.9 255,255,255
 # pl 0,0,6 0,0,1 150,0,150 r:0 
 # pl 0,0,-6 0,0,1 150,0,150 r:0 t:checker 
 
-# sp 8,-3,0 1 150,150,150 t:texture/earth.xpm    
 sp 0,1,0 1 150,150,150 t:texture/earth.xpm b:bump/earth.xpm    
-sp 0,-1,0 1 150,150,150 t:texture/earth.xpm b:bump/earth.xpm    
-# sp -1,0,0 1 150,150,150 b:bump/earth.xpm    
-# sp 1,0,0 1 150,150,150 b:bump/earth.xpm    
-sp 0,0,1 1 150,150,150 t:texture/earth.xpm b:bump/earth.xpm    
-sp 0,0,-1 1 150,150,150 t:texture/earth.xpm b:bump/earth.xpm    
 # sp 8,0,0 1 150,150,150  

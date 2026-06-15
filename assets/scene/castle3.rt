@@ -2,7 +2,7 @@ root assets/
 
 # CAMERA		C		position (vect) 	direction (vect)	fov (float)
 
-C						-60,0,2				1,0,0				90
+C						-40,5,2				1,-0.1,0				80
 # C						-23.9,0,55.5				1,0,0				90
 
 # AMBiANT		A							brightness (int)										color (rgb)

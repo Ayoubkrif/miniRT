@@ -5,7 +5,7 @@
 <!-- Replace the lines below with actual screenshots once rendered -->
 <!-- Tip: run ./miniRT assets/scene/pretty_sphere.rt and take a screenshot -->
 
-![render preview](docs/renders/castle3.png)
+![render preview](docs/renders/castle.png)
 
 ---
 
@@ -25,17 +25,12 @@
 
 ## Gallery
 
-<!-- Add screenshots here. Suggested scenes to render:
-     assets/scene/pretty_sphere.rt
-     assets/scene/temple.rt
-     assets/scene/atoms.rt
-     assets/scene/texture_demo.rt
--->
-
 | | |
 |---|---|
-| ![](docs/renders/castle3.png) | ![](docs/renders/pretty_sphere.png) |
+| ![](docs/renders/castle.png) | ![](docs/renders/pretty_sphere.png) |
 | Castle | Pretty sphere |
+
+![texture rotation](docs/renders/rotation.gif)
 
 ---
 
@@ -143,9 +138,12 @@ See `assets/scene/` for full examples.
 | `A` / `D` | Move camera left / right |
 | `↑` / `↓` | Rotate camera up / down |
 | `←` / `→` | Rotate camera left / right |
-| `Tab` | Cycle through objects |
+| `Tab` / `N` | Cycle through objects |
 | `IJKL` | Move selected object |
 | Mouse wheel | Move object along its axis |
+| `KP 8` / `KP 2` | Shift texture / bump map up / down |
+| `KP 6` / `KP 4` | Shift texture / bump map right / left |
+| `P` | Save screenshot (`screenshot_NNN.ppm`) |
 | `ESC` | Exit |
 
 ---
