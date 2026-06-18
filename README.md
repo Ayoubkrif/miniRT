@@ -23,17 +23,6 @@
 
 ---
 
-## Gallery
-
-| | |
-|---|---|
-| ![](docs/renders/castle.png) | ![](docs/renders/pretty_sphere.png) |
-| Castle | Pretty sphere |
-
-![texture rotation](docs/renders/rotation.gif)
-
----
-
 ## Installation
 
 ### Requirements
@@ -187,5 +176,28 @@ srcs/
 
 ## Authors
 
-- [aykrifa](https://github.com/Ayoubkrif)
-- cbordeau
+- [Ayoub](https://github.com/Ayoubkrif)
+- [Clara](https://github.com/Bordeau-Clara)
+
+---
+
+## Gallery
+
+| | |
+|---|---|
+| ![](docs/renders/castle.png) | ![](docs/renders/pretty_sphere.png) |
+| Castle | Pretty sphere |
+| ![](docs/renders/3lights.png) | |
+| 3 lights | |
+
+![texture rotation](docs/renders/rotation.gif)
+
+---
+
+## References
+
+- [Intersection of a Line and a Cone](https://www.geometrictools.com/Documentation/IntersectionLineCone.pdf) — Geometric Tools
+- [Line–cylinder intersection](https://en.wikipedia.org/wiki/Line-cylinder_intersection) — Wikipedia
+- [Blinn–Phong reflection model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_reflection_model) — Wikipedia
+- [UV coordinates for sphere cylindrical projection](https://gamedev.stackexchange.com/questions/114412/how-to-get-uv-coordinates-for-sphere-cylindrical-projection) — Game Dev Stack Exchange
+- [UV mapping](https://en.wikipedia.org/wiki/UV_mapping) — Wikipedia
