@@ -85,6 +85,8 @@ int	get_identifier(char *str, char **tok, t_rt *rt)
 		return (get_ambient_info(tok, rt));
 	if (!ft_strcmp(str, "L"))
 		return (get_light_info(tok, rt));
+	if (!ft_strcmp(str, "M"))
+		return (get_material_info(tok, rt));
 	if (!ft_strcmp(str, "sp"))
 		return (get_sphere_info(tok, rt));
 	if (!ft_strcmp(str, "cy"))

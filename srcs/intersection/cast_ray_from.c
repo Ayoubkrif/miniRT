@@ -30,7 +30,7 @@ t_rgb	reflect_phong(t_rt *rt, t_vect ray, t_phong *phong, int precision)
 					vec_mul(phong->reflected, EPSILON)), precision - 1);
 	if (!(reflexion > 1 - EPSILON && precision))
 		blin_phong(rt, ray, phong, &lights);
-	lights = color_add(rt->ambient.color, lights);
+	lights = color_add(color_k(rt->ambient.color, rt->ka), lights);
 	return (
 		color_add(
 			color_k(mul_rgb(phong->solid_color, lights), 1 - reflexion)

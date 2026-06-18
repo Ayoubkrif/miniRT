@@ -61,6 +61,10 @@ int	main(int ac, char *av[])
 
 	check_args(ac);
 	ft_memset(&rt, 0, sizeof(t_rt));
+	rt.ka = KA;
+	rt.kd = KD;
+	rt.ks = KS;
+	rt.alpha_s = ALPHA_S;
 	init_mini_rt(&rt, av);
 	set_base(&rt.camera.base, rt.camera.direction_n);
 	set_cam_base(&rt.camera);

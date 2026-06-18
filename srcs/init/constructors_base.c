@@ -14,6 +14,7 @@
 #include "miniRT.h"
 #include "define.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	get_cam_info(char **tok, t_rt *rt)
 {
@@ -62,6 +63,19 @@ int	get_light_info(char **tok, t_rt *rt)
 	return (0);
 }
 
+int	get_material_info(char **tok, t_rt *rt)
+{
+	if (!tok[1] || !tok[2] || !tok[3] || !tok[4])
+		return (printf("Error: M requires ka kd ks alpha_s\n"), 1);
+	rt->ka = ft_atof(tok[1]);
+	rt->kd = ft_atof(tok[2]);
+	rt->ks = ft_atof(tok[3]);
+	rt->alpha_s = ft_atof(tok[4]);
+	if (rt->ka < 0 || rt->kd < 0 || rt->ks < 0 || rt->alpha_s <= 0)
+		return (printf("Error: M values must be positive\n"), 1);
+	return (0);
+}
+
 int	get_ambient_info(char **tok, t_rt *rt)
 {
 	static int	nb = 0;
@@ -78,7 +92,6 @@ int	get_ambient_info(char **tok, t_rt *rt)
 	brightness = ft_atof(tok[1]);
 	if (brightness < 0 || brightness > 1)
 		return (print_error(BRIGHTNESS, "ambient"));
-	brightness *= KA;
 	brightness /= 255;
 	rt->ambient.color = color_k(rt->ambient.color, brightness);
 	return (0);

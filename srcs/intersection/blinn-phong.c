@@ -20,20 +20,16 @@ void	add_lights(t_rgb *light_color, t_rgb diffuse, t_rgb specular)
 	*light_color = color_add(*light_color, color_add(diffuse, specular));
 }
 
-t_rgb	diffuse_color(t_light light, double dot_normal_light)
+t_rgb	diffuse_color(t_light light, double dot_normal_light, float kd)
 {
-	float	kd;
-
-	kd = KD * dot_normal_light;
-	return (color_k(light.color, kd));
+	return (color_k(light.color, kd * dot_normal_light));
 }
 
-t_rgb	specular_color(t_phong *phong, t_light light, t_vect h)
+t_rgb	specular_color(t_phong *phong, t_light light, t_vect h, float ks,
+		float alpha_s)
 {
-	float	ks;
-
-	ks = KS * fabs(pow(dot(phong->normal_n, h), ALPHA_S));
-	return (color_k(light.color, ks));
+	return (color_k(light.color,
+			ks * fabs(pow(dot(phong->normal_n, h), alpha_s))));
 }
 
 void	blin_phong(t_rt *rt, t_vect ray, t_phong *phong, t_rgb *lights)
@@ -55,9 +51,10 @@ void	blin_phong(t_rt *rt, t_vect ray, t_phong *phong, t_rgb *lights)
 			dot_normal_light = -dot(ray_obj_n, phong->normal_n);
 			if (dot_normal_light > 0)
 				add_lights(lights,
-					diffuse_color(rt->light[i], dot_normal_light),
+					diffuse_color(rt->light[i], dot_normal_light, rt->kd),
 					specular_color(phong, rt->light[i],
-						normalize(vec_add(ray_obj_n, ray))));
+						normalize(vec_add(ray_obj_n, ray)),
+						rt->ks, rt->alpha_s));
 		}
 		i++;
 	}

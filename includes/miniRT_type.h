@@ -65,6 +65,10 @@ typedef struct s_rt
 	int			menu;
 	int			n_cam;
 	char		*asset_root;
+	float		ka;
+	float		kd;
+	float		ks;
+	float		alpha_s;
 }	t_rt;
 
 #endif

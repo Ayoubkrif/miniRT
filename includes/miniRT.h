@@ -31,6 +31,7 @@ int		get_root_info(char **tok, t_rt *rt);
 int		get_cam_info(char **tok, t_rt *rt);
 int		get_light_info(char **tok, t_rt *rt);
 int		get_ambient_info(char **tok, t_rt *rt);
+int		get_material_info(char **tok, t_rt *rt);
 int		get_sphere_info(char **tok, t_rt *rt);
 int		get_cylinder_info(char **tok, t_rt *rt);
 int		get_plane_info(char **tok, t_rt *rt);
