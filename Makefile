@@ -77,7 +77,19 @@ VIOLET      = \033[1;35m
 CYAN        = \033[1;36m
 WHITE       = \033[1;37m
 
-all:tmp lib $(NAME) 
+all:
+	@if ! $(MAKE) _build; then \
+		printf "$(YELLOW)$(BOLD)Native build failed. Fallback sur Docker? [y/N] $(NOC)"; \
+		read ans </dev/tty; \
+		if [ "$$ans" = "y" ] || [ "$$ans" = "Y" ]; then \
+			$(MAKE) docker-build && $(MAKE) docker-make; \
+		else \
+			printf "$(RED)Build annulé.$(NOC)\n"; \
+			exit 1; \
+		fi; \
+	fi
+
+_build: tmp lib $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -L $(LIBFT) -L $(MLX) -o $@ $(OBJS) -lft -lmlx -lXext -lX11 -lm $(INCLUDES)
@@ -130,7 +142,7 @@ docker-run:
 docker-make:
 	docker run --rm -v $(PWD):/app $(DOCKER_IMAGE) make
 
-.PHONY: all fsanitize clean fclean re docker-build docker-run docker-make
+.PHONY: all _build fsanitize clean fclean re docker-build docker-run docker-make
 
 # fsanitize: tmp $(OBJS)
 # 	@$(CC) $(CFLAGS) -o $@ $(OBJS) -lpthread -g3 -fsanitize=thread
