@@ -176,12 +176,14 @@ srcs/
 
 ## Gallery
 
-| | | |
-|---|---|---|
-| ![](docs/renders/castle.png) | ![](docs/renders/spheres.png) | ![](docs/renders/cones.png) |
-| Castle | Spheres | Cones |
-| ![](docs/renders/3lights.png) | | |
-| 3 lights | | |
+<p>
+  <img src="docs/renders/castle.png" width="49%"/>
+  <img src="docs/renders/spheres.png" width="49%"/>
+</p>
+<p>
+  <img src="docs/renders/cones.png" width="49%"/>
+  <img src="docs/renders/3lights.png" width="49%"/>
+</p>
 
 ![texture rotation](docs/renders/rotation.gif)
 
