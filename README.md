@@ -54,14 +54,12 @@ make
 
 ## Docker
 
-minilibx ties the build to Linux/X11, which is not portable by nature. The Dockerfile exists to compile without having to install X11 headers on the host — the binary still needs a running X server to display.
+A Docker image is provided to simplify compilation without setting up the build environment manually.
 
 ```bash
 make docker-build           # build the image once
 make docker-make            # compile inside the container
 ```
-
-The binary is produced in the current directory and can then be run on the host.
 
 ---
 
