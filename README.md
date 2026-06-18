@@ -3,9 +3,9 @@
 > A ray tracer written from scratch in C — Blinn-Phong shading, UV texture mapping, bump mapping, and interactive real-time controls.
 
 <!-- Replace the lines below with actual screenshots once rendered -->
-<!-- Tip: run ./miniRT assets/scene/pretty_sphere.rt and take a screenshot -->
+<!-- Tip: run ./miniRT assets/scene/spheres.rt and take a screenshot -->
 
-![render preview](docs/renders/pretty_sphere.png)
+![render preview](docs/renders/spheres.png)
 
 ---
 
@@ -47,7 +47,7 @@ make
 ### Run
 
 ```bash
-./miniRT assets/scene/pretty_sphere.rt
+./miniRT assets/scene/spheres.rt
 ```
 
 ---
@@ -174,21 +174,14 @@ srcs/
 
 ---
 
-## Authors
-
-- [Ayoub](https://github.com/Ayoubkrif)
-- [Clara](https://github.com/Bordeau-Clara)
-
----
-
 ## Gallery
 
-| | |
-|---|---|
-| ![](docs/renders/castle.png) | ![](docs/renders/pretty_sphere.png) |
-| Castle | Pretty sphere |
-| ![](docs/renders/3lights.png) | |
-| 3 lights | |
+| | | |
+|---|---|---|
+| ![](docs/renders/castle.png) | ![](docs/renders/spheres.png) | ![](docs/renders/cones.png) |
+| Castle | Spheres | Cones |
+| ![](docs/renders/3lights.png) | | |
+| 3 lights | | |
 
 ![texture rotation](docs/renders/rotation.gif)
 
@@ -201,3 +194,10 @@ srcs/
 - [Blinn–Phong reflection model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_reflection_model) — Wikipedia
 - [UV coordinates for sphere cylindrical projection](https://gamedev.stackexchange.com/questions/114412/how-to-get-uv-coordinates-for-sphere-cylindrical-projection) — Game Dev Stack Exchange
 - [UV mapping](https://en.wikipedia.org/wiki/UV_mapping) — Wikipedia
+
+---
+
+## Authors
+
+- [Ayoub](https://github.com/Ayoubkrif)
+- [Clara](https://github.com/Bordeau-Clara)
