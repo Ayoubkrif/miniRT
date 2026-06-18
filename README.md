@@ -126,6 +126,26 @@ cy 0,0,3   0,1,0  1  3       0,0,255   t:texture/mur.xpm  r:0.3
 co 0,3,3   0,-1,0 2  2       255,165,0  t:texture/tuile.xpm
 ```
 
+### Material directive (Blinn-Phong coefficients)
+
+The `M` directive sets the four Blinn-Phong shading coefficients for the entire scene.
+It overrides the compile-time defaults and applies globally to all objects.
+
+```
+#              ka    kd    ks    alpha_s
+M              0.3   0.5   0.9   200
+```
+
+| Field | Role | Default |
+|---|---|---|
+| `ka` | Ambient weight — scales how much of the scene ambient light each surface receives | `0.3` |
+| `kd` | Diffuse weight — scales the Lambertian component per light source | `0.5` |
+| `ks` | Specular weight — scales the intensity of the specular highlight | `0.9` |
+| `alpha_s` | Shininess exponent — controls the spread of the specular lobe (higher = tighter, brighter highlight) | `200` |
+
+`M` is optional. If absent, the compile-time values from `define.h` are used unchanged.
+Place it after `root` (if present) and before the scene objects.
+
 See `assets/scene/` for full examples.
 
 ---
