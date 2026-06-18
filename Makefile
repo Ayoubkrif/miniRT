@@ -12,7 +12,9 @@
 
 NAME		= miniRT
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g -O3  -ffast-math -march=native -pipe
+CFLAGS		= -Wall -Wextra -Werror -g -pipe
+OPT			=
+# OPT		= -O3 -ffast-math -march=native
 #-Wconversion -Wsign-conversion -Wfloat-conversion
 INCLUDES	= -Iincludes -I$(MLX) -I$(LIBFT)
 
@@ -92,7 +94,7 @@ all:
 _build: tmp lib $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -L $(LIBFT) -L $(MLX) -o $@ $(OBJS) -lft -lmlx -lXext -lX11 -lm $(INCLUDES)
+	$(CC) $(CFLAGS) $(OPT) -L $(LIBFT) -L $(MLX) -o $@ $(OBJS) -lft -lmlx -lXext -lX11 -lm $(INCLUDES)
 
 -include $(DEPS)
 
@@ -125,7 +127,7 @@ tmp:
 	@$(foreach dir, $(SRC_DIRS), mkdir -p $(OBJ_PATH)/$(dir);)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ $(INCLUDES)
+	@$(CC) $(CFLAGS) $(OPT) -MMD -MP -c $< -o $@ $(INCLUDES)
 	@echo "$(BLUE)Compiling $(WHITE)$(notdir $<)$(BLUE) → $(WHITE)$(notdir $@) $(RED)[OK]$(NOC)"
 
 bear:
